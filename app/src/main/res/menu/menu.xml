@@ -4,13 +4,19 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/ql"
+        android:icon="@drawable/apps"
         android:title="Quản Lý" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/kho"
+        android:icon="@drawable/kho"
         android:title="Kho Hàng" />
     <item
         android:layout_width="wrap_content"
+        android:id="@+id/canhan"
+        android:icon="@drawable/canhan"
         android:layout_height="wrap_content"
         android:title="Cá Nhân" />
 </menu>
