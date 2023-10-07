@@ -211,7 +211,7 @@
                                 android:text="Mã Hàng Hóa" />
 
                             <EditText
-                                android:id="@+id/editTextText2"
+                                android:id="@+id/edMahh"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="14dp"
@@ -227,7 +227,7 @@
                                 android:text="Mã Nhà Cung Cấp" />
 
                             <EditText
-                                android:id="@+id/editTextText3"
+                                android:id="@+id/edMncc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="14dp"
@@ -243,7 +243,7 @@
                                 android:text="Mã Loại Hàng" />
 
                             <EditText
-                                android:id="@+id/editTextText4"
+                                android:id="@+id/Malh"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="14dp"
@@ -259,7 +259,7 @@
                                 android:text="Tên Hàng Hóa" />
 
                             <EditText
-                                android:id="@+id/editTextText5"
+                                android:id="@+id/edTenhh"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="14dp"
@@ -275,7 +275,7 @@
                                 android:text="Giá Tiền" />
 
                             <EditText
-                                android:id="@+id/editTextText6"
+                                android:id="@+id/edGiatien"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="14dp"
@@ -291,7 +291,7 @@
                                 android:text="Ghi Chú" />
 
                             <EditText
-                                android:id="@+id/editTextText7"
+                                android:id="@+id/edGhichu"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="14dp"
@@ -302,7 +302,7 @@
 
 
                             <Button
-                                android:id="@+id/button9"
+                                android:id="@+id/btnLuukho"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="20dp"

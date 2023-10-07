@@ -1,64 +1,75 @@
 package gmail.com.qlcafepoly;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link KhoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import gmail.com.qlcafepoly.Database.Csdl;
+
 public class KhoFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public KhoFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment KhoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static KhoFragment newInstance(String param1, String param2) {
-        KhoFragment fragment = new KhoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private EditText edMahh, edMancc, edMalh, edTenhh, edGiatien, edGhichu;
+    private Button buttonSave;
+    private Csdl databaseHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        databaseHelper = new Csdl(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kho, container, false);
+        View view = inflater.inflate(R.layout.fragment_kho, container, false);
+
+        edMahh = view.findViewById(R.id.edMahh);
+        edMancc = view.findViewById(R.id.edMncc);
+        edMalh = view.findViewById(R.id.Malh);
+        edTenhh = view.findViewById(R.id.edTenhh);
+        edGiatien = view.findViewById(R.id.edGiatien);
+        edGhichu = view.findViewById(R.id.edGhichu);
+        buttonSave = view.findViewById(R.id.btnLuukho);
+
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mahh = edMahh.getText().toString();
+                String mancc = edMancc.getText().toString();
+                String malh = edMalh.getText().toString();
+                String tenhh = edTenhh.getText().toString();
+                String ghichu = edGhichu.getText().toString();
+                int giatien = Integer.parseInt(edGiatien.getText().toString());
+
+                // Lưu dữ liệu vào CSDL
+                long newRowId = databaseHelper.addData(mahh, mancc, malh, tenhh, ghichu, giatien);
+
+                if (newRowId != -1) {
+                    // Thêm dữ liệu thành công
+                    Toast.makeText(getContext(), "Thêm dữ liệu thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Xảy ra lỗi khi thêm
+                    Toast.makeText(getContext(), "Lỗi khi thêm dữ liệu", Toast.LENGTH_SHORT).show();
+                }
+
+                // Xóa nội dung trong EditText sau khi lưu
+                edMahh.setText("");
+                edMancc.setText("");
+            }
+        });
+
+        return view;
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Đóng kết nối đến CSDL khi Fragment bị hủy
+        databaseHelper.close();
     }
 }
