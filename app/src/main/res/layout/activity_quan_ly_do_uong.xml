@@ -107,7 +107,7 @@
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="20dp"
-            android:src="@drawable/milktea" />
+            android:src="@drawable/trs" />
 
 
         <TextView
