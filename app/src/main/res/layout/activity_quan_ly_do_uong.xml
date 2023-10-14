@@ -83,6 +83,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:text="Fruit"
+            android:onClick="tvFruit"
             android:textColor="#fff"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
@@ -117,6 +118,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:text="Milk tea"
+            android:onClick="tvTrs"
             android:textColor="#fff"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
@@ -151,6 +153,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:text="Available"
+            android:onClick="tvNuocNgot"
             android:textColor="#fff"
             android:textSize="35sp"
             android:textStyle="bold|italic" />

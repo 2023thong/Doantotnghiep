@@ -1,5 +1,6 @@
 package gmail.com.qlcafepoly;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class QuanlyFragment extends Fragment {
+    TextView tvQLNV, tvQLDU;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +62,23 @@ public class QuanlyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quanly, container, false);
+        View view = inflater.inflate(R.layout.fragment_quanly, container, false);
+        tvQLNV = view.findViewById(R.id.tvQLNV);
+        tvQLDU = view.findViewById(R.id.tvQLDU);
+        tvQLNV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Quanlynv.class);
+                startActivity(intent);
+            }
+        });
+        tvQLDU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), QuanLyDoUong.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 }

@@ -2,7 +2,9 @@ package gmail.com.qlcafepoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class ThemDoUong extends AppCompatActivity {
 
@@ -10,5 +12,9 @@ public class ThemDoUong extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_do_uong);
+    }
+    public void backthemdouong(View view){
+        Intent intent = new Intent(ThemDoUong.this, Trangcoffee.class);
+        startActivity(intent);
     }
 }
