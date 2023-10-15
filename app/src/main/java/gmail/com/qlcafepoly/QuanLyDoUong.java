@@ -29,4 +29,8 @@ public class QuanLyDoUong extends AppCompatActivity {
         Intent intent = new Intent(QuanLyDoUong.this, Trangdouongkhac.class);
         startActivity(intent);
     }
+    public void backQuanlydouong(View view){
+        finish();
+    }
+
 }
