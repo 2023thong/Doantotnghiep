@@ -28,8 +28,14 @@ public class AdminKho extends AppCompatActivity {
                 if (item.getItemId()==R.id.kho){
                     replaceFragment(new KhoFragment());
                 }
+
                 if (item.getItemId()==R.id.canhan){
                     replaceFragment(new CanhanFragment());
+                }
+
+
+                if (item.getItemId()==R.id.ql){
+                    replaceFragment(new QuanlyFragment());
                 }
 
                 return true;
