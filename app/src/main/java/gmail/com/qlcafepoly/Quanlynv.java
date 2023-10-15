@@ -17,4 +17,7 @@ public class Quanlynv extends AppCompatActivity {
         Intent intent = new Intent(Quanlynv.this, ThemNhanVien.class);
         startActivity(intent);
     }
+    public void back(View view){
+        finish();
+    }
 }
