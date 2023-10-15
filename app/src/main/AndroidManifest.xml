@@ -25,6 +25,35 @@
             android:exported="false" />
         <activity
             android:name=".ThongTinHangNhap"
+
+            android:exported="false" />
+        <activity
+            android:name=".Trangmilktea"
+            android:exported="false" />
+        <activity
+            android:name=".Trangfruit"
+            android:exported="false" />
+        <activity
+            android:name=".Trangcoffee"
+            android:exported="false" />
+
+        <activity
+            android:name=".ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".QuanLyDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".ItemDoUong"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
