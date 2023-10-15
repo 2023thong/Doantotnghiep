@@ -1,6 +1,4 @@
-package gmail.com.qlcafepoly;
-
-import static java.security.AccessController.getContext;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +21,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import gmail.com.qlcafepoly.R;
 
 public class ThongTinHangNhap extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();

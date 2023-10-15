@@ -1,7 +1,7 @@
 package gmail.com.qlcafepoly.Database;
 
-import gmail.com.qlcafepoly.User;
-import gmail.com.qlcafepoly.User1;
+import gmail.com.qlcafepoly.admin.User;
+import gmail.com.qlcafepoly.admin.User1;
 
 public class ServerResponse {
     private String result;

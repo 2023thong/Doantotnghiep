@@ -21,13 +21,42 @@
             android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="false" />
         <activity
-            android:name=".AdminKho"
+            android:name=".admin.AdminKho"
             android:exported="false" />
         <activity
-            android:name=".ThongTinHangNhap"
+            android:name=".admin.ThongTinHangNhap"
+
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".admin.Trangmilktea"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangfruit"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangcoffee"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.QuanLyDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
             android:name=".dangnhap.Danhnhap"
