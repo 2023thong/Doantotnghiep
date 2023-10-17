@@ -1,5 +1,6 @@
 package gmail.com.qlcafepoly.admin;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class KhoFragment extends Fragment {
-    private EditText edMahh, edMancc, edMalh, edTenhh, edGiatien, edGhichu;
+    private EditText edMahh, edMancc, edMalh, edTenhh, edGiatien, edGhichu, edSoluong;
     private TextView textView5;
     private Button buttonSave;
 
@@ -34,6 +35,7 @@ public class KhoFragment extends Fragment {
 
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class KhoFragment extends Fragment {
         edTenhh = view.findViewById(R.id.edTenhh);
         edGiatien = view.findViewById(R.id.edGiatien);
         edGhichu = view.findViewById(R.id.edGhichu);
+        edSoluong = view.findViewById(R.id.edSoluong);
 
         textView5 = view.findViewById(R.id.textView5);
         textView5.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +70,8 @@ public class KhoFragment extends Fragment {
                     String tehh = edTenhh.getText().toString();
                     String giatien = edGiatien.getText().toString();
                     String ghichu = edGhichu.getText().toString();
-                    registerProcess1(mahh, mancc, malh, tehh, giatien, ghichu);
+                    String soluong = edSoluong.getText().toString();
+                    registerProcess1(mahh, mancc, malh, tehh, giatien, ghichu, soluong);
 
                 edMahh.setText("");
                 edMancc.setText("");
@@ -75,6 +79,7 @@ public class KhoFragment extends Fragment {
                 edMalh.setText("");
                 edGiatien.setText("");
                 edGhichu.setText("");
+                edSoluong.setText("");
 
 
             }
@@ -83,8 +88,7 @@ public class KhoFragment extends Fragment {
         return view;
     }
 
-
-    public void registerProcess1(String MaHH , String MaNcc, String MaLh,String TenHh,String GiaSp,String Ghichu ) {
+    public void registerProcess1(String MaHH , String MaNcc, String MaLh,String TenHh,String GiaSp,String Ghichu, String Soluong ) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -97,6 +101,7 @@ public class KhoFragment extends Fragment {
         user1.setTenHh(TenHh);
         user1.setGiaSp(GiaSp);
         user1.setGhichu(Ghichu);
+        user1.setSoluong(Soluong);
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.HANGHOA);
         serverRequest.setUser1(user1);

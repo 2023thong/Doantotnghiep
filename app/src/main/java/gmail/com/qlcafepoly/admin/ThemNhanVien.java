@@ -19,4 +19,7 @@ public class ThemNhanVien extends AppCompatActivity {
         Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
         startActivity(intent);
     }
+    public void backra(View view){
+        finish();
+    }
 }

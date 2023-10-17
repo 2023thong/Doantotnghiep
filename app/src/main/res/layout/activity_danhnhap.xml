@@ -106,7 +106,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/canhan"
+                android:src="@drawable/user1"
                 android:tint="#673AB7"
                 tools:ignore="UseAppTint" />
 
