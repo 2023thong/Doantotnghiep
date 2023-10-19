@@ -7,13 +7,30 @@ public class ServerResponse {
     private String result;
     private String message;
     private String phanquyen;
+    private String MaNv;
 
     private User1 user1;
     private User user;
 
+    private String TenNv;
+    private String Sdt;
+    private String Diachi;
 
+    public String getTenNv() {
+        return TenNv;
+    }
 
+    public String getSdt() {
+        return Sdt;
+    }
 
+    public String getDiachi() {
+        return Diachi;
+    }
+
+    public String getMaNv() {
+        return MaNv;
+    }
 
     public String getResult() {
         return result;
