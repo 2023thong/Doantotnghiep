@@ -25,9 +25,9 @@
         <activity
             android:name=".QuanLyHoaDon"
             android:exported="false" />
-        <activity
-            android:name=".TrangQuanLyHoaDon"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".TrangQuanLyHoaDon"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ThemDoUongKhac"
             android:exported="false" />
@@ -35,62 +35,57 @@
             android:name=".ThemTraSua"
             android:exported="false" />
         <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
             android:name=".ThemNuocEp"
             android:exported="false" />
         <activity
-            android:name=".MenuFragment"
+            android:name=".dangnhap.DoiMatKhau"
             android:exported="false" />
         <activity
             android:name=".dangnhap.Danhnhap"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="false" />
         <activity
-            android:name=".ThongTinHangNhap"
+            android:name=".admin.ThongTinHangNhap"/>
+        <activity
+            android:name=".admin.Trangmilktea"
             android:exported="false" />
         <activity
-            android:name=".Trangmilktea"
+            android:name=".admin.Trangfruit"
             android:exported="false" />
         <activity
-            android:name=".Trangfruit"
+            android:name=".admin.Trangcoffee"
             android:exported="false" />
         <activity
-            android:name=".Trangcoffee"
+            android:name=".admin.ThemNhanVien"
             android:exported="false" />
         <activity
-            android:name=".ThemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".ThemDoUong"
-            android:exported="false" />
-        <activity
-        android:name=".Trangdouongkhac"
+        android:name=".admin.Trangdouongkhac"
         android:exported="false" />
         <activity
-            android:name=".Quanlynv"
+            android:name=".admin.Quanlynv"
             android:exported="false" />
         <activity
-            android:name=".QuanLyDoUong"
+            android:name=".admin.QuanLyDoUong"
             android:exported="false" />
         <activity
-            android:name=".ItemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".ItemDoUong"
+            android:name=".admin.ItemDoUong"
             android:exported="false" />
         <activity
             android:name=".Pay"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminKho"
+            android:name=".admin.AdminKho"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -32,7 +32,6 @@ public class DbHelper extends SQLiteOpenHelper {
         String nhanvien = "CREATE TABLE NHANVIEN(MaNV varchar primary key autoincrement, TenNV text, TenDN varchar, MatKhau varchar, Sdt int, DiaChi varchar, ChucVu text)";
         db.execSQL(nhanvien);
         //Data mẫu nhân viên
-        db.execSQL("INSERT INTO NHANVIEN VALUES(1,'Lê Đức Tú','tu1',123,0364183310,'danang',1");
 
         String menu = "CREATE TABLE MENU(MaMn varchar primary key autoincrement, TenLH varchar, GiaTien int)";
         db.execSQL(menu);

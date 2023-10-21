@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import gmail.com.qlcafepoly.admin.Trangmilktea;
+
 public class ThemTraSua extends AppCompatActivity {
 
     @Override

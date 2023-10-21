@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#E6DA72"
-    tools:context=".ThemNhanVien">
+    tools:context=".admin.ThemNhanVien">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -17,7 +17,7 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_margin="15dp"
-            android:onClick="backthemnv"/>
+            android:onClick="backra"/>
 
         <TextView
             android:id="@+id/textView6"

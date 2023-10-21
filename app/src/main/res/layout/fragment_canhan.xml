@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CanhanFragment">
+    tools:context=".admin.CanhanFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tvTtcn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -73,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="100dp"
             android:background="@drawable/bocanhan"
-            android:text="Giới Thiệu"
+            android:text="Đổi Mật Khẩu"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,6 +91,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="150dp"
         android:layout_marginRight="10dp"
+        android:id="@+id/dangxuat"
         android:background="@drawable/bocanhan"
         android:padding="10dp">
 

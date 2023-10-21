@@ -15,16 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
-
-import gmail.com.qlcafepoly.AdminKho;
+import gmail.com.qlcafepoly.admin.AdminKho;
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
-import gmail.com.qlcafepoly.KhoFragment;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.User;
-import gmail.com.qlcafepoly.User1;
+import gmail.com.qlcafepoly.admin.Thonhtintaikhoan;
+import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Danhnhap extends AppCompatActivity {
     TextView tvQuanly, tvNhanvien;
     Button btnDn;
+
+    Thonhtintaikhoan thonhtintaikhoan;
     EditText edTedn, edPass;
     CheckBox rememberCheckbox;
     @SuppressLint("MissingInflatedId")
@@ -51,16 +50,15 @@ public class Danhnhap extends AppCompatActivity {
             String savedTenDn = sharedPreferences.getString("TenDn", "");
             String savedMatkhau = sharedPreferences.getString("Matkhau", "");
 
-            // Điền thông tin vào các trường EditText
             edTedn.setText(savedTenDn);
             edPass.setText(savedMatkhau);
         }
-
         tvQuanly = findViewById(R.id.tvQuanly);
 
         tvNhanvien = findViewById(R.id.tvNhanvien);
         edTedn = findViewById(R.id.edTendn);
         edPass = findViewById(R.id.edPass);
+
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,8 +75,6 @@ public class Danhnhap extends AppCompatActivity {
                 Dangnhap(tendn, pas);
             }
         });
-
-
     }
     public void Dangnhap(String TenDn , String Matkhau) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -97,25 +93,40 @@ public class Danhnhap extends AppCompatActivity {
 
 
         responseCall.enqueue(new Callback<ServerResponse>() {
+            @SuppressLint("WrongViewCast")
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     String role = response1.getPhanquyen(); // Lấy vai trò từ kết quả API
                     if ("1".equals(role)) {
-                        Toast.makeText(Danhnhap.this, "Đăng nhập thành công Quản lý", Toast.LENGTH_SHORT).show();
+
+                        String Manv = response1.getMaNv();
+                        String TenNv = response1.getTenNv();
+                        String Sdt = response1.getSdt();
+                        String Diachi = response1.getDiachi();
+
                         Intent adminIntent = new Intent(getApplicationContext(), AdminKho.class);
                         startActivity(adminIntent);
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                        Toast.makeText(Danhnhap.this, "Đăng nhập thành công Quản lý", Toast.LENGTH_SHORT).show();
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("TenDn", TenDn);
                         editor.putString("Matkhau", Matkhau);
                         editor.putBoolean("RememberLogin", true);
+                        editor.putString("Manv", Manv);
+                        editor.putString("TenNv", TenNv);
+                        editor.putString("Sdt", Sdt);
+                        editor.putString("Diachi", Diachi);
+                        editor.putString("phanquyen", role);
                         editor.apply();
-                    } else if ("2".equals(role)) {
+
+                    }
+
+                    else if ("2".equals(role)) {
                         Toast.makeText(Danhnhap.this, "Đăng nhập không thành công.\n" +
                                 "Chỉ dành cho admin",Toast.LENGTH_SHORT).show();
-
                     }
 
                 }

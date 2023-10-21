@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemDoUong">
+    tools:context=".admin.ItemDoUong">
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="230dp"

@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context=".dangnhap.Danhnhap">
 
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="160dp"
@@ -106,7 +111,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/canhan"
+                android:src="@drawable/user1"
                 android:tint="#673AB7"
                 tools:ignore="UseAppTint" />
 
