@@ -4,9 +4,9 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/du"
+        android:id="@+id/odr"
         android:icon="@drawable/douong"
-        android:title="Menu" />
+        android:title="Order" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

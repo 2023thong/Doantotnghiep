@@ -1,14 +1,16 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.nhanvien;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ItemNhanVien extends AppCompatActivity {
+import gmail.com.qlcafepoly.R;
+
+public class DoanFragment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_nhan_vien);
+        setContentView(R.layout.fragment_doan);
     }
 }

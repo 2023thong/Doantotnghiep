@@ -1,14 +1,16 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.nhanvien;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Pay extends AppCompatActivity {
+import gmail.com.qlcafepoly.R;
+
+public class MenuOrder extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay);
+        setContentView(R.layout.activity_menu_order);
     }
 }
