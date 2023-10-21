@@ -50,6 +50,7 @@ public class User {
         return TenDn;
     }
 
+
     public void setTenDn(String tenDn) {
         TenDn = tenDn;
     }

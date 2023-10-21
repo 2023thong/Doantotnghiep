@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".dangnhap.Danhnhap"
+            android:exported="false" />
+        <activity
             android:name=".dangnhap.DoiMatKhau"
             android:exported="false" />
         <activity
@@ -65,7 +68,7 @@
             android:name=".Pay"
             android:exported="false" />
         <activity
-            android:name=".dangnhap.Danhnhap"
+            android:name=".Menu.order"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

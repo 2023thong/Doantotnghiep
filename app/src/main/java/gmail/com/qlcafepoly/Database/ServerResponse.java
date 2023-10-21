@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.model.Menu;
 
 public class ServerResponse {
     private String result;
@@ -11,7 +12,7 @@ public class ServerResponse {
 
     private User1 user1;
     private User user;
-
+    private Menu menu;
     private String TenNv;
     private String Sdt;
     private String Diachi;
@@ -43,6 +44,9 @@ public class ServerResponse {
         return phanquyen;
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
 
     public User1 getUser1() {
         return user1;
