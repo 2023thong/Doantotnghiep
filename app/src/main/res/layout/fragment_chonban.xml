@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="#F3F3F3"
-    tools:context=".nhanvien.OrderFragment">
+    tools:context=".nhanvien.ChonbanFragment">
 
     <ImageView
         android:id="@+id/imageView5"

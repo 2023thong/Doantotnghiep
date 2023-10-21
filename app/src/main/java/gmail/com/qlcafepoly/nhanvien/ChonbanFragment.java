@@ -1,26 +1,17 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-
-import gmail.com.qlcafepoly.QuanlyFragment;
 import gmail.com.qlcafepoly.R;
 
 
 
-public class OrderFragment extends Fragment {
+public class ChonbanFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,7 +22,7 @@ public class OrderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public OrderFragment() {
+    public ChonbanFragment() {
         // Required empty public constructor
     }
 
@@ -58,6 +49,6 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_order_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_chonban, container, false);
     }
 }
