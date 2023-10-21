@@ -19,7 +19,10 @@ import gmail.com.qlcafepoly.dangnhap.Danhnhap;
 
 public class CanhanFragment extends Fragment {
     ConstraintLayout tvttcn;
-    ConstraintLayout layout;
+    ConstraintLayout layout, doimk;
+
+
+
 
 
     @SuppressLint("MissingInflatedId")
