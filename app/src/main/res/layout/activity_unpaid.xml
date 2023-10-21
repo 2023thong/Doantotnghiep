@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/ic_background_pay"
+            android:background="@drawable/ic_backgroundpay"
             android:padding="30dp"
             tools:ignore="ContentDescription,MissingConstraints" />
 
@@ -73,6 +73,7 @@
 
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
+
 
         </LinearLayout>
 
