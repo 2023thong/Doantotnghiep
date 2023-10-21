@@ -27,6 +27,14 @@
             android:text="Drink coffee poly =))"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
+        <ImageView
+            android:id="@+id/backhome"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/home"
+            android:layout_margin="15dp"
+            android:onClick="backhome"/>
     </LinearLayout>
 
     <LinearLayout
@@ -148,13 +156,12 @@
 
 
         <TextView
-            android:id="@+id/tvNuocNgot"
+            android:id="@+id/tvDoUongKhac"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:text="Available"
-            android:onClick="tvNuocNgot"
             android:textColor="#fff"
             android:textSize="35sp"
             android:textStyle="bold|italic" />

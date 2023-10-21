@@ -6,18 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class Quanlynv extends AppCompatActivity {
+public class ThemTraSua extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quanlynv);
+        setContentView(R.layout.activity_them_tra_sua);
     }
-    public void themnhanvien(View view){
-        Intent intent = new Intent(Quanlynv.this, ThemNhanVien.class);
+    public void backthemtrasua(View view){
+        Intent intent = new Intent(ThemTraSua.this, Trangmilktea.class);
         startActivity(intent);
-    }
-    public void backNhanVien(View view){
-        finish();
     }
 }

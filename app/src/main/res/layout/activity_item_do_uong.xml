@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="230dp"
-        android:background="#6FD6E3"
+        android:background="@drawable/boquanly"
         android:padding="10dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
@@ -36,7 +36,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvGiaTien"
+                android:id="@+id/tvGiaDU"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="giá: 35.000 đ"

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E6DA72"
-    tools:context=".ThemNhanVien">
+    android:background="#C8BE69"
+    tools:context=".ThemDoUongKhac">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -17,14 +17,13 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_margin="15dp"
-            android:onClick="backthemnv"/>
+            android:onClick="backthemdouongkhac"/>
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Thêm nhân viên"
+            android:text="Thêm Đồ Uống Khác"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
 
@@ -67,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/khungedt"
                 android:layout_height="60dp"
-                android:hint="Tên tài khoản"
+                android:hint="Tên đồ uống"
                 android:paddingStart="20dp" />
             <EditText
                 android:id="@+id/edtMatKhau"
@@ -75,40 +74,9 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/khungedt"
                 android:layout_height="60dp"
-                android:hint="Mật khẩu"
+                android:hint="Giá tiền"
                 android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtTenThanhVien"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Tên thành viên"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtSDT"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Số điện thoại"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtViTri"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Vị trí"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtCaLam"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Ca làm"
-                android:paddingStart="20dp" />
+
             <Button
                 android:id="@+id/btnThem"
                 android:layout_width="200dp"

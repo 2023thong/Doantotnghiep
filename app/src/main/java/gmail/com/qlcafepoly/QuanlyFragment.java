@@ -16,7 +16,7 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class QuanlyFragment extends Fragment {
-    TextView tvQLNV, tvQLDU;
+    TextView tvQLNV, tvQLDU,tvQLHD;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +65,7 @@ public class QuanlyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_quanly, container, false);
         tvQLNV = view.findViewById(R.id.tvQLNV);
         tvQLDU = view.findViewById(R.id.tvQLDU);
+        tvQLHD = view.findViewById(R.id.tvQLHD);
         tvQLNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +77,13 @@ public class QuanlyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), QuanLyDoUong.class);
+                startActivity(intent);
+            }
+        });
+        tvQLHD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), QuanLyHoaDon.class);
                 startActivity(intent);
             }
         });

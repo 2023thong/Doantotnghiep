@@ -13,12 +13,16 @@ public class Trangfruit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangfruit);
     }
-    public void backcofee(View view){
-        Intent intent = new Intent(Trangfruit.this,QuanLyDoUong.class);
+//    public void backcofee(View view){
+//        Intent intent = new Intent(Trangfruit.this,QuanLyDoUong.class);
+//        startActivity(intent);
+//    }
+    public void themnuocep(View view){
+        Intent intent = new Intent(Trangfruit.this,ThemNuocEp.class);
         startActivity(intent);
     }
-    public void themdouong(View view){
-        Intent intent = new Intent(Trangfruit.this,ThemDoUong.class);
+    public void backfruit(View view){
+        Intent intent = new Intent(Trangfruit.this, QuanLyDoUong.class);
         startActivity(intent);
     }
 }
