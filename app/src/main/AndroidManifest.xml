@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,12 +14,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".dangnhap.DoiMatKhau"
             android:exported="false" />
         <activity
-            android:name=".AdminKho"
+            android:name=".admin.Thonhtintaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminKho"
+            android:exported="false" />
+        <activity
+            android:name=".dangnhap.Dangnhapnhanvien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThongTinHangNhap"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangmilktea"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangfruit"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangcoffee"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.QuanLyDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Pay"
+            android:exported="false" />
+        <activity
+            android:name=".dangnhap.Danhnhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
