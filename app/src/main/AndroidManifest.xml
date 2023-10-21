@@ -15,17 +15,15 @@
         <activity
             android:name=".Unpaid"
             android:exported="false" />
+
         <activity
-            android:name=".paie"
-            android:exported="false" />
-        <activity
-            android:name=".Pay"
+            android:name=".AdminKho"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminKho"
+            android:name=".Pay"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -30,367 +30,51 @@
             android:layout_marginTop="120dp"
             android:layout_marginBottom="555dp"
             android:baselineAligned="false"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
 
-            <Button
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="188dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#A89E9E"
+
+                android:background="@drawable/background_click"
+
+                android:gravity="center"
+                android:padding="10dp"
                 android:text="Chưa thanh toán"
-                android:textColor="@color/black"
-                tools:ignore="ButtonStyle,HardcodedText,MissingConstraints"
+                android:textSize="20dp" />
 
-                tools:layout_editor_absoluteX="6dp"
-                tools:layout_editor_absoluteY="154dp" />
-
-            <Button
-                android:id="@+id/btn_paid"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="188dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:backgroundTint="#D9D9D9"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_noclick"
                 android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:padding="10dp"
                 android:text="Đã thanh toán"
-                android:textColor="@color/black"
-                tools:ignore="ButtonStyle,HardcodedText,MissingConstraints,RtlHardcoded"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="206dp"
-                />
+                android:textSize="20dp" />
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_listpay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="170dp"
+
             android:layout_marginBottom="65dp"
             android:gravity="center"
             android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="MissingConstraints"
+            tools:listitem="@layout/list_pay">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/background_click"
-                tools:ignore="UselessLeaf">
 
-                <TextView
-                    android:id="@+id/tvMSBan1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:padding="3dp"
-                    android:text="Mã số bàn: B1 "
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="HardcodedText,SpUsage"
-                    tools:layout_editor_absoluteY="0dp" />
-
-                <Button
-                    android:id="@+id/btnCheck1"
-                    android:layout_width="72dp"
-                    android:layout_height="38dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="45dp"
-                    android:backgroundTint="#FFC107"
-                    android:text="xem"
-                    android:textSize="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.974"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.253"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <TextView
-                    android:id="@+id/tvSoBan1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:padding="1dp"
-                    android:text="Số bàn:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMSBan1"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvTime1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="1dp"
-                    android:text="Thời gian:"
-
-                    app:layout_constraintStart_toStartOf="@+id/tvSoBan1"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSoBan1"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvSumMoney1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:padding="1dp"
-                    android:text="Tổng tiền:"
-                    app:layout_constraintStart_toStartOf="@id/tvTime1"
-                    app:layout_constraintTop_toBottomOf="@id/tvTime1"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvNoPay1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Chưa thanh toán"
-                    android:textColor="#FC2121"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.97"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnCheck1"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <Button
-                    android:id="@+id/btnPay1"
-                    android:layout_width="217dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="94dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="94dp"
-                    android:backgroundTint="#4DE36E"
-                    android:gravity="center"
-                    android:text="Thanh toán"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.538"
-                    app:layout_constraintStart_toStartOf="parent"
-
-                    app:layout_constraintTop_toBottomOf="@+id/tvNoPay1"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/background_click"
-                tools:ignore="UselessLeaf">
-
-                <TextView
-                    android:id="@+id/tvMSBan2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:padding="3dp"
-                    android:text="Mã số bàn: B2 "
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="HardcodedText,SpUsage"
-                    tools:layout_editor_absoluteY="0dp" />
-
-                <Button
-                    android:id="@+id/btnCheck2"
-                    android:layout_width="72dp"
-                    android:layout_height="38dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="45dp"
-                    android:backgroundTint="#FFC107"
-                    android:text="xem"
-                    android:textSize="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.974"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.253"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <TextView
-                    android:id="@+id/tvSoBan2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:padding="1dp"
-                    android:text="Số bàn:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMSBan2"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvTime2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="1dp"
-                    android:text="Thời gian:"
-
-                    app:layout_constraintStart_toStartOf="@+id/tvSoBan2"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSoBan2"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvSumMoney2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:padding="1dp"
-                    android:text="Tổng tiền:"
-                    app:layout_constraintStart_toStartOf="@id/tvTime2"
-                    app:layout_constraintTop_toBottomOf="@id/tvTime2"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvNoPay2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Chưa thanh toán"
-                    android:textColor="#FC2121"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.97"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnCheck2"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <Button
-                    android:id="@+id/btnPay2"
-                    android:layout_width="217dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="94dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="94dp"
-                    android:backgroundTint="#4DE36E"
-                    android:gravity="center"
-                    android:text="Thanh toán"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.538"
-                    app:layout_constraintStart_toStartOf="parent"
-
-                    app:layout_constraintTop_toBottomOf="@+id/tvNoPay2"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/background_click"
-                tools:ignore="UselessLeaf">
-
-                <TextView
-                    android:id="@+id/tvMSBan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:padding="3dp"
-                    android:text="Mã số bàn: B3 "
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="HardcodedText,SpUsage"
-                    tools:layout_editor_absoluteY="0dp" />
-
-                <Button
-                    android:id="@+id/btnCheck"
-                    android:layout_width="72dp"
-                    android:layout_height="38dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="45dp"
-                    android:backgroundTint="#FFC107"
-                    android:text="xem"
-                    android:textSize="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.974"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.253"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <TextView
-                    android:id="@+id/tvSoBan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:padding="1dp"
-                    android:text="Số bàn:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMSBan"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="1dp"
-                    android:text="Thời gian:"
-
-                    app:layout_constraintStart_toStartOf="@+id/tvSoBan"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSoBan"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvSumMoney"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:padding="1dp"
-                    android:text="Tổng tiền:"
-                    app:layout_constraintStart_toStartOf="@id/tvTime"
-                    app:layout_constraintTop_toBottomOf="@id/tvTime"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvNoPay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Chưa thanh toán"
-                    android:textColor="#FC2121"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.97"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnCheck"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <Button
-                    android:id="@+id/btnPay"
-                    android:layout_width="217dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="94dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="94dp"
-                    android:backgroundTint="#4DE36E"
-                    android:gravity="center"
-                    android:text="Thanh toán"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.538"
-                    app:layout_constraintStart_toStartOf="parent"
-
-                    app:layout_constraintTop_toBottomOf="@+id/tvNoPay"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
     </FrameLayout>
 
 
