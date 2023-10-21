@@ -21,9 +21,6 @@
 
          >
         <activity
-            android:name=".MenuFragment"
-            android:exported="false" />
-        <activity
             android:name=".AdminKho"
             android:exported="false" />
 
@@ -47,6 +44,9 @@
 
         <activity
             android:name=".ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".Thonhtintaikhoan"
             android:exported="false" />
         <activity
             android:name=".ThemDoUong"
