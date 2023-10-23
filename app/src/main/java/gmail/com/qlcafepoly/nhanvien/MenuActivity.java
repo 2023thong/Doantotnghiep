@@ -32,7 +32,7 @@ public class MenuActivity extends AppCompatActivity {
     private MenuDU menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://192.168.228.167:/duantotnghiep/thongtintk.php";
+    private String urllink = "http://192.168.1.102:/duantotnghiep/thongtintk.php";
 
     private ProgressDialog pd;
 
