@@ -5,6 +5,14 @@ public class Menu {
     private String TenLh;
     private int Giatien;
 
+    public int getGiatien() {
+        return Giatien;
+    }
+
+    public void setGiatien(int giatien) {
+        Giatien = giatien;
+    }
+
     public Menu() {
     }
 
@@ -24,11 +32,4 @@ public class Menu {
         TenLh = tenLh;
     }
 
-    public int getGiaTien() {
-        return Giatien;
-    }
-
-    public void setGiaTien(int giaTien) {
-        Giatien = giaTien;
-    }
 }

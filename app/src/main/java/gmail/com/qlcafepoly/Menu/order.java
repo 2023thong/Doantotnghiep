@@ -92,7 +92,7 @@ public class order extends AppCompatActivity {
                         Menu menu = new Menu();
 //                        menu.setMaMn(MaMn);
                         menu.setTenLh(TenLh);
-                        menu.setGiaTien(Integer.parseInt(GiaTien));
+                        menu.setGiatien(Integer.parseInt(GiaTien));
                         menuList.add(menu);
 
                     }

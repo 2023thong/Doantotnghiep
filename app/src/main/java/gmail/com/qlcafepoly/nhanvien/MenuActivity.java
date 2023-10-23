@@ -80,17 +80,17 @@ public class MenuActivity extends AppCompatActivity {
                         JSONObject menuObject = jsonArraymenu.getJSONObject(i);
 //                        Log.d("MaMn", menuObject.getString("MaMn"));
                         Log.d("TenLh", menuObject.getString("TenLh"));
-                        Log.d("GiaTien", menuObject.getString("GiaTien"));
+                        Log.d("Giatien", menuObject.getString("Giatien"));
 
 
 //                        String MaMn = menuObject.getString("MaMn");
                         String TenLh = menuObject.getString("TenLh");
-                        String GiaTien = menuObject.getString("GiaTien");
+                        String Giatien = menuObject.getString("Giatien");
 
 
                         Menu menu = new Menu();
                         menu.setTenLh(TenLh);
-                        menu.setGiaTien(Integer.parseInt(GiaTien));
+                        menu.setGiatien(Integer.parseInt(Giatien));
                         menuList1.add(menu);
 
                     }

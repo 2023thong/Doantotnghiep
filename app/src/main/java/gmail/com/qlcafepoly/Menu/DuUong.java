@@ -51,7 +51,7 @@ public class DuUong extends BaseAdapter {
         TextView tvGia = convertView.findViewById(R.id.tv_gia);
 
         tvNameDoUong.setText(menus1.getTenLh());
-        tvGia.setText(String.valueOf(menus1.getGiaTien()));
+        tvGia.setText(String.valueOf(menus1.getGiatien()));
 
 
 

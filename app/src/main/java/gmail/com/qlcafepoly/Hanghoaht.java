@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import gmail.com.qlcafepoly.admin.User1;
+
 public class Hanghoaht extends BaseAdapter {
     private List<User1> users;
     private LayoutInflater inflater;

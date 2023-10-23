@@ -44,7 +44,7 @@ public class MenuDU extends BaseAdapter {
         TextView txtGia1 = convertView.findViewById(R.id.txtGia1);
 
         txtTenLh.setText(menu.getTenLh());
-        txtGia1.setText(menu.getGiaTien());
+        txtGia1.setText(String.valueOf(menu.getGiatien()));
 
         return convertView;
     }
