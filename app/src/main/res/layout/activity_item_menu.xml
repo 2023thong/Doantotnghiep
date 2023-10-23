@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nhanvien.ItemMenu">
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp"
+    >
 
     <LinearLayout
         android:layout_width="356dp"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
+        android:background="@drawable/background_click"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
@@ -21,6 +24,28 @@
             app:srcCompat="@drawable/nuoc1" />
 
         <LinearLayout
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Tên: "
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/txtG"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Giá: "
+                android:textSize="20dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="6"
@@ -28,19 +53,21 @@
 
             <TextView
                 android:id="@+id/txtTenLh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tên: "
-                android:textSize="20dp"/>
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
             <TextView
-                android:id="@+id/txtGia"
-                android:layout_marginTop="10dp"
+                android:id="@+id/txtGia1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Giá: "
-                android:textSize="20dp"/>
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

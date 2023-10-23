@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly.nhanvien;
+package gmail.com.qlcafepoly.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -22,17 +23,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import gmail.com.qlcafepoly.Menu.DuUong;
-import gmail.com.qlcafepoly.Menu.order;
 import gmail.com.qlcafepoly.R;
+
 import gmail.com.qlcafepoly.model.Menu;
 
-public class MenuActivity extends AppCompatActivity {
-    private List<Menu> menuList1 = new ArrayList<>();
-    private MenuDU menudu;
+public class order extends AppCompatActivity {
+
+    private List<Menu> menuList = new ArrayList<>();
+    private DuUong duUong;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://192.168.228.167:/duantotnghiep/thongtintk.php";
+    private String urllink = "http://192.168.228.167:/duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
 
@@ -40,19 +41,19 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        imageView = findViewById(R.id.imgnuoc);
-        lsMenuSql = findViewById(R.id.lsmenudu);
-        menudu = new MenuDU(MenuActivity.this,menuList1);
-        lsMenuSql.setAdapter(menudu);
+        setContentView(R.layout.activity_order);
+        imageView = findViewById(R.id.imageView5);
+        lsMenuSql = findViewById(R.id.lsmeuu);
+        duUong = new DuUong(order.this,menuList);
+        lsMenuSql.setAdapter(duUong);
 
-        pd = new ProgressDialog(MenuActivity.this); // Khởi tạo ProgressDialog ở đây
+        pd = new ProgressDialog(order.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
 
 
-        new MyAsyncTask().execute(urllink);
+        new order.MyAsyncTask().execute(urllink);
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -89,9 +90,10 @@ public class MenuActivity extends AppCompatActivity {
 
 
                         Menu menu = new Menu();
+//                        menu.setMaMn(MaMn);
                         menu.setTenLh(TenLh);
                         menu.setGiaTien(Integer.parseInt(GiaTien));
-                        menuList1.add(menu);
+                        menuList.add(menu);
 
                     }
                 } else {
@@ -111,7 +113,7 @@ public class MenuActivity extends AppCompatActivity {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            menudu.notifyDataSetChanged();
+            duUong.notifyDataSetChanged();
         }
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
