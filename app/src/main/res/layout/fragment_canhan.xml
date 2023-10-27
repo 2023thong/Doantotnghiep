@@ -45,6 +45,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/doimatkhau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -59,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="16dp"
-            android:tint="#FF9800"
             android:src="@drawable/gioithieu"
+            android:tint="#FF9800"
             app:itemIconTint="#FF9800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView2"

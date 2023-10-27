@@ -3,6 +3,24 @@ package gmail.com.qlcafepoly.admin;
 public class User {
     private String TenDn;
     private String Matkhau;
+    private String passwordcu;
+    private String passwordmoi;
+
+    public String getPasswordcu() {
+        return passwordcu;
+    }
+
+    public void setPasswordcu(String passwordcu) {
+        this.passwordcu = passwordcu;
+    }
+
+    public String getPasswordmoi() {
+        return passwordmoi;
+    }
+
+    public void setPasswordmoi(String passwordmoi) {
+        this.passwordmoi = passwordmoi;
+    }
 
     private String MaNv;
     private String TenNv;

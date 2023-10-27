@@ -101,7 +101,7 @@ public class Danhnhap extends AppCompatActivity {
                     String role = response1.getPhanquyen(); // Lấy vai trò từ kết quả API
                     if ("1".equals(role)) {
 
-                        String Manv = response1.getMaNv();
+                        String Manv = response1.getMaNv(); 
                         String TenNv = response1.getTenNv();
                         String Sdt = response1.getSdt();
                         String Diachi = response1.getDiachi();
