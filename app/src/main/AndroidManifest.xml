@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.example.newsapplication.util.AppApplication"/>
 
 
     <application
@@ -23,9 +24,12 @@
         <activity
             android:name=".AdminKho"
             android:exported="false" />
+        <activity
+            android:name=".dangnhap.Danhnhap"
+            android:exported="false" />
 
         <activity
-            android:name=".dangnhap.Dangnhapnhanvien"
+            android:name=".NhanvienMenu"
             android:exported="false" />
 
         <activity
@@ -62,8 +66,9 @@
             android:exported="false" />
         <activity
             android:name=".ItemDoUong"
-
-
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.MenuActivity"
             android:exported="false" />
         <activity
             android:name=".Pay"
@@ -74,13 +79,10 @@
             android:exported="false" />
         <activity
 
-            android:name=".dangnhap.Danhnhap"
+            android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="true">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
