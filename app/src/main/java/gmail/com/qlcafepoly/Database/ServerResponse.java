@@ -2,36 +2,38 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
-import gmail.com.qlcafepoly.model.Menu;
 
 public class ServerResponse {
     private String result;
     private String message;
     private String phanquyen;
-    private String MaNv;
-
-    private User1 user1;
-    private User user;
-    private Menu menu;
     private String TenNv;
-    private String Sdt;
+    private String MaNv;
     private String Diachi;
+    private String Sdt;
 
     public String getTenNv() {
         return TenNv;
     }
 
-    public String getSdt() {
-        return Sdt;
+    public String getMaNv() {
+        return MaNv;
     }
 
     public String getDiachi() {
         return Diachi;
     }
 
-    public String getMaNv() {
-        return MaNv;
+    public String getSdt() {
+        return Sdt;
     }
+
+    private User1 user1;
+    private User user;
+
+
+
+
 
     public String getResult() {
         return result;
@@ -44,9 +46,6 @@ public class ServerResponse {
         return phanquyen;
     }
 
-    public Menu getMenu() {
-        return menu;
-    }
 
     public User1 getUser1() {
         return user1;

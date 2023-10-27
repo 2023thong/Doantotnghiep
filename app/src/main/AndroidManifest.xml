@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="com.example.newsapplication.util.AppApplication"/>
 
 
     <application
@@ -20,69 +19,72 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-         >
-        <activity
-            android:name=".AdminKho"
+
+        <service
+            android:name=".admin.CapNhatDuLieu"
             android:exported="false" />
+
+
         <activity
-            android:name=".dangnhap.Danhnhap"
+            android:name=".admin.AdminKho"
             android:exported="false" />
 
         <activity
-            android:name=".NhanvienMenu"
-            android:exported="false" />
-
-        <activity
-            android:name=".ThongTinHangNhap"
-
-            android:exported="false" />
-        <activity
-            android:name=".Trangmilktea"
-            android:exported="false" />
-        <activity
-            android:name=".Trangfruit"
-            android:exported="false" />
-        <activity
-            android:name=".Trangcoffee"
-            android:exported="false" />
-
-        <activity
-            android:name=".ThemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".Thonhtintaikhoan"
-            android:exported="false" />
-        <activity
-            android:name=".ThemDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".Quanlynv"
-            android:exported="false" />
-        <activity
-            android:name=".QuanLyDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".ItemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".ItemDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".nhanvien.MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Pay"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-
             android:name=".dangnhap.Dangnhapnhanvien"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.ThongTinHangNhap"
+
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangmilktea"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangfruit"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Trangcoffee"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Thonhtintaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.QuanLyDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+
+
+            android:exported="false" />
+        <activity
+            android:name=".admin.Pay"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.MainActivity"
+            android:exported="false" />
+        <activity
+
+            android:name=".dangnhap.Danhnhap"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

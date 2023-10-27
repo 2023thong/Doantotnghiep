@@ -1,10 +1,12 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import gmail.com.qlcafepoly.R;
 
 public class Trangcoffee extends AppCompatActivity {
 
