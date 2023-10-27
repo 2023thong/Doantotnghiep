@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.admin;
 
 import android.app.Service;
 import android.content.Intent;

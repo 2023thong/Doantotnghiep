@@ -19,16 +19,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-<<<<<<< HEAD
+
         <service
-            android:name=".CapNhatDuLieu"
+            android:name=".admin.CapNhatDuLieu"
             android:exported="false" />
 
-=======
-         >
->>>>>>> e28045ae40373ce1cc4b06210360f4484dbba312
+
         <activity
-            android:name=".AdminKho"
+            android:name=".admin.AdminKho"
             android:exported="false" />
 
         <activity
@@ -36,54 +34,53 @@
             android:exported="false" />
 
         <activity
-            android:name=".ThongTinHangNhap"
+            android:name=".admin.ThongTinHangNhap"
 
             android:exported="false" />
         <activity
-            android:name=".Trangmilktea"
+            android:name=".admin.Trangmilktea"
             android:exported="false" />
         <activity
-            android:name=".Trangfruit"
+            android:name=".admin.Trangfruit"
             android:exported="false" />
         <activity
-            android:name=".Trangcoffee"
-            android:exported="false" />
-
-        <activity
-            android:name=".ThemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".Thonhtintaikhoan"
-            android:exported="false" />
-        <activity
-            android:name=".ThemDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".Quanlynv"
-            android:exported="false" />
-        <activity
-            android:name=".QuanLyDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".ItemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".ItemDoUong"
-
-
-            android:exported="false" />
-        <activity
-            android:name=".Pay"
+            android:name=".admin.Trangcoffee"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Thonhtintaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.QuanLyDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+
+
+            android:exported="false" />
+        <activity
+            android:name=".admin.Pay"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
 
             android:name=".dangnhap.Danhnhap"
             android:exported="true">
-
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

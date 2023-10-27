@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import gmail.com.qlcafepoly.R;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class ThemNhanVien extends AppCompatActivity {
+import gmail.com.qlcafepoly.R;
+
+public class ThemDoUong extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_them_nhan_vien);
+        setContentView(R.layout.activity_them_do_uong);
     }
-    public void backthemnv(View view){
-        Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
+    public void backthemdouong(View view){
+        Intent intent = new Intent(ThemDoUong.this, Trangcoffee.class);
         startActivity(intent);
     }
 }
