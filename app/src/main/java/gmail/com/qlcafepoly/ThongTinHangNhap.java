@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly.admin;
+package gmail.com.qlcafepoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +24,7 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.Hanghoaht;
 import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.admin.User1;
 
 public class ThongTinHangNhap extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();

@@ -9,11 +9,11 @@
     >
 
     <LinearLayout
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/background_click"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/background_click"
         android:orientation="horizontal">
 
         <ImageView
@@ -45,6 +45,7 @@
                 android:text="Giá: "
                 android:textSize="20dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

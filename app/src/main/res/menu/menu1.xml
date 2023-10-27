@@ -4,9 +4,9 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/du"
-        android:icon="@drawable/douong"
-        android:title="Menu" />
+        android:id="@+id/trChu"
+        android:icon="@drawable/trangchu"
+        android:title="Trang chủ" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
     <item
         android:layout_width="wrap_content"
         android:id="@+id/nv"
-        android:icon="@drawable/nguoi"
+        android:icon="@drawable/user12"
         android:layout_height="wrap_content"
         android:title="Nhân viên" />
 </menu>

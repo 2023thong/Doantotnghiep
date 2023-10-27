@@ -1,17 +1,21 @@
-package gmail.com.qlcafepoly.nhanvien;
+package gmail.com.qlcafepoly;
 
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import gmail.com.qlcafepoly.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import gmail.com.qlcafepoly.nhanvien.BanFragment;
 
 
 public class ChonbanFragment extends Fragment {
+    FloatingActionButton button;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,10 +49,13 @@ public class ChonbanFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chonban, container, false);
+        View view = inflater.inflate(R.layout.fragment_chonban, container, false);
+
+        return view;
     }
 }

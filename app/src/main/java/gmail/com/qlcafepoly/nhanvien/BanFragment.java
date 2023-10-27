@@ -20,15 +20,7 @@ public class BanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_ban_fragment, container, false);
-        btnthemm = view.findViewById(R.id.btnthemm);
 
-        btnthemm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MenuOrder.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 }
