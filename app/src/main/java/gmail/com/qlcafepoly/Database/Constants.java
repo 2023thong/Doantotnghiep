@@ -19,5 +19,6 @@ public class Constants {
     public static final String EMAIL = "email";
     public static final String UNIQUE_ID = "unique_id";
     public static final String TAG = "LearnAPI";
+    public static final String DOIMATKHAUADMIN = "doimatkhau";
 
 }
