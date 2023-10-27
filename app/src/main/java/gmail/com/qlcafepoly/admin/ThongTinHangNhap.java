@@ -29,7 +29,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
     private Hanghoaht adepter;
     private ImageView imageView;
     private ListView lshienthi;
-    private String urllink = "http://172.16.50.171:8080/duantotnghiep/get_all_product.php";
+    private String urllink = "http://192.168.1.115:8080/duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
 
