@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:text="Ductu0711"
                     android:hint="Management login name"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -169,6 +170,7 @@
                     android:id="@+id/edPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="123"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:maxLines="1" />

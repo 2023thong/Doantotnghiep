@@ -44,7 +44,7 @@
             android:name=".dangnhap.DoiMatKhau"
             android:exported="false" />
         <activity
-            android:name=".dangnhap.Danhnhap"
+            android:name=".admin.AdminKho"
             android:exported="false"/>
         <activity
             android:name=".dangnhap.Dangnhapnhanvien"
@@ -82,7 +82,7 @@
             android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminKho"
+            android:name=".dangnhap.Danhnhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
