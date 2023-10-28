@@ -2,14 +2,27 @@ package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.ThemNuocEp;
 
 public class Trangfruit extends AppCompatActivity {
+    private List<Menu> lsuListMenu = new ArrayList<>();
+    private Menuht adepter;
+    private ListView lshienthimenu;
+    private String urllink = "http://192.168.1.22/duantotnghiep/get_all_menu.php";
+
+    private ProgressDialog pd;
+    private ImageView btnThemnuocep, btnthoatcofe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

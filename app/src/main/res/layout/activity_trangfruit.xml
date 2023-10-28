@@ -27,9 +27,12 @@
             android:textSize="35sp"
             android:textStyle="bold|italic" />
     </LinearLayout>
+
     <ListView
+        android:id="@+id/lsnuocep"
         android:layout_width="match_parent"
         android:layout_height="557dp" />
+
     <ImageView
         android:onClick="themnuocep"
         android:layout_width="70dp"

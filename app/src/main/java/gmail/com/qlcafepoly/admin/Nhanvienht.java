@@ -42,11 +42,11 @@ public class Nhanvienht extends BaseAdapter {
         User user = usernv.get(position);
 
         TextView tvManv = convertView.findViewById(R.id.tvMaNv);
-        TextView tvTennv = convertView.findViewById(R.id.tvTennv);
+        TextView tvTennv = convertView.findViewById(R.id.tvTenNv);
         TextView tvTendn = convertView.findViewById(R.id.tvTenDn);
         TextView tvMatkhau = convertView.findViewById(R.id.tvMatkhau);
         TextView tvSdt = convertView.findViewById(R.id.tvSdt);
-        TextView tvDiachi = convertView.findViewById(R.id.tvDiachi);
+        TextView tvDiachi = convertView.findViewById(R.id.tvDiaChi);
         TextView tvChucvu = convertView.findViewById(R.id.tvChucvu);
 
 
@@ -56,7 +56,7 @@ public class Nhanvienht extends BaseAdapter {
         tvMatkhau.setText(user.getMatkhau());
         tvSdt.setText(user.getSdt());
         tvDiachi.setText(user.getDiachi());
-        tvChucvu.setText(user.getChucvu());
+        tvChucvu.setText(String.valueOf(user.getChucvu()));
 
 
         return convertView;
