@@ -15,24 +15,29 @@ public class ServerResponse {
     private Menu menu;
 
     private String TenNv;
-    private String Sdt;
     private String Diachi;
+    private String Sdt;
 
     public String getTenNv() {
         return TenNv;
     }
 
-    public String getSdt() {
-        return Sdt;
+    public String getMaNv() {
+        return MaNv;
     }
 
     public String getDiachi() {
         return Diachi;
     }
 
-    public String getMaNv() {
-        return MaNv;
+    public String getSdt() {
+        return Sdt;
     }
+
+
+
+
+
 
     public String getResult() {
         return result;

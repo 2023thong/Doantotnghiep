@@ -28,8 +28,10 @@ public class ThongTinHangNhap extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();
     private Hanghoaht adepter;
     private ImageView imageView;
+
     private ListView lshienthi;
     private String urllink = "http://192.168.1.36/duantotnghiep/get_all_product.php";
+
 
     private ProgressDialog pd;
 

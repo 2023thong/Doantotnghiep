@@ -18,6 +18,9 @@ public class Trangmilktea extends AppCompatActivity {
     }
     public void backtrangmilktea(View view) {
         Intent intent = new Intent(Trangmilktea.this, QuanLyDoUong.class);
+    }
+    public void backcofee(View view){
+        Intent intent = new Intent(Trangmilktea.this,QuanLyDoUong.class);
         startActivity(intent);
     }
     public void themtrasua(View view){

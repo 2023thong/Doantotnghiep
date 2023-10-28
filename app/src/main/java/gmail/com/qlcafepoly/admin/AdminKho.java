@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -23,10 +22,7 @@ public class AdminKho extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_kho);
         bottomNavigationView = findViewById(R.id.bonava);
-        replaceFragment(new QuanlyFragment());
-
-
-
+        replaceFragment(new CanhanFragment());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -35,20 +31,12 @@ public class AdminKho extends AppCompatActivity {
                     replaceFragment(new KhoFragment());
                 }
 
-
                 if (item.getItemId()==R.id.ql){
                     replaceFragment(new QuanlyFragment());
                 }
-
 
                 if (item.getItemId()==R.id.canhan){
                     replaceFragment(new CanhanFragment());
-                }
-
-
-
-                if (item.getItemId()==R.id.ql){
-                    replaceFragment(new QuanlyFragment());
                 }
 
 

@@ -21,7 +21,7 @@ public class Trangdouongkhac extends AppCompatActivity {
         startActivity(intent);
     }
     public void backcofee(View view){
-        Intent intent = new Intent(Trangdouongkhac.this, QuanLyDoUong.class);
+        Intent intent = new Intent(Trangdouongkhac.this,QuanLyDoUong.class);
         startActivity(intent);
     }
     public void themdouong(View view){

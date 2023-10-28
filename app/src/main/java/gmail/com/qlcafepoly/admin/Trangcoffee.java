@@ -55,14 +55,14 @@ public class Trangcoffee extends AppCompatActivity {
         btnThemcofe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Trangcoffee.this,ThemDoUong.class);
+                Intent intent = new Intent(Trangcoffee.this, ThemDoUong.class);
                 startActivity(intent);
             }
         });
         btnthoatcofe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Trangcoffee.this,QuanLyDoUong.class);
+                Intent intent = new Intent(Trangcoffee.this, QuanLyDoUong.class);
                 startActivity(intent);
             }
         });

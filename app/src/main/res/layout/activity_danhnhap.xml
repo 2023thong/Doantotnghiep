@@ -7,11 +7,6 @@
     android:orientation="vertical"
     tools:context=".dangnhap.Danhnhap">
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="160dp"
@@ -111,7 +106,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/user1"
+                android:src="@drawable/canhan"
                 android:tint="#673AB7"
                 tools:ignore="UseAppTint" />
 
@@ -123,7 +118,7 @@
                 app:hintEnabled="false">
 
                 <EditText
-                    android:id="@+id/edTendn"
+                    android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -167,7 +162,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edPass"
+                    android:id="@+id/edPassnv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="123"
@@ -190,7 +185,7 @@
         android:textColor="#F44336" />
 
     <Button
-        android:id="@+id/btnDangnhap"
+        android:id="@+id/btnNhanv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

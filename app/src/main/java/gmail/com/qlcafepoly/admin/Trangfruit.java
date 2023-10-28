@@ -38,7 +38,7 @@ public class Trangfruit extends AppCompatActivity {
         startActivity(intent);
     }
     public void backcofee(View view){
-        Intent intent = new Intent(Trangfruit.this, QuanLyDoUong.class);
+        Intent intent = new Intent(Trangfruit.this,QuanLyDoUong.class);
         startActivity(intent);
     }
     public void backfruit(View view){
