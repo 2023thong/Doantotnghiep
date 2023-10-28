@@ -8,6 +8,15 @@ public class User1 {
     private String TenHh;
     private String GiaSp;
     private String Ghichu;
+    private String Soluong;
+
+    public String getSoluong() {
+        return Soluong;
+    }
+
+    public void setSoluong(String soluong) {
+        Soluong = soluong;
+    }
 
     public User1() {
     }

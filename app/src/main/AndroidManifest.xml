@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
-
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
@@ -27,6 +26,12 @@
 
         <activity
             android:name=".admin.AdminKho"
+            android:exported="false" />
+        <activity
+            android:name=".dangnhap.DoiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.NhanvienMenu"
             android:exported="false" />
 
         <activity
