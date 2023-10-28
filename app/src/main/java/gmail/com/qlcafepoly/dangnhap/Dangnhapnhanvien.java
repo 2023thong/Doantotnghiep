@@ -14,14 +14,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import gmail.com.qlcafepoly.admin.AdminKho;
-import gmail.com.qlcafepoly.ChonbanFragment;
+import gmail.com.qlcafepoly.nhanvien.Nha
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
+
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.NhanvienMenu;
 import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;

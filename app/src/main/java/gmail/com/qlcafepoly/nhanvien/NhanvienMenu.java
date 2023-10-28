@@ -1,4 +1,8 @@
+<<<<<<< HEAD:app/src/main/java/gmail/com/qlcafepoly/admin/NhanvienMenu.java
 package gmail.com.qlcafepoly.admin;
+=======
+package gmail.com.qlcafepoly.nhanvien;
+>>>>>>> 5b943d4488b2ce8739eb3e75d731222ed2aced49:app/src/main/java/gmail/com/qlcafepoly/nhanvien/NhanvienMenu.java
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +37,7 @@ public class NhanvienMenu extends AppCompatActivity {
                     replaceFragment(new ChonbanFragment());
                 }
                 if (item.getItemId()==R.id.nv){
-                    replaceFragment(new QuanlyFragment());
+//                    replaceFragment(new QuanlyFragment());
                 }
                 return true;
             }

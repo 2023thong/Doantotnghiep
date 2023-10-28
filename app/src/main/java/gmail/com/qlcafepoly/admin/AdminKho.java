@@ -22,7 +22,7 @@ public class AdminKho extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_kho);
         bottomNavigationView = findViewById(R.id.bonava);
-        replaceFragment(new CanhanFragment());
+        replaceFragment(new QuanlyFragment());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
