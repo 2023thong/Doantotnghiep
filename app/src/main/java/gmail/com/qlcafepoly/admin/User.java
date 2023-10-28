@@ -1,14 +1,25 @@
 package gmail.com.qlcafepoly.admin;
 
 public class User {
-    private String TenDn;
-    private String Matkhau;
-
     private String MaNv;
     private String TenNv;
+    private String TenDn;
+    private String Matkhau;
     private String Sdt;
     private String Diachi;
+    private int Chucvu;
 
+    public User(int chucvu) {
+        Chucvu = chucvu;
+    }
+
+    public int getChucvu() {
+        return Chucvu;
+    }
+
+    public void setChucvu(int chucvu) {
+        Chucvu = chucvu;
+    }
 
     public User() {
 

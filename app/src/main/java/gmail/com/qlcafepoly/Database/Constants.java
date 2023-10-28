@@ -1,11 +1,12 @@
 package gmail.com.qlcafepoly.Database;
 
 public class Constants {
-    public static final String BASE_URL = "http://192.168.1.74:8080/";
+    public static final String BASE_URL = "http://192.168.1.36/";
 
 
 
     public static final String HANGHOA = "thongtinvn";
+    public static final String NHANVIEN = "themnhanvien";
 
     public static final String LOGIN = "login";
     public static final String CHANGE_PASSWORD_OPERATION = "chgPass";
