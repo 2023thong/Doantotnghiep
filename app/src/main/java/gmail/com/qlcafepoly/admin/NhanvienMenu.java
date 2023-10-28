@@ -30,7 +30,7 @@ public class NhanvienMenu extends AppCompatActivity {
                     replaceFragment(new ChonbanFragment());
                 }
                 if (item.getItemId()==R.id.nv){
-                    replaceFragment(new QuanlyFragment());
+//                    replaceFragment(new QuanlyFragment());
                 }
                 return true;
             }
