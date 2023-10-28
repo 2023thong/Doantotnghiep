@@ -16,7 +16,7 @@ public class Trangmilktea extends AppCompatActivity {
         setContentView(R.layout.activity_trangmilktea);
     }
     public void backcofee(View view){
-        Intent intent = new Intent(Trangmilktea.this, QuanLyDoUong.class);
+        Intent intent = new Intent(Trangmilktea.this,QuanLyDoUong.class);
         startActivity(intent);
     }
     public void themdouong(View view){

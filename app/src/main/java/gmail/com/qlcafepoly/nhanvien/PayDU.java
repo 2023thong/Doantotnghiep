@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly.thanhtoan;
+package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.User1;
 
 public class PayDU extends BaseAdapter {
     private List<Menu1> menu2;

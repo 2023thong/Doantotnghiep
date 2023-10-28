@@ -16,7 +16,7 @@ public class Trangdouongkhac extends AppCompatActivity {
         setContentView(R.layout.activity_trangdouongkhac);
     }
     public void backcofee(View view){
-        Intent intent = new Intent(Trangdouongkhac.this, QuanLyDoUong.class);
+        Intent intent = new Intent(Trangdouongkhac.this,QuanLyDoUong.class);
         startActivity(intent);
     }
     public void themdouong(View view){

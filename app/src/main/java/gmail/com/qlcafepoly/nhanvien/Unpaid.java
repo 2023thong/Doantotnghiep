@@ -1,6 +1,4 @@
-package gmail.com.qlcafepoly.thanhtoan;
-
-import androidx.appcompat.app.AppCompatActivity;
+package gmail.com.qlcafepoly.nhanvien;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -12,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,7 +61,7 @@ public class Unpaid extends AppCompatActivity {
         tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Unpaid.this,Pay.class);
+                Intent intent = new Intent(Unpaid.this, Pay.class);
                 startActivity(intent);
             }
         });

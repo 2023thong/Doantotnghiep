@@ -16,7 +16,7 @@ public class Trangfruit extends AppCompatActivity {
         setContentView(R.layout.activity_trangfruit);
     }
     public void backcofee(View view){
-        Intent intent = new Intent(Trangfruit.this, QuanLyDoUong.class);
+        Intent intent = new Intent(Trangfruit.this,QuanLyDoUong.class);
         startActivity(intent);
     }
     public void themdouong(View view){

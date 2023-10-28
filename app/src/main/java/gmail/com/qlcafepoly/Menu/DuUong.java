@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly.thanhtoan;
+package gmail.com.qlcafepoly.Menu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,23 +11,25 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 
-public class Unpaid1 extends BaseAdapter {
-    private List<Menu1> menu2;
+import gmail.com.qlcafepoly.model.Menu;
+
+public class DuUong extends BaseAdapter {
+    private List<Menu> menus;
     private LayoutInflater inflater;
 
-    public Unpaid1(Context context, List<Menu1> menu2) {
-        this.menu2 = menu2;
+    public DuUong(Context context, List<Menu> menus) {
+        this.menus = menus;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return menu2.size();
+        return menus.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return menu2.get(position);
+        return menus.get(position);
     }
 
     @Override
@@ -35,22 +37,24 @@ public class Unpaid1 extends BaseAdapter {
         return position;
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.list_unpaid, parent, false);
-
-
+            convertView = inflater.inflate(R.layout.list_menu_sql, parent, false);
         }
-        Menu1 menu1 = menu2.get(position);
 
+        Menu menus1 = menus.get(position);
 
-        TextView tvmb = convertView.findViewById(R.id.tvbantrong);
+        TextView tvNameDoUong = convertView.findViewById(R.id.tv_nameDoUong);
+        TextView tvGia = convertView.findViewById(R.id.tv_gia);
 
-        tvmb.setText(menu1.getMaBn());
+        tvNameDoUong.setText(menus1.getTenLh());
+        tvGia.setText(String.valueOf(menus1.getGiatien()));
+
 
 
         return convertView;
     }
 }
-

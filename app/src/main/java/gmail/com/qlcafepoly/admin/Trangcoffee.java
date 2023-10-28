@@ -20,7 +20,7 @@ public class Trangcoffee extends AppCompatActivity {
         startActivity(intent);
     }
     public void backcofee(View view){
-        Intent intent = new Intent(Trangcoffee.this, QuanLyDoUong.class);
+        Intent intent = new Intent(Trangcoffee.this,QuanLyDoUong.class);
         startActivity(intent);
     }
 }

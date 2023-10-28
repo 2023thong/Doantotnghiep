@@ -1,11 +1,10 @@
-package gmail.com.qlcafepoly.thanhtoan;
+package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import gmail.com.qlcafepoly.R;
@@ -20,7 +19,7 @@ public class ListUnpaid extends AppCompatActivity {
         btnXemdanhsachban.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListUnpaid.this,Menu_pay.class);
+                Intent intent = new Intent(ListUnpaid.this, Menu_pay.class);
                 startActivity(intent);
             }
         });

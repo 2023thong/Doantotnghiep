@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".thanhtoan.Unpaid">
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -87,5 +88,8 @@
         </LinearLayout>
 
     </FrameLayout>
+=======
+    tools:context=".admin.Unpaid">
+>>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
 
 </androidx.constraintlayout.widget.ConstraintLayout>

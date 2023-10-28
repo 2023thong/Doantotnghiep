@@ -1,11 +1,11 @@
-package gmail.com.qlcafepoly.thanhtoan;
-
-import androidx.appcompat.app.AppCompatActivity;
+package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import gmail.com.qlcafepoly.R;
 
@@ -19,7 +19,7 @@ public class Pay extends AppCompatActivity {
         tvchuathanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Pay.this,Unpaid.class);
+                Intent intent = new Intent(Pay.this, Unpaid.class);
                 startActivity(intent);
             }
         });

@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F4F4"
+<<<<<<< HEAD
     tools:context=".thanhtoan.Pay">
+=======
+    tools:context=".admin.Pay">
+>>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
 
     <FrameLayout
         android:id="@+id/frameLayout"

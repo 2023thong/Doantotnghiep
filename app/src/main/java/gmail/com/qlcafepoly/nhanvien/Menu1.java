@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly.thanhtoan;
+package gmail.com.qlcafepoly.nhanvien;
 
 public class Menu1 {
     private String MaBn;

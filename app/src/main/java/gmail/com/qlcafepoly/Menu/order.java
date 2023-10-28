@@ -1,17 +1,15 @@
-package gmail.com.qlcafepoly.thanhtoan;
+package gmail.com.qlcafepoly.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,18 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.Hanghoaht;
-import gmail.com.qlcafepoly.admin.User1;
 
+import gmail.com.qlcafepoly.model.Menu;
 
-public class Menu_pay extends AppCompatActivity {
-    private List<Menu1> listPay = new ArrayList<>();
-    private PayDU payDU;
-    private TextView tvdathanhtoan;
-    private TextView tvchuathanhtoan;
+public class order extends AppCompatActivity {
+
+    private List<Menu> menuList = new ArrayList<>();
+    private DuUong duUong;
     private ImageView imageView;
-    private ListView lvListOder;
-    private String urllink = "http://172.16.54.131:/duantotnghiep/thongtinoder.php";
+    private ListView lsMenuSql;
+    private String urllink = "http://192.168.1.118:/duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
 
@@ -45,36 +41,19 @@ public class Menu_pay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_pay);
-        imageView = findViewById(R.id.img_Douong);
-        lvListOder = findViewById(R.id.lv_listoder);
-        payDU = new PayDU(Menu_pay.this,listPay);
-        lvListOder.setAdapter(payDU);
+        setContentView(R.layout.activity_order);
+        imageView = findViewById(R.id.imageView5);
+        lsMenuSql = findViewById(R.id.lsmeuu);
+        duUong = new DuUong(order.this,menuList);
+        lsMenuSql.setAdapter(duUong);
 
-        pd = new ProgressDialog(Menu_pay.this); // Khởi tạo ProgressDialog ở đây
+        pd = new ProgressDialog(order.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
 
 
-        new MyAsyncTask().execute(urllink);
-        tvdathanhtoan = findViewById(R.id.tvdathanhtoan);
-        tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Menu_pay.this,Pay.class);
-                startActivity(intent);
-            }
-        });
-        tvchuathanhtoan = findViewById(R.id.tvchuathanhtoan);
-        tvchuathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Menu_pay.this,Unpaid.class);
-                startActivity(intent);
-            }
-        });
-
+        new order.MyAsyncTask().execute(urllink);
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -95,29 +74,26 @@ public class Menu_pay extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
-                    JSONArray jsonArrayPay = jsonObject.getJSONArray("oder");
-                    Log.d("//=====size=====", jsonArrayPay.length() + "");
+                    JSONArray jsonArraymenu = jsonObject.getJSONArray("menu");
+                    Log.d("//=====size===", jsonArraymenu.length() + "");
 
-                    for (int i = 0; i < jsonArrayPay.length(); i++) {
-                        JSONObject PayObject = jsonArrayPay.getJSONObject(i);
-
-                        Log.d("MaBn", PayObject.getString("MaBn"));
-                        Log.d("TenLh", PayObject.getString("TenLh"));
-                        Log.d("Giatien", PayObject.getString("Giatien"));
-                        Log.d("Soluong", PayObject.getString("Soluong"));
+                    for (int i = 0; i < jsonArraymenu.length(); i++) {
+                        JSONObject menuObject = jsonArraymenu.getJSONObject(i);
+//                        Log.d("MaMn", menuObject.getString("MaMn"));
+                        Log.d("TenLh", menuObject.getString("TenLh"));
+                        Log.d("GiaTien", menuObject.getString("GiaTien"));
 
 
-                        String MaBn = PayObject.getString("MaBn");
-                        String TenLh = PayObject.getString("TenLh");
-                        String Giatien = PayObject.getString("Giatien");
-                        String Soluong = PayObject.getString("Soluong");
+//                        String MaMn = menuObject.getString("MaMn");
+                        String TenLh = menuObject.getString("TenLh");
+                        String GiaTien = menuObject.getString("GiaTien");
 
-                        Menu1 menu1 = new Menu1();
-                        menu1.setMaBn(MaBn);
-                        menu1.setTenLh(TenLh);
-                        menu1.setGiatien(Integer.parseInt(Giatien));
-                        menu1.setSoluong(Integer.parseInt(Soluong));
-                        listPay.add(menu1);
+
+                        Menu menu = new Menu();
+//                        menu.setMaMn(MaMn);
+                        menu.setTenLh(TenLh);
+                        menu.setGiatien(Integer.parseInt(GiaTien));
+                        menuList.add(menu);
 
                     }
                 } else {
@@ -137,9 +113,8 @@ public class Menu_pay extends AppCompatActivity {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            payDU.notifyDataSetChanged();
+            duUong.notifyDataSetChanged();
         }
-
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
@@ -160,9 +135,5 @@ public class Menu_pay extends AppCompatActivity {
             }
             return null;
         }
-
     }
 }
-
-
-
