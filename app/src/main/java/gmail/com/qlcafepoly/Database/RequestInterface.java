@@ -1,14 +1,14 @@
 package gmail.com.qlcafepoly.Database;
 
 
-import gmail.com.qlcafepoly.User;
-import gmail.com.qlcafepoly.User1;
+import gmail.com.qlcafepoly.admin.User;
+import gmail.com.qlcafepoly.admin.User1;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface RequestInterface {
-    @POST("learn-login-register/")
+    @POST("duantotnghiep/")
     Call<ServerResponse> operation(@Body ServerRequest request);
 
 

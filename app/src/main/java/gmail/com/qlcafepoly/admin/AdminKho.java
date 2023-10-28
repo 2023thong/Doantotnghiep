@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,38 +12,49 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import gmail.com.qlcafepoly.QuanlyFragment;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.nhanvien.OrderFragment;
 
-public class NhanvienMenu extends AppCompatActivity {
-
+public class AdminKho extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nhanvien_menu);
-        bottomNavigationView = findViewById(R.id.bonava1);
+        setContentView(R.layout.activity_admin_kho);
+        bottomNavigationView = findViewById(R.id.bonava);
+        replaceFragment(new CanhanFragment());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()==R.id.odr){
-                    replaceFragment(new OrderFragment());
+                if (item.getItemId()==R.id.kho){
+                    replaceFragment(new KhoFragment());
                 }
-                if (item.getItemId()==R.id.nv){
+
+                if (item.getItemId()==R.id.ql){
                     replaceFragment(new QuanlyFragment());
                 }
+
+                if (item.getItemId()==R.id.canhan){
+                    replaceFragment(new CanhanFragment());
+                }
+
+
                 return true;
             }
         });
+
+
+
     }
+
+
+
 
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framg1, fragment);
+        fragmentTransaction.replace(R.id.framg, fragment);
         fragmentTransaction.commit();
     }
 }

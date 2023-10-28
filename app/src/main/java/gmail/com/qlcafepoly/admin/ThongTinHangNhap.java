@@ -1,6 +1,4 @@
-package gmail.com.qlcafepoly;
-
-import static java.security.AccessController.getContext;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,13 +22,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import gmail.com.qlcafepoly.R;
+
 public class ThongTinHangNhap extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();
     private Hanghoaht adepter;
     private ImageView imageView;
 
     private ListView lshienthi;
+
     private String urllink = "http://192.168.1.83:/learn-login-register/get_all_product.php";
+
 
     private ProgressDialog pd;
 

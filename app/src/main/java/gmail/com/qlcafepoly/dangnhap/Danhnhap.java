@@ -15,16 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
-
-import gmail.com.qlcafepoly.AdminKho;
+import gmail.com.qlcafepoly.admin.AdminKho;
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
-import gmail.com.qlcafepoly.KhoFragment;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.User;
-import gmail.com.qlcafepoly.User1;
+import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -104,7 +100,7 @@ public class Danhnhap extends AppCompatActivity {
                     String role = response1.getPhanquyen(); // Lấy vai trò từ kết quả API
                     if ("1".equals(role)) {
 
-                        String Manv = response1.getMaNv();
+                        String Manv = response1.getMaNv(); 
                         String TenNv = response1.getTenNv();
                         String Sdt = response1.getSdt();
                         String Diachi = response1.getDiachi();
