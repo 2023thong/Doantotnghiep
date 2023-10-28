@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Unpaid">
+    tools:context=".thanhtoan.Unpaid">
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -35,38 +35,35 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
-        <Button
-            android:id="@+id/btn_pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A89E9E"
-            android:text="Chưa thanh toán"
-            android:textColor="@color/black"
-            tools:ignore="ButtonStyle,HardcodedText,MissingConstraints"
+            <TextView
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
 
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="154dp" />
+                android:background="@drawable/background_noclick"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
 
-        <Button
-            android:id="@+id/btn_paid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:backgroundTint="#D9D9D9"
-            android:fontFamily="sans-serif-light"
-            android:text="Đã thanh toán"
-            android:textColor="@color/black"
-            tools:ignore="ButtonStyle,HardcodedText,MissingConstraints,RtlHardcoded"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="206dp"
-            />
+                android:padding="10dp"
+                android:text="Chưa thanh toán"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvdathanhtoan"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_click"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Đã thanh toán"
+                android:textSize="20dp" />
     </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="170dp"
-            android:layout_marginBottom="65dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/background_click"
@@ -74,6 +71,18 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
+            <ListView
+                android:id="@+id/lv_unpaid"
+                android:layout_width="match_parent"
+                android:layout_height="544dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="MissingConstraints"
+
+                />
 
         </LinearLayout>
 

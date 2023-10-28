@@ -56,8 +56,8 @@ public class Danhnhap extends AppCompatActivity {
         tvQuanly = findViewById(R.id.tvQuanly);
 
         tvNhanvien = findViewById(R.id.tvNhanvien);
-        edTedn = findViewById(R.id.edTendn);
-        edPass = findViewById(R.id.edPass);
+        edTedn = findViewById(R.id.edTendn1);
+        edPass = findViewById(R.id.edPass1);
 
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,7 @@ public class Danhnhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDn = findViewById(R.id.btnDangnhap);
+        btnDn = findViewById(R.id.btnDangnhap1);
         btnDn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

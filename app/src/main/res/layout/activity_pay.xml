@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F4F4"
-    tools:context=".Pay">
+    tools:context=".thanhtoan.Pay">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/ic_background_pay"
+            android:background="@drawable/ic_backgroundpay"
             android:padding="30dp"
             tools:ignore="ContentDescription,MissingConstraints"/>
 
@@ -38,11 +38,10 @@
             tools:ignore="MissingConstraints">
 
             <TextView
+                android:id="@+id/tvchuathanhtoan"
                 android:layout_width="188dp"
                 android:layout_height="wrap_content"
-
                 android:background="@drawable/background_click"
-
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Chưa thanh toán"
@@ -54,27 +53,37 @@
                 android:layout_marginStart="10dp"
                 android:background="@drawable/background_noclick"
                 android:fontFamily="sans-serif-light"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Đã thanh toán"
                 android:textSize="20dp" />
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_listpay"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
-
-            android:layout_marginBottom="65dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/background_click"
+
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:ignore="MissingConstraints"
-            tools:listitem="@layout/list_pay">
+            tools:ignore="MissingConstraints">
+
+            <ListView
+                android:id="@+id/lv_listpay"
+                android:layout_width="match_parent"
+                android:layout_height="514dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="MissingConstraints">
 
 
-        </androidx.recyclerview.widget.RecyclerView>
+            </ListView>
+        </LinearLayout>
     </FrameLayout>
 
 

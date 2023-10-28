@@ -1,14 +1,17 @@
-package gmail.com.qlcafepoly.admin;
+package gmail.com.qlcafepoly.thanhtoan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,39 +27,45 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 
-public class ThongTinHangNhap extends AppCompatActivity {
-    private List<User1> lsuList = new ArrayList<>();
-    private Hanghoaht adepter;
+public class Unpaid extends AppCompatActivity {
+    private List<Menu1> listUnpaid = new ArrayList<>();
+    private Unpaid1 unpaid1;
+
     private ImageView imageView;
-    private ListView lshienthi;
-    private String urllink = "http://192.168.1.62:/learn-login-register/get_all_product.php";
+    private ListView lv_unpaid;
+    private String urllink = "http://172.16.54.131:/duantotnghiep/thongtinoder.php";
 
     private ProgressDialog pd;
+    private TextView tvdathanhtoan;
 
+
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thong_tin_hang_nhap);
-        imageView = findViewById(R.id.imageView5);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        setContentView(R.layout.activity_unpaid);
+        imageView = findViewById(R.id.img_Douong);
+        lv_unpaid = findViewById(R.id.lv_unpaid);
+        unpaid1 = new Unpaid1(Unpaid.this, listUnpaid);
+        lv_unpaid.setAdapter(unpaid1);
 
-        lshienthi = findViewById(R.id.lsHienthi);
-
-        adepter = new Hanghoaht(ThongTinHangNhap.this,lsuList);
-        lshienthi.setAdapter(adepter);
-
-        pd = new ProgressDialog(ThongTinHangNhap.this); // Khởi tạo ProgressDialog ở đây
+        pd = new ProgressDialog(Unpaid.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
 
 
         new MyAsyncTask().execute(urllink);
+        tvdathanhtoan = findViewById(R.id.tvdathanhtoan);
+        tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Unpaid.this,Pay.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -77,27 +86,23 @@ public class ThongTinHangNhap extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
-                    JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("hanghoa");
-                    Log.d("//=====size===", jsonArrayhanghoa.length() + "");
+                    JSONArray jsonArrayPay = jsonObject.getJSONArray("oder");
+                    Log.d("//=====size=====", jsonArrayPay.length() + "");
 
-                    for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
-                        JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
-                        Log.d("MaHH", nhanvienObject.getString("MaHH"));
-                        Log.d("MaNcc", nhanvienObject.getString("MaNcc"));
-                        Log.d("TenHh", nhanvienObject.getString("TenHh"));
-                        Log.d("GiaSp", nhanvienObject.getString("GiaSp"));
+                    for (int i = 0; i < jsonArrayPay.length(); i++) {
+                        JSONObject PayObject = jsonArrayPay.getJSONObject(i);
 
-                        String MaHH = nhanvienObject.getString("MaHH");
-                        String MaNcc = nhanvienObject.getString("MaNcc");
-                        String TenHh = nhanvienObject.getString("TenHh");
-                        String GiaSp = nhanvienObject.getString("GiaSp");
+                        Log.d("MaBn", PayObject.getString("MaBn"));
 
-                        User1 user1 = new User1();
-                        user1.setMaHH(MaHH);
-                        user1.setMaNcc(MaNcc);
-                        user1.setTenHh(TenHh);
-                        user1.setGiaSp(GiaSp);
-                        lsuList.add(user1);
+
+                        String MaBn = PayObject.getString("MaBn");
+
+                        Menu1 menu1 = new Menu1();
+                        menu1.setMaBn(MaBn);
+
+
+                        listUnpaid.add(menu1);
+
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -116,8 +121,9 @@ public class ThongTinHangNhap extends AppCompatActivity {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            adepter.notifyDataSetChanged();
+            unpaid1.notifyDataSetChanged();
         }
+
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
@@ -138,7 +144,14 @@ public class ThongTinHangNhap extends AppCompatActivity {
             }
             return null;
         }
+
     }
-
-
+    public void xem_menu(View view){
+        Intent intent = new Intent(Unpaid.this, Menu_pay.class);
+        startActivity(intent);
+    }
+//    public void dathanhtoan(View view){
+//        Intent intent = new Intent(Unpaid.this, Pay.class);
+//        startActivity(intent);
+//    }
 }

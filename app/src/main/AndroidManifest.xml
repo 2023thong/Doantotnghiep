@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,66 +15,34 @@
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".dangnhap.DoiMatKhau"
-            android:exported="false" />
 
         <activity
-<<<<<<< HEAD
-            android:name=".AdminKho"
-=======
-            android:name=".admin.Thonhtintaikhoan"
-            android:exported="false" />
-        <activity
             android:name=".admin.AdminKho"
-            android:exported="false" />
-        <activity
-            android:name=".dangnhap.Dangnhapnhanvien"
-            android:exported="false" />
-        <activity
-            android:name=".admin.ThongTinHangNhap"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Trangmilktea"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Trangfruit"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Trangcoffee"
-            android:exported="false" />
-        <activity
-            android:name=".admin.ThemNhanVien"
->>>>>>> test
-            android:exported="false" />
-        <activity
-            android:name=".admin.ThemDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Quanlynv"
-            android:exported="false" />
-        <activity
-            android:name=".admin.QuanLyDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".admin.ItemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".admin.ItemDoUong"
             android:exported="false" />
         <activity
             android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Pay"
-            android:exported="false" />
+            android:name=".dangnhap.Dangnhapnhanvien"
+            android:exported="false"
+           />
         <activity
-<<<<<<< HEAD
-            android:name=".Pay"
-=======
-            android:name=".dangnhap.Danhnhap"
->>>>>>> test
-            android:exported="true">
+            android:name=".thanhtoan.Pay"
+            android:exported="false"
+            />
+        <activity
+            android:name=".thanhtoan.ListUnpaid"
+            android:exported="false"
+            />
+        <activity
+            android:name=".thanhtoan.Menu_pay"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".thanhtoan.Unpaid"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
