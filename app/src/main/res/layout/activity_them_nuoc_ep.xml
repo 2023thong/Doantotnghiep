@@ -5,26 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E6DA72"
-    tools:context=".admin.ThemNhanVien">
+    android:background="#CDC368"
+    tools:context=".ThemNuocEp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#ED8361">
         <ImageView
+            android:id="@+id/backqlynv"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_margin="15dp"
-            android:onClick="backra"/>
+            android:onClick="backthemnuocep"/>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Thêm nhân viên"
+            android:text="Thêm Nước Ép"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
 
@@ -62,76 +63,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
-                android:id="@+id/edtMaNv"
+                android:id="@+id/edtTenTaiKhoan"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:background="@drawable/khungedt"
                 android:layout_height="60dp"
-                android:hint="Mã nhân viên"
+                android:hint="Tên đồ uống"
                 android:paddingStart="20dp" />
             <EditText
-                android:id="@+id/edtTenNv"
+                android:id="@+id/edtMatKhau"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:background="@drawable/khungedt"
                 android:layout_height="60dp"
-                android:hint="Tên nhân viên"
+                android:hint="Giá tiền"
                 android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtTenDnnv"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Tên Đăng nhập"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtMatkhau"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Mật khẩu"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtSdt"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Số điện thoại"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtDiachi"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Địa chỉ"
-                android:paddingStart="20dp" />
-            <EditText
-                android:id="@+id/edtChucvu"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/khungedt"
-                android:layout_height="60dp"
-                android:hint="Chức vụ"
-                android:paddingStart="20dp" />
+
             <Button
-                android:id="@+id/btnThemNV"
+                android:id="@+id/btnThem"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:text="Thêm"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
-            <Button
-                android:id="@+id/btnXemNV"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:text="Xem danh sách"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_gravity="center"/>

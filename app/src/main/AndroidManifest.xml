@@ -27,10 +27,37 @@
         <activity
             android:name=".admin.AdminKho"
             android:exported="false" />
+
+        <activity
+            android:name=".ListHoaDon"
+            android:exported="false" />
+        <activity
+            android:name=".ItemHoaDon"
+            android:exported="false" />
+        <activity
+            android:name=".QuanLyHoaDon"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".TrangQuanLyHoaDon"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".ThemDoUongKhac"
+            android:exported="false" />
+        <activity
+            android:name=".ThemTraSua"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".ThemNuocEp"
+            android:exported="false" />
         <activity
             android:name=".dangnhap.DoiMatKhau"
             android:exported="false" />
+
         <activity
+
             android:name=".nhanvien.NhanvienMenu"
             android:exported="false" />
 
@@ -42,6 +69,7 @@
             android:name=".admin.ThongTinHangNhap"
 
             android:exported="false" />
+
         <activity
             android:name=".admin.Trangmilktea"
             android:exported="false" />
@@ -56,11 +84,11 @@
             android:name=".admin.ThemNhanVien"
             android:exported="false" />
         <activity
+
             android:name=".admin.Thonhtintaikhoan"
             android:exported="false" />
-        <activity
-            android:name=".admin.ThemDoUong"
-            android:exported="false" />
+
+
         <activity
             android:name=".admin.Quanlynv"
             android:exported="false" />
@@ -68,28 +96,23 @@
             android:name=".admin.QuanLyDoUong"
             android:exported="false" />
         <activity
-            android:name=".admin.ItemNhanVien"
-            android:exported="false" />
-        <activity
             android:name=".admin.ItemDoUong"
 
 
             android:exported="false" />
         <activity
+
             android:name=".admin.Pay"
             android:exported="false" />
 
-        <activity
-            android:name=".admin.MainActivity"
-            android:exported="false" />
-        <activity
 
+
+        <activity
             android:name=".dangnhap.Danhnhap"
-            android:exported="true">
-
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

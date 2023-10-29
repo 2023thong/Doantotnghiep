@@ -11,7 +11,7 @@
         android:layout_height="80dp"
         android:background="#ED8361">
         <ImageView
-            android:id="@+id/backcofee"
+            android:id="@+id/imgbackcofee"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -29,10 +29,11 @@
             android:textStyle="bold|italic" />
     </LinearLayout>
     <ListView
+        android:id="@+id/lscofe"
         android:layout_width="match_parent"
         android:layout_height="557dp" />
     <ImageView
-        android:onClick="themdouong"
+        android:id="@+id/btnthemcofe"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="end"

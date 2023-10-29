@@ -11,7 +11,7 @@
         android:padding="10dp"
         android:background="#20D0E6"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp">
         <ImageView
@@ -28,42 +28,49 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="15dp">
             <TextView
-                android:id="@+id/txtMaPM"
+                android:id="@+id/tvMaNv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
             <TextView
-                android:id="@+id/txtMaTV"
+                android:id="@+id/tvTenNv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
             <TextView
-                android:id="@+id/txtTenTV"
+                android:id="@+id/tvTenDn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
             <TextView
-                android:id="@+id/txtMaTT"
+                android:id="@+id/tvMatkhau"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
             <TextView
-                android:id="@+id/txtTenTT"
+                android:id="@+id/tvSdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
             <TextView
-                android:id="@+id/txtMaSach"
+                android:id="@+id/tvDiaChi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"/>
+            <TextView
+                android:id="@+id/tvChucvu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
