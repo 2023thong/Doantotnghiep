@@ -16,7 +16,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
-            android:onClick="backmilktea"
+            android:onClick="backtrangmilktea"
             android:layout_margin="15dp" />
 
         <TextView
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="557dp" />
     <ImageView
-        android:onClick="themdouong"
+        android:onClick="themtrasua"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="end"

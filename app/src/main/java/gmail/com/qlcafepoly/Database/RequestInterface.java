@@ -1,6 +1,7 @@
 package gmail.com.qlcafepoly.Database;
 
 
+import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 import retrofit2.Call;
@@ -18,6 +19,7 @@ public interface RequestInterface {
 
         private User1 user1;
         private User user;
+        private Menu menu;
 
 
 
@@ -32,6 +34,9 @@ public interface RequestInterface {
         }
         public void setUser(User user) {
             this.user = user;
+        }
+        public void setMenu(Menu menu) {
+            this.menu = menu;
         }
 
 
