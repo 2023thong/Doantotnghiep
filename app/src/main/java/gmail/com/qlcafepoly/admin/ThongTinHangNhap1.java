@@ -24,12 +24,12 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 
-public class ThongTinHangNhap extends AppCompatActivity {
+public class ThongTinHangNhap1 extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();
     private Hanghoaht adepter;
     private ImageView imageView;
     private ListView lshienthi;
-    private String urllink = "http://192.168.1.41:8080/duantotnghiep/get_all_product.php";
+    private String urllink = "http://192.168.1.104:8080/duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
 
@@ -47,10 +47,10 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
         lshienthi = findViewById(R.id.lsHienthi);
 
-        adepter = new Hanghoaht(ThongTinHangNhap.this,lsuList);
+        adepter = new Hanghoaht(ThongTinHangNhap1.this,lsuList);
         lshienthi.setAdapter(adepter);
 
-        pd = new ProgressDialog(ThongTinHangNhap.this); // Khởi tạo ProgressDialog ở đây
+        pd = new ProgressDialog(ThongTinHangNhap1.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 

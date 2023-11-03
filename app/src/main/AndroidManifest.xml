@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
-
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
@@ -34,7 +33,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".admin.ThongTinHangNhap"
+            android:name=".admin.ThongTinHangNhap1"
 
             android:exported="false" />
         <activity
@@ -54,6 +53,9 @@
             android:name=".admin.Thonhtintaikhoan"
             android:exported="false" />
         <activity
+            android:name=".admin.NhanvienMenu"
+            android:exported="false" />
+        <activity
             android:name=".admin.ThemDoUong"
             android:exported="false" />
         <activity
@@ -67,8 +69,9 @@
             android:exported="false" />
         <activity
             android:name=".admin.ItemDoUong"
-
-
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.DanhsachFragment"
             android:exported="false" />
         <activity
             android:name=".admin.Pay"

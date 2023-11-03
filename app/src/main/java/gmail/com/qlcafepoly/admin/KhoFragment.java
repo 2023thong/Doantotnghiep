@@ -53,8 +53,8 @@ public class KhoFragment extends Fragment {
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ThongTinHangNhap.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(getContext(), ThongTinHangNhap1.class);
+                startActivity(intent1);
             }
         });
 
@@ -122,7 +122,7 @@ public class KhoFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed" +t.getMessage());
 
             }
         });
