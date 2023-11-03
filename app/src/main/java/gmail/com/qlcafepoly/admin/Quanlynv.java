@@ -29,7 +29,7 @@ public class Quanlynv extends AppCompatActivity {
     private List<User> lsuListNhanvien = new ArrayList<>();
     private Nhanvienht adepter;
     private ListView lshienthinhanvien;
-    private String urllink = "http://192.168.1.22:8080/duantotnghiep/get_all_nhanvien.php";
+    private String urllink = "http://192.168.1.74:8080/duantotnghiep/get_all_nhanvien.php";
 
     private ProgressDialog pd;
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -29,7 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ThemNhanVien extends AppCompatActivity {
     private EditText edMaNv, edTenNv, edTenDn, edMatkhau, edSdt, edDiachi ,edChucvu;
     private Button btnThemNV, btnXemNV;
+    private ArrayList<User> nhanVienList = new ArrayList<>();
+    private ArrayAdapter customAdapter;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +103,8 @@ public class ThemNhanVien extends AppCompatActivity {
         user.setSdt(Sdt);
         user.setDiachi(Diachi);
         user.setChucvu(Integer.parseInt(Chucvu));
+//        nhanVienList.add(0, user);
+//        customAdapter.notifyDataSetChanged();
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.NHANVIEN);
         serverRequest.setUser(user);
@@ -120,11 +130,6 @@ public class ThemNhanVien extends AppCompatActivity {
             }
         });
     }
-
-    //    public void backthemnv(View view){
-//        Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
-//        startActivity(intent);
-//    }
     public void backra(View view){
         finish();
     }

@@ -121,7 +121,7 @@ public class DoiMatKhau extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed"+ t.getMessage());
 
             }
         });
