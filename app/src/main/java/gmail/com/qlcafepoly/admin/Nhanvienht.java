@@ -90,4 +90,10 @@ public class Nhanvienht extends BaseAdapter {
 
         return convertView;
     }
+
+    public void clear() {
+    }
+
+    public void addAll(List<User> ketQuaTimKiem) {
+    }
 }

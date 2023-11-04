@@ -68,8 +68,7 @@ public class ThemDoUong extends AppCompatActivity {
         backThemDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThemDoUong.this, DanhSachDoUong.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -93,6 +92,7 @@ public class ThemDoUong extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ThemDoUong.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(ThemDoUong.this, response1.getMessage(), Toast.LENGTH_SHORT).show();

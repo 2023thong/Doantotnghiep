@@ -31,7 +31,7 @@ public class DanhSachDoUong extends AppCompatActivity {
     private List<Menu> lsuListMenu = new ArrayList<>();
     private Menuht adepter;
     private ListView lshienthimenu;
-    private String urllink = "http://192.168.1.74:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.72:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private Button btnThemDU;

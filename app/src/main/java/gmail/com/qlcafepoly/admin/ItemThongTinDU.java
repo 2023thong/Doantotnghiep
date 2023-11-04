@@ -1,7 +1,9 @@
 package gmail.com.qlcafepoly.admin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemThongTinDU extends AppCompatActivity {
-Button btnBack,btnSuaDU;
+Button btnBack,btnSuaDU,btnXoaDU;
     EditText edMaMN,edTenLH,edGiaTien;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ Button btnBack,btnSuaDU;
         edGiaTien =findViewById(R.id.edGiaDU);
         btnSuaDU = findViewById(R.id.btnSuaDU);
         btnBack = findViewById(R.id.btnBack);
+        btnXoaDU = findViewById(R.id.btnXoaDU);
         btnSuaDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,8 +47,7 @@ Button btnBack,btnSuaDU;
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ItemThongTinDU.this, DanhSachDoUong.class);
-                startActivity(intent);
+                finish();
             }
         });
         Intent intent = getIntent();
@@ -60,6 +62,34 @@ Button btnBack,btnSuaDU;
         edMaMn.setText(MaMn);
         edTenLh.setText(TenLh);
         edGiatien.setText(Giatien);
+        btnXoaDU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDeleteConfirmationDialog();
+            }
+        });
+    }
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn có chắc chắn muốn xóa?");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Người dùng đã xác nhận xóa, thực hiện hành động xóa ở đây
+                String mamn = edMaMN.getText().toString();
+                deleteMenu(mamn);
+                finish();
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Người dùng đã chọn không, đóng dialog
+                dialog.dismiss();
+            }
+        });
+
+        // Tạo và hiển thị dialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
     public void EditMenu(String MaMn , String TenLh, String Giatien) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -91,6 +121,43 @@ Button btnBack,btnSuaDU;
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed");
 
+            }
+        });
+    }
+    public void deleteMenu(String MaMn) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Menu menu = new Menu();
+        menu.setMaMn(MaMn);
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.XOAMENU);
+        serverRequest.setMenu(menu);
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    Toast.makeText(ItemThongTinDU.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    // Sau khi xóa thành công, quay về màn hình Quanlynv hoặc thực hiện các xử lý khác tùy ý.
+                    Intent intent = new Intent(ItemThongTinDU.this, DanhSachDoUong.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ItemThongTinDU.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed");
             }
         });
     }

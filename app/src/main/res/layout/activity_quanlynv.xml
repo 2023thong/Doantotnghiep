@@ -31,21 +31,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edtMa"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/icFindNV"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boedit"
+            app:iconifiedByDefault="false"
+            app:queryHint="Tìm kiếm"
             android:layout_margin="10dp"
-            android:layout_width="130dp"
-            android:background="@drawable/khungtimkiem"
-            android:layout_height="50dp"
-            android:hint="Nhập mã"
-            android:gravity="center"/>
-        <ImageView
-            android:id="@+id/imgFind"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ictimkiem"
-            android:layout_margin="10dp"/>
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+<!--        <EditText-->
+<!--            android:id="@+id/findMaNV"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="130dp"-->
+<!--            android:background="@drawable/khungtimkiem"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:hint="Nhập mã"-->
+<!--            android:gravity="center"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/icFindMaNV"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:src="@drawable/ictimkiem"-->
+<!--            android:layout_margin="10dp"/>-->
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content">

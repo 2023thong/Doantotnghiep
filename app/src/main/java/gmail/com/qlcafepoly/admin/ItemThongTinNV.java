@@ -1,7 +1,9 @@
 package gmail.com.qlcafepoly.admin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemThongTinNV extends AppCompatActivity {
-    Button btnBackNV,btnSuaNV;
+    Button btnBackNV,btnSuaNV,btnXoaNV;
     EditText edMaNV,edTenNV,edTenDN,edMatKhau,edSdt,edDiaChi,edChucVu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class ItemThongTinNV extends AppCompatActivity {
         edChucVu =findViewById(R.id.edChucVu);
         btnBackNV = findViewById(R.id.btnBackNV);
         btnSuaNV = findViewById(R.id.btnSuaNV);
+        btnXoaNV = findViewById(R.id.btnXoaNV);
 
         btnSuaNV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +61,7 @@ public class ItemThongTinNV extends AppCompatActivity {
         btnBackNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ItemThongTinNV.this, Quanlynv.class);
-                startActivity(intent);
+                finish();
             }
         });
         Intent intent = getIntent();
@@ -86,6 +88,34 @@ public class ItemThongTinNV extends AppCompatActivity {
         edSdt.setText(Sdt);
         edDiachi.setText(Diachi);
         edChucvu.setText(Chucvu);
+        btnXoaNV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDeleteConfirmationDialog();
+            }
+        });
+    }
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn có chắc chắn muốn xóa?");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Người dùng đã xác nhận xóa, thực hiện hành động xóa ở đây
+                String manv = edMaNV.getText().toString();
+                deleteEmployee(manv);
+                finish();
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Người dùng đã chọn không, đóng dialog
+                dialog.dismiss();
+            }
+        });
+
+        // Tạo và hiển thị dialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
     public void registerProcess2(String MaNv , String TenNv, String TenDn,String Matkhau,String Sdt,String Diachi, String Chucvu ) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -121,6 +151,43 @@ public class ItemThongTinNV extends AppCompatActivity {
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed");
 
+            }
+        });
+    }
+    public void deleteEmployee(String MaNv) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        User user = new User();
+        user.setMaNv(MaNv);
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.XOANHANVIEN);
+        serverRequest.setUser(user);
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    Toast.makeText(ItemThongTinNV.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    // Sau khi xóa thành công, quay về màn hình Quanlynv hoặc thực hiện các xử lý khác tùy ý.
+                    Intent intent = new Intent(ItemThongTinNV.this, Quanlynv.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ItemThongTinNV.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed");
             }
         });
     }

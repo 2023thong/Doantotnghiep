@@ -103,8 +103,6 @@ public class ThemNhanVien extends AppCompatActivity {
         user.setSdt(Sdt);
         user.setDiachi(Diachi);
         user.setChucvu(Integer.parseInt(Chucvu));
-//        nhanVienList.add(0, user);
-//        customAdapter.notifyDataSetChanged();
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.NHANVIEN);
         serverRequest.setUser(user);
@@ -117,6 +115,7 @@ public class ThemNhanVien extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -130,6 +129,9 @@ public class ThemNhanVien extends AppCompatActivity {
             }
         });
     }
+
+
+
     public void backra(View view){
         finish();
     }
