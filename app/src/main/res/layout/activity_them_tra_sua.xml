@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#D6CB67"
-    tools:context=".ThemTraSua">
+    tools:context=".admin.ThemTraSua">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.dangnhap.Danhnhap;
@@ -21,6 +22,7 @@ import gmail.com.qlcafepoly.dangnhap.DoiMatKhau;
 public class CanhanFragment extends Fragment {
     ConstraintLayout tvttcn;
     ConstraintLayout layout, doimk;
+    TextView textView;
 
 
 
@@ -54,6 +56,14 @@ public class CanhanFragment extends Fragment {
                 startActivity(new Intent(getContext(), DoiMatKhau.class));
             }
         });
+        textView = view.findViewById(R.id.tvTen);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("thong", Context.MODE_PRIVATE);
+
+        String Tennv = sharedPreferences.getString("TenNv", "");
+
+        textView.setText(Tennv);
+
 
         return view;
     }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.ThemDoUongKhac;
 
 public class Trangdouongkhac extends AppCompatActivity {
 
