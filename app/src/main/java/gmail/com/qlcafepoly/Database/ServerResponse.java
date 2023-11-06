@@ -16,7 +16,9 @@ public class ServerResponse {
     private Menu menu;
 
 
+
     private String TenNv;
+
 
     private String Diachi;
     private String Sdt;

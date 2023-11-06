@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ThemDoUong extends AppCompatActivity {
     private EditText edMaMn, edTenLh, edGiatien;
     private Button btnThemmenu, btnxemmenu;
+    private View backThemDU;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class ThemDoUong extends AppCompatActivity {
         edGiatien =findViewById(R.id.edtGiaTien);
         btnThemmenu =findViewById(R.id.btnThemmenu);
         btnxemmenu = findViewById(R.id.btnxemmenu);
+        backThemDU = findViewById(R.id.backThemDU);
         btnThemmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +61,14 @@ public class ThemDoUong extends AppCompatActivity {
         btnxemmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThemDoUong.this, Trangcoffee.class);
+                Intent intent = new Intent(ThemDoUong.this, DanhSachDoUong.class);
                 startActivity(intent);
+            }
+        });
+        backThemDU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -82,6 +92,7 @@ public class ThemDoUong extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ThemDoUong.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(ThemDoUong.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -94,9 +105,5 @@ public class ThemDoUong extends AppCompatActivity {
 
             }
         });
-    }
-    public void backthemdouong(View view){
-        Intent intent = new Intent(ThemDoUong.this, Trangcoffee.class);
-        startActivity(intent);
     }
 }

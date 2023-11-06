@@ -6,17 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import gmail.com.qlcafepoly.admin.Trangmilktea;
+import gmail.com.qlcafepoly.admin.ThemNhanVien;
 
-public class ThemTraSua extends AppCompatActivity {
+public class Quanlynv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_them_tra_sua);
+        setContentView(R.layout.activity_quanlynv);
     }
-    public void backthemtrasua(View view){
-        Intent intent = new Intent(ThemTraSua.this, Trangmilktea.class);
+    public void themnhanvien(View view){
+        Intent intent = new Intent(Quanlynv.this, ThemNhanVien.class);
         startActivity(intent);
+    }
+    public void back(View view){
+        finish();
     }
 }

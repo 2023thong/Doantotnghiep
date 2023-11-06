@@ -1,19 +1,36 @@
 package gmail.com.qlcafepoly.admin;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import gmail.com.qlcafepoly.Database.Constants;
+import gmail.com.qlcafepoly.Database.RequestInterface;
+import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Nhanvienht extends BaseAdapter {
     private List<User> usernv;
     private LayoutInflater inflater;
+    private ImageView editNV,deleteNV;
+    EditText edMaNV,edTenNV,edTenDN,edMatKhau,edSdt,edDiaChi,edChucVu;
+
 
     public Nhanvienht(Context context, List<User> usernv) {
         this.usernv = usernv;
@@ -49,16 +66,34 @@ public class Nhanvienht extends BaseAdapter {
         TextView tvDiachi = convertView.findViewById(R.id.tvDiaChi);
         TextView tvChucvu = convertView.findViewById(R.id.tvChucvu);
 
+        tvManv.setText("Mã nhân viên: "+user.getMaNv());
+        tvTennv.setText("Tên Nhân viên: "+user.getTenNv());
+        tvTendn.setText("Tên đăng nhập: "+user.getTenDn());
+        tvMatkhau.setText("Mật khẩu: "+user.getMatkhau());
+        tvSdt.setText("Số điện thoại: "+String.valueOf(user.getSdt()));
+        tvDiachi.setText("Địa chỉ: "+user.getDiachi());
+        tvChucvu.setText("Chức vụ: "+String.valueOf(user.getChucvu()));
+        editNV = convertView.findViewById(R.id.icEditNV);
+        editNV.setOnClickListener(view -> {
 
-        tvManv.setText(user.getMaNv());
-        tvTennv.setText(user.getTenNv());
-        tvTendn.setText(user.getTenDn());
-        tvMatkhau.setText(user.getMatkhau());
-        tvSdt.setText(user.getSdt());
-        tvDiachi.setText(user.getDiachi());
-        tvChucvu.setText(String.valueOf(user.getChucvu()));
-
+                    Intent intent2 = new Intent(view.getContext(),ItemThongTinNV.class);
+                    intent2.putExtra("DULIEUNV", user.getMaNv());
+                    intent2.putExtra("DULIEUNV_TenNv", user.getTenNv());
+                    intent2.putExtra("DULIEUNV_TenDn", user.getTenDn());
+                    intent2.putExtra("DULIEUNV_Matkhau", user.getMatkhau());
+            intent2.putExtra("DULIEUNV_Sdt", user.getSdt());
+                    intent2.putExtra("DULIEUNV_Diachi", user.getDiachi());
+                    intent2.putExtra("DULIEUNV_Chucvu", String.valueOf(user.getChucvu()));
+                    view.getContext().startActivity(intent2);
+                });
+        deleteNV = convertView.findViewById(R.id.icDeleteNV);
 
         return convertView;
+    }
+
+    public void clear() {
+    }
+
+    public void addAll(List<User> ketQuaTimKiem) {
     }
 }

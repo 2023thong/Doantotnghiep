@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -29,7 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ThemNhanVien extends AppCompatActivity {
     private EditText edMaNv, edTenNv, edTenDn, edMatkhau, edSdt, edDiachi ,edChucvu;
     private Button btnThemNV, btnXemNV;
+    private ArrayList<User> nhanVienList = new ArrayList<>();
+    private ArrayAdapter customAdapter;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +115,7 @@ public class ThemNhanVien extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -124,11 +133,6 @@ public class ThemNhanVien extends AppCompatActivity {
 
 
 
-
-    //    public void backthemnv(View view){
-//        Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
-//        startActivity(intent);
-//    }
     public void backra(View view){
         finish();
     }
