@@ -23,23 +23,44 @@
         android:orientation="horizontal" >
     </LinearLayout>
 
-    <androidx.appcompat.widget.SearchView
+    <LinearLayout
+        android:id="@+id/searchv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/ttk"
-        app:queryHint="Tìm ở đây..."
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llSearch"
-        tools:ignore="Autofill,LabelFor,TextFields">
+        app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.appcompat.widget.SearchView>
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/botimkiem"
+            android:ems="10"
+            android:hint="Nhập thông tin"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/timkiem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,UseAppTint" />
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -74,7 +95,7 @@
 
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/quamenu"
+        android:id="@+id/quatable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

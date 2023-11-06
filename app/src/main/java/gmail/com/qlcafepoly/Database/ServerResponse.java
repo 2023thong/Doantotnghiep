@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.model.Ban;
 
 public class ServerResponse {
     private String result;
@@ -11,6 +12,7 @@ public class ServerResponse {
     private String MaNv;
     private String Diachi;
     private String Sdt;
+
 
     public String getTenNv() {
         return TenNv;
@@ -54,6 +56,10 @@ public class ServerResponse {
         return user;
     }
 
+    private Ban ban;
 
+    public Ban getBan() {
+        return ban;
+    }
 }
 

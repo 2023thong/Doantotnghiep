@@ -3,6 +3,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -18,6 +19,7 @@ public interface RequestInterface {
 
         private User1 user1;
         private User user;
+        private Ban ban;
 
 
 
@@ -33,8 +35,9 @@ public interface RequestInterface {
         public void setUser(User user) {
             this.user = user;
         }
-
-
+        public void setBan(Ban ban) {
+            this.ban = ban;
+        }
     }
 }
 
