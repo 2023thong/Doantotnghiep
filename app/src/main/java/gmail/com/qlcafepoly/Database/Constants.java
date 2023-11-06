@@ -2,7 +2,7 @@ package gmail.com.qlcafepoly.Database;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.1.39:8080/";
+    public static final String BASE_URL = "http://192.168.1.88:8080/";
 
 
 

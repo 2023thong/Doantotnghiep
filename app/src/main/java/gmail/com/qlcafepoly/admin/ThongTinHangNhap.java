@@ -52,7 +52,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
     private ProgressDialog pd;
 
 
-    private String urllink = "http://192.168.1.39:8080/duantotnghiep/get_all_product.php";
+    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_product.php";
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
