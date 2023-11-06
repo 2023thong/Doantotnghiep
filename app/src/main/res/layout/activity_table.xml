@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nhanvien.OrderFragment">
+    tools:context=".nhanvien.TableActivity">
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
         android:layout_height="164dp"
-        app:srcCompat="@drawable/nv1"
+        app:srcCompat="@drawable/backgroud"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -39,22 +39,23 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
-        <fragment
-            android:id="@+id/frag1"
-            android:name="gmail.com.qlcafepoly.nhanvien.NenFragment"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="176dp" />
-
-        <fragment
-            android:id="@+id/frag2"
-            android:name="gmail.com.qlcafepoly.nhanvien.DanhsachFragment"
-            android:layout_width="match_parent"
-            android:layout_height="498dp"
-            tools:ignore="MissingConstraints" />
+    <ListView
+        android:id="@+id/lvtable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/themban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/white"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:foreground="@drawable/add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

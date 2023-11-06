@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -15,9 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
-
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+<<<<<<< HEAD
 
       <service
             android:name=".admin.CapNhatDuLieu"
@@ -25,15 +24,29 @@
 
         <activity
             android:name=".admin.AdminKho"
+=======
+        <activity
+            android:name=".nhanvien.TableActivity"
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
             android:exported="false" />
 
+        <service
+            android:name=".admin.CapNhatDuLieu"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.AdminKho"
+            android:exported="false" />
         <activity
             android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="false" />
-
         <activity
+<<<<<<< HEAD
             android:name=".admin.ThongTinHangNhap"
 
+=======
+            android:name=".admin.ThongTinHangNhap1"
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
             android:exported="false" />
         <activity
             android:name=".admin.Trangmilktea"
@@ -43,6 +56,7 @@
             android:exported="false" />
         <activity
             android:name=".admin.Trangcoffee"
+<<<<<<< HEAD
             android:exported="false" />
 
         <activity
@@ -72,15 +86,51 @@
             android:name=".admin.Pay"
             android:exported="false" />
 
+=======
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Thonhtintaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.NhanvienMenu"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.QuanLyDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.DanhsachFragment"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.HTTableFragment"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.TableFragment"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Pay"
+            android:exported="false" />
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
         <activity
             android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
-
             android:name=".dangnhap.Danhnhap"
             android:exported="true">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

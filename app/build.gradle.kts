@@ -40,7 +40,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.3.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:3.4.1")
-
+    implementation ("me.relex:circleindicator:2.1.6")
 
 
 }

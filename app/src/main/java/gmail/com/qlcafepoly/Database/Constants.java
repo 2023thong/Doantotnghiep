@@ -1,6 +1,7 @@
 package gmail.com.qlcafepoly.Database;
 
 public class Constants {
+<<<<<<< HEAD
 
     public static final String BASE_URL = "http://192.168.1.83:/";
 
@@ -17,12 +18,22 @@ public class Constants {
 
 
 
+=======
+    public static final String BASE_URL = "http://192.168.1.107:8080/";
+
+
+
+    public static final String HANGHOA = "hanghoa";
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 
     public static final String LOGIN = "login";
-    public static final String DOIMATKHAUADMIN = "doimatkhau";
+    public static final String CHANGE_PASSWORD_OPERATION = "chgPass";
     public static final String SUCCESS = "success";
     public static final String SUCCESS1 = "1";
     public static final String FAILURE = "failure";
+
+    public static final String MENU = "themmenu";
+    public static final String BAN = "themban";
 
     public static final String IS_LOGGED_IN = "isLoggedIn";
     public static final String NAME = "name";
@@ -30,5 +41,6 @@ public class Constants {
     public static final String EMAIL = "email";
     public static final String UNIQUE_ID = "unique_id";
     public static final String TAG = "LearnAPI";
+    public static final String DOIMATKHAUADMIN = "doimatkhau";
 
 }

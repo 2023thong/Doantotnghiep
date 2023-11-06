@@ -20,6 +20,10 @@ import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,8 +59,8 @@ public class Danhnhap extends AppCompatActivity {
         tvQuanly = findViewById(R.id.tvQuanly);
 
         tvNhanvien = findViewById(R.id.tvNhanvien);
-        edTedn = findViewById(R.id.edTendn);
-        edPass = findViewById(R.id.edPass);
+        edTedn = findViewById(R.id.edTendnnv);
+        edPass = findViewById(R.id.edPassnv);
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +68,7 @@ public class Danhnhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDn = findViewById(R.id.btnDangnhap);
+        btnDn = findViewById(R.id.btnNhanv);
         btnDn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +104,7 @@ public class Danhnhap extends AppCompatActivity {
                     String role = response1.getPhanquyen(); // Lấy vai trò từ kết quả API
                     if ("1".equals(role)) {
 
-                        String Manv = response1.getMaNv(); 
+                        String Manv = response1.getMaNv();
                         String TenNv = response1.getTenNv();
                         String Sdt = response1.getSdt();
                         String Diachi = response1.getDiachi();

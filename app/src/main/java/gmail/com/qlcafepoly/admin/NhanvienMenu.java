@@ -12,8 +12,12 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+<<<<<<< HEAD
+=======
+import gmail.com.qlcafepoly.ChonbanFragment;
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.nhanvien.OrderFragment;
+import gmail.com.qlcafepoly.admin.QuanlyFragment;
 
 public class NhanvienMenu extends AppCompatActivity {
 
@@ -24,12 +28,13 @@ public class NhanvienMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nhanvien_menu);
         bottomNavigationView = findViewById(R.id.bonava1);
+        replaceFragment(new ChonbanFragment());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()==R.id.odr){
-                    replaceFragment(new OrderFragment());
+                if (item.getItemId()==R.id.trChu){
+                    replaceFragment(new ChonbanFragment());
                 }
                 if (item.getItemId()==R.id.nv){
                     replaceFragment(new QuanlyFragment());

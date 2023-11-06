@@ -1,41 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".nhanvien.BanFragment">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/con1menu"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/VP2"
+            android:layout_width="match_parent"
+            android:layout_height="280dp" />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/CI3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="220dp"
+            android:layout_gravity="center_horizontal"
+            app:ci_drawable="@drawable/bg_indicator"/>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/luAnh1"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_weight="9"
+            android:layout_gravity="left"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="330dp"
+            android:background="@drawable/bofrom"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtSoban"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imgNuoc1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Số bàn: 01"
-                android:textColor="#000000"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:src="@drawable/nuoc1" />
 
-            <Button
-                android:id="@+id/btnthemm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#65B668"
-                android:gravity="center"
-                android:text="Thêm"
-                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Giá: 20000đ"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Nước xí muội"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
         </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/luAnh2"
+            android:layout_width="190dp"
+            android:layout_height="275dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="330dp"
+            android:layout_marginRight="19dp"
+            android:background="@drawable/bofrom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgNuoc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/nuoc2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Giá: 20000đ"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Thử ngay nào!"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/luAnh3"
+            android:layout_width="190dp"
+            android:layout_height="272dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="620dp"
+            android:background="@drawable/bofrom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgNuoc3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/nuoc2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Giá: 20000đ"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Thử ngay nào!"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/luAnh4"
+            android:layout_width="190dp"
+            android:layout_height="272dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="620dp"
+            android:layout_marginRight="19dp"
+            android:background="@drawable/bofrom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgNuoc4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/nuoc2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Giá: 20000đ"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Thử ngay nào!"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/luAnh5"
+            android:layout_width="190dp"
+            android:layout_height="282dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="920dp"
+            android:background="@drawable/bofrom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgNuoc5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/nuoc4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Giá: 20000đ"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Thử ngay nào!"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/luAnh6"
+            android:layout_width="190dp"
+            android:layout_height="278dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="920dp"
+            android:layout_marginRight="19dp"
+            android:background="@drawable/bofrom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgNuoc6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/nuoc3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Giá: 20000đ"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:text="Thử ngay nào!"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

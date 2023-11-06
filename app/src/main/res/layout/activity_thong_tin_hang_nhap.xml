@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+<<<<<<< HEAD
     tools:context=".admin.ThongTinHangNhap">
+=======
+    tools:context=".admin.ThongTinHangNhap1">
+>>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

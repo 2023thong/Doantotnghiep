@@ -1,17 +1,22 @@
-package gmail.com.qlcafepoly.nhanvien;
+package gmail.com.qlcafepoly;
 
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import gmail.com.qlcafepoly.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import gmail.com.qlcafepoly.nhanvien.BanFragment;
+import gmail.com.qlcafepoly.nhanvien.TableActivity;
 
 
-
-public class OrderFragment extends Fragment {
+public class ChonbanFragment extends Fragment {
+    FloatingActionButton quaTable;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +27,7 @@ public class OrderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public OrderFragment() {
+    public ChonbanFragment() {
         // Required empty public constructor
     }
 
@@ -45,10 +50,21 @@ public class OrderFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_order_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_chonban, container, false);
+//        FragmentManager manager = getChildFragmentManager();
+        quaTable =(FloatingActionButton) view.findViewById(R.id.quatable);
+        quaTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TableActivity.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 }
