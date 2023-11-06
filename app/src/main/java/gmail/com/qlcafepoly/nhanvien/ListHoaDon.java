@@ -1,14 +1,16 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.nhanvien;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ItemHoaDon extends AppCompatActivity {
+import gmail.com.qlcafepoly.R;
+
+public class ListHoaDon extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_hoa_don);
+        setContentView(R.layout.activity_list_hoa_don);
     }
 }

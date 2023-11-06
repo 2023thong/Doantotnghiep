@@ -24,7 +24,7 @@ public class Thonhtintaikhoan extends AppCompatActivity {
         TextView tvManv = findViewById(R.id.tvManv1);
         TextView tvTennv = findViewById(R.id.tvTennv);
         TextView tvSdt = findViewById(R.id.tvSDt);
-        TextView tvDiachi = findViewById(R.id.tvDiachi);
+        TextView tvDiachi = findViewById(R.id.diachi);
         TextView tvChucvu = findViewById(R.id.tvPhanquyen);
 
         back1 = findViewById(R.id.back1);

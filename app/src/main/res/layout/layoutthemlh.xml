@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loaihang_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Loại Hàng">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loaihang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ghichu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ghi Chú">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ghichu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>
