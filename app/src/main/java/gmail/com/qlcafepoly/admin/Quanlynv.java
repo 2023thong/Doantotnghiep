@@ -35,7 +35,7 @@ public class Quanlynv extends AppCompatActivity {
     private ListView lshienthinhanvien;
 
 
-    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_nhanvien.php";
+    private String urllink = "http://192.168.1.57:8080/duantotnghiep/get_all_nhanvien.php";
 
 
 
