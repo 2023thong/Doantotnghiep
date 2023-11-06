@@ -13,7 +13,7 @@ import android.widget.TextView;
 import gmail.com.qlcafepoly.R;
 
 public class QuanlyFragment extends Fragment {
-    TextView tvQLNV, tvQLDU,tvQLHD;
+    TextView tvQLNV,tvQLHD, tvDSDU;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -48,8 +48,8 @@ public class QuanlyFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_quanly, container, false);
         tvQLNV = view.findViewById(R.id.tvQLNV);
-        tvQLDU = view.findViewById(R.id.tvQLDU);
         tvQLHD = view.findViewById(R.id.tvQLHD);
+        tvDSDU = view.findViewById(R.id.tvDSDoUong);
         tvQLNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,17 +57,17 @@ public class QuanlyFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        tvQLDU.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), QuanLyDoUong.class);
-                startActivity(intent);
-            }
-        });
         tvQLHD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), QuanLyHoaDon.class);
+                startActivity(intent);
+            }
+        });
+        tvDSDU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DanhSachDoUong.class);
                 startActivity(intent);
             }
         });

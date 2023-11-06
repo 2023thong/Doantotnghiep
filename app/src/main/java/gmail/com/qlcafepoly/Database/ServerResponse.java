@@ -26,7 +26,9 @@ public class ServerResponse {
         return loaihang;
     }
 
+
     private String TenNv;
+
 
     private String Diachi;
     private String Sdt;

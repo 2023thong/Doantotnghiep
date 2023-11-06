@@ -1,5 +1,6 @@
 package gmail.com.qlcafepoly.admin;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -8,8 +9,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,28 +31,41 @@ import gmail.com.qlcafepoly.R;
 public class Quanlynv extends AppCompatActivity {
     private List<User> lsuListNhanvien = new ArrayList<>();
     private Nhanvienht adepter;
+    private SearchView icFindMaNV;
     private ListView lshienthinhanvien;
-    private String urllink = "http://192.168.1.7:8080/duantotnghiep/get_all_nhanvien.php";
+
+
+    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_nhanvien.php";
+
+
 
     private ProgressDialog pd;
+    private ImageView icLoadNhanVien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quanlynv);
-
         lshienthinhanvien = findViewById(R.id.lsHienThiNhanVien);
+        icFindMaNV = findViewById(R.id.icFindNV);
+        icLoadNhanVien = findViewById(R.id.icLoadNhanVien);
+        icLoadNhanVien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reload the activity
+                finish();
+                startActivity(getIntent());
+            }
+        });
         adepter = new Nhanvienht(Quanlynv.this,lsuListNhanvien);
         lshienthinhanvien.setAdapter(adepter);
-
         pd = new ProgressDialog(Quanlynv.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu nhân viên...");
         pd.setCancelable(false);
-
-
-
         new MyAsyncTask().execute(urllink);
-    }
+
+
+}
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -139,6 +155,11 @@ public class Quanlynv extends AppCompatActivity {
             return null;
         }
     }
+    public void reloadData() {
+        // Thực hiện tải dữ liệu từ máy chủ và cập nhật danh sách người dùng
+        // Sau đó, cập nhật giao diện hiển thị danh sách người dùng mới
+    }
+
 
 
     public void themnhanvien(View view){

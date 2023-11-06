@@ -39,6 +39,4 @@ public class ServerRequest {
         this.menu = menu;
     }
 
-
-
 }

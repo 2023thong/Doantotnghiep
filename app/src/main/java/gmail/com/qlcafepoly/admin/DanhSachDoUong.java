@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -27,59 +27,71 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 
-public class Trangcoffee extends AppCompatActivity {
+public class DanhSachDoUong extends AppCompatActivity {
     private List<Menu> lsuListMenu = new ArrayList<>();
     private Menuht adepter;
     private ListView lshienthimenu;
-    private String urllink = "http://192.168.1.93:8080/duantotnghiep/get_all_menu.php";
 
+    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_menu.php";
     private ProgressDialog pd;
-    private ImageView btnThemcofe, btnthoatcofe;
+    private Button btnThemDU;
+    private View btnBackDU;
+    private ImageView view1,icLoadMenu;
 
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trangcoffee);
-        lshienthimenu = findViewById(R.id.lscofe);
-        adepter = new Menuht(Trangcoffee.this, lsuListMenu);
+        setContentView(R.layout.activity_danh_sach_do_uong);
+        lshienthimenu = findViewById(R.id.lvDSDU);
+        adepter = new Menuht(DanhSachDoUong.this, lsuListMenu);
         lshienthimenu.setAdapter(adepter);
-        btnThemcofe = findViewById(R.id.btnthemcofe);
-        btnthoatcofe = findViewById(R.id.imgbackcofee);
-
-        pd = new ProgressDialog(Trangcoffee.this); // Khởi tạo ProgressDialog ở đây
+        btnThemDU = findViewById(R.id.btnThemDU);
+        btnBackDU = findViewById(R.id.backDSDU);
+        icLoadMenu = findViewById(R.id.icLoadMenu);
+        icLoadMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reload the activity
+                finish();
+                startActivity(getIntent());
+            }
+        });
+//        view1 = findViewById(R.id.icEdit);
+//        view1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DanhSachDoUong.this, ItemThongTinDU.class);
+//                startActivity(intent);
+//            }
+//        });
+        pd = new ProgressDialog(DanhSachDoUong.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
-
-
         new MyAsyncTask().execute(urllink);
-        btnThemcofe.setOnClickListener(new View.OnClickListener() {
+        btnThemDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Trangcoffee.this, ThemDoUong.class);
+
+
+                Intent intent = new Intent(DanhSachDoUong.this, ThemDoUong.class);
+
                 startActivity(intent);
             }
         });
-        btnthoatcofe.setOnClickListener(new View.OnClickListener() {
+        btnBackDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Trangcoffee.this, QuanLyDoUong.class);
-                startActivity(intent);
+
+
+
+                finish();
+
             }
         });
-
-
     }
 
-    public void themdouong(View view) {
-        Intent intent = new Intent(Trangcoffee.this, ThemDoUong.class);
-        startActivity(intent);
-    }
 
-    public void backcofee(View view) {
-        Intent intent = new Intent(Trangcoffee.this, QuanLyDoUong.class);
-        startActivity(intent);
-
-    }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -121,14 +133,13 @@ public class Trangcoffee extends AppCompatActivity {
             return null;
         }
 
-//        @Override
+        //        @Override
 //        protected void onPreExecute() {
 //            super.onPreExecute();
 //            pd.setMessage("Đang tải dữ liệu...");
 //            pd.setCancelable(false);
 //            pd.show();
 //        }
-
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;

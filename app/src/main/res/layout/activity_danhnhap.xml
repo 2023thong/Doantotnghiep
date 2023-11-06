@@ -117,8 +117,15 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:hint="Tên đăng nhập" />
+
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="Ductu0711"
+                    android:hint="Management login name"
+                    android:inputType="text" />
+
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!--            <com.google.android.material.textfield.TextInputLayout-->
@@ -171,7 +178,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edPassnv"
                     android:layout_width="match_parent"
+
+
+
+
                     android:layout_height="60dp"
+
                     android:hint="Password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>

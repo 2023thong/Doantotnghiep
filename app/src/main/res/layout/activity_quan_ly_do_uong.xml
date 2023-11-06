@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".admin.QuanLyDoUong">
+    tools:context=".QuanLyDoUong">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -17,7 +17,7 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_margin="15dp"
-            android:onClick="backDouong"/>
+            android:onClick="backQuanlydouong"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -27,14 +27,6 @@
             android:text="Drink coffee poly =))"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
-        <ImageView
-            android:id="@+id/backhome"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home"
-            android:layout_margin="15dp"
-            android:onClick="backhome"/>
     </LinearLayout>
 
     <LinearLayout
@@ -156,12 +148,13 @@
 
 
         <TextView
-            android:id="@+id/tvDoUongKhac"
+            android:id="@+id/tvNuocNgot"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:text="Available"
+            android:onClick="tvNuocNgot"
             android:textColor="#fff"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
