@@ -33,7 +33,7 @@ public class Quanlynv extends AppCompatActivity {
     private Nhanvienht adepter;
     private SearchView icFindMaNV;
     private ListView lshienthinhanvien;
-    private String urllink = "http://192.168.1.42:8080/duantotnghiep/get_all_nhanvien.php";
+    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_nhanvien.php";
 
     private ProgressDialog pd;
     private ImageView icLoadNhanVien;

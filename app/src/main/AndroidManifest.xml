@@ -30,6 +30,9 @@
         <activity
             android:name=".admin.Quanlynv"
             android:exported="false" />
+        <activity
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
 
 
 
@@ -62,9 +65,7 @@
             android:name=".admin.ThongTinHangNhap"
             android:exported="false" />
 
-        <activity
-            android:name=".admin.Quanlynv"
-            android:exported="false" />
+
         <activity
             android:name=".admin.ItemDoUong"
             android:exported="false" />
