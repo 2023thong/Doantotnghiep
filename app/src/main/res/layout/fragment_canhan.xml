@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CanhanFragment">
+    tools:context=".admin.CanhanFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tvTtcn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -44,6 +45,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/doimatkhau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -58,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="16dp"
+            android:src="@drawable/pass"
             android:tint="#FF9800"
-            android:src="@drawable/gioithieu"
             app:itemIconTint="#FF9800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
@@ -73,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="100dp"
             android:background="@drawable/bocanhan"
-            android:text="Giới Thiệu"
+            android:text="Đổi Mật Khẩu"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -85,6 +87,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dangxuat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -98,9 +101,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:tint="#FF9800"
             android:layout_marginEnd="16dp"
             android:src="@drawable/dangxuat"
+            android:tint="#FF9800"
             app:itemIconTint="#FF9800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView3"

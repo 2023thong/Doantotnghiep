@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Quanlynv">
+    tools:context=".admin.Quanlynv">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#ED8361">
         <ImageView
-            android:id="@+id/backqlynv"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_margin="15dp"
+
             android:onClick="back"/>
+
 
         <TextView
             android:id="@+id/textView6"
@@ -27,71 +28,74 @@
             android:text="Quản lý nhân viên"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
+        <ImageView
+            android:id="@+id/icLoadNhanVien"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/loadtab" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/icFindNV"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boedit"
+            app:iconifiedByDefault="false"
+            app:queryHint="Tìm kiếm"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+<!--        <EditText-->
+<!--            android:id="@+id/findMaNV"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="130dp"-->
+<!--            android:background="@drawable/khungtimkiem"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:hint="Nhập mã"-->
+<!--            android:gravity="center"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/icFindMaNV"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:src="@drawable/ictimkiem"-->
+<!--            android:layout_margin="10dp"/>-->
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:layout_margin="10dp"
 
                 android:background="@drawable/boca">
-                <TextView
-                    android:textColor="#fff"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="25dp"
-                    android:textSize="20sp"
-                    android:textStyle="bold|italic"
-                    android:text="Nhân viên ca 1"
-                    android:layout_gravity="center"/>
 
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-
-                android:background="@drawable/boca">
                 <TextView
-                    android:textColor="#fff"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="30dp"
+                    android:layout_gravity="center"
                     android:layout_marginStart="25dp"
+                    android:onClick="themnhanvien"
+                    android:text="Thêm nhân viên"
+                    android:textColor="#fff"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic"
-                    android:text="Nhân viên ca 2"
-                    android:layout_gravity="center"/>
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <ListView
+        android:id="@+id/lsHienThiNhanVien"
         android:layout_width="match_parent"
-        android:layout_height="500dp" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|right">
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_vertical"
-            android:onClick="themnhanvien"
-            android:src="@drawable/themnhanvien"
-            android:layout_margin="20dp"/>
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -118,10 +118,11 @@
                 app:hintEnabled="false">
 
                 <EditText
-                    android:id="@+id/edTendn"
+                    android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:text="Ductu0711"
                     android:hint="Management login name"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -161,9 +162,10 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edPass"
+                    android:id="@+id/edPassnv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="123"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:maxLines="1" />
@@ -183,7 +185,7 @@
         android:textColor="#F44336" />
 
     <Button
-        android:id="@+id/btnDangnhap"
+        android:id="@+id/btnNhanv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

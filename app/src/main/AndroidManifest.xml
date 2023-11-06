@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,46 +16,66 @@
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
-            android:name=".Trangdouongkhac"
+            android:name=".admin.ItemThongTinNV"
             android:exported="false" />
         <activity
-            android:name=".Trangmilktea"
+            android:name=".admin.ItemThongTinDU"
             android:exported="false" />
         <activity
-            android:name=".Trangfruit"
-            android:exported="false" />
-        <activity
-            android:name=".Trangcoffee"
+            android:name=".admin.DanhSachDoUong"
             android:exported="false" />
 
         <activity
-            android:name=".ThemNhanVien"
+            android:name=".admin.Quanlynv"
             android:exported="false" />
-        <activity
-            android:name=".ThemDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".Quanlynv"
-            android:exported="false" />
-        <activity
-            android:name=".QuanLyDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".ItemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".ItemDoUong"
 
+
+
+        <activity
+            android:name=".ListHoaDon"
+            android:exported="false" />
+
+        <activity
+            android:name=".ItemHoaDon"
             android:exported="false" />
         <activity
-            android:name=".AdminKho"
+            android:name=".QuanLyHoaDon"
             android:exported="false" />
         <activity
-            android:name=".ThongTinHangNhap"
+            android:name=".admin.ThemDoUong"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".dangnhap.DoiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminKho"
+            android:exported="false" />
+
+        <service
+            android:name=".admin.CapNhatDuLieu"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".admin.ThongTinHangNhap"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.Pay"
+            android:exported="false" />
+        <activity
+            android:name=".admin.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Thonhtintaikhoan"
             android:exported="false" />
         <activity
             android:name=".dangnhap.Danhnhap"

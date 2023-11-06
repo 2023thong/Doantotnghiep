@@ -1,7 +1,8 @@
 package gmail.com.qlcafepoly.Database;
 
-import gmail.com.qlcafepoly.User;
-import gmail.com.qlcafepoly.User1;
+import gmail.com.qlcafepoly.admin.Menu;
+import gmail.com.qlcafepoly.admin.User;
+import gmail.com.qlcafepoly.admin.User1;
 
 public class ServerRequest {
 
@@ -9,6 +10,7 @@ public class ServerRequest {
         private User user;
 
         private User1 user1;
+        private Menu menu;
 
 
 
@@ -23,7 +25,8 @@ public class ServerRequest {
         public void setUser1(User1 user1) {
             this.user1 = user1;
         }
-
-
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
 
 }

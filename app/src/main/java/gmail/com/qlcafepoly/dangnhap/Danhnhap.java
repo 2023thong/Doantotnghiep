@@ -15,16 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
-
-import gmail.com.qlcafepoly.AdminKho;
+import gmail.com.qlcafepoly.admin.AdminKho;
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
-import gmail.com.qlcafepoly.KhoFragment;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.User;
-import gmail.com.qlcafepoly.User1;
+
+import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,8 +56,8 @@ public class Danhnhap extends AppCompatActivity {
         tvQuanly = findViewById(R.id.tvQuanly);
 
         tvNhanvien = findViewById(R.id.tvNhanvien);
-        edTedn = findViewById(R.id.edTendn);
-        edPass = findViewById(R.id.edPass);
+        edTedn = findViewById(R.id.edTendnnv);
+        edPass = findViewById(R.id.edPassnv);
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +65,7 @@ public class Danhnhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDn = findViewById(R.id.btnDangnhap);
+        btnDn = findViewById(R.id.btnNhanv);
         btnDn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,14 +100,26 @@ public class Danhnhap extends AppCompatActivity {
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     String role = response1.getPhanquyen(); // Lấy vai trò từ kết quả API
                     if ("1".equals(role)) {
-                        Toast.makeText(Danhnhap.this, "Đăng nhập thành công Quản lý", Toast.LENGTH_SHORT).show();
+
+                        String Manv = response1.getMaNv();
+                        String TenNv = response1.getTenNv();
+                        String Sdt = response1.getSdt();
+                        String Diachi = response1.getDiachi();
+
                         Intent adminIntent = new Intent(getApplicationContext(), AdminKho.class);
                         startActivity(adminIntent);
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                        Toast.makeText(Danhnhap.this, "Đăng nhập thành công Quản lý", Toast.LENGTH_SHORT).show();
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("TenDn", TenDn);
                         editor.putString("Matkhau", Matkhau);
                         editor.putBoolean("RememberLogin", true);
+                        editor.putString("Manv", Manv);
+                        editor.putString("TenNv", TenNv);
+                        editor.putString("Sdt", Sdt);
+                        editor.putString("Diachi", Diachi);
+                        editor.putString("phanquyen", role);
                         editor.apply();
                     } else if ("2".equals(role)) {
                         Toast.makeText(Danhnhap.this, "Đăng nhập không thành công.\n" +
@@ -126,7 +135,7 @@ public class Danhnhap extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed"+ t.getMessage());
 
             }
         });
