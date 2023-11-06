@@ -111,6 +111,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ItemThongTinDU.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(ItemThongTinDU.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -124,7 +125,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
             }
         });
     }
-    public void deleteMenu(String MaMn) {
+    public void deleteMenu( final String MaMn) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

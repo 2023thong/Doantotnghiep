@@ -33,9 +33,10 @@ public class Quanlynv extends AppCompatActivity {
     private Nhanvienht adepter;
     private SearchView icFindMaNV;
     private ListView lshienthinhanvien;
-    private String urllink = "http://192.168.1.72:8080/duantotnghiep/get_all_nhanvien.php";
+    private String urllink = "http://192.168.1.42:8080/duantotnghiep/get_all_nhanvien.php";
 
     private ProgressDialog pd;
+    private ImageView icLoadNhanVien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,15 @@ public class Quanlynv extends AppCompatActivity {
         setContentView(R.layout.activity_quanlynv);
         lshienthinhanvien = findViewById(R.id.lsHienThiNhanVien);
         icFindMaNV = findViewById(R.id.icFindNV);
+        icLoadNhanVien = findViewById(R.id.icLoadNhanVien);
+        icLoadNhanVien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reload the activity
+                finish();
+                startActivity(getIntent());
+            }
+        });
         adepter = new Nhanvienht(Quanlynv.this,lsuListNhanvien);
         lshienthinhanvien.setAdapter(adepter);
         pd = new ProgressDialog(Quanlynv.this); // Khởi tạo ProgressDialog ở đây
@@ -145,6 +155,7 @@ public class Quanlynv extends AppCompatActivity {
         // Thực hiện tải dữ liệu từ máy chủ và cập nhật danh sách người dùng
         // Sau đó, cập nhật giao diện hiển thị danh sách người dùng mới
     }
+
 
 
     public void themnhanvien(View view){

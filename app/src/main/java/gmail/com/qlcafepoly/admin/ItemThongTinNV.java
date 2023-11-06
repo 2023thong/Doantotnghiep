@@ -141,6 +141,7 @@ public class ItemThongTinNV extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ItemThongTinNV.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(ItemThongTinNV.this, response1.getMessage(), Toast.LENGTH_SHORT).show();

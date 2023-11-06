@@ -12,8 +12,8 @@
         android:background="#ED8361">
         <ImageView
             android:id="@+id/backDSDU"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_margin="15dp"/>
@@ -24,8 +24,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Drink coffee poly =))"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textStyle="bold|italic" />
+
+        <ImageView
+            android:id="@+id/icLoadMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/loadtab" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

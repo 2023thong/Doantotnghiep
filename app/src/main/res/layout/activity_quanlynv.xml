@@ -26,6 +26,13 @@
             android:text="Quản lý nhân viên"
             android:textSize="35sp"
             android:textStyle="bold|italic" />
+        <ImageView
+            android:id="@+id/icLoadNhanVien"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/loadtab" />
 
     </LinearLayout>
     <LinearLayout

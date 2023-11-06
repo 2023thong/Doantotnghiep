@@ -31,12 +31,12 @@ public class DanhSachDoUong extends AppCompatActivity {
     private List<Menu> lsuListMenu = new ArrayList<>();
     private Menuht adepter;
     private ListView lshienthimenu;
-    private String urllink = "http://192.168.1.72:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.42:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private Button btnThemDU;
     private View btnBackDU;
-    private ImageView view1;
+    private ImageView view1,icLoadMenu;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -48,7 +48,15 @@ public class DanhSachDoUong extends AppCompatActivity {
         lshienthimenu.setAdapter(adepter);
         btnThemDU = findViewById(R.id.btnThemDU);
         btnBackDU = findViewById(R.id.backDSDU);
-
+        icLoadMenu = findViewById(R.id.icLoadMenu);
+        icLoadMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reload the activity
+                finish();
+                startActivity(getIntent());
+            }
+        });
 //        view1 = findViewById(R.id.icEdit);
 //        view1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -57,11 +65,6 @@ public class DanhSachDoUong extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-
-
-
-
-
         pd = new ProgressDialog(DanhSachDoUong.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
