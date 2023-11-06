@@ -31,8 +31,8 @@ public class DanhSachDoUong extends AppCompatActivity {
     private List<Menu> lsuListMenu = new ArrayList<>();
     private Menuht adepter;
     private ListView lshienthimenu;
-    private String urllink = "http://192.168.1.42:8080/duantotnghiep/get_all_menu.php";
 
+    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_menu.php";
     private ProgressDialog pd;
     private Button btnThemDU;
     private View btnBackDU;
@@ -72,17 +72,26 @@ public class DanhSachDoUong extends AppCompatActivity {
         btnThemDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent intent = new Intent(DanhSachDoUong.this, ThemDoUong.class);
+
                 startActivity(intent);
             }
         });
         btnBackDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 finish();
+
             }
         });
     }
+
+
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -153,3 +162,6 @@ public class DanhSachDoUong extends AppCompatActivity {
         }
     }
 }
+
+
+

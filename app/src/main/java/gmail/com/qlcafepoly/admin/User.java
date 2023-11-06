@@ -2,45 +2,19 @@ package gmail.com.qlcafepoly.admin;
 
 public class User {
 
-    private String MaNv;
-    private String TenNv;
+
     private String TenDn;
     private String Matkhau;
-    private String Sdt;
-    private String Diachi;
     private String passwordcu;
     private String passwordmoi;
+
+    private String MaNv;
+    private String TenNv;
+
+    private String Sdt;
+    private String Diachi;
+
     private int Chucvu;
-
-    public User() {
-    }
-
-    public int getChucvu() {
-        return Chucvu;
-    }
-
-    public void setChucvu(int chucvu) {
-        Chucvu = chucvu;
-    }
-
-
-
-
-    public String getPasswordcu() {
-        return passwordcu;
-    }
-
-    public void setPasswordcu(String passwordcu) {
-        this.passwordcu = passwordcu;
-    }
-
-    public String getPasswordmoi() {
-        return passwordmoi;
-    }
-
-    public void setPasswordmoi(String passwordmoi) {
-        this.passwordmoi = passwordmoi;
-    }
 
 
     public String getMaNv() {
@@ -75,6 +49,52 @@ public class User {
         Diachi = diachi;
     }
 
+
+
+
+
+
+
+    public User() {
+
+    }
+
+    public int getChucvu() {
+        return Chucvu;
+    }
+
+    public void setChucvu(int chucvu) {
+        Chucvu = chucvu;
+    }
+
+
+
+
+
+    public String getPasswordcu() {
+        return passwordcu;
+
+    }
+
+    public void setPasswordcu(String passwordcu) {
+        this.passwordcu = passwordcu;
+    }
+
+    public String getPasswordmoi() {
+        return passwordmoi;
+    }
+
+    public void setPasswordmoi(String passwordmoi) {
+        this.passwordmoi = passwordmoi;
+    }
+
+
+
+
+
+
+
+
     public String getTenDn() {
         return TenDn;
     }
@@ -91,3 +111,4 @@ public class User {
         Matkhau = matkhau;
     }
 }
+

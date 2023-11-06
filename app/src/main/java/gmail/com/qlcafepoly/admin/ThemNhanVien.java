@@ -131,6 +131,7 @@ public class ThemNhanVien extends AppCompatActivity {
 
 
 
+
     public void backra(View view){
         finish();
     }
@@ -141,3 +142,4 @@ public class ThemNhanVien extends AppCompatActivity {
 
     }
 }
+

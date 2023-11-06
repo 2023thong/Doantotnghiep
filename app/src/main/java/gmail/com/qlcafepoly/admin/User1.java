@@ -3,7 +3,7 @@ package gmail.com.qlcafepoly.admin;
 public class User1 {
     private String MaHH;
     private String MaNcc;
-    private String MaLh;
+    private String TenLh;
     private String unique_id;
     private String TenHh;
     private String GiaSp;
@@ -37,12 +37,12 @@ public class User1 {
         MaNcc = maNcc;
     }
 
-    public String getMaLh() {
-        return MaLh;
+    public String getTenLh() {
+        return TenLh;
     }
 
-    public void setMaLh(String maLh) {
-        MaLh = maLh;
+    public void setTenLh(String tenLh) {
+        TenLh = tenLh;
     }
 
     public String getUnique_id() {
