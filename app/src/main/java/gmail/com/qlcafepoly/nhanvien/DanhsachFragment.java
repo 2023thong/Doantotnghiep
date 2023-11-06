@@ -34,7 +34,11 @@ public class DanhsachFragment extends Fragment {
     private MenuDU menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
+<<<<<<< HEAD
     private String urllink = "http://192.168.1.107:8080/duantotnghiep/thongtintk.php";
+=======
+    private String urllink = "http://172.16.51.245:8080/duantotnghiep/thongtintk.php";
+>>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
 
     private ProgressDialog pd;
 

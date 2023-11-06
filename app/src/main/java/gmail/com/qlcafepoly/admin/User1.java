@@ -3,12 +3,23 @@ package gmail.com.qlcafepoly.admin;
 public class User1 {
     private String MaHH;
     private String MaNcc;
-    private String MaLh;
+    private String TenLh;
     private String unique_id;
     private String TenHh;
     private String GiaSp;
     private String Ghichu;
     private String Soluong;
+<<<<<<< HEAD
+=======
+
+    public String getSoluong() {
+        return Soluong;
+    }
+
+    public void setSoluong(String soluong) {
+        Soluong = soluong;
+    }
+>>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
 
     public User1() {
     }
@@ -29,12 +40,12 @@ public class User1 {
         MaNcc = maNcc;
     }
 
-    public String getMaLh() {
-        return MaLh;
+    public String getTenLh() {
+        return TenLh;
     }
 
-    public void setMaLh(String maLh) {
-        MaLh = maLh;
+    public void setTenLh(String tenLh) {
+        TenLh = tenLh;
     }
 
     public String getUnique_id() {

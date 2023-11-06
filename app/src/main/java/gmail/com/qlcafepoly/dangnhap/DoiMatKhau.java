@@ -98,7 +98,7 @@ public class DoiMatKhau extends AppCompatActivity {
 
         User user1 = new User();
         user1.setTenDn(Tendn);
-        user1.setPasswordcu(passwordcu);
+        user1.setPasswordcu(passwordcu);    
         user1.setPasswordmoi(passwordmoi);
 
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
@@ -121,7 +121,7 @@ public class DoiMatKhau extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed"+ t.getMessage());
 
             }
         });
