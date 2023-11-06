@@ -61,8 +61,7 @@ public class ThemDoUong extends AppCompatActivity {
         btnxemmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThemDoUong.this, DanhSachDoUong.class);
-                startActivity(intent);
+                finish();
             }
         });
         backThemDU.setOnClickListener(new View.OnClickListener() {

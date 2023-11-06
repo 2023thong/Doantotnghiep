@@ -84,8 +84,7 @@ public class ThemNhanVien extends AppCompatActivity {
         btnXemNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
