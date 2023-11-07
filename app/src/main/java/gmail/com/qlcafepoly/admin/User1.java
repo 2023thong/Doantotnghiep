@@ -9,8 +9,6 @@ public class User1 {
     private String GiaSp;
     private String Ghichu;
     private String Soluong;
-<<<<<<< HEAD
-=======
 
     public String getSoluong() {
         return Soluong;
@@ -19,7 +17,7 @@ public class User1 {
     public void setSoluong(String soluong) {
         Soluong = soluong;
     }
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
+
 
     public User1() {
     }
@@ -79,11 +77,5 @@ public class User1 {
     public void setGhichu(String ghichu) {
         Ghichu = ghichu;
     }
-    public String getSoluong() {
-        return Soluong;
-    }
 
-    public void setSoluong(String soluong) {
-        Soluong = soluong;
-    }
 }

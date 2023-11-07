@@ -42,37 +42,22 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-<<<<<<< HEAD
 public class ThongTinHangNhap extends AppCompatActivity {
-=======
-public class ThongTinHangNhap1 extends AppCompatActivity {
->>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
     private List<User1> lsuList = new ArrayList<>();
     private Hanghoaht adepter;
     private ImageView imageView;
-<<<<<<< HEAD
-=======
     private TextView imageView1;
 
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
     private ListView lshienthi;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-    private String urllink = "http://192.168.1.83:/learn-login-register/get_all_product.php";
-=======
 
 
 
-    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_product.php";
+
+    private String urllink = "http://172.16.55.231:8080/duantotnghiep/get_all_product.php";
 
 
 
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
 
-=======
-    private String urllink = "http://192.168.1.107:8080/duantotnghiep/get_all_product.php";
->>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 
     private ProgressDialog pd;
 
@@ -89,7 +74,7 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                finish();
 
             }
         });
@@ -106,18 +91,11 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
         });
 
 
-<<<<<<< HEAD
-        adepter = new Hanghoaht(ThongTinHangNhap1.this,lsuList);
-        lshienthi.setAdapter(adepter);
-
-        pd = new ProgressDialog(ThongTinHangNhap1.this); // Khởi tạo ProgressDialog ở đây
-=======
         lshienthi = findViewById(R.id.lsHienthi);
         adepter = new Hanghoaht(ThongTinHangNhap.this, lsuList);
         lshienthi.setAdapter(adepter);
 
         pd = new ProgressDialog(ThongTinHangNhap.this);
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 

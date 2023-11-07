@@ -1,8 +1,4 @@
-<<<<<<< HEAD:app/src/main/java/gmail/com/qlcafepoly/NhanVien.java
-package gmail.com.qlcafepoly.admin;
-=======
 package gmail.com.qlcafepoly.nhanvien;
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a:app/src/main/java/gmail/com/qlcafepoly/nhanvien/NhanVien.java
 
 import android.os.Bundle;
 

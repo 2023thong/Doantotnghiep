@@ -1,9 +1,5 @@
-<<<<<<< HEAD:app/src/main/java/gmail/com/qlcafepoly/admin/NhanvienMenu.java
-package gmail.com.qlcafepoly.admin;
-=======
 
 package gmail.com.qlcafepoly.nhanvien;
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a:app/src/main/java/gmail/com/qlcafepoly/nhanvien/NhanvienMenu.java
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,16 +13,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-<<<<<<< HEAD:app/src/main/java/gmail/com/qlcafepoly/admin/NhanvienMenu.java
-<<<<<<< HEAD
-=======
-import gmail.com.qlcafepoly.ChonbanFragment;
->>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.QuanlyFragment;
-=======
-import gmail.com.qlcafepoly.R;
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a:app/src/main/java/gmail/com/qlcafepoly/nhanvien/NhanvienMenu.java
 
 public class NhanvienMenu extends AppCompatActivity {
 

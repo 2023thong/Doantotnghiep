@@ -18,12 +18,8 @@ import gmail.com.qlcafepoly.nhanvien.NhanvienMenu;
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
-<<<<<<< HEAD
-=======
 
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.NhanvienMenu;
 import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;

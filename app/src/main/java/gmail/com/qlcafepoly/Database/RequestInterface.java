@@ -5,14 +5,8 @@ import gmail.com.qlcafepoly.admin.LoaiHang;
 import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import gmail.com.qlcafepoly.model.Ban;
->>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
-=======
 import gmail.com.qlcafepoly.admin.User2;
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -32,6 +26,7 @@ public interface RequestInterface {
 
         private User2 user2;
         private Menu menu;
+
         private LoaiHang loaihang;
 
         public void setLoaihang(LoaiHang loaihang) {
@@ -53,17 +48,13 @@ public interface RequestInterface {
         public void setUser(User user) {
             this.user = user;
         }
-<<<<<<< HEAD
-        public void setBan(Ban ban) {
-            this.ban = ban;
-        }
-=======
         public void setMenu(Menu menu) {
             this.menu = menu;
         }
+        public void setBan(Ban ban) {
+            this.ban = ban;
+        }
 
 
->>>>>>> cf972eb8fde6d07965cdea23e836e51599f5399a
     }
 }
-

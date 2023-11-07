@@ -20,10 +20,7 @@ import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
-<<<<<<< HEAD
-=======
 
->>>>>>> 61ce38818051f51f2ee8b80b82a3cef4b0bb4a1e
 import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -140,12 +137,12 @@ public class Danhnhap extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-            // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
-            String savedTenDn = sharedPreferences.getString("TenDn", "");
-            String savedMatkhau = sharedPreferences.getString("Matkhau", "");
-            boolean save = sharedPreferences.getBoolean("Save", false);
-            if (save == true){
+        // Lấy SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
+        String savedTenDn = sharedPreferences.getString("TenDn", "");
+        String savedMatkhau = sharedPreferences.getString("Matkhau", "");
+        boolean save = sharedPreferences.getBoolean("Save", false);
+        if (save == true){
 
             edTedn.setText(savedTenDn);
             edPass.setText(savedMatkhau);
