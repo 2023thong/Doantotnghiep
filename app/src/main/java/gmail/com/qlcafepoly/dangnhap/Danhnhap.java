@@ -137,12 +137,12 @@ public class Danhnhap extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-            // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
-            String savedTenDn = sharedPreferences.getString("TenDn", "");
-            String savedMatkhau = sharedPreferences.getString("Matkhau", "");
-            boolean save = sharedPreferences.getBoolean("Save", false);
-            if (save == true){
+        // Lấy SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
+        String savedTenDn = sharedPreferences.getString("TenDn", "");
+        String savedMatkhau = sharedPreferences.getString("Matkhau", "");
+        boolean save = sharedPreferences.getBoolean("Save", false);
+        if (save == true){
 
             edTedn.setText(savedTenDn);
             edPass.setText(savedMatkhau);

@@ -18,6 +18,20 @@
         tools:targetApi="31">
 
 
+      <service
+            android:name=".admin.CapNhatDuLieu"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".nhanvien.TableActivity"
+
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.NhanvienMenu"
+
+            android:exported="false" />
+
         <activity
             android:name=".admin.ItemThongTinNV"
             android:exported="false" />
@@ -69,10 +83,7 @@
             android:name=".admin.QuanLyHoaDon"
             android:exported="false" /> <!-- <activity -->
 
-        <activity
-            android:name=".admin.ThemTraSua"
 
-            android:exported="false" />
         <activity
             android:name=".admin.ThemDoUong"
             android:exported="false" />
@@ -90,26 +101,15 @@
 
 
 
-
-
-
-
-        <activity
-            android:name=".nhanvien.NhanvienMenu"
-            android:exported="false" />
         <activity
             android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="false" />
         <activity
+
             android:name=".admin.ThongTinHangNhap"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Trangmilktea"
+
             android:exported="false" />
 
-        <activity
-            android:name=".admin.Trangfruit"
-            android:exported="false" />
 
 
         <activity
@@ -127,9 +127,20 @@
 
 
 
+
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+
+        <activity
+            android:name=".nhanvien.DanhsachFragment"
+            android:exported="false" />
+
+
         <activity
             android:name=".admin.MainActivity"
             android:exported="false" />
+
 
 
 
@@ -143,10 +154,10 @@
             android:name=".admin.KhoFragment"
 
             android:exported="false" />
+
         <activity
             android:name=".dangnhap.Danhnhap"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

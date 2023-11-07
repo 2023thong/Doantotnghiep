@@ -6,6 +6,7 @@ import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.admin.User2;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -21,9 +22,11 @@ public interface RequestInterface {
 
         private User1 user1;
         private User user;
+        private Ban ban;
 
         private User2 user2;
         private Menu menu;
+
         private LoaiHang loaihang;
 
         public void setLoaihang(LoaiHang loaihang) {
@@ -48,8 +51,10 @@ public interface RequestInterface {
         public void setMenu(Menu menu) {
             this.menu = menu;
         }
+        public void setBan(Ban ban) {
+            this.ban = ban;
+        }
 
 
     }
 }
-

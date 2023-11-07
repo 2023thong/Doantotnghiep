@@ -53,7 +53,9 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
 
 
-    private String urllink = "http://192.168.1.57:8080/duantotnghiep/get_all_product.php";
+
+    private String urllink = "http://172.16.55.231:8080/duantotnghiep/get_all_product.php";
+
 
 
 
@@ -74,7 +76,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                finish();
 
             }
         });

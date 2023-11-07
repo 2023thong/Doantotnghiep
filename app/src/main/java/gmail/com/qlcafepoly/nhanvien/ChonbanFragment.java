@@ -13,10 +13,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.nhanvien.BanFragment;
+import gmail.com.qlcafepoly.nhanvien.TableActivity;
 
 
 public class ChonbanFragment extends Fragment {
-    FloatingActionButton button;
+    FloatingActionButton quaTable;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,7 +57,15 @@ public class ChonbanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chonban, container, false);
-
+//        FragmentManager manager = getChildFragmentManager();
+        quaTable =(FloatingActionButton) view.findViewById(R.id.quatable);
+        quaTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TableActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 }
