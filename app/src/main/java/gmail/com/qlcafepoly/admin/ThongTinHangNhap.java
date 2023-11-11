@@ -24,7 +24,7 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 
-public class ThongTinHangNhap1 extends AppCompatActivity {
+public class ThongTinHangNhap extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();
     private Hanghoaht adepter;
     private ImageView imageView;
@@ -47,10 +47,10 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
 
         lshienthi = findViewById(R.id.lsHienthi);
 
-        adepter = new Hanghoaht(ThongTinHangNhap1.this,lsuList);
+        adepter = new Hanghoaht(ThongTinHangNhap.this,lsuList);
         lshienthi.setAdapter(adepter);
 
-        pd = new ProgressDialog(ThongTinHangNhap1.this); // Khởi tạo ProgressDialog ở đây
+        pd = new ProgressDialog(ThongTinHangNhap.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
