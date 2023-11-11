@@ -1,6 +1,9 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +49,18 @@ public class Table1 extends BaseAdapter {
 
         txtTenbn.setText(ban.getTenBan());
         txtMabn.setText(ban.getMaBn());
-        txtTthai.setText(ban.getTrangthai());
+
+
+        if (ban.getTrangthai().equals("1")) {
+            txtTthai.setText("Trống");
+        } else if (ban.getTrangthai().equals("2")) {
+            txtTthai.setText("Đầy");
+        }
+
+
+
+
+
 
         return convertView;
     }
