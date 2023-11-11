@@ -19,7 +19,7 @@ import gmail.com.qlcafepoly.R;
 
 public class Hanghoaht extends BaseAdapter {
 
-    ThongTinHangNhap1 thongTinHangNhap;
+    ThongTinHangNhap thongTinHangNhap;
     private List<User1> users;
     private LayoutInflater inflater;
     private Context context;
@@ -80,8 +80,8 @@ public class Hanghoaht extends BaseAdapter {
                     .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if (context instanceof ThongTinHangNhap1) {
-                                ((ThongTinHangNhap1) context).deleteItem(user1.getMaHH());
+                            if (context instanceof ThongTinHangNhap) {
+                                ((ThongTinHangNhap) context).deleteItem(user1.getMaHH());
                             }
                         }
                     })

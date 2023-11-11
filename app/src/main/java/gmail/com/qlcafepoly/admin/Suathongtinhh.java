@@ -28,7 +28,7 @@ public class Suathongtinhh extends AppCompatActivity {
     private TextView textView5 ,edMancc, edMalh;
     private Button buttonSave;
     private ImageView imageView;
-    ThongTinHangNhap1 thongTinHangNhap;
+    ThongTinHangNhap thongTinHangNhap;
 
     Button btnquaylai, btnSua;
     TextView Mahh;

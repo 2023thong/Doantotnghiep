@@ -36,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ThongTinHangNhap1 extends AppCompatActivity {
+public class ThongTinHangNhap extends AppCompatActivity {
     private List<User1> lsuList = new ArrayList<>();
     private Hanghoaht adepter;
     private ImageView imageView;
@@ -78,7 +78,7 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThongTinHangNhap1.this, ThongTinHangNhap1.class);
+                Intent intent = new Intent(ThongTinHangNhap.this, ThongTinHangNhap.class);
                 startActivity(intent);
                 finish();
 
@@ -88,10 +88,10 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
 
 
         lshienthi = findViewById(R.id.lsHienthi);
-        adepter = new Hanghoaht(ThongTinHangNhap1.this, lsuList);
+        adepter = new Hanghoaht(ThongTinHangNhap.this, lsuList);
         lshienthi.setAdapter(adepter);
 
-        pd = new ProgressDialog(ThongTinHangNhap1.this);
+        pd = new ProgressDialog(ThongTinHangNhap.this);
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 

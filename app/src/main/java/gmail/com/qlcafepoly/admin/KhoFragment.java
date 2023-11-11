@@ -150,7 +150,7 @@ public class KhoFragment extends Fragment {
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ThongTinHangNhap1.class);
+                Intent intent = new Intent(getContext(), ThongTinHangNhap.class);
                 startActivity(intent);
             }
         });

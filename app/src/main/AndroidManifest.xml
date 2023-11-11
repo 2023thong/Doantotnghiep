@@ -106,7 +106,7 @@
             android:exported="false" />
         <activity
 
-            android:name=".admin.ThongTinHangNhap1"
+            android:name=".admin.ThongTinHangNhap"
 
             android:exported="false" />
 
