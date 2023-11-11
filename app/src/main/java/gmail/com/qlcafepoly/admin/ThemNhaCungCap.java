@@ -9,8 +9,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,26 +40,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ThongTinHangNhap1 extends AppCompatActivity {
-    private List<User1> lsuList = new ArrayList<>();
-    private Hanghoaht adepter;
-    private ImageView imageView;
-    private TextView imageView1;
+public class ThemNhaCungCap extends AppCompatActivity {
+
+    private EditText edMancc, edTenncc, edDiachi, edsdt;
+    private Button imgThem;
+
+    private List<User2> lsuList1 = new ArrayList<>();
+    private Themncc adepter;
+    private ImageView view;
 
     private ListView lshienthi;
-
-
-
-
-
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_product.php";
-
-
-
-
-
-
     private ProgressDialog pd;
+
+    private String urllink = "http://172.16.55.231:8080/duantotnghiep/thu.php";
+
 
 
 
@@ -64,43 +62,106 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thong_tin_hang_nhap);
-        imageView = findViewById(R.id.imageView5);
+        setContentView(R.layout.activity_them_nha_cung_cap);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        view = findViewById(R.id.backthoatncc);
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-
             }
         });
-        imageView1 = findViewById(R.id.capnhat);
-        imageView1.setOnClickListener(new View.OnClickListener() {
+        TextView capnhat  = findViewById(R.id.capnhatncc);
+        capnhat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThongTinHangNhap1.this, ThongTinHangNhap1.class);
+                Intent intent = new Intent(ThemNhaCungCap.this, ThemNhaCungCap.class);
                 startActivity(intent);
                 finish();
-
-
             }
         });
 
 
-        lshienthi = findViewById(R.id.lsHienthi);
-        adepter = new Hanghoaht(ThongTinHangNhap1.this, lsuList);
+
+
+        edTenncc = findViewById(R.id.edTencct);
+        edDiachi = findViewById(R.id.edDiachit);
+        edsdt = findViewById(R.id.edSdtt);
+
+        lshienthi = findViewById(R.id.lvhiethincc);
+        adepter = new Themncc(ThemNhaCungCap.this, lsuList1);
         lshienthi.setAdapter(adepter);
 
-        pd = new ProgressDialog(ThongTinHangNhap1.this);
+        pd = new ProgressDialog(ThemNhaCungCap.this);
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
 
 
-        new MyAsyncTask().execute(urllink);
+        new ThemNhaCungCap.MyAsyncTask().execute(urllink);
+
+
+        imgThem = findViewById(R.id.btnThemt);
+        imgThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String tenncc = edTenncc.getText().toString();
+                String diachi = edDiachi.getText().toString();
+                String sdt = edsdt.getText().toString();
+
+                Themnhacungcap(tenncc, diachi, sdt);
+
+
+            }
+        });
+    }
+
+    public void Themnhacungcap(String TenNcc, String Diachi, String Sdt) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+        User2 user2 = new User2();
+        user2.setTenNcc(TenNcc);
+        user2.setDiachi(Diachi);
+        user2.setSdt(Sdt);
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.THEMNHACUNGCAP);
+        serverRequest.setUser2(user2);
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), ThemNhaCungCap.class);
+                    startActivity(intent);
+                    finish();
+
+
+                } else {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+        });
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Đóng kết nối đến CSDL khi Fragment bị hủy
+
+    }
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -119,37 +180,35 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
-                    JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("hanghoa");
+                    JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("nhacungcap");
                     Log.d("//=====size===", jsonArrayhanghoa.length() + "");
 
                     for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
                         JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
-                        Log.d("MaHH", nhanvienObject.getString("MaHH"));
+
                         Log.d("MaNcc", nhanvienObject.getString("MaNcc"));
-                        Log.d("TenHh", nhanvienObject.getString("TenHh"));
-                        Log.d("GiaSp", nhanvienObject.getString("GiaSp"));
-                        Log.d("Ghichu", nhanvienObject.getString("Ghichu"));
-                        Log.d("TenLh", nhanvienObject.getString("TenLh"));
-                        Log.d("Soluong", nhanvienObject.getString("Soluong"));
+                        Log.d("TenNcc", nhanvienObject.getString("TenNcc"));
+                        Log.d("Diachi", nhanvienObject.getString("Diachi"));
+                        Log.d("Sdt", nhanvienObject.getString("Sdt"));
 
-                        String MaHH = nhanvienObject.getString("MaHH");
+
+
                         String MaNcc = nhanvienObject.getString("MaNcc");
-                        String TenHh = nhanvienObject.getString("TenHh");
-                        String GiaSp = nhanvienObject.getString("GiaSp");
-                        String MaLh = nhanvienObject.getString("TenLh");
-                        String Ghichu = nhanvienObject.getString("Ghichu");
-                        String Soluong = nhanvienObject.getString("Soluong");
+                        String TenNcc = nhanvienObject.getString("TenNcc");
+                        String Diachi = nhanvienObject.getString("Diachi");
+                        String Sdt = nhanvienObject.getString("Sdt");
 
 
-                        User1 user1 = new User1();
-                        user1.setMaHH(MaHH);
+
+
+                        User2 user1 = new User2();
+
                         user1.setMaNcc(MaNcc);
-                        user1.setTenHh(TenHh);
-                        user1.setGiaSp(GiaSp);
-                        user1.setGhichu(Ghichu);
-                        user1.setTenLh(MaLh);
-                        user1.setSoluong(Soluong);
-                        lsuList.add(user1);
+                        user1.setTenNcc(TenNcc);
+                        user1.setDiachi(Diachi);
+                        user1.setSdt(Sdt);
+
+                        lsuList1.add(user1);
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -169,6 +228,9 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
                 pd.dismiss();
             }
             adepter.notifyDataSetChanged();
+
+
+
         }
 
         public String readJsonOnline(String linkUrl) {
@@ -192,18 +254,17 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
             return null;
         }
     }
-
-    public void deleteItem(final String MaHH) {
+    public void deleteNcc(final String MaNcc) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        User1 user1 = new User1();
-        user1.setMaHH(MaHH);  // Set the item ID to be deleted
+        User2 user2 = new User2();
+        user2.setMaNcc(MaNcc);  // Set the item ID to be deleted
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.XOAHH);
-        serverRequest.setUser1(user1);
+        serverRequest.setOperation(Constants.XOANHACUNGCAP);
+        serverRequest.setUser2(user2);
 
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
         responseCall.enqueue(new Callback<ServerResponse>() {
@@ -227,13 +288,9 @@ public class ThongTinHangNhap1 extends AppCompatActivity {
     }
 
     public void updateProductList() {
-        lsuList.clear(); // Xóa danh sách hiện tại
-        new MyAsyncTask().execute(urllink); // Tải danh sách mới
+        lsuList1.clear(); // Xóa danh sách hiện tại
+        new ThemNhaCungCap.MyAsyncTask().execute(urllink); // Tải danh sách mới
     }
-    public void thongtin(){
-
-    }
-
 
 
 }

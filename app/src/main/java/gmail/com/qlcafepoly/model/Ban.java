@@ -5,7 +5,6 @@ public class Ban {
     private String TenBan;
     private String Trangthai;
 
-
     public String getMaBn() {
         return MaBn;
     }
@@ -29,6 +28,4 @@ public class Ban {
     public void setTrangthai(String trangthai) {
         Trangthai = trangthai;
     }
-
-
 }

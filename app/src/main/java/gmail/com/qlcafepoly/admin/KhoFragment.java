@@ -1,16 +1,12 @@
 package gmail.com.qlcafepoly.admin;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,28 +14,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
@@ -47,16 +32,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -85,6 +66,7 @@ public class KhoFragment extends Fragment {
 
     private String urllink = "http://172.16.55.231:8080/duantotnghiep/thu.php";
     private String urllink1 = "http://172.16.55.231:8080/duantotnghiep/loaihang.php";
+
 
 
 
@@ -150,6 +132,7 @@ public class KhoFragment extends Fragment {
                                 String inputLoaihang = loaihang.getText().toString();
                                 String inputGhichu = ghichu.getText().toString();
                                 ThemLoaiHang(inputLoaihang, inputGhichu);
+
                                 dialogInterface.dismiss();
 
                             }
@@ -167,7 +150,7 @@ public class KhoFragment extends Fragment {
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ThongTinHangNhap.class);
+                Intent intent = new Intent(getContext(), ThongTinHangNhap1.class);
                 startActivity(intent);
             }
         });

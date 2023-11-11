@@ -1,16 +1,15 @@
-package gmail.com.qlcafepoly.nhanvien;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -27,45 +26,76 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.model.Menu;
 
-public class DanhsachFragment extends Fragment {
-    private List<Menu> menuList1 = new ArrayList<>();
-    private MenuDU menudu;
-    private ImageView imageView;
-    private ListView lsMenuSql;
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thongtintk.php";
+public class DanhSachDoUong extends AppCompatActivity {
+    private List<Menu> lsuListMenu = new ArrayList<>();
+    private Menuht adepter;
+    private ListView lshienthimenu;
+
+
+    private String urllink = "http://172.16.55.231:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
+    private Button btnThemDU;
+    private View btnBackDU;
+    private ImageView view1,icLoadMenu;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_danhsach_fragment, container, false);
-        imageView = view.findViewById(R.id.imgnuoc);
-        lsMenuSql = view.findViewById(R.id.lsmenudu);
-        menudu = new MenuDU(getActivity(), menuList1);
-        lsMenuSql.setAdapter(menudu);
-
-        pd = new ProgressDialog(getActivity()); // Khởi tạo ProgressDialog ở đây
-        pd.setMessage("Đang tải dữ liệu...");
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_danh_sach_do_uong);
+        lshienthimenu = findViewById(R.id.lvDSDU);
+        adepter = new Menuht(DanhSachDoUong.this, lsuListMenu);
+        lshienthimenu.setAdapter(adepter);
+        btnThemDU = findViewById(R.id.btnThemDU);
+        btnBackDU = findViewById(R.id.backDSDU);
+        icLoadMenu = findViewById(R.id.icLoadMenu);
+        icLoadMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reload the activity
+                finish();
+                startActivity(getIntent());
+            }
+        });
+//        view1 = findViewById(R.id.icEdit);
+//        view1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DanhSachDoUong.this, ItemThongTinDU.class);
+//                startActivity(intent);
+//            }
+//        });
+        pd = new ProgressDialog(DanhSachDoUong.this); // Khởi tạo ProgressDialog ở đây
+        pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
-
-
         new MyAsyncTask().execute(urllink);
-        return view;
-    }
-    private class MyAsyncTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pd.setMessage("Đang tải dữ liệu...");
-            pd.setCancelable(false);
-            pd.show();
-        }
+        btnThemDU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                Intent intent = new Intent(DanhSachDoUong.this, ThemDoUong.class);
+
+                startActivity(intent);
+            }
+        });
+        btnBackDU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                finish();
+
+            }
+        });
+    }
+
+
+
+    private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
             try {
@@ -80,21 +110,19 @@ public class DanhsachFragment extends Fragment {
 
                     for (int i = 0; i < jsonArraymenu.length(); i++) {
                         JSONObject menuObject = jsonArraymenu.getJSONObject(i);
-//                        Log.d("MaMn", menuObject.getString("MaMn"));
+                        Log.d("MaMn", menuObject.getString("MaMn"));
                         Log.d("TenLh", menuObject.getString("TenLh"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
 
-
-//                        String MaMn = menuObject.getString("MaMn");
+                        String MaNn = menuObject.getString("MaMn");
                         String TenLh = menuObject.getString("TenLh");
                         String Giatien = menuObject.getString("Giatien");
 
-
                         Menu menu = new Menu();
+                        menu.setMaMn(MaNn);
                         menu.setTenLh(TenLh);
                         menu.setGiatien(Integer.parseInt(Giatien));
-                        menuList1.add(menu);
-
+                        lsuListMenu.add(menu);
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -107,14 +135,13 @@ public class DanhsachFragment extends Fragment {
             return null;
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if (pd.isShowing()) {
-                pd.dismiss();
-            }
-            menudu.notifyDataSetChanged();
-        }
+        //        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            pd.setMessage("Đang tải dữ liệu...");
+//            pd.setCancelable(false);
+//            pd.show();
+//        }
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
@@ -129,7 +156,6 @@ public class DanhsachFragment extends Fragment {
                 while ((line = bufferedReader.readLine()) != null) {
                     stringBuilder.append(line + "\n");
                 }
-
                 return stringBuilder.toString();
             } catch (Exception ex) {
                 Log.d("Error: ", ex.toString());
@@ -137,6 +163,7 @@ public class DanhsachFragment extends Fragment {
             return null;
         }
     }
-
-
 }
+
+
+

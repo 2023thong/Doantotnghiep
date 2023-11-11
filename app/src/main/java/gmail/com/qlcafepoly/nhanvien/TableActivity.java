@@ -38,8 +38,7 @@ import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.ThemDoUong;
-import gmail.com.qlcafepoly.admin.Trangcoffee;
+
 import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +53,7 @@ public class TableActivity extends AppCompatActivity {
     FloatingActionButton themban;
     ImageView backban;
     private ListView lsban;
-    private String urllink = "http://192.168.1.112:8080/duantotnghiep/thongtinban.php";
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thongtinban.php";
 
     private ProgressDialog pd;
     private Spinner spnTrangthai;

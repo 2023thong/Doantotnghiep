@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import gmail.com.qlcafepoly.R;
 
 public class Hanghoaht extends BaseAdapter {
 
-    ThongTinHangNhap thongTinHangNhap;
+    ThongTinHangNhap1 thongTinHangNhap;
     private List<User1> users;
     private LayoutInflater inflater;
     private Context context;
@@ -81,8 +80,8 @@ public class Hanghoaht extends BaseAdapter {
                     .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if (context instanceof ThongTinHangNhap) {
-                                ((ThongTinHangNhap) context).deleteItem(user1.getMaHH());
+                            if (context instanceof ThongTinHangNhap1) {
+                                ((ThongTinHangNhap1) context).deleteItem(user1.getMaHH());
                             }
                         }
                     })
