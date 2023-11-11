@@ -3,15 +3,15 @@ package gmail.com.qlcafepoly.admin;
 public class Hanghoa {
     private  String MaHH;
     private String MaNcc;
-    private String MaLh;
+    private String TenLh;
     private String TenHh;
     private int GiaSp;
     private String Ghichu;
 
-    public Hanghoa(String maHH, String maNcc, String maLh, String tenHh, int giaSp, String ghichu) {
+    public Hanghoa(String maHH, String maNcc, String tenLh, String tenHh, int giaSp, String ghichu) {
         MaHH = maHH;
         MaNcc = maNcc;
-        MaLh = maLh;
+        TenLh = tenLh;
         TenHh = tenHh;
         GiaSp = giaSp;
         Ghichu = ghichu;
@@ -36,12 +36,12 @@ public class Hanghoa {
         MaNcc = maNcc;
     }
 
-    public String getMaLh() {
-        return MaLh;
+    public String getTenLh() {
+        return TenLh;
     }
 
-    public void setMaLh(String maLh) {
-        MaLh = maLh;
+    public void setTenLh(String tenLh) {
+        TenLh = tenLh;
     }
 
     public String getTenHh() {

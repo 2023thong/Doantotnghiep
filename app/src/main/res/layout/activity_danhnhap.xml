@@ -87,13 +87,13 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:text="User Name"
-            android:textColor="#151515" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView19"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="45dp"-->
+<!--            android:text="User Name"-->
+<!--            android:textColor="#151515" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,40 +102,36 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/imgkho"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/canhan"
                 android:tint="#673AB7"
                 tools:ignore="UseAppTint" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                app:hintEnabled="false">
+                android:layout_height="70dp">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Management login name"
                     android:inputType="text" />
+
+
+
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="20dp"
-            android:text="Password"
-            android:textColor="#1E1B1B" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,32 +143,54 @@
                 android:id="@+id/imageView10"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/pass"
                 android:tint="#673AB7"
                 tools:ignore="UseAppTint" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                app:hintEnabled="false"
+                android:layout_height="70dp"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edPassnv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+
+
+
+                    android:layout_height="60dp"
+
                     android:hint="Password"
-                    android:inputType="textPassword"
-                    android:maxLines="1" />
-
-
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/textInputLayout1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                app:hintEnabled="false"-->
+<!--                app:passwordToggleEnabled="true">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/edPassnv"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Password"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:maxLines="1" />-->
+
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
         </LinearLayout>
+
     </LinearLayout>
+
+
+
 
     <CheckBox
         android:id="@+id/checkBox2"

@@ -41,17 +41,8 @@ public class Danhnhap extends AppCompatActivity {
 
         rememberCheckbox = findViewById(R.id.checkBox2);
 
-        // Kiểm tra nếu checkbox đã được tích thì điền thông tin đăng nhập từ SharedPreferences
-        if (rememberCheckbox.isChecked()) {
-            // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-            String savedTenDn = sharedPreferences.getString("TenDn", "");
-            String savedMatkhau = sharedPreferences.getString("Matkhau", "");
 
-            // Điền thông tin vào các trường EditText
-            edTedn.setText(savedTenDn);
-            edPass.setText(savedMatkhau);
-        }
+
 
         tvQuanly = findViewById(R.id.tvQuanly);
 
@@ -108,19 +99,21 @@ public class Danhnhap extends AppCompatActivity {
 
                         Intent adminIntent = new Intent(getApplicationContext(), AdminKho.class);
                         startActivity(adminIntent);
+                        finish();
                         Toast.makeText(Danhnhap.this, "Đăng nhập thành công Quản lý", Toast.LENGTH_SHORT).show();
 
                         SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("TenDn", TenDn);
                         editor.putString("Matkhau", Matkhau);
-                        editor.putBoolean("RememberLogin", true);
+                        editor.putBoolean("Save", rememberCheckbox.isChecked());
                         editor.putString("Manv", Manv);
                         editor.putString("TenNv", TenNv);
                         editor.putString("Sdt", Sdt);
                         editor.putString("Diachi", Diachi);
                         editor.putString("phanquyen", role);
-                        editor.apply();
+//                        editor.apply();
+                        editor.commit();
                     } else if ("2".equals(role)) {
                         Toast.makeText(Danhnhap.this, "Đăng nhập không thành công.\n" +
                                 "Chỉ dành cho admin",Toast.LENGTH_SHORT).show();
@@ -135,13 +128,24 @@ public class Danhnhap extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed"+ t.getMessage());
 
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Lấy SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
+        String savedTenDn = sharedPreferences.getString("TenDn", "");
+        String savedMatkhau = sharedPreferences.getString("Matkhau", "");
+        boolean save = sharedPreferences.getBoolean("Save", false);
+        if (save == true){
 
-
-
+            edTedn.setText(savedTenDn);
+            edPass.setText(savedMatkhau);
+        }
+    }
 }

@@ -1,8 +1,11 @@
 package gmail.com.qlcafepoly.Database;
 
 
+import gmail.com.qlcafepoly.admin.LoaiHang;
+import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -21,8 +24,18 @@ public interface RequestInterface {
         private User user;
         private Ban ban;
 
+        private User2 user2;
+        private Menu menu;
 
+        private LoaiHang loaihang;
 
+        public void setLoaihang(LoaiHang loaihang) {
+            this.loaihang = loaihang;
+        }
+
+        public void setUser2(User2 user2) {
+            this.user2 = user2;
+        }
 
         public void setOperation(String operation) {
             this.operation = operation;
@@ -35,9 +48,13 @@ public interface RequestInterface {
         public void setUser(User user) {
             this.user = user;
         }
+        public void setMenu(Menu menu) {
+            this.menu = menu;
+        }
         public void setBan(Ban ban) {
             this.ban = ban;
         }
+
+
     }
 }
-
