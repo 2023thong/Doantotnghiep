@@ -38,7 +38,7 @@ public class Quanlynv extends AppCompatActivity {
     private ListView lshienthinhanvien;
 
 
-    private String urllink = "http://192.168.1.43:8080/duantotnghiep/get_all_nhanvien.php";
+    private String urllink = "http://192.168.1.98:8080/duantotnghiep/get_all_nhanvien.php";
     private ProgressDialog pd;
     private ImageView icLoadNhanVien;
 
@@ -73,7 +73,7 @@ public class Quanlynv extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pd.setMessage("Đang tải dữ liệu...");
+//            pd.setMessage("Đang tải dữ liệu...");
             pd.setCancelable(false);
             pd.show();
         }
