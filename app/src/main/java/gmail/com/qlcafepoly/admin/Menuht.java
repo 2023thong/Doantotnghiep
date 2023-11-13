@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.nhanvien.OderDu;
 
 public class Menuht extends BaseAdapter {
     private List<Menu> menudu;
@@ -46,6 +47,7 @@ public class Menuht extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.activity_item_do_uong, parent, false);
+
         }
         Menu menu = menudu.get(position);
 
@@ -55,6 +57,7 @@ public class Menuht extends BaseAdapter {
         tvMaMn.setText("Mã: "+menu.getMaMn());
         tvTenLh.setText(menu.getTenLh());
         tvGiatien.setText("Giá tiền: "+String.valueOf(menu.getGiatien())+" vnđ");
+
 
         view1 = convertView.findViewById(R.id.icEdit);
         view1.setOnClickListener(view -> {

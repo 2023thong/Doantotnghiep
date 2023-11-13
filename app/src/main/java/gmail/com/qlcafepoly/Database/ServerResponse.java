@@ -5,6 +5,7 @@ import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.admin.User2;
+import gmail.com.qlcafepoly.nhanvien.Oder;
 
 public class ServerResponse {
     private String result;
@@ -21,6 +22,12 @@ public class ServerResponse {
     private Menu menu;
 
     private LoaiHang loaihang;
+    private Oder oder1;
+
+
+    public Oder getOder1() {
+        return oder1;
+    }
 
     public LoaiHang getLoaihang() {
         return loaihang;

@@ -83,8 +83,8 @@ public class KhoFragment extends Fragment {
     private ProgressDialog pd;
 
 
-    private String urllink = "http://172.16.55.231:8080/duantotnghiep/thu.php";
-    private String urllink1 = "http://172.16.55.231:8080/duantotnghiep/loaihang.php";
+    private String urllink = "http://192.168.1.78:8080/duantotnghiep/thu.php";
+    private String urllink1 = "http://192.168.1.78:8080/duantotnghiep/loaihang.php";
 
 
 
@@ -105,7 +105,7 @@ public class KhoFragment extends Fragment {
 
         edMahh = view.findViewById(R.id.tvMahh1);
 
-//        edMalh = view.findViewById(R.id.Malh);
+
         edTenhh = view.findViewById(R.id.edTenhh);
         edGiatien = view.findViewById(R.id.edGiatien);
         edGhichu = view.findViewById(R.id.edGhichu);

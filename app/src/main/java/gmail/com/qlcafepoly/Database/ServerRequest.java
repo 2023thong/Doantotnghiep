@@ -6,6 +6,7 @@ import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.model.Ban;
+import gmail.com.qlcafepoly.nhanvien.Oder;
 
 public class ServerRequest {
 
@@ -18,6 +19,12 @@ public class ServerRequest {
     private Menu menu;
     private Ban ban;
     private LoaiHang loaihang;
+    private Oder oder1;
+
+
+    public void setOder1(Oder oder1) {
+        this.oder1 = oder1;
+    }
 
     public void setLoaihang(LoaiHang loaihang) {
         this.loaihang = loaihang;

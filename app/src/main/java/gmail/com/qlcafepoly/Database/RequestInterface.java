@@ -7,6 +7,7 @@ import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.model.Ban;
+import gmail.com.qlcafepoly.nhanvien.Oder;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -25,9 +26,20 @@ public interface RequestInterface {
         private Ban ban;
 
         private User2 user2;
+        private Oder oder1;
         private Menu menu;
 
+
+
+
+
         private LoaiHang loaihang;
+
+
+
+        public void setOder1(Oder oder1) {
+            this.oder1 = oder1;
+        }
 
         public void setLoaihang(LoaiHang loaihang) {
             this.loaihang = loaihang;

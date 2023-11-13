@@ -33,7 +33,7 @@ public class DanhSachDoUong extends AppCompatActivity {
     private ListView lshienthimenu;
 
 
-    private String urllink = "http://172.16.55.231:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.9:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private Button btnThemDU;
@@ -59,14 +59,7 @@ public class DanhSachDoUong extends AppCompatActivity {
                 startActivity(getIntent());
             }
         });
-//        view1 = findViewById(R.id.icEdit);
-//        view1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DanhSachDoUong.this, ItemThongTinDU.class);
-//                startActivity(intent);
-//            }
-//        });
+
         pd = new ProgressDialog(DanhSachDoUong.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
@@ -135,13 +128,7 @@ public class DanhSachDoUong extends AppCompatActivity {
             return null;
         }
 
-        //        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            pd.setMessage("Đang tải dữ liệu...");
-//            pd.setCancelable(false);
-//            pd.show();
-//        }
+
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;

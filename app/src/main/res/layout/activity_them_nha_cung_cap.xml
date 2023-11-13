@@ -9,14 +9,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="#ED8361">
 
         <ImageView
             android:id="@+id/backthoatncc"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
             android:src="@drawable/thoat"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,10 +29,9 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="50dp"
-            android:fontFamily="serif"
             android:text="Thêm Nhà Cung Cấp"
             android:textColor="#FBFBFB"
-            android:textSize="26sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +61,6 @@
                     android:id="@+id/textView39"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
                     android:text="Tên nhà cung cấp:"
                     android:textColor="#0B0A0A"
                     android:textStyle="bold" />
@@ -76,7 +74,7 @@
                     android:background="@drawable/bocanhan"
                     android:ems="10"
                     android:inputType="text"
-                    android:padding="5dp"
+                    android:padding="7dp"
                     android:paddingStart="5dp" />
             </LinearLayout>
 
@@ -89,7 +87,6 @@
                     android:id="@+id/textView43"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
                     android:text="Địa chỉ:"
                     android:textColor="#090909"
                     android:textStyle="bold" />
@@ -103,7 +100,7 @@
                     android:background="@drawable/bocanhan"
                     android:ems="10"
                     android:inputType="text"
-                    android:padding="5dp" />
+                    android:padding="7dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,7 +112,6 @@
                     android:id="@+id/textView45"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
                     android:text="Số điện thoại:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -129,7 +125,7 @@
                     android:background="@drawable/bocanhan"
                     android:ems="10"
                     android:inputType="text"
-                    android:padding="5dp" />
+                    android:padding="7dp" />
             </LinearLayout>
 
             <LinearLayout

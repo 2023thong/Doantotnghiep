@@ -43,7 +43,7 @@ public class Dangnhapnhanvien extends AppCompatActivity {
         // Kiểm tra nếu checkbox đã được tích thì điền thông tin đăng nhập từ SharedPreferences
         if (rememberCheckbox.isChecked()) {
             // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("thong1", Context.MODE_PRIVATE);
             String savedTenDn = sharedPreferences.getString("TenDn", "");
             String savedMatkhau = sharedPreferences.getString("Matkhau", "");
 
@@ -111,7 +111,7 @@ public class Dangnhapnhanvien extends AppCompatActivity {
                         startActivity(nhanvien);
                         Toast.makeText(Dangnhapnhanvien.this, "Đăng nhập thành công Nhân viên", Toast.LENGTH_SHORT).show();
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("thong1", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("TenDn", TenDn);
                         editor.putString("Matkhau", Matkhau);

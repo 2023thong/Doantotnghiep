@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/sua"
+        android:icon="@drawable/sua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ql"
-        android:icon="@drawable/appsql"
-        android:title="Quản Lý" />
+        android:title="Sửa" />
     <item
+        android:id="@+id/xoa"
+        android:icon="@drawable/xoa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/kho"
-        android:icon="@drawable/kho"
-        android:title="Kho Hàng" />
+        android:title="Xóa" />
     <item
+        android:id="@+id/chitiet"
+        android:icon="@drawable/bacham"
         android:layout_width="wrap_content"
-        android:id="@+id/canhan"
-        android:icon="@drawable/canhan1"
         android:layout_height="wrap_content"
-        android:title="Cá Nhân" />
+        android:title="Chi tiết" />
 </menu>
