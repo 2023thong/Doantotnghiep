@@ -34,16 +34,16 @@
                 android:textColor="#F44336" />
 
             <TextView
-                android:id="@+id/textView51"
+                android:id="@+id/textView57"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mã Menu:" />
+                android:text="Mã Oder: " />
 
             <TextView
-                android:id="@+id/tvMamnuoder"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvMaoder"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:textColor="#F44336" />
 
             <TextView
                 android:id="@+id/textView46"
@@ -74,7 +74,7 @@
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="10dp"
             android:text="Tên đồ uống"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/lshienoder"
@@ -85,7 +85,7 @@
             android:id="@+id/textView48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="25dp"
             android:layout_marginBottom="1dp"
             android:text="Thành tiền"
             android:textStyle="bold"
@@ -94,15 +94,27 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="1dp"
+            android:text="Mã Menu"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lshienoder"
+            app:layout_constraintStart_toEndOf="@+id/textView48"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/textView49"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="65dp"
+            android:layout_marginStart="25dp"
             android:layout_marginBottom="1dp"
             android:text="Số lượng"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/lshienoder"
-            app:layout_constraintStart_toEndOf="@+id/textView48"
+            app:layout_constraintStart_toEndOf="@+id/textView53"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
@@ -161,14 +173,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"
                 android:text="VND" />
+
+            <TextView
+                android:id="@+id/btnLuu"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:background="#8BC34A"
+                android:gravity="center"
+                android:text="Lưu"
+                android:textColor="#FBFAFA"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvOder"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="5dp"
                 android:background="@drawable/keoder"
                 android:gravity="center"
                 android:text="Oder"

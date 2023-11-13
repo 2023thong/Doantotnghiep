@@ -11,6 +11,7 @@ public class ServerResponse {
     private String result;
     private String message;
     private String phanquyen;
+    private String MaOder;
 
     private String MaNv;
 
@@ -77,6 +78,9 @@ public class ServerResponse {
         return phanquyen;
     }
 
+    public String getMaOder() {
+        return MaOder;
+    }
 
     public User1 getUser1() {
         return user1;

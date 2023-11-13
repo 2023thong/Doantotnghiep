@@ -54,10 +54,12 @@ public class OderHienthi extends BaseAdapter {
         }
         Menu menu = odermenu.get(position);
 
+        TextView tvMenu = convertView.findViewById(R.id.tvMamn);
 
         TextView tvTenLh = convertView.findViewById(R.id.tvTenDuoder);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiaDuOder);
 
+        tvMenu.setText(menu.getMaMn());
         tvTenLh.setText(menu.getTenLh());
         tvGiatien.setText(String.valueOf(menu.getGiatien()));
 

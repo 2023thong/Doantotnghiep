@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -53,8 +54,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OderDu extends AppCompatActivity {
     private List<Menu> odermenu = new ArrayList<>();
     private List<Menu> odermenu1 = new ArrayList<>();
+    private List<Oder> oder2 = new ArrayList<>();
     private ListView lshienthimenu;
     private ListView lshienthioder;
+
+
     private OderHienthi adepteroder, adepteroder2;
     private int soluongDefault = 1;
 
@@ -65,9 +69,11 @@ public class OderDu extends AppCompatActivity {
 
     private Menu selectedMenu;
 
-    private String urllink = "http://192.168.1.9:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.102:8080/duantotnghiep/get_all_menu.php";
+    private String urllink1 = "http://192.168.1.102:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
+    private Menu menu;
 
 
 
@@ -88,14 +94,18 @@ public class OderDu extends AppCompatActivity {
         TextView Tongtien = findViewById(R.id.TvTongtien);
 
 
-        TextView mamn = findViewById(R.id.tvMamnuoder);
-        mamn.setText("1");
+
+
+
+
+
 
 
         pd = new ProgressDialog(OderDu.this);
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
+        new MyAsyncTask1().execute(urllink1);
 
 
         lshienthimenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,24 +132,55 @@ public class OderDu extends AppCompatActivity {
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
                     String mabn = Mabn.getText().toString();
-                    String tongtien = Tongtien.getText().toString();
-                    String trangthai = check();
-                    String menu = mamn.getText().toString(); // Bạn đã gán menu cố định là 1
-                    String maoder = "180"; // Bạn đã gán maoder cố định là 7
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
+                    String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
+
+
+                    TextView textView = findViewById(R.id.tvMaoder);
+                    textView.setText(maOder);
+                    String maoderd = textView.getText().toString();
+
+
+
 
                     for (Menu selectedMenu : selectedMenus) {
+
                         String tendu = selectedMenu.getTenLh();
                         String sl = String.valueOf(selectedMenu.getSoluong());
                         String gia = String.valueOf(selectedMenu.getGiatien());
 
-
-                        ThemOder(mabn, tongtien, menu, trangthai);
-                        ThemOderchitiet(maoder, tendu, sl, gia, mabn);
+                        ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
                 } else {
 
+                    Toast.makeText(getApplicationContext(), "Oder thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        TextView btnLuu = findViewById(R.id.btnLuu);
+        btnLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!selectedMenus.isEmpty()) {
+                    String mabn = Mabn.getText().toString();
+                    String tongtien = Tongtien.getText().toString();
+                    String trangthai = check();
+
+
+                    for (Menu selectedMenu : selectedMenus) {
+                        String menu = selectedMenu.getMaMn();
+
+                        ThemOder(mabn, tongtien, menu, trangthai);
+
+                    }
+                }
+                    else {
+
                     Toast.makeText(getApplicationContext(), "Vui lòng chọn đồ uống trước khi oder", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
@@ -161,15 +202,17 @@ public class OderDu extends AppCompatActivity {
 
                     for (int i = 0; i < jsonArraymenu.length(); i++) {
                         JSONObject menuObject = jsonArraymenu.getJSONObject(i);
-
+                        Log.d("MaMn", menuObject.getString("MaMn"));
                         Log.d("TenDu", menuObject.getString("TenDu"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
 
+
+                        String MaMn = menuObject.getString("MaMn");
                         String TenDu = menuObject.getString("TenDu");
                         String Giatien = menuObject.getString("Giatien");
 
                         Menu menu = new Menu();
-
+                        menu.setMaMn(MaMn);
                         menu.setTenLh(TenDu);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         odermenu.add(menu);
@@ -219,7 +262,7 @@ public class OderDu extends AppCompatActivity {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.itemoder, parent, false);
             }
-
+            TextView mamn = convertView.findViewById(R.id.tvMaMn1);
             TextView customTextView = convertView.findViewById(R.id.tvTenoder1);
             TextView customTextView1 = convertView.findViewById(R.id.tvGiaDuOder1);
             ImageView imageXoa = convertView.findViewById(R.id.imgXoa1);
@@ -232,7 +275,7 @@ public class OderDu extends AppCompatActivity {
 
 
 
-
+            mamn.setText(menu.getMaMn());
             customTextView.setText(menu.getTenLh());
             customTextView1.setText(String.valueOf(menu.getGiatien()));
 
@@ -401,6 +444,14 @@ public class OderDu extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    String maOder = response1.getMaOder();
+                    SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
+                    editor.apply();  // or editor.commit() to save the data
+
+
+
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -423,6 +474,7 @@ public class OderDu extends AppCompatActivity {
         Oder oder1 = new Oder();
         oder1.setMaOder(MaOder);
 
+
         oder1.setTenDu(TenDu);
         oder1.setSoluong(Soluong);
         oder1.setGiatien(Giatien);
@@ -444,6 +496,7 @@ public class OderDu extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -455,6 +508,64 @@ public class OderDu extends AppCompatActivity {
             }
 
         });
+    }
+    private class MyAsyncTask1 extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String strJson = readJsonOnline(strings[0]);
+                Log.d("//====", strJson);
+
+                JSONObject jsonObject = new JSONObject(strJson);
+                int success = jsonObject.getInt("success");
+                if (success == 1) {
+                    JSONArray jsonArraymenu = jsonObject.getJSONArray("oder");
+                    Log.d("//=====size===", jsonArraymenu.length() + "");
+
+                    for (int i = 0; i < jsonArraymenu.length(); i++) {
+                        JSONObject menuObject = jsonArraymenu.getJSONObject(i);
+                        Log.d("MaOder", menuObject.getString("MaOder"));
+
+
+
+                        String MaOder = menuObject.getString("MaOder");
+
+                        Oder oder1 = new Oder();
+                        oder1.setMaOder(MaOder);
+
+                        oder2.add(oder1);
+                    }
+                } else {
+                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
+                }
+            } catch (JSONException e) {
+                Log.d("Error: ", e.toString());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            return null;
+        }
+
+        public String readJsonOnline(String linkUrl) {
+            HttpURLConnection connection = null;
+            BufferedReader bufferedReader = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                URL url = new URL(linkUrl);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                InputStream inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line + "\n");
+                }
+                return stringBuilder.toString();
+            } catch (Exception ex) {
+                Log.d("Error: ", ex.toString());
+            }
+            return null;
+        }
     }
 
 
