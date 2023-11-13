@@ -30,14 +30,9 @@ public class ThongTinHangNhap extends AppCompatActivity {
     private ImageView imageView;
 
     private ListView lshienthi;
-<<<<<<< HEAD
     private String urllink = "http://192.168.1.62:/learn-login-register/get_all_product.php";
-=======
-
-    private String urllink = "http://192.168.1.115:8080/duantotnghiep/get_all_product.php";
 
 
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
 
     private ProgressDialog pd;
 

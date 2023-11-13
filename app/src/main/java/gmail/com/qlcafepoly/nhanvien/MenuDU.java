@@ -36,15 +36,18 @@ public class MenuDU extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView == null){
-            convertView = inflater1.inflate(R.layout.activity_item_menu, parent, false);
+            convertView = inflater1.inflate(R.layout.item_menupay, parent, false);
         }
         Menu menu = menu1.get(position);
 
-        TextView txtTenLh = convertView.findViewById(R.id.txtTenLh);
-        TextView txtGia1 = convertView.findViewById(R.id.txtGia1);
+        TextView tvTenDu = convertView.findViewById(R.id.tv_DoUong);
+        TextView tvGiatien = convertView.findViewById(R.id.tvMoney);
+        TextView tvSoluong = convertView.findViewById(R.id.tv_Soluong);
 
-        txtTenLh.setText(menu.getTenLh());
-        txtGia1.setText(String.valueOf(menu.getGiatien()));
+
+        tvTenDu.setText(menu.getTenLh());
+        tvGiatien.setText(menu.getGiatien());
+        tvSoluong.setText(menu.getSoluong());
 
         return convertView;
     }

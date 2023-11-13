@@ -32,4 +32,9 @@ public class Menu {
         TenLh = tenLh;
     }
 
+    public int getSoluong() {
+        return 0;
+    }
+
+
 }

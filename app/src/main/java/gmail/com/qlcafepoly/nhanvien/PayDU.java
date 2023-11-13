@@ -49,12 +49,13 @@ public class PayDU extends BaseAdapter {
         TextView tv_Soluong = convertView.findViewById(R.id.tv_Soluong);
         TextView tvmb = convertView.findViewById(R.id.tvMabn);
 
-        tv_DoUong.setText(menu1.getTenLh());
+        tv_DoUong.setText(menu1.getTenDu());
         tvMoney.setText((String.valueOf(menu1.getGiatien())));
         tv_Soluong.setText(String.valueOf(menu1.getSoluong()));
 
 
         return convertView;
     }
+
 }
 

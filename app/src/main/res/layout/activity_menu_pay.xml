@@ -4,117 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".thanhtoan.Menu_pay">
+    tools:context=".nhanvien.Menu_pay">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/ic_backgroundpay"
-        android:padding="30dp"
-        tools:ignore="ContentDescription,MissingConstraints" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:layout_marginBottom="555dp"
-        android:baselineAligned="false"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/tvchuathanhtoan"
-            android:layout_width="188dp"
-            android:layout_height="wrap_content"
-
-            android:background="@drawable/background_noclick"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-
-            android:padding="10dp"
-            android:text="Chưa thanh toán"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/tvdathanhtoan"
-            android:layout_width="188dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/background_click"
-
-            android:gravity="center"
-
-            android:padding="10dp"
-
-            android:text="Đã thanh toán"
-            android:textSize="20dp" />
-
-    </LinearLayout>
-
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/frameLayoutcht"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/background_click"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-
-
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/ic_backgroundpay"
+                android:padding="30dp"
+                tools:ignore="ContentDescription,MissingConstraints" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:layout_marginBottom="555dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/tvchuathanhtoan"
+                    android:layout_width="188dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/background_noclick"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+
+                    android:padding="10dp"
+                    android:text="Chưa thanh toán"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/tvdathanhtoan"
+                    android:layout_width="188dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/background_click"
+
+                    android:gravity="center"
+
+                    android:padding="10dp"
+
+                    android:text="Đã thanh toán"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_menubr"
+                android:orientation="vertical"
 
-                <TextView
-                    android:id="@+id/tvMabn"
+
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Menu"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMabn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Menu:"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        tools:ignore="InvalidId" />
+                    <View
+                        android:layout_width="60dp"
+                        android:background="#CA191717"
+                        android:layout_gravity="center"
+                        android:layout_height="1dp"/>
+
+                </LinearLayout>
+
+
+                <ListView
+                    android:id="@+id/lv_listoder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginBottom="65dp"
+                    android:background="#00111111"
                     android:gravity="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    tools:ignore="InvalidId" />
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="MissingConstraints" />
+
             </LinearLayout>
 
-
-            <ListView
-                android:id="@+id/lv_listoder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-
-                android:layout_marginBottom="65dp"
-                android:background="@drawable/background_list"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="MissingConstraints" />
-
-        </LinearLayout>
-
-    </FrameLayout>
+        </FrameLayout>
 
     </LinearLayout>
 

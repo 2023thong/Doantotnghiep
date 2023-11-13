@@ -3,6 +3,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -18,9 +19,11 @@ public interface RequestInterface {
 
         private User1 user1;
         private User user;
+        private Thongtinoder thongtinoder;
 
-
-
+        public void setThongtinoder(Thongtinoder thongtinoder) {
+            this.thongtinoder = thongtinoder;
+        }
 
         public void setOperation(String operation) {
             this.operation = operation;

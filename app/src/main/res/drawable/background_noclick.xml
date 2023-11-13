@@ -3,21 +3,20 @@
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#CABBBBBB"/>
+
             <corners android:radius="10dp" />
         </shape>
     </item>
 
     <item
-        android:left="0.5dp"
-        android:right="0.5dp"
-        android:top="0.5dp"
-        android:bottom="2dp">
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="3dp">
         <shape android:shape="rectangle">
-<<<<<<< HEAD
+
             <solid android:color="#E1D3D3"  />
-=======
             <solid android:color="#FFFFFF"  />
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
             <corners android:radius="10dp" />
         </shape>
     </item>

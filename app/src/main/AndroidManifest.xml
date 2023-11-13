@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
 
+
     <uses-permission android:name="android.permission.INTERNET" />
 
 
@@ -9,105 +10,29 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logoapp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
-
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-<<<<<<< HEAD
-=======
-
-        <service
-            android:name=".admin.CapNhatDuLieu"
-            android:exported="false" />
-
-
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
         <activity
-            android:name=".admin.AdminKho"
-            android:exported="false" />
-
-        <activity
-<<<<<<< HEAD
-            android:name=".admin.MainActivity"
-=======
-            android:name=".dangnhap.Dangnhapnhanvien"
-            android:exported="false" />
-
-        <activity
-            android:name=".admin.ThongTinHangNhap"
-
+            android:name=".nhanvien.Pay"
             android:exported="false" />
         <activity
-            android:name=".admin.Trangmilktea"
+            android:name=".nhanvien.Menu_pay"
             android:exported="false" />
         <activity
-            android:name=".admin.Trangfruit"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Trangcoffee"
-            android:exported="false" />
-
-        <activity
-            android:name=".admin.ThemNhanVien"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Thonhtintaikhoan"
-            android:exported="false" />
-        <activity
-            android:name=".admin.ThemDoUong"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Quanlynv"
-            android:exported="false" />
-        <activity
-            android:name=".admin.QuanLyDoUong"
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
+            android:name=".nhanvien.ListUnpaid"
             android:exported="false" />
         <activity
             android:name=".dangnhap.Dangnhapnhanvien"
-            android:exported="false"
-           />
-        <activity
-<<<<<<< HEAD
-            android:name=".thanhtoan.Pay"
-            android:exported="false"
-            />
-        <activity
-            android:name=".thanhtoan.ListUnpaid"
-            android:exported="false"
-            />
-        <activity
-            android:name=".thanhtoan.Menu_pay"
-            android:exported="false"
-            />
-
-        <activity
-            android:name=".thanhtoan.Unpaid"
-            android:exported="true"
-            tools:ignore="DuplicateActivity">
-=======
-            android:name=".admin.ItemDoUong"
-
-
-            android:exported="false" />
-        <activity
-            android:name=".admin.Pay"
             android:exported="false" />
 
         <activity
-            android:name=".admin.MainActivity"
-            android:exported="false" />
-        <activity
-
-            android:name=".dangnhap.Danhnhap"
+            android:name=".nhanvien.Unpaid"
             android:exported="true">
-
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

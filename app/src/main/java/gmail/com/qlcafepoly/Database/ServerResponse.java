@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class ServerResponse {
     private String result;
@@ -11,6 +12,12 @@ public class ServerResponse {
     private String MaNv;
     private String Diachi;
     private String Sdt;
+
+    private Thongtinoder thongtinoder;
+
+    public Thongtinoder getThongtinoder() {
+        return thongtinoder;
+    }
 
     public String getTenNv() {
         return TenNv;

@@ -4,15 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4"
-<<<<<<< HEAD
-    tools:context=".thanhtoan.Pay">
-=======
-    tools:context=".admin.Pay">
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
+
+    tools:context=".nhanvien.Pay">
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/fldathanhtoan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -25,7 +21,7 @@
             android:layout_height="150dp"
             android:background="@drawable/ic_backgroundpay"
             android:padding="30dp"
-            tools:ignore="ContentDescription,MissingConstraints"/>
+            tools:ignore="ContentDescription,MissingConstraints" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -49,7 +45,8 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Chưa thanh toán"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                tools:ignore="HardcodedText,SpUsage" />
 
             <TextView
                 android:layout_width="188dp"
@@ -61,20 +58,41 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Đã thanh toán"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="200dp"
             android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:layout_marginHorizontal="20dp"
             android:background="@drawable/background_click"
+
+            android:gravity="center"
 
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menubr"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Coffee Folly:"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:textStyle="bold"
+            tools:ignore="HardcodedText,InvalidId" />
+            <View
+                android:layout_width="180dp"
+                android:background="#CA191717"
+                android:layout_gravity="center"
+                android:layout_height="1.5dp"/>
             <ListView
                 android:id="@+id/lv_listpay"
                 android:layout_width="match_parent"
@@ -83,10 +101,10 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"/>
 
+        </LinearLayout>
 
-            </ListView>
         </LinearLayout>
     </FrameLayout>
 

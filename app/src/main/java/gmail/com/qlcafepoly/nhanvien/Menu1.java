@@ -1,28 +1,36 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 public class Menu1 {
+    private int MaOder;
+    private int Id;
+    private String TenDu;
     private String MaBn;
-    private String TenLh;
     private int Giatien;
     private int Soluong;
     public Menu1() {
     }
 
 
-    public String getMaBn() {
-        return MaBn;
+    public int getMaOder() {return MaOder;}
+    public void setMaOder(int maOder) {MaOder = maOder;}
+
+
+    public int getId() {
+        return Id;
     }
+    public void setId(int id) {Id = id;}
+
+
+
+    public String getMaBn() {return MaBn;}
 
     public void setMaBn(String maBn) {
         MaBn = maBn;
     }
+    public String getTenDu() {return TenDu;}
 
-    public String getTenLh() {
-        return TenLh;
-    }
-
-    public void setTenLh(String tenLh) {
-        TenLh = tenLh;
+    public void setTenDu(String tenDu) {
+        TenDu = tenDu;
     }
 
     public int getGiatien() {
@@ -39,5 +47,9 @@ public class Menu1 {
 
     public void setSoluong(int soluong) {
         Soluong = soluong;
+    }
+
+
+    public void setMaBn(int parseInt) {
     }
 }

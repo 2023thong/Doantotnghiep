@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class ServerRequest {
 
@@ -10,10 +11,13 @@ public class ServerRequest {
 
         private User1 user1;
 
+    private Thongtinoder thongtinoder;
 
+    public void setThongtinoder(Thongtinoder thongtinoder) {
+        this.thongtinoder = thongtinoder;
+    }
 
-
-        public void setOperation(String operation) {
+    public void setOperation(String operation) {
             this.operation = operation;
         }
 

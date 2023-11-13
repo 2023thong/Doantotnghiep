@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly;
+package gmail.com.qlcafepoly.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import gmail.com.qlcafepoly.ChonbanFragment;
+import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.nhanvien.Unpaid;
 
 public class NhanvienMenu extends AppCompatActivity {
 
@@ -29,8 +33,8 @@ public class NhanvienMenu extends AppCompatActivity {
                 if (item.getItemId()==R.id.trChu){
                     replaceFragment(new ChonbanFragment());
                 }
-                if (item.getItemId()==R.id.nv){
-                    replaceFragment(new QuanlyFragment());
+                if (item.getItemId()==R.id.tt){
+//                    replaceFragment(new Unpaid());
                 }
                 return true;
             }

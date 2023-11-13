@@ -118,11 +118,7 @@
                 app:hintEnabled="false">
 
                 <EditText
-<<<<<<< HEAD
-                    android:id="@+id/edTendn1"
-=======
                     android:id="@+id/edTendnnv"
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -165,11 +161,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-<<<<<<< HEAD
-                    android:id="@+id/edPass1"
-=======
                     android:id="@+id/edPassnv"
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
@@ -191,11 +183,7 @@
         android:textColor="#F44336" />
 
     <Button
-<<<<<<< HEAD
-        android:id="@+id/btnDangnhap1"
-=======
         android:id="@+id/btnNhanv"
->>>>>>> 2dc869406b2f23151f5fccc4639bab32881cfb2d
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
