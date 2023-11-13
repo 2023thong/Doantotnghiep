@@ -2,15 +2,15 @@ package gmail.com.qlcafepoly.admin;
 
 public class Menu {
     private String MaMn;
-    private String TenLh;
+    private String TenDu;
     private int Giatien;
 
     public Menu() {
     }
 
-    public Menu(String maMn, String tenLh, int giatien) {
+    public Menu(String maMn, String TenDu, int giatien) {
         MaMn = maMn;
-        TenLh = tenLh;
+        TenDu = TenDu;
         Giatien = giatien;
     }
 
@@ -22,12 +22,12 @@ public class Menu {
         MaMn = maMn;
     }
 
-    public String getTenLh() {
-        return TenLh;
+    public String getTenDu() {
+        return TenDu;
     }
 
-    public void setTenLh(String tenLh) {
-        TenLh = tenLh;
+    public void setTenDu(String tenDu) {
+        TenDu = tenDu;
     }
 
     public int getGiatien() {

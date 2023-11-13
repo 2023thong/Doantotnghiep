@@ -114,6 +114,8 @@ public class ThemNhanVien extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
+//                    startActivity(intent);
                     finish();
                 }
                 else{

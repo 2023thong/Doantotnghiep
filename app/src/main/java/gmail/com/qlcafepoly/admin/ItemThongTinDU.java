@@ -39,9 +39,9 @@ Button btnBack,btnSuaDU,btnXoaDU;
             @Override
             public void onClick(View view) {
                 String mamn = edMaMN.getText().toString();
-                String tenlh = edTenLH.getText().toString();
+                String tendu = edTenLH.getText().toString();
                 String giatien = edGiaTien.getText().toString();
-                EditMenu(mamn, tenlh, giatien);
+                EditMenu(mamn, tendu, giatien);
             }
         });
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +52,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         });
         Intent intent = getIntent();
         String MaMn = intent.getStringExtra("DULIEUDU");
-        String TenLh = intent.getStringExtra("DULIEUDU_TenLh");
+        String TenDu = intent.getStringExtra("DULIEUDU_TenDu");
         String Giatien = intent.getStringExtra("DULIEUDU_Giatien");
 
         EditText edMaMn = findViewById(R.id.edMaDU);
@@ -60,7 +60,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         EditText edGiatien = findViewById(R.id.edGiaDU);
 
         edMaMn.setText(MaMn);
-        edTenLh.setText(TenLh);
+        edTenLh.setText(TenDu);
         edGiatien.setText(Giatien);
         btnXoaDU.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-    public void EditMenu(String MaMn , String TenLh, String Giatien) {
+    public void EditMenu(String MaMn , String TenDu, String Giatien) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -99,7 +99,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Menu menu = new Menu();
         menu.setMaMn(MaMn);
-        menu.setTenLh(TenLh);
+        menu.setTenDu(TenDu);
         menu.setGiatien(Integer.parseInt(Giatien));
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.SUAMENU);

@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,8 +34,10 @@ public class DanhSachDoUong extends AppCompatActivity {
     private Menuht adepter;
     private ListView lshienthimenu;
 
-    private String urllink = "http://192.168.1.88:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.43:8080/duantotnghiep/get_all_menu.php";
     private ProgressDialog pd;
+    private TextView btnFindDU;
+    private EditText edFindDU;
     private Button btnThemDU;
     private View btnBackDU;
     private ImageView view1,icLoadMenu;
@@ -48,6 +52,8 @@ public class DanhSachDoUong extends AppCompatActivity {
         lshienthimenu.setAdapter(adepter);
         btnThemDU = findViewById(R.id.btnThemDU);
         btnBackDU = findViewById(R.id.backDSDU);
+        btnFindDU = findViewById(R.id.btnFindDU);
+        edFindDU = findViewById(R.id.edFindDU);
         icLoadMenu = findViewById(R.id.icLoadMenu);
         icLoadMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,27 +78,18 @@ public class DanhSachDoUong extends AppCompatActivity {
         btnThemDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Intent intent = new Intent(DanhSachDoUong.this, ThemDoUong.class);
-
                 startActivity(intent);
             }
         });
         btnBackDU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 finish();
 
             }
         });
     }
-
-
-
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -109,16 +106,16 @@ public class DanhSachDoUong extends AppCompatActivity {
                     for (int i = 0; i < jsonArraymenu.length(); i++) {
                         JSONObject menuObject = jsonArraymenu.getJSONObject(i);
                         Log.d("MaMn", menuObject.getString("MaMn"));
-                        Log.d("TenLh", menuObject.getString("TenLh"));
+                        Log.d("TenDu", menuObject.getString("TenDu"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
 
                         String MaNn = menuObject.getString("MaMn");
-                        String TenLh = menuObject.getString("TenLh");
+                        String TenDu = menuObject.getString("TenDu");
                         String Giatien = menuObject.getString("Giatien");
 
                         Menu menu = new Menu();
                         menu.setMaMn(MaNn);
-                        menu.setTenLh(TenLh);
+                        menu.setTenDu(TenDu);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         lsuListMenu.add(menu);
                     }
@@ -132,14 +129,6 @@ public class DanhSachDoUong extends AppCompatActivity {
             }
             return null;
         }
-
-        //        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            pd.setMessage("Đang tải dữ liệu...");
-//            pd.setCancelable(false);
-//            pd.show();
-//        }
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;

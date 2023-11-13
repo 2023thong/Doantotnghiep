@@ -8,14 +8,14 @@
     tools:context=".admin.DanhSachDoUong">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="#ED8361">
         <ImageView
             android:id="@+id/backDSDU"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/back"
+            android:src="@drawable/ic_back"
             android:layout_margin="15dp"/>
 
         <TextView
@@ -24,45 +24,67 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Drink coffee poly =))"
-            android:textSize="30sp"
-            android:textStyle="bold|italic" />
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"/>
 
         <ImageView
             android:id="@+id/icLoadMenu"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="60dp"
             android:src="@drawable/loadtab" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/icFindDU"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/boedit"
-            app:iconifiedByDefault="false"
-            app:queryHint="Tìm kiếm"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/boca"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/btnFindDU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:text="Tìm"
+                    android:textColor="#171313"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+            <EditText
+                android:id="@+id/edFindDU"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:background="@drawable/boedit"/>
+        </LinearLayout>
         <Button
             android:id="@+id/btnThemDU"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Thêm đồ uống"
+            android:layout_height="50dp"
+            android:text="Thêm món"
             android:layout_margin="10dp"
+            android:background="@drawable/boca"
             android:textSize="18dp"/>
     </LinearLayout>
 
     <ListView
         android:id="@+id/lvDSDU"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"/>
 
 </LinearLayout>

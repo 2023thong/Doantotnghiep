@@ -16,8 +16,9 @@
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".admin.ItemTimKiemNV"
+            android:exported="false" />
         <activity
             android:name=".admin.ItemThongTinNV"
             android:exported="false" />
@@ -27,11 +28,9 @@
         <activity
             android:name=".admin.DanhSachDoUong"
             android:exported="false" />
-
         <activity
             android:name=".admin.SuaNcc"
             android:exported="false" />
-
         <activity
             android:name=".admin.ThemNhaCungCap"
             android:exported="false" />
@@ -41,43 +40,27 @@
 
         <service
             android:name=".admin.CapNhatDuLieu"
-
             android:exported="false" />
 
         <activity
             android:name=".admin.Quanlynv"
             android:exported="false" />
-
         <activity
             android:name=".admin.ThemNhanVien"
             android:exported="false" />
-
-
-
-
         <activity
             android:name=".nhanvien.ListHoaDon"
             android:exported="false" />
-
         <activity
             android:name=".admin.ItemHoaDon"
             android:exported="false" />
         <activity
-
-
-
             android:name=".admin.QuanLyHoaDon"
             android:exported="false" /> <!-- <activity -->
-
-        <activity
-            android:name=".admin.ThemTraSua"
-
-            android:exported="false" />
         <activity
             android:name=".admin.ThemDoUong"
             android:exported="false" />
         <activity
-
             android:name=".dangnhap.DoiMatKhau"
             android:exported="false" />
         <activity
@@ -87,12 +70,6 @@
         <service
             android:name=".admin.CapNhatDuLieu"
             android:exported="false" />
-
-
-
-
-
-
 
         <activity
             android:name=".nhanvien.NhanvienMenu"
@@ -104,35 +81,14 @@
             android:name=".admin.ThongTinHangNhap"
             android:exported="false" />
         <activity
-            android:name=".admin.Trangmilktea"
-            android:exported="false" />
-
-        <activity
-            android:name=".admin.Trangfruit"
-            android:exported="false" />
-
-
-        <activity
             android:name=".admin.Thonhtintaikhoan"
             android:exported="false" />
-
-
         <activity
             android:name=".admin.ItemDoUong"
-
             android:exported="false" />
-
-
-
-
-
-
         <activity
             android:name=".admin.MainActivity"
             android:exported="false" />
-
-
-
         <activity
             android:name=".nhanvien.Pay"
             android:exported="false" />
@@ -141,12 +97,10 @@
             android:exported="false" />
         <activity
             android:name=".admin.KhoFragment"
-
             android:exported="false" />
         <activity
             android:name=".dangnhap.Danhnhap"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

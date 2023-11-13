@@ -35,11 +35,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
@@ -83,8 +78,8 @@ public class KhoFragment extends Fragment {
     private ProgressDialog pd;
 
 
-    private String urllink = "http://192.168.1.88:8080/duantotnghiep/thu.php";
-    private String urllink1 = "http://192.168.1.88:8080/duantotnghiep/loaihang.php";
+    private String urllink = "http://192.168.1.43:8080/duantotnghiep/thu.php";
+    private String urllink1 = "http://192.168.1.43:8080/duantotnghiep/loaihang.php";
 
 
 
@@ -306,8 +301,6 @@ public class KhoFragment extends Fragment {
             }
             return null;
         }
-
-
 
         @Override
         protected void onPostExecute(String s) {
