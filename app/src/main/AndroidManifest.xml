@@ -17,13 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <activity
-            android:name=".dangnhap.Danhnhap"
-            android:exported="false" />
 
-<!--        <service-->
-<!--            android:name=".admin.CapNhatDuLieu"-->
-<!--            android:exported="false" />-->
 
         <activity
             android:name=".nhanvien.TableActivity"
@@ -49,9 +43,7 @@
         <activity
             android:name=".admin.Suathongtinhh"
             android:exported="false" />
-        <activity
-            android:name=".nhanvien.HienthiOder"
-            android:exported="false" />
+
 
 <!--        <service-->
 <!--            android:name=".admin.CapNhatDuLieu"-->
@@ -117,7 +109,7 @@
             android:name=".admin.KhoFragment"
             android:exported="false" />
         <activity
-            android:name=".nhanvien.OderDu"
+            android:name=".dangnhap.Danhnhap"
             android:exported="true"
             >
             <intent-filter>

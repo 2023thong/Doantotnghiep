@@ -31,11 +31,11 @@
         android:layout_height="45dp"
         android:hint="Nhập mã bàn"/>
 
-    <EditText
+    <Spinner
         android:id="@+id/spnTrangthai"
         android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
-        android:hint="Trạng thái"
-        android:layout_height="45dp"/>
+        android:hint="Trạng thái" />
 
 </LinearLayout>
