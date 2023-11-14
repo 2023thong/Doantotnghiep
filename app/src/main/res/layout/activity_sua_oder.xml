@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".nhanvien.OderDu">
-
+    tools:context=".nhanvien.SuaOder">
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -27,7 +24,7 @@
                 android:text="Mã Bàn: " />
 
             <TextView
-                android:id="@+id/tvMabn"
+                android:id="@+id/tvMabnsua"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:textColor="#F44336" />
@@ -40,7 +37,7 @@
                 android:text="Mã Oder: " />
 
             <TextView
-                android:id="@+id/tvMaoder"
+                android:id="@+id/tvMaodersua"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textColor="#F44336" />
@@ -49,11 +46,11 @@
                 android:id="@+id/textView46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:text="Trạng thái:" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBoxsua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đã Trả"
@@ -103,12 +100,12 @@
             android:layout_marginBottom="1dp"
             android:text="Số lượng"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/lshienoder"
+            app:layout_constraintBottom_toTopOf="@+id/lshienodersua"
             app:layout_constraintStart_toEndOf="@+id/textView48"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvMamn0"
+            android:id="@+id/tvMamn0sua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -116,7 +113,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
-            android:id="@+id/lshienoder"
+            android:id="@+id/lshienodersua"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginTop="20dp"
@@ -151,14 +148,13 @@
                 android:id="@+id/textView47"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:text="Tổng tiền: "
                 android:textColor="#100F0F"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/TvTongtien"
+                android:id="@+id/TvTongtiensua"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:textColor="#070606"
@@ -173,24 +169,13 @@
                 android:text="VND" />
 
             <TextView
-                android:id="@+id/btnLuu"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="#8BC34A"
-                android:gravity="center"
-                android:text="Lưu"
-                android:textColor="#FBFAFA"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvOder"
+                android:id="@+id/tvOdersua"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/keoder"
                 android:gravity="center"
-                android:text="Oder"
+                android:text="Sửa Oder"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -207,7 +192,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
         <ListView
-            android:id="@+id/lshienmn"
+            android:id="@+id/lshienmnsua"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"

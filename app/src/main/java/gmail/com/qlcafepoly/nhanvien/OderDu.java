@@ -59,7 +59,9 @@ public class OderDu extends AppCompatActivity {
     private ListView lshienthioder;
 
 
-    private OderHienthi adepteroder, adepteroder2;
+
+
+    private OderHienthi adepteroder;
     private int soluongDefault = 1;
 
     private int totalAmount = 0;
@@ -69,8 +71,8 @@ public class OderDu extends AppCompatActivity {
 
     private Menu selectedMenu;
 
-    private String urllink = "http://192.168.1.102:8080/duantotnghiep/get_all_menu.php";
-    private String urllink1 = "http://192.168.1.102:8080/duantotnghiep/oder.php";
+    private String urllink = "http://172.16.53.67:8080/duantotnghiep/get_all_menu.php";
+
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
     private Menu menu;
@@ -94,18 +96,18 @@ public class OderDu extends AppCompatActivity {
         TextView Tongtien = findViewById(R.id.TvTongtien);
 
 
+        Intent intent = getIntent();
+        String maHH = intent.getStringExtra("MAODER");
+        Mabn.setText(maHH);
 
 
 
-
-
-
-
+        
         pd = new ProgressDialog(OderDu.this);
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
-        new MyAsyncTask1().execute(urllink1);
+//        new MyAsyncTask1().execute(urllink1);
 
 
         lshienthimenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -127,19 +129,22 @@ public class OderDu extends AppCompatActivity {
 
 
         TextView oder = findViewById(R.id.tvOder);
+        final boolean[] isSavedoder = {false};
         oder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
+                    if (!isSavedoder[0]) {
                     String mabn = Mabn.getText().toString();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
                     String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
 
-
                     TextView textView = findViewById(R.id.tvMaoder);
                     textView.setText(maOder);
                     String maoderd = textView.getText().toString();
+
+
 
 
 
@@ -152,35 +157,51 @@ public class OderDu extends AppCompatActivity {
 
                         ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
+                        isSavedoder[0] = true;
+                    } else {
+                        // Thông báo nếu đã lưu 1 lần
+                        Toast.makeText(getApplicationContext(), "Bạn đã oder. Bạn có thể sửa ở chi tiết oder", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
 
-                    Toast.makeText(getApplicationContext(), "Oder thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu trước kho Oder", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
         });
         TextView btnLuu = findViewById(R.id.btnLuu);
+        final boolean[] isSaved = {false}; // Biến cờ để kiểm tra trạng thái đã lưu
+
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
-                    String mabn = Mabn.getText().toString();
-                    String tongtien = Tongtien.getText().toString();
-                    String trangthai = check();
+                    if (!isSaved[0]) {
+                        String mabn = Mabn.getText().toString();
+                        String tongtien = Tongtien.getText().toString();
+                        String trangthai = check();
 
+                        SharedPreferences sharedPreferences = getSharedPreferences("menu1", Context.MODE_PRIVATE);
+                        String maOder1 = sharedPreferences.getString("MaMn", ""); // The second parameter is the default value if the key is not found
 
-                    for (Menu selectedMenu : selectedMenus) {
-                        String menu = selectedMenu.getMaMn();
+                        TextView Mamn = findViewById(R.id.tvMamn0);
+                        Mamn.setText(maOder1);
+
+                        String menu = Mamn.getText().toString();
 
                         ThemOder(mabn, tongtien, menu, trangthai);
 
+                        // Đánh dấu rằng đã lưu
+                        isSaved[0] = true;
+                    } else {
+                        // Thông báo nếu đã lưu 1 lần
+                        Toast.makeText(getApplicationContext(), "Bạn đã lưu rồi. Bạn vui lòng oder", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Vui lòng chọn đồ uống trước khi Lưu", Toast.LENGTH_SHORT).show();
                 }
-                    else {
-
-                    Toast.makeText(getApplicationContext(), "Vui lòng chọn đồ uống trước khi oder", Toast.LENGTH_SHORT).show();
-                }
-
-
             }
         });
 
@@ -210,6 +231,13 @@ public class OderDu extends AppCompatActivity {
                         String MaMn = menuObject.getString("MaMn");
                         String TenDu = menuObject.getString("TenDu");
                         String Giatien = menuObject.getString("Giatien");
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("menu1", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("MaMn", MaMn);  // Replace "TenDn" with your key and TenDn with the value you want to store
+                        editor.apply();
+
+
 
                         Menu menu = new Menu();
                         menu.setMaMn(MaMn);
@@ -262,7 +290,7 @@ public class OderDu extends AppCompatActivity {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.itemoder, parent, false);
             }
-            TextView mamn = convertView.findViewById(R.id.tvMaMn1);
+//            TextView mamn = convertView.findViewById(R.id.tvMaMn1);
             TextView customTextView = convertView.findViewById(R.id.tvTenoder1);
             TextView customTextView1 = convertView.findViewById(R.id.tvGiaDuOder1);
             ImageView imageXoa = convertView.findViewById(R.id.imgXoa1);
@@ -275,7 +303,7 @@ public class OderDu extends AppCompatActivity {
 
 
 
-            mamn.setText(menu.getMaMn());
+//            mamn.setText(menu.getMaMn());
             customTextView.setText(menu.getTenLh());
             customTextView1.setText(String.valueOf(menu.getGiatien()));
 
@@ -451,7 +479,6 @@ public class OderDu extends AppCompatActivity {
                     editor.apply();  // or editor.commit() to save the data
 
 
-
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -496,6 +523,8 @@ public class OderDu extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(OderDu.this, SuaOder.class);
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -509,63 +538,66 @@ public class OderDu extends AppCompatActivity {
 
         });
     }
-    private class MyAsyncTask1 extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-                String strJson = readJsonOnline(strings[0]);
-                Log.d("//====", strJson);
-
-                JSONObject jsonObject = new JSONObject(strJson);
-                int success = jsonObject.getInt("success");
-                if (success == 1) {
-                    JSONArray jsonArraymenu = jsonObject.getJSONArray("oder");
-                    Log.d("//=====size===", jsonArraymenu.length() + "");
-
-                    for (int i = 0; i < jsonArraymenu.length(); i++) {
-                        JSONObject menuObject = jsonArraymenu.getJSONObject(i);
-                        Log.d("MaOder", menuObject.getString("MaOder"));
-
-
-
-                        String MaOder = menuObject.getString("MaOder");
-
-                        Oder oder1 = new Oder();
-                        oder1.setMaOder(MaOder);
-
-                        oder2.add(oder1);
-                    }
-                } else {
-                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
-                }
-            } catch (JSONException e) {
-                Log.d("Error: ", e.toString());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            return null;
-        }
-
-        public String readJsonOnline(String linkUrl) {
-            HttpURLConnection connection = null;
-            BufferedReader bufferedReader = null;
-            StringBuilder stringBuilder = new StringBuilder();
-            try {
-                URL url = new URL(linkUrl);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
-                InputStream inputStream = connection.getInputStream();
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line + "\n");
-                }
-                return stringBuilder.toString();
-            } catch (Exception ex) {
-                Log.d("Error: ", ex.toString());
-            }
-            return null;
-        }
+//    private class MyAsyncTask1 extends AsyncTask<String, Void, String> {
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            try {
+//                String strJson = readJsonOnline(strings[0]);
+//                Log.d("//====", strJson);
+//
+//                JSONObject jsonObject = new JSONObject(strJson);
+//                int success = jsonObject.getInt("success");
+//                if (success == 1) {
+//                    JSONArray jsonArraymenu = jsonObject.getJSONArray("oder");
+//                    Log.d("//=====size===", jsonArraymenu.length() + "");
+//
+//                    for (int i = 0; i < jsonArraymenu.length(); i++) {
+//                        JSONObject menuObject = jsonArraymenu.getJSONObject(i);
+//                        Log.d("MaOder", menuObject.getString("MaOder"));
+//
+//
+//
+//                        String MaOder = menuObject.getString("MaOder");
+//
+//                        Oder oder1 = new Oder();
+//                        oder1.setMaOder(MaOder);
+//
+//                        oder2.add(oder1);
+//                    }
+//                } else {
+//                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
+//                }
+//            } catch (JSONException e) {
+//                Log.d("Error: ", e.toString());
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+//            return null;
+//        }
+//
+//        public String readJsonOnline(String linkUrl) {
+//            HttpURLConnection connection = null;
+//            BufferedReader bufferedReader = null;
+//            StringBuilder stringBuilder = new StringBuilder();
+//            try {
+//                URL url = new URL(linkUrl);
+//                connection = (HttpURLConnection) url.openConnection();
+//                connection.connect();
+//                InputStream inputStream = connection.getInputStream();
+//                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+//                String line = "";
+//                while ((line = bufferedReader.readLine()) != null) {
+//                    stringBuilder.append(line + "\n");
+//                }
+//                return stringBuilder.toString();
+//            } catch (Exception ex) {
+//                Log.d("Error: ", ex.toString());
+//            }
+//            return null;
+//        }
+//    }
+    public void thoatoder(View view){
+        finish();
     }
 
 

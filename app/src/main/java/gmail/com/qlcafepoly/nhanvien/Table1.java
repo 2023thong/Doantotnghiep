@@ -1,5 +1,8 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+
+
+
 import static android.content.Intent.getIntent;
 
 import android.content.Context;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -47,6 +51,16 @@ public class Table1 extends BaseAdapter {
         TextView txtMabn = convertView.findViewById(R.id.txtMabn);
         TextView txtTthai = convertView.findViewById(R.id.txtTthai);
 
+        Button button = convertView.findViewById(R.id.themOrder);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), OderDu.class);
+                intent.putExtra("MAODER", ban.getMaBn());
+                view.getContext().startActivity(intent);
+            }
+        });
+
         txtTenbn.setText(ban.getTenBan());
         txtMabn.setText(ban.getMaBn());
 
@@ -65,3 +79,4 @@ public class Table1 extends BaseAdapter {
         return convertView;
     }
 }
+

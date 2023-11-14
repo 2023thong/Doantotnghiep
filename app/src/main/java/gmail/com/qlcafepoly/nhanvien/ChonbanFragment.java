@@ -62,7 +62,8 @@ public class ChonbanFragment extends Fragment {
         quaTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TableActivity.class);
+                Intent intent = new Intent(view.getContext(), TableActivity.class);
+
                 startActivity(intent);
             }
         });

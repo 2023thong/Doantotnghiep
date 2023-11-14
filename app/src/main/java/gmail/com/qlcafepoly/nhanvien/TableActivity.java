@@ -54,7 +54,9 @@ public class TableActivity extends AppCompatActivity {
     FloatingActionButton themban;
     ImageView backban;
     private ListView lsban;
-    private String urllink = "http://192.168.1.102:8080/duantotnghiep/thongtinban.php";
+
+    private String urllink = "http://172.16.53.67:8080/duantotnghiep/thongtinban.php";
+
 
     private ProgressDialog pd;
     private Spinner spnTrangthai;

@@ -59,7 +59,7 @@ public class OderHienthi extends BaseAdapter {
         TextView tvTenLh = convertView.findViewById(R.id.tvTenDuoder);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiaDuOder);
 
-        tvMenu.setText(menu.getMaMn());
+//        tvMenu.setText(menu.getMaMn());
         tvTenLh.setText(menu.getTenLh());
         tvGiatien.setText(String.valueOf(menu.getGiatien()));
 
