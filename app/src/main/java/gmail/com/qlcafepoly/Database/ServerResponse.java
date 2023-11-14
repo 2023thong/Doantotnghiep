@@ -4,8 +4,12 @@ import gmail.com.qlcafepoly.admin.LoaiHang;
 import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+
 import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.nhanvien.Oder;
+
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
+
 
 public class ServerResponse {
     private String result;
@@ -41,8 +45,16 @@ public class ServerResponse {
     private String Diachi;
     private String Sdt;
 
+
     public User2 getUser2() {
         return user2;
+    }
+
+    private Thongtinoder thongtinoder;
+
+    public Thongtinoder getThongtinoder() {
+        return thongtinoder;
+
     }
 
     public String getTenNv() {

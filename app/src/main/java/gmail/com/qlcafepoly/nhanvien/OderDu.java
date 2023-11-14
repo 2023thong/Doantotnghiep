@@ -538,64 +538,7 @@ public class OderDu extends AppCompatActivity {
 
         });
     }
-//    private class MyAsyncTask1 extends AsyncTask<String, Void, String> {
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            try {
-//                String strJson = readJsonOnline(strings[0]);
-//                Log.d("//====", strJson);
-//
-//                JSONObject jsonObject = new JSONObject(strJson);
-//                int success = jsonObject.getInt("success");
-//                if (success == 1) {
-//                    JSONArray jsonArraymenu = jsonObject.getJSONArray("oder");
-//                    Log.d("//=====size===", jsonArraymenu.length() + "");
-//
-//                    for (int i = 0; i < jsonArraymenu.length(); i++) {
-//                        JSONObject menuObject = jsonArraymenu.getJSONObject(i);
-//                        Log.d("MaOder", menuObject.getString("MaOder"));
-//
-//
-//
-//                        String MaOder = menuObject.getString("MaOder");
-//
-//                        Oder oder1 = new Oder();
-//                        oder1.setMaOder(MaOder);
-//
-//                        oder2.add(oder1);
-//                    }
-//                } else {
-//                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
-//                }
-//            } catch (JSONException e) {
-//                Log.d("Error: ", e.toString());
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//            return null;
-//        }
-//
-//        public String readJsonOnline(String linkUrl) {
-//            HttpURLConnection connection = null;
-//            BufferedReader bufferedReader = null;
-//            StringBuilder stringBuilder = new StringBuilder();
-//            try {
-//                URL url = new URL(linkUrl);
-//                connection = (HttpURLConnection) url.openConnection();
-//                connection.connect();
-//                InputStream inputStream = connection.getInputStream();
-//                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-//                String line = "";
-//                while ((line = bufferedReader.readLine()) != null) {
-//                    stringBuilder.append(line + "\n");
-//                }
-//                return stringBuilder.toString();
-//            } catch (Exception ex) {
-//                Log.d("Error: ", ex.toString());
-//            }
-//            return null;
-//        }
-//    }
+
     public void thoatoder(View view){
         finish();
     }

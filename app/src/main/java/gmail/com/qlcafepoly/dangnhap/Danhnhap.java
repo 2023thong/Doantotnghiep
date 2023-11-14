@@ -56,7 +56,8 @@ public class Danhnhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDn = findViewById(R.id.btnNhanv);
+        btnDn = findViewById(R.id.btnDangnhap1);
+
         btnDn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

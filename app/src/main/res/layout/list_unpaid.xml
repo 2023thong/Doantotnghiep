@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="120dp"
+        android:background="@drawable/background_click"
+        tools:ignore="MissingConstraints,UselessLeaf"
+        >
+
+        <LinearLayout
+            android:id="@+id/llMsBn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tvMSBan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+
+                android:text="Mã số bàn: "
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="HardcodedText,SpUsage"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/tvbantrong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnxemdanhsachban"
+            android:layout_width="70dp"
+            android:onClick="btnxemdanhsachban"
+            android:layout_height="40dp"
+            android:backgroundTint="#FFC107"
+            android:text="xem"
+            android:textSize="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.946"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.125"
+
+            tools:ignore="HardcodedText,SpUsage" />
+
+        <LinearLayout
+            android:id="@+id/llMaOder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/llMsBn"
+            >
+            <TextView
+                android:id="@+id/tvSoBan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:text="Mã oder:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llMsBn"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tvMaOder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llTongtien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="1dp"
+            app:layout_constraintStart_toStartOf="@+id/llMaOder"
+            app:layout_constraintTop_toBottomOf="@+id/llMaOder"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng tiền:"
+                android:layout_marginLeft="10dp"
+                tools:ignore="HardcodedText"
+               />
+            <TextView
+                android:id="@+id/tvTongtien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:textSize="16dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="đ"
+                android:layout_marginLeft="4dp"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnThanhToan"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginEnd="111dp"
+
+            android:backgroundTint="#4DE36E"
+            android:gravity="center"
+            android:text="Thanh toán"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llTongtien"
+            tools:ignore="HardcodedText,SpUsage" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</LinearLayout>

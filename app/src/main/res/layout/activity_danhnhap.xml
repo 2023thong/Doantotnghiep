@@ -114,6 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
 
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
@@ -122,6 +123,7 @@
                     android:ems="10"
                     android:hint="Management login name"
                     android:inputType="text" />
+
 
 
 
@@ -154,7 +156,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edPassnv"
+                    android:id="@+id/edPass1"
                     android:layout_width="match_parent"
 
 
@@ -201,7 +203,7 @@
         android:textColor="#F44336" />
 
     <Button
-        android:id="@+id/btnNhanv"
+        android:id="@+id/btnDangnhap1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

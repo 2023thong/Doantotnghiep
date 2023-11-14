@@ -34,7 +34,9 @@ public class DanhsachFragment extends Fragment {
     private MenuDU menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
+
     private String urllink = "http://172.16.53.67:8080/duantotnghiep/thongtintk.php";
+
 
     private ProgressDialog pd;
 
@@ -44,7 +46,7 @@ public class DanhsachFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_danhsach_fragment, container, false);
-        imageView = view.findViewById(R.id.imgnuoc);
+//        imageView = view.findViewById(R.id.imgnuoc);
         lsMenuSql = view.findViewById(R.id.lsmenudu);
         menudu = new MenuDU(getActivity(), menuList1);
         lsMenuSql.setAdapter(menudu);

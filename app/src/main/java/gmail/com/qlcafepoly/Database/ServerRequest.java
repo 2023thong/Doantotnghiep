@@ -4,9 +4,12 @@ import gmail.com.qlcafepoly.admin.LoaiHang;
 import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+
 import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.model.Ban;
 import gmail.com.qlcafepoly.nhanvien.Oder;
+
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class ServerRequest {
 
@@ -21,6 +24,8 @@ public class ServerRequest {
     private LoaiHang loaihang;
     private Oder oder1;
 
+    private Thongtinoder thongtinoder;
+
 
     public void setOder1(Oder oder1) {
         this.oder1 = oder1;
@@ -33,6 +38,13 @@ public class ServerRequest {
     public void setUser2(User2 user2) {
         this.user2 = user2;
     }
+
+    public void setThongtinoder(Thongtinoder thongtinoder) {
+        this.thongtinoder = thongtinoder;
+    }
+
+
+
 
     public void setOperation(String operation) {
         this.operation = operation;

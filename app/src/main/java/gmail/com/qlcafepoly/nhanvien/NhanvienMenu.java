@@ -1,5 +1,6 @@
-
 package gmail.com.qlcafepoly.nhanvien;
+
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,13 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+
 import gmail.com.qlcafepoly.R;
+
+
+import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.nhanvien.Unpaid;
+
 
 public class NhanvienMenu extends AppCompatActivity {
 
@@ -29,16 +36,32 @@ public class NhanvienMenu extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()==R.id.trChu){
+                if (item.getItemId()==R.id.trChu) {
                     replaceFragment(new ChonbanFragment());
                 }
+
                 if (item.getItemId()==R.id.nv){
-//                    replaceFragment(new QuanlyFragment());
+
+                }
+
+                if (item.getItemId()==R.id.tt){
+//                    replaceFragment(new Unpaid());
+
                 }
                 return true;
-            }
-        });
+
+
+        }
+
+
+
+
+            });
     }
+
+
+
+
 
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -46,4 +69,5 @@ public class NhanvienMenu extends AppCompatActivity {
         fragmentTransaction.replace(R.id.framg1, fragment);
         fragmentTransaction.commit();
     }
+
 }

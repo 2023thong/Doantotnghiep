@@ -83,7 +83,7 @@ public class CanhanFragment extends Fragment {
 
         textView.setText(Tennv);
 
-        String imageUrl = "http://192.168.1.78:8080/duantotnghiep/layhinhanh.php?MaNv=" +Manv;
+        String imageUrl = "http://172.16.53.67:8080/duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         ImageRequest imageRequest = new ImageRequest(
                 imageUrl,

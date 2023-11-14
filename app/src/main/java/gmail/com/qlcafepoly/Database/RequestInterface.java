@@ -5,9 +5,13 @@ import gmail.com.qlcafepoly.admin.LoaiHang;
 import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
+
 import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.model.Ban;
 import gmail.com.qlcafepoly.nhanvien.Oder;
+
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -23,14 +27,19 @@ public interface RequestInterface {
 
         private User1 user1;
         private User user;
+
         private Ban ban;
 
         private User2 user2;
         private Oder oder1;
         private Menu menu;
 
+        private Thongtinoder thongtinoder;
 
 
+        public void setThongtinoder(Thongtinoder thongtinoder) {
+            this.thongtinoder = thongtinoder;
+        }
 
 
         private LoaiHang loaihang;
