@@ -71,14 +71,14 @@ public class Unpaid1 extends BaseAdapter {
 
 
 
-        int trangThai = thongtinoder.getTrangthai();
+        int trangThai = thongtinoder.getTrangThai();
         if (trangThai == 0) {
 
 
             // Gán giá trị cho các TextView
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-            tongTien.setText(String.valueOf(thongtinoder.getTongtien()));
+            tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
         }
 //        if (trangThai == 1){
 //
@@ -113,7 +113,7 @@ public class Unpaid1 extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // Xử lý khi nhấn vào btnThanhToan
-                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+
                 if(context instanceof Unpaid){
                     ((Unpaid) context).Dangnhap(String.valueOf(thongtinoder.getMaOder()), "1");
 

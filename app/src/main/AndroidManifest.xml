@@ -27,11 +27,14 @@
             android:name=".nhanvien.ListUnpaid"
             android:exported="false" />
         <activity
-            android:name=".dangnhap.Dangnhapnhanvien"
+            android:name=".nhanvien.Unpaid"
+            android:exported="false" />
+        <activity
+            android:name=".admin.NhanvienMenu"
             android:exported="false" />
 
         <activity
-            android:name=".nhanvien.Unpaid"
+            android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
