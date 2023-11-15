@@ -11,11 +11,14 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -53,7 +56,7 @@ public class TableActivity extends AppCompatActivity {
     FloatingActionButton themban;
     ImageView backban;
     private ListView lsban;
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thongtinban.php";
+    private String urllink = "http://192.168.1.51:8080/duantotnghiep/thongtinban.php";
 
     private ProgressDialog pd;
     private Spinner spnTrangthai;
@@ -239,8 +242,28 @@ public class TableActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
             }
         });
-
         AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                positiveButton.setTextColor(getResources().getColor(R.color.teal_200));
+                negativeButton.setTextColor(getResources().getColor(R.color.teal_200));
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                params.gravity = Gravity.END;
+                positiveButton.setLayoutParams(params);
+
+                params.gravity = Gravity.START;
+                negativeButton.setLayoutParams(params);
+            }
+        });
         alertDialog.show();
     }
     private String getTrangThaiValue(int selectedItemPosition) {

@@ -34,7 +34,7 @@ public class DanhsachFragment extends Fragment {
     private MenuDU menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thongtintk.php";
+    private String urllink = "http://192.168.1.51:8080/duantotnghiep/thongtintk.php";
 
     private ProgressDialog pd;
 
@@ -81,12 +81,12 @@ public class DanhsachFragment extends Fragment {
                     for (int i = 0; i < jsonArraymenu.length(); i++) {
                         JSONObject menuObject = jsonArraymenu.getJSONObject(i);
 //                        Log.d("MaMn", menuObject.getString("MaMn"));
-                        Log.d("TenLh", menuObject.getString("TenLh"));
+                        Log.d("TenDu", menuObject.getString("TenDu"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
 
 
 //                        String MaMn = menuObject.getString("MaMn");
-                        String TenLh = menuObject.getString("TenLh");
+                        String TenLh = menuObject.getString("TenDu");
                         String Giatien = menuObject.getString("Giatien");
 
 
