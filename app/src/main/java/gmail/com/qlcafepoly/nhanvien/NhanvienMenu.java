@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -40,11 +42,14 @@ public class NhanvienMenu extends AppCompatActivity {
                     replaceFragment(new ChonbanFragment());
                 }
 
-                if (item.getItemId()==R.id.nv){
+                if (item.getItemId()==R.id.tt){
+                    Intent intent = new Intent(NhanvienMenu.this, Unpaid.class);
+                    startActivity(intent);
+
 
                 }
 
-                if (item.getItemId()==R.id.tt){
+                if (item.getItemId()==R.id.nv){
 //                    replaceFragment(new Unpaid());
 
                 }

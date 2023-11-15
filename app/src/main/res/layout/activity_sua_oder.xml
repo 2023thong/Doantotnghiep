@@ -148,6 +148,7 @@
                 android:id="@+id/textView47"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
                 android:text="Tổng tiền: "
                 android:textColor="#100F0F"
                 android:textSize="16sp"
@@ -157,6 +158,7 @@
                 android:id="@+id/TvTongtiensua"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
                 android:textColor="#070606"
                 android:textSize="16sp"
                 android:textStyle="bold" />

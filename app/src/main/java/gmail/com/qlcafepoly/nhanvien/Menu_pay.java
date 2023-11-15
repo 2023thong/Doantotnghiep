@@ -31,10 +31,10 @@ public class Menu_pay extends AppCompatActivity {
     private TextView tvchuathanhtoan;
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://192.168.1.74:8080/duantotnghiep/thongtinctoder.php";
-    private String urllink = "http://192.168.1.74:8080/duantotnghiep/thongtinctoder.php?maOder=-1";
+    private String base_url = "http://192.168.1.100:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
-    private int maOder = -1; // Mặc định không có mã Oder
+    private int MaOder = -1; // Mặc định không có mã Oder
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,11 +43,11 @@ public class Menu_pay extends AppCompatActivity {
         setContentView(R.layout.activity_menu_pay);
 
         // Lấy tham số maOder từ Intent nếu tồn tại
-        maOder = getIntent().getIntExtra("maOder", -1);
+        MaOder = getIntent().getIntExtra("MaOder", -1);
 
         // Cập nhật URL nếu có mã Oder
-        if (maOder != -1) {
-            urllink = base_url + "?maOder=" + maOder;
+        if (MaOder != -1) {
+            urllink = base_url + "?MaOder=" + MaOder;
         }
 
         imageView = findViewById(R.id.img_Douong);

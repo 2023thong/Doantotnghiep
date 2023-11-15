@@ -7,17 +7,25 @@ public class Thongtinoder implements Serializable {
     private String MaBn;
     private String formattedTongtien; // Thêm thuộc tính mới
     int tratien;
-    private int Trangthai;
+    private int TrangThai;
 
-
-    // Getter và setter cho Trangthai
-    public int getTrangthai() {
-        return Trangthai;
+    public int getTrangThai() {
+        return TrangThai;
     }
 
-    public void setTrangthai(int trangthai) {
-        Trangthai = trangthai;
+    public void setTrangThai(int trangThai) {
+        TrangThai = trangThai;
     }
+
+    public int getTongTien() {
+        return TongTien;
+    }
+
+    public void setTongTien(int tongTien) {
+        TongTien = tongTien;
+    }
+// Getter và setter cho Trangthai
+
 
     public void setTratien(int tratien) {
         this.tratien = tratien;
@@ -39,15 +47,9 @@ public class Thongtinoder implements Serializable {
         MaBn = maBn;
     }
 
-    public int getTongtien() {
-        return Tongtien;
-    }
 
-    public void setTongtien(int tongtien) {
-        Tongtien = tongtien;
-    }
 
-    private int Tongtien;
+    private int TongTien;
 
     public int getTratien() {
         return tratien;

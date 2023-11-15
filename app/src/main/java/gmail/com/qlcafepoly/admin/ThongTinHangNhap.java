@@ -55,7 +55,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
 
 
-    private String urllink = "http://172.16.53.67:8080/duantotnghiep/get_all_product.php";
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_product.php";
 
 
 

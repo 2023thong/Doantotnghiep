@@ -47,7 +47,7 @@ public class Pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lv_listpay;
-    private String urllink = "http://192.168.1.74:8080/duantotnghiep/thongtinoder.php";
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
     TextView tvchuathanhtoan;
 
@@ -102,13 +102,13 @@ public class Pay extends AppCompatActivity {
                         JSONObject PayObject = jsonArrayPay.getJSONObject(i);
                         Log.d("MaOder", PayObject.getString("MaOder"));
                         Log.d("MaBn", PayObject.getString("MaBn"));
-                        Log.d("Tongtien", PayObject.getString("Tongtien"));
+                        Log.d("TongTien", PayObject.getString("TongTien"));
                         String MaOder = PayObject.getString("MaOder");
                         String MaBn = PayObject.getString("MaBn");
 
-                        int Trangthai = PayObject.getInt("Trangthai");
-                        String Tongtien = PayObject.getString("Tongtien");
-                        String traTien = PayObject.getString("Trangthai");
+                        int TrangThai = PayObject.getInt("TrangThai");
+                        String Tongtien = PayObject.getString("TongTien");
+                        String traTien = PayObject.getString("TrangThai");
 
                         // Áp dụng định dạng giá tiền
                         DecimalFormat decimalFormat = new DecimalFormat("#,##0.###");
@@ -119,8 +119,8 @@ public class Pay extends AppCompatActivity {
 
                         thongtinoder.setMaOder(Integer.parseInt(MaOder));
                         thongtinoder.setMaBn(new String(MaBn));
-                        thongtinoder.setTrangthai(Trangthai);
-                        thongtinoder.setTongtien(Integer.parseInt(Tongtien));
+                        thongtinoder.setTrangThai(TrangThai);
+                        thongtinoder.setTongTien(Integer.parseInt(Tongtien));
                         thongtinoder.setFormattedTongtien(formattedTongtien);
                         thongtinoder.setTratien(Integer.parseInt(traTien));
                         listPay.add(thongtinoder);
@@ -168,10 +168,10 @@ public class Pay extends AppCompatActivity {
 
     }
 
-    public void btnxemdanhsachban(int maOder) {
+    public void btnxemdanhsachban(int MaOder) {
         // Tạo một Intent và truyền tham số maOder
         Intent intent = new Intent(getApplicationContext(), Menu_pay.class);
-        intent.putExtra("maOder", maOder);
+        intent.putExtra("MaOder", MaOder);
         startActivity(intent);
     }
     public void Dangnhap(final String MaOder , String Matkhau) {
@@ -182,7 +182,7 @@ public class Pay extends AppCompatActivity {
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Thongtinoder user = new Thongtinoder();
         user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangthai(Integer.parseInt(Matkhau));
+        user.setTrangThai(Integer.parseInt(Matkhau));
 
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.THANHTOAN);

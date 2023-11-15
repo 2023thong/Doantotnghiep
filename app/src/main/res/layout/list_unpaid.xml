@@ -7,21 +7,21 @@
     android:padding="10dp"
     android:orientation="vertical"
     android:layout_height="wrap_content">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_gravity="center"
         android:layout_width="350dp"
-        android:layout_height="120dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
         android:background="@drawable/background_click"
-        tools:ignore="MissingConstraints,UselessLeaf"
-        >
+        tools:ignore="MissingConstraints,UselessLeaf">
 
         <LinearLayout
             android:id="@+id/llMsBn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/tvMSBan1"
                 android:layout_width="wrap_content"
@@ -47,9 +47,9 @@
         <Button
             android:id="@+id/btnxemdanhsachban"
             android:layout_width="70dp"
-            android:onClick="btnxemdanhsachban"
             android:layout_height="40dp"
             android:backgroundTint="#FFC107"
+            android:onClick="btnxemdanhsachban"
             android:text="xem"
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,10 +65,10 @@
             android:id="@+id/llMaOder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="1dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/llMsBn"
-            >
+            android:padding="1dp"
+            app:layout_constraintTop_toBottomOf="@+id/llMsBn">
+
             <TextView
                 android:id="@+id/tvSoBan1"
                 android:layout_width="wrap_content"
@@ -78,11 +78,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llMsBn"
                 tools:ignore="HardcodedText" />
+
             <TextView
-                android:layout_marginLeft="10dp"
                 android:id="@+id/tvMaOder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
 
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -100,28 +101,37 @@
             app:layout_constraintTop_toBottomOf="@+id/llMaOder"
 
             >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng tiền:"
                 android:layout_marginLeft="10dp"
-                tools:ignore="HardcodedText"
-               />
+                android:text="Tổng tiền:"
+                tools:ignore="HardcodedText" />
+
             <TextView
                 android:id="@+id/tvTongtien"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:textSize="16dp"
-                />
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:fontFamily="sans-serif-light"
                 android:text="đ"
-                android:layout_marginLeft="4dp"
-                android:textSize="16dp"/>
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btnSuaoder"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="70dp"
+                android:text="Sửa"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

@@ -55,12 +55,12 @@ public class Pay1 extends BaseAdapter {
                 ((Pay) context).btnxemdanhsachban(maOder);
             }
         });
-        int trangThai = thongtinoder.getTrangthai();
+        int trangThai = thongtinoder.getTrangThai();
         if (trangThai == 1) {
             tvTrangThai.setText("Đã thanh toán");
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-            tongTien.setText(String.valueOf(thongtinoder.getTongtien()));
+            tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
         } else {
             // Nếu trạng thái không phải 1, ẩn convertView
             convertView.setVisibility(View.GONE);

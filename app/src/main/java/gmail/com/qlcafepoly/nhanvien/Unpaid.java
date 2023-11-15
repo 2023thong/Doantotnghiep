@@ -49,7 +49,7 @@ public class Unpaid extends AppCompatActivity {
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
-    private String urllink = "http://192.168.1.74:8080/duantotnghiep/thutrangthai.php";
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/trangthaithanhtoan.php";
     private ProgressDialog pd;
 
 
@@ -117,19 +117,20 @@ public class Unpaid extends AppCompatActivity {
                         JSONObject PayObject = jsonArrayPay.getJSONObject(i);
                         Log.d("MaOder", PayObject.getString("MaOder"));
                         Log.d("MaBn", PayObject.getString("MaBn"));
-                        Log.d("Tongtien", PayObject.getString("Tongtien"));
+                        Log.d("TongTien", PayObject.getString("TongTien"));
+                        Log.d("TrangThai", PayObject.getString("TrangThai"));
                         String MaOder = PayObject.getString("MaOder");
                         String MaBn = PayObject.getString("MaBn");
 
-                        int Trangthai = PayObject.getInt("Trangthai");
-                        String Tongtien = PayObject.getString("Tongtien");
-                        String traTien = PayObject.getString("Trangthai");
+                        int TrangThai = PayObject.getInt("TrangThai");
+                        String Tongtien = PayObject.getString("TongTien");
+                        String traTien = PayObject.getString("TrangThai");
                         Thongtinoder thongtinoder = new Thongtinoder();
                         thongtinoder.setMaOder(Integer.parseInt(MaOder));
                         thongtinoder.setMaBn(new String(MaBn));
 
-                        thongtinoder.setTrangthai(Trangthai);
-                        thongtinoder.setTongtien(Integer.parseInt(Tongtien));
+                        thongtinoder.setTrangThai(TrangThai);
+                        thongtinoder.setTongTien(Integer.parseInt(Tongtien));
                         thongtinoder.setTratien(Integer.parseInt(traTien));
                         listUnpaid.add(thongtinoder);
                     }
@@ -178,10 +179,10 @@ public class Unpaid extends AppCompatActivity {
         }
     }
 
-    public void btnxemdanhsachban(int maOder) {
+    public void btnxemdanhsachban(int MaOder) {
         // Tạo một Intent và truyền tham số maOder
         Intent intent = new Intent(getApplicationContext(), Menu_pay.class);
-        intent.putExtra("maOder", maOder);
+        intent.putExtra("MaOder", MaOder);
         startActivity(intent);
     }
     public void Dangnhap(final String MaOder , String Matkhau) {
@@ -192,7 +193,7 @@ public class Unpaid extends AppCompatActivity {
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Thongtinoder user = new Thongtinoder();
         user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangthai(Integer.parseInt(Matkhau));
+        user.setTrangThai(Integer.parseInt(Matkhau));
 
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.THANHTOAN);
@@ -223,5 +224,6 @@ public class Unpaid extends AppCompatActivity {
         });
 
     }
+
 
 }

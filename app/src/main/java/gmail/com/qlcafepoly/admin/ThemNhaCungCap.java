@@ -52,10 +52,7 @@ public class ThemNhaCungCap extends AppCompatActivity {
     private ListView lshienthi;
     private ProgressDialog pd;
 
-    private String urllink = "http://192.168.1.78:8080/duantotnghiep/thu.php";
-
-
-
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thu.php";
 
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})

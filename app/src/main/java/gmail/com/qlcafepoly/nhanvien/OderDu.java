@@ -71,7 +71,7 @@ public class OderDu extends AppCompatActivity {
 
     private Menu selectedMenu;
 
-    private String urllink = "http://172.16.53.67:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -129,48 +129,44 @@ public class OderDu extends AppCompatActivity {
 
 
         TextView oder = findViewById(R.id.tvOder);
-        final boolean[] isSavedoder = {false};
+
         oder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
-                    if (!isSavedoder[0]) {
-                    String mabn = Mabn.getText().toString();
 
-                    SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
-                    String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
+                        String mabn = Mabn.getText().toString();
 
-                    TextView textView = findViewById(R.id.tvMaoder);
-                    textView.setText(maOder);
-                    String maoderd = textView.getText().toString();
+                        SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
+                        String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
+
+                        TextView textView = findViewById(R.id.tvMaoder);
+                        textView.setText(maOder);
+                        String maoderd = textView.getText().toString();
+
+                        for (Menu selectedMenu : selectedMenus) {
+                            String tendu = selectedMenu.getTenLh();
+                            String sl = String.valueOf(selectedMenu.getSoluong());
+                            String gia = String.valueOf(selectedMenu.getGiatien());
+
+                            ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
+                        }
+
+                        // Move the removal of "Maoder" outside the loop
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("Maoder");
+                        editor.apply();
 
 
-
-
-
-
-                    for (Menu selectedMenu : selectedMenus) {
-
-                        String tendu = selectedMenu.getTenLh();
-                        String sl = String.valueOf(selectedMenu.getSoluong());
-                        String gia = String.valueOf(selectedMenu.getGiatien());
-
-                        ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
-                    }
-                        isSavedoder[0] = true;
-                    } else {
-                        // Thông báo nếu đã lưu 1 lần
-                        Toast.makeText(getApplicationContext(), "Bạn đã oder. Bạn có thể sửa ở chi tiết oder", Toast.LENGTH_SHORT).show();
-                    }
 
                 } else {
-
-                    Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu trước kho Oder", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
-        });
+
+
+    });
         TextView btnLuu = findViewById(R.id.btnLuu);
         final boolean[] isSaved = {false}; // Biến cờ để kiểm tra trạng thái đã lưu
 
@@ -188,10 +184,15 @@ public class OderDu extends AppCompatActivity {
 
                         TextView Mamn = findViewById(R.id.tvMamn0);
                         Mamn.setText(maOder1);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("MaMn");
+                        editor.apply();
 
                         String menu = Mamn.getText().toString();
 
                         ThemOder(mabn, tongtien, menu, trangthai);
+
+
 
                         // Đánh dấu rằng đã lưu
                         isSaved[0] = true;
@@ -523,7 +524,7 @@ public class OderDu extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(OderDu.this, SuaOder.class);
+                    Intent intent = new Intent(OderDu.this, Unpaid.class);
                     startActivity(intent);
 
                 } else {
