@@ -123,6 +123,10 @@ public class Unpaid1 extends BaseAdapter {
 
                 // Start the new activity
                 context.startActivity(intent);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("menu1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
+                editor.apply();
             }
         });
 

@@ -7,15 +7,25 @@ public class Menu {
 
     private int soluong;
     private int Giatientd;
+    private int MaOder;
 
+    public int getMaOder() {
+        return MaOder;
+    }
+
+    public void setMaOder(int maOder) {
+        MaOder = maOder;
+    }
 
     public Menu() {
     }
 
-    public Menu(String maMn, String tenLh, int giatien , int soluong) {
+    public Menu(String maMn, String tenLh, int giatien , int soluong, int maOder) {
         MaMn = maMn;
         TenLh = tenLh;
         Giatien = giatien;
+        MaOder = maOder;
+
         this.soluong = soluong;
         this.Giatientd = giatien * soluong;
     }

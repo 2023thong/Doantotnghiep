@@ -71,7 +71,7 @@ public class OderDu extends AppCompatActivity {
 
     private Menu selectedMenu;
 
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.110:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -194,7 +194,6 @@ public class OderDu extends AppCompatActivity {
 
 
 
-                        // Đánh dấu rằng đã lưu
                         isSaved[0] = true;
                     } else {
                         // Thông báo nếu đã lưu 1 lần
@@ -291,7 +290,7 @@ public class OderDu extends AppCompatActivity {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.itemoder, parent, false);
             }
-//            TextView mamn = convertView.findViewById(R.id.tvMaMn1);
+
             TextView customTextView = convertView.findViewById(R.id.tvTenoder1);
             TextView customTextView1 = convertView.findViewById(R.id.tvGiaDuOder1);
             ImageView imageXoa = convertView.findViewById(R.id.imgXoa1);
@@ -305,10 +304,10 @@ public class OderDu extends AppCompatActivity {
 
 
 //            mamn.setText(menu.getMaMn());
-            customTextView.setText(menu.getTenLh());
-            customTextView1.setText(String.valueOf(menu.getGiatien()));
-
-            sl.setText(String.valueOf(menu.getSoluong()));
+//            customTextView.setText(menu.getTenLh());
+//            customTextView1.setText(String.valueOf(menu.getGiatien()));
+//
+//            sl.setText(String.valueOf(menu.getSoluong()));
 
             if (menu == selectedMenu) {
                 sl.setText(String.valueOf(soluongDefault));
@@ -540,9 +539,7 @@ public class OderDu extends AppCompatActivity {
         });
     }
 
-    public void thoatoder(View view){
-        finish();
-    }
+
 
 
 

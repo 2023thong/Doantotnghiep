@@ -49,7 +49,7 @@ public class Unpaid extends AppCompatActivity {
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = "http://192.168.1.110:8080/duantotnghiep/trangthaithanhtoan.php";
     private ProgressDialog pd;
 
 

@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,16 +37,23 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
+import gmail.com.qlcafepoly.admin.User1;
 
 public class SuaOder extends AppCompatActivity {
     private OderHienthi adepteroder;
+    private Hienthisua adepteroder1;
     private List<Menu> odermenu1 = new ArrayList<>();
     private ListView lshienthimenu;
     private List<Menu> odermenu = new ArrayList<>();
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = "http://192.168.1.110:8080/duantotnghiep/get_all_menu.php";
+    private String urllink1 = "http://192.168.1.110:8080/duantotnghiep/laydulieuchitietoder.php";
+
     private List<Menu> selectedMenus = new ArrayList<>();
     private ListView lshienthioder;
+    private List<Menu> menuList = new ArrayList<>();
+    private List<Menu> suaoder = new ArrayList<>();
 
+    private String selectedMaoder;
     private Menu selectedMenu;
 
 
@@ -66,6 +74,17 @@ public class SuaOder extends AppCompatActivity {
         lshienthimenu.setAdapter(adepteroder);
 
         lshienthioder = findViewById(R.id.lshienodersua);
+        List<Menu> filteredList = filterMenuByMaoder(menuList, selectedMaoder);
+        adepteroder1 = new Hienthisua(SuaOder.this, filteredList, selectedMaoder);
+        lshienthioder.setAdapter(adepteroder1);
+
+
+
+        Intent intent1 = getIntent();
+        selectedMaoder = intent1.getStringExtra("MaOderoder");
+
+
+
 
         Intent intent = getIntent();
         String Maoder1 = intent.getStringExtra("MaOderoder");
@@ -90,6 +109,7 @@ public class SuaOder extends AppCompatActivity {
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
+        new MyAsyncTask1().execute(urllink1);
 
 
         lshienthimenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,7 +119,7 @@ public class SuaOder extends AppCompatActivity {
 
                 if (!selectedMenus.contains(selectedMenu)) {
                     selectedMenu.setSoluong(soluongDefault);
-                    selectedMenu.getGiatien();
+
                     selectedMenus.add(selectedMenu);
                     updateListViewAbove(selectedMenu);
 
@@ -108,10 +128,19 @@ public class SuaOder extends AppCompatActivity {
             }
         });
     }
+    private List<Menu> filterMenuByMaoder(List<Menu> menuList, String selectedMaoder) {
+        List<Menu> filteredList = new ArrayList<>();
+        for (Menu menu : menuList) {
+            if (String.valueOf(menu.getMaOder()).equals(selectedMaoder)) {
+                filteredList.add(menu);
+            }
+        }
+        return filteredList;
+    }
 
 
 
-    private class MyAsyncTask extends AsyncTask<String, Void, String> {
+private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
             try {
@@ -137,7 +166,7 @@ public class SuaOder extends AppCompatActivity {
 
                         SharedPreferences sharedPreferences = getSharedPreferences("menu1", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("MaMn", MaMn);  // Replace "TenDn" with your key and TenDn with the value you want to store
+                        editor.putString("MaMn", MaMn);
                         editor.apply();
 
 
@@ -180,6 +209,99 @@ public class SuaOder extends AppCompatActivity {
             return null;
         }
     }
+    private class MyAsyncTask1 extends AsyncTask<String, Void, String> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd.setMessage("Đang tải dữ liệu...");
+            pd.setCancelable(false);
+            pd.show();
+            adepteroder1.notifyDataSetChanged();
+        }
+        @Override
+
+        protected String doInBackground(String... strings) {
+            try {
+                String strJson = readJsonOnline(strings[0]);
+                Log.d("//====", strJson);
+
+                JSONObject jsonObject = new JSONObject(strJson);
+                int success = jsonObject.getInt("success");
+                if (success == 1) {
+                    if (jsonObject.has("thongtinoder")) {
+                        JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("thongtinoder");
+                        Log.d("//=====size===", jsonArrayhanghoa.length() + "");
+
+                        for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
+                            JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
+                            Log.d("MaOder", nhanvienObject.getString("MaOder"));
+                            Log.d("TenDu", nhanvienObject.getString("TenDu"));
+                            Log.d("Soluong", nhanvienObject.getString("Soluong"));
+                            Log.d("Giatien", nhanvienObject.getString("Giatien"));
+
+                            String MaOder = nhanvienObject.getString("MaOder");
+                            String TenDu = nhanvienObject.getString("TenDu");
+                            String Soluong = nhanvienObject.getString("Soluong");
+                            String Giatien = nhanvienObject.getString("Giatien");
+
+                            Menu user1 = new Menu();
+                            user1.setMaOder(Integer.parseInt(MaOder));
+                            user1.setTenLh(TenDu);
+                            user1.setSoluong(Integer.parseInt(Soluong));
+                            user1.setGiatien(Integer.parseInt(Giatien));
+
+                            menuList.add(user1);
+                        }
+                    } else {
+                        Log.d("Error: ", "No value for nhacungcap");
+                    }
+
+                } else {
+                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
+                }
+            } catch (JSONException e) {
+                Log.d("Error: ", e.toString());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (pd.isShowing()) {
+                pd.dismiss();
+            }
+            adepteroder1.notifyDataSetChanged();
+
+
+        }
+
+        public String readJsonOnline(String linkUrl) {
+            HttpURLConnection connection = null;
+            BufferedReader bufferedReader = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                URL url = new URL(linkUrl);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                InputStream inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line + "\n");
+                }
+                return stringBuilder.toString();
+            } catch (Exception ex) {
+                Log.d("Error: ", ex.toString());
+            }
+            return null;
+
+
+        }
+
+    }
+
     private class CustomAdapter extends ArrayAdapter<Menu> {
         public CustomAdapter(Context context, List<Menu> menuList) {
             super(context, 0, menuList);
@@ -202,10 +324,6 @@ public class SuaOder extends AppCompatActivity {
 
 
 
-
-
-
-//            mamn.setText(menu.getMaMn());
             customTextView.setText(menu.getTenLh());
             customTextView1.setText(String.valueOf(menu.getGiatien()));
 
@@ -230,7 +348,9 @@ public class SuaOder extends AppCompatActivity {
                     currentQuantity++;
                     selectedMenu.setSoluong(currentQuantity);
 
-                    int giabd = selectedMenu.getGiatien(); // Lấy giá tiền ban đầu
+
+
+                    int giabd = (selectedMenu.getGiatien()); // Lấy giá tiền ban đầu
                     int giamoi = giabd * currentQuantity; // Tính giá tiền mới dựa trên số lượng mới
                     selectedMenu.setGiatientd(giamoi); // Cập nhật giá tiền dựa trên số lượng mới
                     sl.setText(String.valueOf(currentQuantity));
@@ -338,13 +458,32 @@ public class SuaOder extends AppCompatActivity {
     }
 
     private void updateTotalAmount() {
-        int totalAmount = 0;
+        // Tổng tiền từ intent
+        Intent intent = getIntent();
+        String Tongtien1 = intent.getStringExtra("TongTienoder");
 
-        for (Menu menu : odermenu1) {
-            totalAmount += menu.calculateTotalPrice();
+        // Chắc chắn rằng Tongtien1 không phải là null
+        if (Tongtien1 == null) {
+            Tongtien1 = "0";
         }
 
+        // Parse giá trị từ string sang int
+        int tongTien1 = Integer.parseInt(Tongtien1);
+
+        // Tổng tiền từ ListView
+        int totalAmountFromListView = 0;
+        for (Menu menu : odermenu1) {
+            totalAmountFromListView += menu.calculateTotalPrice();
+        }
+
+        // Tổng tiền cuối cùng
+        int tong = totalAmountFromListView + tongTien1;
+
+        // Hiển thị tổng tiền cuối cùng trong TextView
         TextView totalAmountTextView = findViewById(R.id.TvTongtiensua);
-        totalAmountTextView.setText(String.valueOf(totalAmount));
+        totalAmountTextView.setText(String.valueOf(tong));
     }
+
+
+
 }
