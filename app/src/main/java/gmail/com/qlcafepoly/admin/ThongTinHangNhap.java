@@ -30,7 +30,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
     private ImageView imageView;
 
     private ListView lshienthi;
-    private String urllink = "http://192.168.1.62:/learn-login-register/get_all_product.php";
+    private String urllink = "http://192.168.1.43:/learn-login-register/get_all_product.php";
 
 
 

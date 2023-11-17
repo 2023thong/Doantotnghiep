@@ -49,7 +49,7 @@ public class Unpaid extends AppCompatActivity {
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
-    private String urllink = "http://192.168.1.127:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = "http://192.168.1.143:8080/duantotnghiep/trangthaithanhtoan.php";
     private ProgressDialog pd;
 
 
@@ -179,10 +179,10 @@ public class Unpaid extends AppCompatActivity {
         }
     }
 
-    public void btnxemdanhsachban(int MaOder) {
+    public void btnxemdanhsachban(int maOder) {
         // Tạo một Intent và truyền tham số maOder
         Intent intent = new Intent(getApplicationContext(), Menu_pay.class);
-        intent.putExtra("MaOder", MaOder);
+        intent.putExtra("maOder", maOder);
         startActivity(intent);
     }
     public void Dangnhap(final String MaOder , String Matkhau) {

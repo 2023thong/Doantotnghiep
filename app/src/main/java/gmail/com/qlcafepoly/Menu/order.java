@@ -33,7 +33,7 @@ public class order extends AppCompatActivity {
     private DuUong duUong;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://192.168.1.118:/duantotnghiep/get_all_product.php";
+    private String urllink = "http://192.168.1.143:/duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
 

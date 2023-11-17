@@ -2,13 +2,11 @@ package gmail.com.qlcafepoly.nhanvien;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
+
 import java.text.DecimalFormat;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +44,7 @@ public class Pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lv_listpay;
-    private String urllink = "http://192.168.1.127:8080/duantotnghiep/oder.php";
+    private String urllink = "http://192.168.1.143.:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
     TextView tvchuathanhtoan;
 

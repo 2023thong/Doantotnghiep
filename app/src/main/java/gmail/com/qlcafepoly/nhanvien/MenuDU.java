@@ -46,8 +46,8 @@ public class MenuDU extends BaseAdapter {
 
 
         tvTenDu.setText(menu.getTenLh());
-        tvGiatien.setText(menu.getGiatien());
-        tvSoluong.setText(menu.getSoluong());
+        tvGiatien.setText(String.valueOf(menu.getGiatien()));
+        tvSoluong.setText(String.valueOf(menu.getSoluong()));
 
         return convertView;
     }

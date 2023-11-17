@@ -59,7 +59,7 @@ public class Dangnhapnhanvien extends AppCompatActivity {
         tvNhanvien = findViewById(R.id.tvQuanly);
         edTedn = findViewById(R.id.edTendnnv);
         edPass = findViewById(R.id.edPassnv);
-        edTedn.setText("chau1");
+        edTedn.setText("duy");
         edPass.setText("123");
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
