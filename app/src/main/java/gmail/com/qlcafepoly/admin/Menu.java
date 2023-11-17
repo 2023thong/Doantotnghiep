@@ -5,14 +5,35 @@ public class Menu {
     private String TenDu;
     private int Giatien;
 
-    public Menu() {
+    private int soluong;
+    private int Giatientd;
+    private int MaOder;
+
+    public int getMaOder() {
+        return MaOder;
     }
 
-    public Menu(String maMn, String TenDu, int giatien) {
+    public void setMaOder(int maOder) {
+        MaOder = maOder;
+    }
+
+    public Menu() {
+    }
+    public Menu(String maMn, String tenLh, int giatien , int soluong, int maOder) {
         MaMn = maMn;
         TenDu = TenDu;
         Giatien = giatien;
+        MaOder = maOder;
+
+        this.soluong = soluong;
+        this.Giatientd = giatien * soluong;
     }
+
+    public int getSoluong() {
+        return soluong;
+    }
+
+
 
     public String getMaMn() {
         return MaMn;
@@ -37,4 +58,21 @@ public class Menu {
     public void setGiatien(int giatien) {
         Giatien = giatien;
     }
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+
+    }
+
+    public int getGiatientd() {
+        return Giatientd;
+    }
+    public void setGiatientd(int soluong) {
+        this.Giatientd = this.Giatien * soluong;
+    }
+    public int calculateTotalPrice() {
+        return Giatien * soluong;
+    }
+
+
+
 }

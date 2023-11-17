@@ -48,7 +48,7 @@ public class Danhnhap extends AppCompatActivity {
 
         tvNhanvien = findViewById(R.id.tvNhanvien);
         edTedn = findViewById(R.id.edTendnnv);
-        edPass = findViewById(R.id.edPassnv);
+        edPass = findViewById(R.id.edPass1);
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +56,8 @@ public class Danhnhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDn = findViewById(R.id.btnNhanv);
+        btnDn = findViewById(R.id.btnDangnhap1);
+
         btnDn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,12 +138,12 @@ public class Danhnhap extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-            // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
-            String savedTenDn = sharedPreferences.getString("TenDn", "");
-            String savedMatkhau = sharedPreferences.getString("Matkhau", "");
-            boolean save = sharedPreferences.getBoolean("Save", false);
-            if (save == true){
+        // Lấy SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
+        String savedTenDn = sharedPreferences.getString("TenDn", "");
+        String savedMatkhau = sharedPreferences.getString("Matkhau", "");
+        boolean save = sharedPreferences.getBoolean("Save", false);
+        if (save == true){
 
             edTedn.setText(savedTenDn);
             edPass.setText(savedMatkhau);

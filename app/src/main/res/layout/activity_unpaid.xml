@@ -6,4 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".nhanvien.Unpaid">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/ic_backgroundpay"
+            android:padding="30dp"
+            tools:ignore="ContentDescription,MissingConstraints" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="555dp"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/background_noclick"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+
+                android:padding="10dp"
+                android:text="Chưa thanh toán"
+                android:textSize="20dp"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <TextView
+                android:id="@+id/tvdathanhtoan"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_click"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Đã thanh toán"
+                android:textSize="20dp"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Ngày và giờ: "
+                android:padding="10dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="thời gian"
+                android:textSize="20dp"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_click"
+            android:gravity="center"
+
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_menubr"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Coffee Folly:"
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    tools:ignore="InvalidId" />
+                <View
+                    android:layout_width="180dp"
+                    android:background="#CA191717"
+                    android:layout_gravity="center"
+                    android:layout_height="1dp"/>
+            <ListView
+                android:id="@+id/lv_unpaid"
+                android:layout_width="match_parent"
+                android:layout_height="514dp"
+                android:layout_marginBottom="10dp"
+
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="MissingConstraints"
+
+                />
+        </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

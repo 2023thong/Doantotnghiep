@@ -1,4 +1,4 @@
-package gmail.com.qlcafepoly.Menu;
+package gmail.com.qlcafepoly.Menumodel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -33,7 +32,7 @@ public class order extends AppCompatActivity {
     private DuUong duUong;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://192.168.1.118:/duantotnghiep/get_all_product.php";
+    private String urllink = "http://192.168.1.93:8080/duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
 

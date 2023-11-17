@@ -18,6 +18,7 @@ public class User1 {
         Soluong = soluong;
     }
 
+
     public User1() {
     }
 
@@ -76,4 +77,5 @@ public class User1 {
     public void setGhichu(String ghichu) {
         Ghichu = ghichu;
     }
+
 }

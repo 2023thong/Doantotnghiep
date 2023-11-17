@@ -102,7 +102,7 @@
         android:id="@+id/imgSuancc"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="22dp"
         android:layout_marginRight="10dp"
         android:src="@drawable/sua"
         android:tint="#03A9F4"

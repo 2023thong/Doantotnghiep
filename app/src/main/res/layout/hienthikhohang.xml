@@ -68,10 +68,10 @@
 
             <ImageView
                 android:id="@+id/btnXoahanghoa"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginRight="2dp"
-                android:src="@drawable/xoa"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/bacham"
                 android:tint="#F64545"
                 tools:ignore="UseAppTint" />
 
@@ -112,25 +112,25 @@
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/imgsua"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginRight="4dp"
-                android:src="@drawable/sua"
-                android:tint="#2196F3"
-                tools:ignore="UseAppTint" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imgsua"-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:layout_marginRight="4dp"-->
+<!--                android:src="@drawable/sua"-->
+<!--                android:tint="#2196F3"-->
+<!--                tools:ignore="UseAppTint" />-->
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imgChitiet"
-            android:layout_width="15dp"
-            android:layout_height="20dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="6dp"
-            android:src="@drawable/bacham" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imgChitiet"-->
+<!--            android:layout_width="15dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_marginRight="6dp"-->
+<!--            android:src="@drawable/bacham" />-->
     </LinearLayout>
 
 </LinearLayout>

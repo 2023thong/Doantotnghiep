@@ -114,46 +114,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp">
 
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
 
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text="Ductu0711"
                     android:hint="Management login name"
                     android:inputType="text" />
 
 
 
+
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/textInputLayout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="5dp"-->
-<!--                app:hintEnabled="false">-->
 
-<!--                <EditText-->
-<!--                    android:id="@+id/edTendnnv"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:ems="10"-->
-<!--                    android:hint="Management login name"-->
-<!--                    android:inputType="text" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/textView20"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="45dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="Password"-->
-<!--            android:textColor="#1E1B1B" />-->
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,7 +156,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edPassnv"
+                    android:id="@+id/edPass1"
                     android:layout_width="match_parent"
                     android:text="123"
                     android:layout_height="60dp"
@@ -219,7 +199,7 @@
         android:textColor="#F44336" />
 
     <Button
-        android:id="@+id/btnNhanv"
+        android:id="@+id/btnDangnhap1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -54,8 +54,6 @@ public class ThemNhaCungCap extends AppCompatActivity {
     private String urllink = "http://192.168.1.106:8080/duantotnghiep/thu.php";
 
 
-
-
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {

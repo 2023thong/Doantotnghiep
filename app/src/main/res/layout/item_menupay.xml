@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <!-- CardView bao bọc mỗi mục thanh toán -->
+
+
+        <!-- Layout cha chứa ảnh và thông tin -->
+        <RelativeLayout
+            android:background="@drawable/background_noclick"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="106dp"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+
+            <!-- Hình ảnh sản phẩm -->
+            <ImageView
+                android:id="@+id/img_Douong"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_tranhietdoi" />
+
+            <!-- Layout chứa thông tin sản phẩm -->
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/img_Douong"
+                android:layout_marginStart="16dp">
+
+                <!-- Tên sản phẩm -->
+                <LinearLayout
+                    android:id="@+id/tensanpham"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvProductName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tên sản phẩm:"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="16sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:id="@+id/tv_DoUong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:textColor="#333333"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <!-- Số lượng -->
+                <LinearLayout
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/tensanpham">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số lượng: "
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="16sp"
+                        android:textColor="#666666"
+                        />
+                    <TextView
+                        android:id="@+id/tv_Soluong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+
+                <!-- Giá tiền -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvQuantity"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giá:"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="16sp"
+                        android:textColor="#666666"
+                        />
+                    <TextView
+                        android:id="@+id/tvMoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="đ"
+                        android:layout_marginLeft="4dp"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+</LinearLayout>

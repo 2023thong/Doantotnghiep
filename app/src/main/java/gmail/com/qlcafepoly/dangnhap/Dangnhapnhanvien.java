@@ -14,13 +14,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import gmail.com.qlcafepoly.nhanvien.NhanvienMenu;
+
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 
 import gmail.com.qlcafepoly.R;
+
 import gmail.com.qlcafepoly.admin.User;
+import gmail.com.qlcafepoly.nhanvien.NhanvienMenu;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,7 +45,7 @@ public class Dangnhapnhanvien extends AppCompatActivity {
         // Kiểm tra nếu checkbox đã được tích thì điền thông tin đăng nhập từ SharedPreferences
         if (rememberCheckbox.isChecked()) {
             // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("thong1", Context.MODE_PRIVATE);
             String savedTenDn = sharedPreferences.getString("TenDn", "");
             String savedMatkhau = sharedPreferences.getString("Matkhau", "");
 
@@ -111,7 +113,7 @@ public class Dangnhapnhanvien extends AppCompatActivity {
                         startActivity(nhanvien);
                         Toast.makeText(Dangnhapnhanvien.this, "Đăng nhập thành công Nhân viên", Toast.LENGTH_SHORT).show();
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("thong", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("thong1", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("TenDn", TenDn);
                         editor.putString("Matkhau", Matkhau);

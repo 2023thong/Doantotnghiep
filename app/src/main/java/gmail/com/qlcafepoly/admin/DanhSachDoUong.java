@@ -63,14 +63,7 @@ public class DanhSachDoUong extends AppCompatActivity {
                 startActivity(getIntent());
             }
         });
-//        view1 = findViewById(R.id.icEdit);
-//        view1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DanhSachDoUong.this, ItemThongTinDU.class);
-//                startActivity(intent);
-//            }
-//        });
+
         pd = new ProgressDialog(DanhSachDoUong.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
