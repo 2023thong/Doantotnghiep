@@ -21,6 +21,7 @@ import gmail.com.qlcafepoly.R;
 
 
 import gmail.com.qlcafepoly.R;
+
 import gmail.com.qlcafepoly.nhanvien.Unpaid;
 
 
@@ -50,7 +51,8 @@ public class NhanvienMenu extends AppCompatActivity {
                 }
 
                 if (item.getItemId()==R.id.nv){
-//                    replaceFragment(new Unpaid());
+                    replaceFragment(new NhanVienFragment());
+
 
                 }
                 return true;

@@ -18,12 +18,15 @@
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-<!--        <activity-->
+        <activity
 
-<!--            android:name=".nhanvien.SuaOder"-->
-<!--            android:exported="false" />-->
+            android:name=".dangnhap.DoiMatKhauNv"
+            android:exported="false" />
         <activity
             android:name=".nhanvien.TableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.SuccuesfullyActivity"
             android:exported="false" />
 
         <activity

@@ -28,7 +28,11 @@ public class ServerResponse {
 
     private LoaiHang loaihang;
     private Oder oder1;
+    private String MaCl;
 
+    public String getMaCl() {
+        return MaCl;
+    }
 
     public Oder getOder1() {
         return oder1;
