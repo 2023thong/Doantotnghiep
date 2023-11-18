@@ -124,7 +124,6 @@ public class OderDu extends AppCompatActivity {
                     selectedMenus.add(selectedMenu);
                     updateListViewAbove(selectedMenu);
 
-
                 }
             }
         });
@@ -138,33 +137,36 @@ public class OderDu extends AppCompatActivity {
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
 
-                        String mabn = Mabn.getText().toString();
+                    String mabn = Mabn.getText().toString();
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
-                        String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
+                    SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
+                    String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
 
-                        TextView textView = findViewById(R.id.tvMaoder);
-                        textView.setText(maOder);
-                        String maoderd = textView.getText().toString();
+                    TextView textView = findViewById(R.id.tvMaoder);
+                    textView.setText(maOder);
+                    String maoderd = textView.getText().toString();
 
-                        for (Menu selectedMenu : selectedMenus) {
-                            String tendu = selectedMenu.getTenDu();
-                            String sl = String.valueOf(selectedMenu.getSoluong());
-                            String gia = String.valueOf(selectedMenu.getGiatien());
+                    String tendu;
+                    String sl;
+                    for (Menu selectedMenu : selectedMenus) {
+                        tendu = selectedMenu.getTenDu();
+                        sl = String.valueOf(selectedMenu.getSoluong());
+                        String gia = String.valueOf(selectedMenu.getGiatien());
+                        ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
+                    }
 
-                            ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
-                        }
+                    // Move the removal of "Maoder" outside the loop
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("Maoder");
+                    editor.apply();
 
-                        // Move the removal of "Maoder" outside the loop
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.remove("Maoder");
-                        editor.apply();
 
 
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
 
@@ -583,6 +585,9 @@ public class OderDu extends AppCompatActivity {
             }
 
         });
+    }
+    public void SoluongKho(){
+
     }
 
 
