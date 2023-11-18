@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.dangnhap.Danhnhap;
+import gmail.com.qlcafepoly.dangnhap.DoiMatKhau;
 
 
 public class CanhanFragment extends Fragment {
@@ -44,6 +45,13 @@ public class CanhanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 logout(view);
+            }
+        });
+        doimk = view.findViewById(R.id.doimatkhau);
+        doimk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), DoiMatKhau.class));
             }
         });
 

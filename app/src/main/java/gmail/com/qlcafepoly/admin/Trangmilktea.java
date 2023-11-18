@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.ThemTraSua;
 
 public class Trangmilktea extends AppCompatActivity {
 
@@ -15,12 +16,18 @@ public class Trangmilktea extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangmilktea);
     }
-    public void backcofee(View view){
+
+    public void backcofee(View view) {
         Intent intent = new Intent(Trangmilktea.this, QuanLyDoUong.class);
+    }
+
+    public void backtrangmilktea(View view) {
+        Intent intent = new Intent(Trangmilktea.this, QuanLyDoUong.class);
+
         startActivity(intent);
     }
-    public void themdouong(View view){
-        Intent intent = new Intent(Trangmilktea.this,ThemDoUong.class);
+    public void themtrasua(View view){
+        Intent intent = new Intent(Trangmilktea.this, ThemTraSua.class);
         startActivity(intent);
     }
 }

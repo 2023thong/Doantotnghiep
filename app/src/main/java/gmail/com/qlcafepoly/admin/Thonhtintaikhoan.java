@@ -31,6 +31,7 @@ public class Thonhtintaikhoan extends AppCompatActivity {
         back1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 finish();
             }
         });
@@ -45,7 +46,6 @@ public class Thonhtintaikhoan extends AppCompatActivity {
         tvSdt.setText(Sdt);
         tvDiachi.setText(Diachi);
         tvChucvu.setText("Amdin");
-
     }
 
 

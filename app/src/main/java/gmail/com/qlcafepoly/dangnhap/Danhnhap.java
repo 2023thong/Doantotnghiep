@@ -20,7 +20,7 @@ import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.Thonhtintaikhoan;
+
 import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Danhnhap extends AppCompatActivity {
     TextView tvQuanly, tvNhanvien;
     Button btnDn;
-
-    Thonhtintaikhoan thonhtintaikhoan;
     EditText edTedn, edPass;
     CheckBox rememberCheckbox;
     @SuppressLint("MissingInflatedId")
@@ -50,15 +48,16 @@ public class Danhnhap extends AppCompatActivity {
             String savedTenDn = sharedPreferences.getString("TenDn", "");
             String savedMatkhau = sharedPreferences.getString("Matkhau", "");
 
+            // Điền thông tin vào các trường EditText
             edTedn.setText(savedTenDn);
             edPass.setText(savedMatkhau);
         }
+
         tvQuanly = findViewById(R.id.tvQuanly);
 
         tvNhanvien = findViewById(R.id.tvNhanvien);
-        edTedn = findViewById(R.id.edTendn);
-        edPass = findViewById(R.id.edPass);
-
+        edTedn = findViewById(R.id.edTendnnv);
+        edPass = findViewById(R.id.edPassnv);
         tvNhanvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +65,7 @@ public class Danhnhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDn = findViewById(R.id.btnDangnhap);
+        btnDn = findViewById(R.id.btnNhanv);
         btnDn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +74,8 @@ public class Danhnhap extends AppCompatActivity {
                 Dangnhap(tendn, pas);
             }
         });
+
+
     }
     public void Dangnhap(String TenDn , String Matkhau) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -93,7 +94,6 @@ public class Danhnhap extends AppCompatActivity {
 
 
         responseCall.enqueue(new Callback<ServerResponse>() {
-            @SuppressLint("WrongViewCast")
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
@@ -121,12 +121,10 @@ public class Danhnhap extends AppCompatActivity {
                         editor.putString("Diachi", Diachi);
                         editor.putString("phanquyen", role);
                         editor.apply();
-
-                    }
-
-                    else if ("2".equals(role)) {
+                    } else if ("2".equals(role)) {
                         Toast.makeText(Danhnhap.this, "Đăng nhập không thành công.\n" +
                                 "Chỉ dành cho admin",Toast.LENGTH_SHORT).show();
+
                     }
 
                 }
@@ -137,7 +135,7 @@ public class Danhnhap extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed"+ t.getMessage());
 
             }
         });

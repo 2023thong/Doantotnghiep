@@ -10,6 +10,14 @@ public class User1 {
     private String Ghichu;
     private String Soluong;
 
+    public String getSoluong() {
+        return Soluong;
+    }
+
+    public void setSoluong(String soluong) {
+        Soluong = soluong;
+    }
+
     public User1() {
     }
 
@@ -67,12 +75,5 @@ public class User1 {
 
     public void setGhichu(String ghichu) {
         Ghichu = ghichu;
-    }
-    public String getSoluong() {
-        return Soluong;
-    }
-
-    public void setSoluong(String soluong) {
-        Soluong = soluong;
     }
 }

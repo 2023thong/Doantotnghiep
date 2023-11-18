@@ -11,16 +11,14 @@
         android:layout_height="80dp"
         android:background="#ED8361">
         <ImageView
-            android:id="@+id/backcofee"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
-            android:onClick="backduk"
+            android:onClick="backtrangdouongkhac"
             android:layout_margin="15dp" />
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -81,7 +81,6 @@ public class KhoFragment extends Fragment {
                 edGhichu.setText("");
                 edSoluong.setText("");
 
-
             }
         });
 
@@ -107,7 +106,6 @@ public class KhoFragment extends Fragment {
         serverRequest.setUser1(user1);
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
-
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -122,7 +120,7 @@ public class KhoFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed");
+                Log.d(Constants.TAG, "Failed" +t.getMessage());
 
             }
         });
