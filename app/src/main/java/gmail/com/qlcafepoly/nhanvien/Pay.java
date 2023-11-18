@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -47,7 +49,7 @@ public class Pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lv_listpay;
-    private String urllink = "http://192.168.1.110:8080/duantotnghiep/oder.php";
+    private String urllink = BASE_URL +"duantotnghiep/oder.php";
     private ProgressDialog pd;
     TextView tvchuathanhtoan;
 
@@ -176,7 +178,7 @@ public class Pay extends AppCompatActivity {
     }
     public void Dangnhap(final String MaOder , String Matkhau) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);

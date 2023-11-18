@@ -5,8 +5,10 @@ package gmail.com.qlcafepoly.nhanvien;
 
 import static android.content.Intent.getIntent;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +43,7 @@ public class Table1 extends BaseAdapter {
     }
 
 
+    @SuppressLint("NewApi")
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView == null){
             convertView = inflater1.inflate(R.layout.item_table, parent, false);
@@ -50,6 +53,7 @@ public class Table1 extends BaseAdapter {
         TextView txtTenbn = convertView.findViewById(R.id.txtTenbn);
         TextView txtMabn = convertView.findViewById(R.id.txtMabn);
         TextView txtTthai = convertView.findViewById(R.id.txtTthai);
+
 
         Button button = convertView.findViewById(R.id.themOrder);
         button.setOnClickListener(new View.OnClickListener() {
@@ -66,14 +70,14 @@ public class Table1 extends BaseAdapter {
 
 
         if (ban.getTrangthai().equals("1")) {
-            txtTthai.setText("Trống");
+            txtTthai.setText("Bàn đang trống");
+
+            txtTthai.setTextColor(convertView.getContext().getColor(android.R.color.holo_orange_light));
         } else if (ban.getTrangthai().equals("2")) {
-            txtTthai.setText("Đầy");
+            txtTthai.setText("Bàn đã oder");
+
+            txtTthai.setTextColor(convertView.getContext().getColor(android.R.color.holo_red_light));
         }
-
-
-
-
 
 
         return convertView;

@@ -4,7 +4,7 @@ public class Constants {
 
 
 
-    public static final String BASE_URL = "http://192.168.1.110:8080/";
+    public static final String BASE_URL = "http://192.168.1.173:8080/";
 
     
 
@@ -14,8 +14,10 @@ public class Constants {
     public static final String  NHANVIEN = "themnhanvien";
     public static final String  SUANHANVIEN = "suanhanvien1";
     public static final String  XOANHANVIEN = "xoanhanvien";
+    public static final String SUABAN = "suaban";
 
     public static final String SUAHANGHOA = "sua_hanghoa";
+    public static final String SUAODER = "suaoder";
     public static final String THEMODER = "oder";
     public static final String THEMODERCT = "oderchitiet";
 

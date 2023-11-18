@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:padding="10dp"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:background="@drawable/background_click"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bocanhan"
         tools:ignore="MissingConstraints,UselessLeaf">
 
         <LinearLayout
@@ -109,27 +111,36 @@
                 android:text="Tổng tiền:"
                 tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/tvTongtien"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="135dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:fontFamily="sans-serif-light"
-                android:text="đ"
-                android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/tvTongtien"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="9dp"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="9dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="vnd"
+                    android:textSize="16dp" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnSuaoder"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="84dp"
+                android:backgroundTint="#FF5722"
                 android:text="Sửa"
                 android:textSize="12sp" />
 
@@ -155,8 +166,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </LinearLayout>

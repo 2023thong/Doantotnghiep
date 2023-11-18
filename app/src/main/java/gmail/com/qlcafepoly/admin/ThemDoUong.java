@@ -80,7 +80,7 @@ public class ThemDoUong extends AppCompatActivity {
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Menu menu = new Menu();
         menu.setMaMn(MaMn);
-        menu.setTenLh(TenLh);
+        menu.setTenDu(TenLh);
         menu.setGiatien(Integer.parseInt(Giatien));
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.MENU);

@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -33,6 +35,7 @@ import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,7 +52,7 @@ public class Unpaid extends AppCompatActivity {
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
-    private String urllink = "http://192.168.1.110:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = BASE_URL +"duantotnghiep/trangthaithanhtoan.php";
     private ProgressDialog pd;
 
 
@@ -83,14 +86,7 @@ public class Unpaid extends AppCompatActivity {
         });
 
     }
-//    public void onButtonClick(View view) {
-//        // Thay đổi nội dung của TextView
-//        tvTrangthai.setText("Đã Thanh Toán");
-//
-//        // Hiển thị TextView và ẩn Button
-//        tvTrangthai.setVisibility(View.VISIBLE);
-//        btnThanhToan.setVisibility(View.INVISIBLE);
-//    }
+
 
     class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -187,7 +183,7 @@ public class Unpaid extends AppCompatActivity {
     }
     public void Dangnhap(final String MaOder , String Matkhau) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -198,6 +194,45 @@ public class Unpaid extends AppCompatActivity {
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.THANHTOAN);
         serverRequest.setThongtinoder(user);
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+
+
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)){
+
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed"+ t.getMessage());
+
+            }
+        });
+
+    }
+    public void Suatrangthaiban(final String MaBn , String Trangthai) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+        Ban ban = new Ban();
+        ban.setMaBn(MaBn);
+        ban.setTrangthai(Trangthai);
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUABAN);
+        serverRequest.setBan(ban);
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
 

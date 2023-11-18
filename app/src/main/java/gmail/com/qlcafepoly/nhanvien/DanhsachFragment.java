@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -35,7 +37,7 @@ public class DanhsachFragment extends Fragment {
     private ImageView imageView;
     private ListView lsMenuSql;
 
-    private String urllink = "http://192.168.1.110:8080/duantotnghiep/thongtintk.php";
+    private String urllink = BASE_URL + "duantotnghiep/thongtintk.php";
 
 
     private ProgressDialog pd;

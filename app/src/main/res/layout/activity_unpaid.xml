@@ -67,43 +67,29 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="200dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/background_click"
             android:gravity="center"
 
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_menubr"
                 android:orientation="vertical">
-                <TextView
+
+                <ListView
+                    android:id="@+id/lv_unpaid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Coffee Folly:"
+                    android:layout_marginBottom="10dp"
+                    android:divider="@drawable/khoangcachitem"
                     android:gravity="center"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    tools:ignore="InvalidId" />
-                <View
-                    android:layout_width="180dp"
-                    android:background="#CA191717"
-                    android:layout_gravity="center"
-                    android:layout_height="1dp"/>
-            <ListView
-                android:id="@+id/lv_unpaid"
-                android:layout_width="match_parent"
-                android:layout_height="514dp"
-                android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="MissingConstraints"
 
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="MissingConstraints"
-
-                />
-        </LinearLayout>
+                    />
+            </LinearLayout>
         </LinearLayout>
 
     </FrameLayout>

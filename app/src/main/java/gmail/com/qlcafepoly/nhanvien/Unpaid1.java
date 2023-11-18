@@ -52,7 +52,7 @@ public class Unpaid1 extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId                (int position) {
         return position;
     }
 
@@ -99,6 +99,11 @@ public class Unpaid1 extends BaseAdapter {
                     ((Unpaid) context).Dangnhap(String.valueOf(thongtinoder.getMaOder()), "1");
 
                 }
+                if(context instanceof Unpaid){
+                    ((Unpaid) context).Suatrangthaiban((thongtinoder.getMaBn()), "1");
+
+                }
+
 
 
             }

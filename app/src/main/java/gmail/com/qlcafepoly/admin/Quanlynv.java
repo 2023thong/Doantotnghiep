@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +38,7 @@ public class Quanlynv extends AppCompatActivity {
 
 
 
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_nhanvien.php";
+    private String urllink =  BASE_URL +"duantotnghiep/get_all_nhanvien.php";
 
 
 

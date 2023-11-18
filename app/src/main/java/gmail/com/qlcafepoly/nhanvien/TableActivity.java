@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -55,7 +57,7 @@ public class TableActivity extends AppCompatActivity {
     ImageView backban;
     private ListView lsban;
 
-    private String urllink = "http://192.168.1.110:8080/duantotnghiep/thongtinban.php";
+    private String urllink = BASE_URL +"duantotnghiep/thongtinban.php";
 
 
     private ProgressDialog pd;
@@ -223,7 +225,7 @@ public class TableActivity extends AppCompatActivity {
                 String TenBan = edtTenBan.getText().toString();
                 String MaBn = edtMaban.getText().toString();
                 String Trangthai = getTrangThaiValue(spnTrangthai.getSelectedItemPosition());
-                dialog.dismiss();
+
 
 
                 registerBan(MaBn, TenBan, Trangthai);
@@ -235,6 +237,7 @@ public class TableActivity extends AppCompatActivity {
 
 
                 updateData();
+                dialog.dismiss();
             }
         });
 
@@ -255,7 +258,7 @@ public class TableActivity extends AppCompatActivity {
     }
     public void registerBan(String MaBn , String TenBan, String Trangthai ) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);

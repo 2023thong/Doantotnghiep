@@ -55,7 +55,7 @@ public class Menuht extends BaseAdapter {
         TextView tvTenLh = convertView.findViewById(R.id.tvTenLh);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiatien);
         tvMaMn.setText("Mã: "+menu.getMaMn());
-        tvTenLh.setText(menu.getTenLh());
+        tvTenLh.setText(menu.getTenDu());
         tvGiatien.setText("Giá tiền: "+String.valueOf(menu.getGiatien())+" vnđ");
 
 
@@ -63,7 +63,7 @@ public class Menuht extends BaseAdapter {
         view1.setOnClickListener(view -> {
            Intent intent = new Intent(view.getContext(), ItemThongTinDU.class);
             intent.putExtra("DULIEUDU", menu.getMaMn());
-            intent.putExtra("DULIEUDU_TenLh", menu.getTenLh());
+            intent.putExtra("DULIEUDU_TenLh", menu.getTenDu());
             intent.putExtra("DULIEUDU_Giatien", String.valueOf(menu.getGiatien()));
            view.getContext().startActivity(intent);
        });

@@ -54,7 +54,7 @@ public class Hienthisua extends BaseAdapter {
 
         Menu menu = odermenu.get(position);
 
-        holder.customTextView.setText(menu.getTenLh());
+        holder.customTextView.setText(menu.getTenDu());
         holder.customTextView1.setText(String.valueOf(menu.getGiatien()));
         holder.sl.setText(String.valueOf(menu.getSoluong()));
 

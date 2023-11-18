@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -33,7 +35,7 @@ public class DanhSachDoUong extends AppCompatActivity {
     private ListView lshienthimenu;
 
 
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = BASE_URL +"duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private Button btnThemDU;
@@ -113,7 +115,7 @@ public class DanhSachDoUong extends AppCompatActivity {
 
                         Menu menu = new Menu();
                         menu.setMaMn(MaNn);
-                        menu.setTenLh(TenLh);
+                        menu.setTenDu(TenLh);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         lsuListMenu.add(menu);
                     }
