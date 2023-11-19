@@ -60,24 +60,8 @@
                 android:textSize="20dp"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:text="Ngày và giờ: "
-                android:padding="10dp"
-                android:textSize="20dp"/>
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="thời gian"
-                android:textSize="20dp"
-                android:padding="10dp"/>
-        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,7 +85,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:divider="@drawable/khoangcachitem"
-                    android:gravity="center"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:ignore="MissingConstraints"

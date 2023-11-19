@@ -18,11 +18,9 @@ import android.widget.Toast;
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
-
-import gmail.com.qlcafepoly.R;
-
-import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.nhanvien.NhanvienMenu;
+import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.admin.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +43,7 @@ public class Dangnhapnhanvien extends AppCompatActivity {
         // Kiểm tra nếu checkbox đã được tích thì điền thông tin đăng nhập từ SharedPreferences
         if (rememberCheckbox.isChecked()) {
             // Lấy SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("thong1", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
             String savedTenDn = sharedPreferences.getString("TenDn", "");
             String savedMatkhau = sharedPreferences.getString("Matkhau", "");
 
@@ -108,12 +106,12 @@ public class Dangnhapnhanvien extends AppCompatActivity {
                         String TenNv = response1.getTenNv();
                         String Sdt = response1.getSdt();
                         String Diachi = response1.getDiachi();
-
+                        String MaCl = response1.getMaCl();
                         Intent nhanvien = new Intent(getApplicationContext(), NhanvienMenu.class);
                         startActivity(nhanvien);
                         Toast.makeText(Dangnhapnhanvien.this, "Đăng nhập thành công Nhân viên", Toast.LENGTH_SHORT).show();
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("thong1", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("van", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("TenDn", TenDn);
                         editor.putString("Matkhau", Matkhau);
@@ -121,8 +119,10 @@ public class Dangnhapnhanvien extends AppCompatActivity {
                         editor.putString("Manv", Manv);
                         editor.putString("TenNv", TenNv);
                         editor.putString("Sdt", Sdt);
+                        editor.putString("MaCl", MaCl);
                         editor.putString("Diachi", Diachi);
-                        editor.putString("phanquyen", role);
+                        editor.putString("phanquyen", role);//
+
                         editor.apply();
                     } else if ("1".equals(role)) {
                         Toast.makeText(Dangnhapnhanvien.this, "Đăng nhập không thành công.\n" +
@@ -143,8 +143,4 @@ public class Dangnhapnhanvien extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }

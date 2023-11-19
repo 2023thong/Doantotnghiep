@@ -40,9 +40,6 @@ public class Quanlynv extends AppCompatActivity {
     private ListView lshienthinhanvien;
 
     private String urllink =  BASE_URL +"duantotnghiep/get_all_nhanvien.php";
-
-
-
     private ProgressDialog pd;
     private ImageView icLoadNhanVien;
 

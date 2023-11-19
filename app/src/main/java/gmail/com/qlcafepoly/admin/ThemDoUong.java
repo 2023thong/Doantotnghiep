@@ -48,13 +48,14 @@ public class ThemDoUong extends AppCompatActivity {
                 if (mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty()){
                     Toast.makeText(ThemDoUong.this, "vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else {
                     registerMenu(mamn, tendu, giatien);
 
                     edMaMn.setText("");
                     edTenLh.setText("");
                     edGiatien.setText("");
                 }
+
 
             }
         });
@@ -80,7 +81,7 @@ public class ThemDoUong extends AppCompatActivity {
         Menu menu = new Menu();
         menu.setMaMn(MaMn);
         menu.setTenDu(TenDu);
-        menu.setGiatien(Integer.parseInt(Giatien));
+        menu.setGiatien(Integer.parseInt(String.valueOf(Giatien)));
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.MENU);
         serverRequest.setMenu(menu);

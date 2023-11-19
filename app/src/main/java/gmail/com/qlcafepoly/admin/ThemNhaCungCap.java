@@ -54,7 +54,6 @@ public class ThemNhaCungCap extends AppCompatActivity {
     private ListView lshienthi;
     private ProgressDialog pd;
     private String urllink = BASE_URL +"duantotnghiep/thu.php";
-
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
