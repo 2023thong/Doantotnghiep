@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -51,8 +53,7 @@ public class ThemNhaCungCap extends AppCompatActivity {
 
     private ListView lshienthi;
     private ProgressDialog pd;
-    private String urllink = "http://192.168.1.93:8080/duantotnghiep/thu.php";
-
+    private String urllink = BASE_URL +"duantotnghiep/thu.php";
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -115,7 +116,7 @@ public class ThemNhaCungCap extends AppCompatActivity {
 
     public void Themnhacungcap(String TenNcc, String Diachi, String Sdt) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -252,7 +253,7 @@ public class ThemNhaCungCap extends AppCompatActivity {
     }
     public void deleteNcc(final String MaNcc) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);

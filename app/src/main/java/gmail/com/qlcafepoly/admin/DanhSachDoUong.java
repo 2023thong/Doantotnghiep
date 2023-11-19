@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -34,7 +36,8 @@ public class DanhSachDoUong extends AppCompatActivity {
     private Menuht adepter;
     private ListView lshienthimenu;
 
-    private String urllink = "http://192.168.1.93:8080/duantotnghiep/get_all_menu.php";
+    private String urllink = BASE_URL + "duantotnghiep/get_all_menu.php";
+
     private ProgressDialog pd;
     private TextView btnFindDU;
     private EditText edFindDU;

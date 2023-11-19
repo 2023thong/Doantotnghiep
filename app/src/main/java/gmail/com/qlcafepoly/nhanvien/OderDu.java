@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -45,6 +47,7 @@ import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,12 +69,8 @@ public class OderDu extends AppCompatActivity {
 
     private int totalAmount = 0;
 
-
-
-
     private Menu selectedMenu;
-
-    private String urllink = "http://192.168.1.93:8080/duantotnghiep/get_all_menu.php";
+    private String urllink =  BASE_URL +"duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -191,8 +190,7 @@ public class OderDu extends AppCompatActivity {
                         String menu = Mamn.getText().toString();
 
                         ThemOder(mabn, tongtien, menu, trangthai);
-
-
+                         Trangthaibn(mabn, trangthai);
 
                         isSaved[0] = true;
                     } else {
@@ -291,6 +289,8 @@ public class OderDu extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.itemoder, parent, false);
             }
 
+            TextView mamn = convertView.findViewById(R.id.tvMaMn1);
+
             TextView customTextView = convertView.findViewById(R.id.tvTenoder1);
             TextView customTextView1 = convertView.findViewById(R.id.tvGiaDuOder1);
             ImageView imageXoa = convertView.findViewById(R.id.imgXoa1);
@@ -305,9 +305,11 @@ public class OderDu extends AppCompatActivity {
 
 //            mamn.setText(menu.getMaMn());
             customTextView.setText(menu.getTenDu());
-            customTextView1.setText(String.valueOf(menu.getGiatien()));
+
 //
 //            sl.setText(String.valueOf(menu.getSoluong()));
+
+            sl.setText(String.valueOf(menu.getSoluong()));
 
             if (menu == selectedMenu) {
                 sl.setText(String.valueOf(soluongDefault));
@@ -448,7 +450,7 @@ public class OderDu extends AppCompatActivity {
 
     public void ThemOder(String MaBn, String TongTien, String MaMn, String TrangThai) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -493,7 +495,7 @@ public class OderDu extends AppCompatActivity {
     public void ThemOderchitiet(String MaOder,String TenDu, String Soluong,String Giatien, String MaBn) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -538,6 +540,49 @@ public class OderDu extends AppCompatActivity {
 
         });
     }
+    public void Trangthaibn(String MaBn, String Trangthai) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Ban ban = new Ban();
+        ban.setMaBn(MaBn);
+
+
+        ban.setTrangthai(Trangthai);
+
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUABAN);
+        serverRequest.setBan(ban);
+
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(OderDu.this, Unpaid.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+
+        });
+    }
+
 
 
 

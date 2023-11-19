@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -83,7 +85,7 @@ public class CanhanFragment extends Fragment {
 
         textView.setText(Tennv);
 
-        String imageUrl = "http://192.168.1.100:8080/duantotnghiep/layhinhanh.php?MaNv=" +Manv;
+        String imageUrl = BASE_URL +"duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         ImageRequest imageRequest = new ImageRequest(
                 imageUrl,

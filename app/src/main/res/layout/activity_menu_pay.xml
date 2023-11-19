@@ -45,7 +45,7 @@
                     android:layout_width="188dp"
                     android:layout_height="wrap_content"
 
-                    android:background="@drawable/background_noclick"
+                    android:background="@drawable/background_click"
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
 
@@ -58,7 +58,7 @@
                     android:layout_width="188dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/background_click"
+                    android:background="@drawable/background_noclick"
 
                     android:gravity="center"
 
@@ -75,45 +75,20 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="200dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/ic_menubr"
                 android:orientation="vertical"
 
 
                 tools:ignore="MissingConstraints">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvMabn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Menu:"
-                        android:gravity="center"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        tools:ignore="InvalidId" />
-                    <View
-                        android:layout_width="60dp"
-                        android:background="#CA191717"
-                        android:layout_gravity="center"
-                        android:layout_height="1dp"/>
-
-                </LinearLayout>
 
 
                 <ListView
                     android:id="@+id/lv_listoder"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-
-                    android:layout_marginBottom="65dp"
+                    android:layout_marginTop="5dp"
                     android:background="#00111111"
+                    android:divider="@drawable/khoangcachitem"
+                    android:dividerHeight="5dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
