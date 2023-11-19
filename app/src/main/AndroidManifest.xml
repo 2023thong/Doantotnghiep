@@ -18,6 +18,7 @@
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
 
             android:name=".dangnhap.DoiMatKhauNv"
@@ -28,6 +29,7 @@
         <activity
             android:name=".nhanvien.SuccuesfullyActivity"
             android:exported="false" />
+
 
         <activity
             android:name=".admin.ItemThongTinNV"
@@ -47,6 +49,11 @@
         <activity
             android:name=".admin.Suathongtinhh"
             android:exported="false" />
+
+        <service
+            android:name=".admin.CapNhatDuLieu"
+            android:exported="false" />
+
         <activity
             android:name=".nhanvien.Unpaid"
             android:exported="false" />
@@ -79,6 +86,9 @@
             android:name=".admin.CapNhatDuLieu"
             android:exported="false" />
 
+        <activity
+            android:name=".nhanvien.NhanvienMenu"
+            android:exported="false" />
         <activity
             android:name=".dangnhap.Dangnhapnhanvien"
             android:exported="false" />
@@ -124,7 +134,8 @@
             android:exported="false" />
         <activity
             android:name=".nhanvien.NhanvienMenu"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
 
 
         <activity

@@ -20,9 +20,14 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(String maMn, String tenDu, int giatien , int soluong, int maOder) {
+
+
+
+
+    public Menu(String maMn, String tenLh, int giatien , int soluong, int maOder) {
         MaMn = maMn;
-        TenDu = tenDu;
+        TenDu = TenDu;
+
         Giatien = giatien;
         MaOder = maOder;
 

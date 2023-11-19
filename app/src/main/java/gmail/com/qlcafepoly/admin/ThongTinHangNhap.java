@@ -54,15 +54,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
 
 
-
-
-
     private String urllink = BASE_URL +"duantotnghiep/get_all_product.php";
-
-
-
-
-
 
 
     private ProgressDialog pd;

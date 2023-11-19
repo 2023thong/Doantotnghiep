@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.SearchView;
 
 import org.json.JSONArray;
@@ -33,12 +35,15 @@ import gmail.com.qlcafepoly.R;
 public class Quanlynv extends AppCompatActivity {
     private List<User> lsuListNhanvien = new ArrayList<>();
     private Nhanvienht adepter;
-    private SearchView icFindMaNV;
+    private TextView btnFindNV;
+    private EditText edFindNV;
     private ListView lshienthinhanvien;
 
 
 
+
     private String urllink =  BASE_URL +"duantotnghiep/get_all_nhanvien.php";
+
 
 
 
@@ -50,14 +55,18 @@ public class Quanlynv extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quanlynv);
         lshienthinhanvien = findViewById(R.id.lsHienThiNhanVien);
-        icFindMaNV = findViewById(R.id.icFindNV);
+        btnFindNV = findViewById(R.id.btnFindNV);
+        edFindNV = findViewById(R.id.edFindNV);
         icLoadNhanVien = findViewById(R.id.icLoadNhanVien);
         icLoadNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Reload the activity
+                Intent intent = new Intent(Quanlynv.this, Quanlynv.class);
+                startActivity(intent);
                 finish();
-                startActivity(getIntent());
+//                finish();
+//                startActivity(getIntent());
             }
         });
         adepter = new Nhanvienht(Quanlynv.this,lsuListNhanvien);
@@ -66,14 +75,13 @@ public class Quanlynv extends AppCompatActivity {
         pd.setMessage("Đang tải dữ liệu nhân viên...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
-
-
 }
+
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pd.setMessage("Đang tải dữ liệu...");
+//            pd.setMessage("Đang tải dữ liệu...");
             pd.setCancelable(false);
             pd.show();
         }

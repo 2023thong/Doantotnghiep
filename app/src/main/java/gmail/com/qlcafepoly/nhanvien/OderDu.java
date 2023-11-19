@@ -39,8 +39,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -74,7 +77,9 @@ public class OderDu extends AppCompatActivity {
 
     private Menu selectedMenu;
 
+
     private String urllink =  BASE_URL +"duantotnghiep/get_all_menu.php";
+
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -91,6 +96,15 @@ public class OderDu extends AppCompatActivity {
         lshienthimenu = findViewById(R.id.lshienmn);
         adepteroder = new OderHienthi(OderDu.this, odermenu);
         lshienthimenu.setAdapter(adepteroder);
+
+        String currentDate = getCurrentDate();
+
+
+        TextView ngayht  = findViewById(R.id.ngay);
+        ngayht.setText(currentDate);
+
+
+
 
         lshienthioder = findViewById(R.id.lshienoder);
 
@@ -137,6 +151,7 @@ public class OderDu extends AppCompatActivity {
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
 
+
                     String mabn = Mabn.getText().toString();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
@@ -146,6 +161,7 @@ public class OderDu extends AppCompatActivity {
                     textView.setText(maOder);
                     String maoderd = textView.getText().toString();
 
+
                     String tendu;
                     String sl;
                     for (Menu selectedMenu : selectedMenus) {
@@ -154,6 +170,9 @@ public class OderDu extends AppCompatActivity {
                         String gia = String.valueOf(selectedMenu.getGiatien());
                         ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
+
+
+
 
                     // Move the removal of "Maoder" outside the loop
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -180,6 +199,8 @@ public class OderDu extends AppCompatActivity {
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
                     if (!isSaved[0]) {
+                        String ngayoder = currentDate;
+                        Log.d("ngay", ngayoder);
                         String mabn = Mabn.getText().toString();
                         String tongtien = Tongtien.getText().toString();
                         String trangthai = check();
@@ -195,7 +216,10 @@ public class OderDu extends AppCompatActivity {
 
                         String menu = Mamn.getText().toString();
 
-                        ThemOder(mabn, tongtien, menu, trangthai);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
+
+                        ThemOder(mabn, tongtien, menu, trangthai, formattedDate);
                          Trangthaibn(mabn, trangthai);
 
                         isSaved[0] = true;
@@ -281,6 +305,12 @@ public class OderDu extends AppCompatActivity {
             return null;
         }
     }
+    private String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  HH:mm", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+
+    }
 
     private class CustomAdapter extends ArrayAdapter<Menu> {
         public CustomAdapter(Context context, List<Menu> menuList) {
@@ -313,7 +343,9 @@ public class OderDu extends AppCompatActivity {
             customTextView.setText(menu.getTenDu());
             customTextView1.setText(String.valueOf(menu.getGiatien()));
 
+
             sl.setText(String.valueOf(menu.getSoluong()));
+
 
             if (menu == selectedMenu) {
                 sl.setText(String.valueOf(soluongDefault));
@@ -452,17 +484,20 @@ public class OderDu extends AppCompatActivity {
         totalAmountTextView.setText(String.valueOf(totalAmount));
     }
 
-    public void ThemOder(String MaBn, String TongTien, String MaMn, String TrangThai) {
+    public void ThemOder(String MaBn, String TongTien, String MaMn, String TrangThai, String Ngay) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
         Oder oder1 = new Oder();
         oder1.setMaBn(MaBn);
         oder1.setTongTien(TongTien);
         oder1.setMaMn(MaMn);
         oder1.setTrangThai(TrangThai);
+        oder1.setNgay(Ngay);
+
         Gson gson = new Gson();
         String jsonData = gson.toJson(oder1);
         Log.d("JSON oder", jsonData);
@@ -470,6 +505,7 @@ public class OderDu extends AppCompatActivity {
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.THEMODER);
         serverRequest.setOder1(oder1);
+
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
         responseCall.enqueue(new Callback<ServerResponse>() {
@@ -479,11 +515,12 @@ public class OderDu extends AppCompatActivity {
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     String maOder = response1.getMaOder();
+
+                    // Lưu maOder vào SharedPreferences (nếu cần)
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
-                    editor.apply();  // or editor.commit() to save the data
-
+                    editor.putString("Maoder", maOder);
+                    editor.apply();
 
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -496,6 +533,7 @@ public class OderDu extends AppCompatActivity {
             }
         });
     }
+
     public void ThemOderchitiet(String MaOder,String TenDu, String Soluong,String Giatien, String MaBn) {
 
         Retrofit retrofit = new Retrofit.Builder()

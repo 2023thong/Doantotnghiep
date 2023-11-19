@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import gmail.com.qlcafepoly.Database.Constants;
@@ -69,6 +74,10 @@ public class Unpaid1 extends BaseAdapter {
         TextView tongTien = convertView.findViewById(R.id.tvTongtien);
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         Button btnThanhToan = convertView.findViewById(R.id.btnThanhToan);
+        TextView ngay = convertView.findViewById(R.id.date);
+        String currentDate = getCurrentDate();
+
+        ngay.setText(currentDate);
 
 
 
@@ -137,7 +146,14 @@ public class Unpaid1 extends BaseAdapter {
 
 
 
+
         return convertView;
+    }
+    private String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  HH:mm", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+
     }
 
 

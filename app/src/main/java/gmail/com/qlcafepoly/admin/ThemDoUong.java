@@ -42,27 +42,27 @@ public class ThemDoUong extends AppCompatActivity {
             public void onClick(View view) {
 
                 String mamn = edMaMn.getText().toString();
-                String tenlh = edTenLh.getText().toString();
+                String tendu = edTenLh.getText().toString();
                 String giatien = edGiatien.getText().toString();
 
-                if (mamn.isEmpty() || tenlh.isEmpty() || giatien.isEmpty()){
+                if (mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty()){
                     Toast.makeText(ThemDoUong.this, "vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    registerMenu(mamn, tenlh, giatien);
+                else {
+                    registerMenu(mamn, tendu, giatien);
 
                     edMaMn.setText("");
                     edTenLh.setText("");
                     edGiatien.setText("");
                 }
 
+
             }
         });
         btnxemmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThemDoUong.this, DanhSachDoUong.class);
-                startActivity(intent);
+                finish();
             }
         });
         backThemDU.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,7 @@ public class ThemDoUong extends AppCompatActivity {
             }
         });
     }
-    public void registerMenu(String MaMn , String TenLh, String Giatien ) {
+    public void registerMenu(String MaMn , String TenDu, String Giatien ) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -80,8 +80,8 @@ public class ThemDoUong extends AppCompatActivity {
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Menu menu = new Menu();
         menu.setMaMn(MaMn);
-        menu.setTenDu(TenLh);
-        menu.setGiatien(Integer.parseInt(Giatien));
+        menu.setTenDu(TenDu);
+        menu.setGiatien(Integer.parseInt(String.valueOf(Giatien)));
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.MENU);
         serverRequest.setMenu(menu);

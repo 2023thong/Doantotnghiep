@@ -28,8 +28,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -47,12 +50,13 @@ public class Unpaid extends AppCompatActivity {
 
     private List<Thongtinoder> listUnpaid = new ArrayList<>();
     private Button btnThanhToan;
-    private TextView tvTrangthai;
+    private TextView tvTrangthai, tvTime, tvDate;
     private TextView textViewMarquee;
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
-    private String urllink = BASE_URL +"duantotnghiep/trangthaithanhtoan.php";
+
+    private String urllink = BASE_URL + "duantotnghiep/trangthaithanhtoan.php";
     private ProgressDialog pd;
 
 
@@ -65,6 +69,7 @@ public class Unpaid extends AppCompatActivity {
         tvTrangthai = findViewById(R.id.tvTrangthai);
         imageView = findViewById(R.id.img_Douong);
         lv_unpaid = findViewById(R.id.lv_unpaid);
+
 
         unpaid1 = new Unpaid1(Unpaid.this, listUnpaid);
         lv_unpaid.setAdapter(unpaid1);
@@ -86,6 +91,10 @@ public class Unpaid extends AppCompatActivity {
         });
 
     }
+
+
+
+
 
 
     class MyAsyncTask extends AsyncTask<String, Void, String> {

@@ -10,44 +10,46 @@
     tools:context=".dangnhap.DoiMatKhauNv">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="443dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="#C97E3A"
       >
 
         <ImageView
             android:id="@+id/backdoimk"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="40dp"
             android:scaleType="fitXY"
             android:src="@drawable/baseline_keyboard_backspace_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.945" />
+            app:layout_constraintVertical_bias="0.509" />
 
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginTop="28dp"
+            android:text="Đổi mật khẩu"
+            android:textColor="#ffff"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="40dp"
-        android:text="Đổi mật khẩu"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="445dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="27dp">
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="50dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="400dp"
@@ -73,14 +75,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="27dp"
+                    android:layout_marginBottom="32dp"
                     android:text="Mật khẩu củ"
                     android:textColor="#DF000000"
-                    android:textSize="18sp"
 
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginBottom="32dp"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="350dp"

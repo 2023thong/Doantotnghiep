@@ -58,7 +58,9 @@ public class TableActivity extends AppCompatActivity {
     ImageView backban;
     private ListView lsban;
 
+
     private String urllink = BASE_URL +"duantotnghiep/thongtinban.php";
+
 
 
     private ProgressDialog pd;

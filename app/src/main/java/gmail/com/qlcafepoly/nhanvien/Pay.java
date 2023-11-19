@@ -49,7 +49,9 @@ public class Pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lv_listpay;
+
     private String urllink = BASE_URL +"duantotnghiep/oder.php";
+
     private ProgressDialog pd;
     TextView tvchuathanhtoan;
 

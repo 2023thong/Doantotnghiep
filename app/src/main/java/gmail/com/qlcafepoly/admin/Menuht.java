@@ -63,7 +63,10 @@ public class Menuht extends BaseAdapter {
         view1.setOnClickListener(view -> {
            Intent intent = new Intent(view.getContext(), ItemThongTinDU.class);
             intent.putExtra("DULIEUDU", menu.getMaMn());
+
             intent.putExtra("DULIEUDU_TenLh", menu.getTenDu());
+
+            intent.putExtra("DULIEUDU_TenDu", menu.getTenDu());
             intent.putExtra("DULIEUDU_Giatien", String.valueOf(menu.getGiatien()));
            view.getContext().startActivity(intent);
        });

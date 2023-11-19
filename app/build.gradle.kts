@@ -1,4 +1,4 @@
-plugins {
+ plugins {
     id("com.android.application")
 }
 
@@ -46,6 +46,8 @@ dependencies {
 
     implementation ("me.relex:circleindicator:2.1.6")
     implementation ("com.squareup.picasso:picasso:2.71828")
+
+
 
 
 

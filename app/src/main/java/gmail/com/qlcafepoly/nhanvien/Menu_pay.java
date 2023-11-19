@@ -21,20 +21,25 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
 public class Menu_pay extends AppCompatActivity {
     private List<Menu1> listPay = new ArrayList<>();
     private PayDU payDU;
-    private TextView tvdathanhtoan;
+    private TextView tvdathanhtoan,tvDate1;
     private TextView tvchuathanhtoan;
     private ImageView imageView;
     private ListView lvListOder;
+
     private String base_url = BASE_URL + "duantotnghiep/thongtinctoderchitiet.php";
     private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
+
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 

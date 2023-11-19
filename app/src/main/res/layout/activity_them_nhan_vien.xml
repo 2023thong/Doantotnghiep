@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E6DA72"
+    android:background="#F4F3E6"
     tools:context=".admin.ThemNhanVien">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="#ED8361">
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/back"
+            android:src="@drawable/ic_back"
             android:layout_margin="15dp"
             android:onClick="backra"/>
 
@@ -25,8 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Thêm nhân viên"
-            android:textSize="35sp"
-            android:textStyle="bold|italic" />
+            android:textSize="25sp"
+            android:layout_marginStart="50dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -210,7 +211,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:text="Thêm"
-                android:backgroundTint="#ED5252"
+                android:backgroundTint="#3E3434"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_gravity="center"/>
@@ -220,7 +221,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:text="Danh sách"
-                android:backgroundTint="#19C6DC"
+                android:backgroundTint="#292D2E"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_gravity="center"/>

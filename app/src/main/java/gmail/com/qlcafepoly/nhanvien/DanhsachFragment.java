@@ -37,7 +37,9 @@ public class DanhsachFragment extends Fragment {
     private ImageView imageView;
     private ListView lsMenuSql;
 
+
     private String urllink = BASE_URL + "duantotnghiep/thongtintk.php";
+
 
 
     private ProgressDialog pd;
