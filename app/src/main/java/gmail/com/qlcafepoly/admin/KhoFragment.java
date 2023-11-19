@@ -76,8 +76,8 @@ public class KhoFragment extends Fragment {
 
     private Spinner spinnerMaNcc, spinner;
     private ProgressDialog pd;
-    private String urllink = "http://192.168.1.106:8080/duantotnghiep/thu.php";
-    private String urllink1 = "http://192.168.1.106:8080/duantotnghiep/loaihang.php";
+    private String urllink = "http://192.168.1.93:8080/duantotnghiep/thu.php";
+    private String urllink1 = "http://192.168.1.93:8080/duantotnghiep/loaihang.php";
 
 
 

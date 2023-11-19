@@ -47,7 +47,7 @@ public class Pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lv_listpay;
-    private String urllink = "http://192.168.1.106:8080/duantotnghiep/oder.php";
+    private String urllink = "http://192.168.1.93:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
     TextView tvchuathanhtoan;
 

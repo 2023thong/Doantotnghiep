@@ -34,8 +34,8 @@ public class Menu_pay extends AppCompatActivity {
     private TextView tvchuathanhtoan;
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://192.168.1.106:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.106:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://192.168.1.93:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://192.168.1.93:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 
