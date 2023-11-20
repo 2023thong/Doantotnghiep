@@ -45,8 +45,8 @@ public class SuaOder extends AppCompatActivity {
     private List<Menu> odermenu1 = new ArrayList<>();
     private ListView lshienthimenu;
     private List<Menu> odermenu = new ArrayList<>();
-    private String urllink = "http://192.168.1.110:8080/duantotnghiep/get_all_menu.php";
-    private String urllink1 = "http://192.168.1.110:8080/duantotnghiep/laydulieuchitietoder.php";
+    private String urllink = "http://192.168.1.16:8080/duantotnghiep/get_all_menu.php";
+    private String urllink1 = "http://192.168.1.16:8080/duantotnghiep/laydulieuchitietoder.php";
 
     private List<Menu> selectedMenus = new ArrayList<>();
     private ListView lshienthioder;

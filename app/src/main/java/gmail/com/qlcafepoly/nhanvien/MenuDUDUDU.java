@@ -12,11 +12,11 @@ import java.util.List;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.model.Menu;
 
-public class MenuDUĐUU extends BaseAdapter {
+public class MenuDUDUDU extends BaseAdapter {
     private List<Menu> menu1;
     private LayoutInflater inflater1;
 
-    public MenuDUĐUU(Context context, List<Menu> menu1){
+    public MenuDUDUDU(Context context, List<Menu> menu1){
         this.menu1 = menu1;
         inflater1 = LayoutInflater.from(context);
     }

@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,18 +38,19 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Unpaid extends Fragment {
+public class UnpaidFragment extends Fragment {
 
 
     private List<Thongtinoder> listUnpaid = new ArrayList<>();
     private Button btnThanhToan;
+    private Button btnxemdanhsachban;
     private TextView tvTrangthai;
     private TextView textViewMarquee;
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
 
-    private String urllink = "http://192.168.1.42:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = "http://192.168.1.16:8080/duantotnghiep/trangthaithanhtoan.php";
 
 
 
@@ -62,7 +59,7 @@ public class Unpaid extends Fragment {
 
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.activity_unpaid, container, false);
@@ -81,15 +78,9 @@ public class Unpaid extends Fragment {
 
         new MyAsyncTask().execute(urllink);
 
-        TextView tvdathanhtoan = view.findViewById(R.id.tvdathanhtoan);
-        tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Pay.class);
-                startActivity(intent);
-            }
-        });
 
+
+        return view;
     }
 //    public void onButtonClick(View view) {
 //        // Thay đổi nội dung của TextView
@@ -189,7 +180,7 @@ public class Unpaid extends Fragment {
 
     public void btnxemdanhsachban(int MaOder) {
         // Tạo một Intent và truyền tham số maOder
-        Intent intent = new Intent(getActivity(), Menu_pay.class);
+        Intent intent = new Intent(getActivity(), Menu_payFragment.class);
         intent.putExtra("MaOder", MaOder);
         startActivity(intent);
     }

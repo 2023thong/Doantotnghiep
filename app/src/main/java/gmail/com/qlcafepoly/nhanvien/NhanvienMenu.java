@@ -11,13 +11,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-
-import gmail.com.qlcafepoly.R;
 
 
 import gmail.com.qlcafepoly.R;
@@ -42,8 +38,7 @@ public class NhanvienMenu extends AppCompatActivity {
                 }
 
                 if (item.getItemId()==R.id.tt){
-                    Intent intent = new Intent(NhanvienMenu.this, Unpaid.class);
-                    startActivity(intent);
+                    replaceFragment(new QLthanhtoan_Fragment());
 
 
                 }

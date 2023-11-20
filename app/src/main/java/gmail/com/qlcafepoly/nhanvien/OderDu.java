@@ -1,8 +1,6 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,7 +23,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -523,7 +519,7 @@ public class OderDu extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(OderDu.this, Unpaid.class);
+                    Intent intent = new Intent(OderDu.this, UnpaidFragment.class);
                     startActivity(intent);
 
                 } else {

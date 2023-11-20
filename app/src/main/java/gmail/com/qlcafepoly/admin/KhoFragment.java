@@ -83,8 +83,8 @@ public class KhoFragment extends Fragment {
     private ProgressDialog pd;
 
 
-    private String urllink = "http://192.168.1.100:8080/duantotnghiep/thu.php";
-    private String urllink1 = "http://192.168.1.100:8080/duantotnghiep/loaihang.php";
+    private String urllink = "http://192.168.1.26:8080/duantotnghiep/thu.php";
+    private String urllink1 = "http://192.168.1.26:8080/duantotnghiep/loaihang.php";
 
 
 

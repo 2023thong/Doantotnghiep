@@ -18,10 +18,10 @@
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-<!--        <activity-->
+        <!--        <activity-->
 
-<!--            android:name=".nhanvien.SuaOder"-->
-<!--            android:exported="false" />-->
+        <!--            android:name=".nhanvien.SuaOder"-->
+        <!--            android:exported="false" />-->
         <activity
             android:name=".nhanvien.TableActivity"
             android:exported="false" />
@@ -45,7 +45,8 @@
             android:name=".admin.Suathongtinhh"
             android:exported="false" />
         <activity
-            android:name=".nhanvien.Unpaid"
+
+            android:name=".nhanvien.UnpaidFragment"
             android:exported="false" />
         <activity
             android:name=".admin.Quanlynv"
@@ -98,7 +99,7 @@
             android:name=".admin.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".nhanvien.Pay"
+            android:name=".nhanvien.PayFragment"
             android:exported="false" />
         <activity
             android:name=".admin.XoaKho"
@@ -108,28 +109,25 @@
             android:exported="false" />
 
         <activity
-            android:name=".nhanvien.Menu_pay"
+            android:name=".nhanvien.Menu_payFragment"
             android:exported="false" />
-            <activity
-                android:name=".nhanvien.SuaOder"
-                android:exported="false" />
+        <activity
+            android:name=".nhanvien.SuaOder"
+            android:exported="false" />
         <activity
             android:name=".nhanvien.ListUnpaid"
             android:exported="false" />
         <activity
-
             android:name=".nhanvien.OderDu"
             android:exported="false" />
         <activity
             android:name=".nhanvien.NhanvienMenu"
-
             android:exported="false" />
 
 
         <activity
-            android:name=".dangnhap.Dangnhapnhanvien"
-            android:exported="true"
-            tools:ignore="DuplicateActivity">
+            android:name=".dangnhap.Danhnhap"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

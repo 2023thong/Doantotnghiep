@@ -1,12 +1,18 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.List;
 
@@ -17,6 +23,7 @@ public class Unpaid1 extends BaseAdapter {
     private LayoutInflater inflater;
     private Context context;
     private PayDU payDuAdapter;
+
 
     public Unpaid1(Context context, List<Thongtinoder> ttoder) {
         this.ttoder = ttoder;
@@ -39,6 +46,7 @@ public class Unpaid1 extends BaseAdapter {
         return position;
     }
 
+    // Trong adapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -54,72 +62,72 @@ public class Unpaid1 extends BaseAdapter {
         Button btnThanhToan = convertView.findViewById(R.id.btnThanhToan);
 
 
-
         int trangThai = thongtinoder.getTrangThai();
 
         if (trangThai == 0) {
-
-        if (trangThai == 2) {
-
-
-            // Gán giá trị cho các TextView
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
-        }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int maOder = thongtinoder.getMaOder();
-                ((Unpaid) context).btnxemdanhsachban(maOder);
-            }
-        });
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (context instanceof FragmentActivity) {
+                        UnpaidFragment unpaidFragment = new UnpaidFragment();
+                        Bundle args = new Bundle();
+                        args.putInt("maOder", thongtinoder.getMaOder());  // Chuyển đổi int thành String ở đây nếu cần
+                        unpaidFragment.setArguments(args);
 
-        btnThanhToan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Xử lý khi nhấn vào btnThanhToan
-
-                if(context instanceof Unpaid){
-                    ((Unpaid) context).Dangnhap(String.valueOf(thongtinoder.getMaOder()), "1");
-
+                        FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.lv_unpaid, unpaidFragment);
+                        transaction.addToBackStack(null);  // Tuỳ chọn: Thêm vào ngăn xếp để theo dõi lịch sử điều hướng fragment
+                        transaction.commit();
+                    }
                 }
 
+            });
 
-            }
-        });
-        Button btnSua = convertView.findViewById(R.id.btnSuaoder);
-        // Assuming you have a Button or another View with click listener
-        btnSua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Extract the data you want to send
-                String maOder = String.valueOf(thongtinoder.getMaOder());
-                String maBn = thongtinoder.getMaBn();
-                String tongTien = String.valueOf(thongtinoder.getTongTien());
+            btnThanhToan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (context instanceof FragmentActivity) {
+                        UnpaidFragment unpaidFragment = new UnpaidFragment();
+                        Bundle args = new Bundle();
+                        args.putString("maOder", String.valueOf(thongtinoder.getMaOder()));
+                        args.putString("parameter2", "1");
+                        unpaidFragment.setArguments(args);
 
-                // Create an Intent
-                Intent intent = new Intent(context, SuaOder.class);
+                        FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.lv_unpaid, unpaidFragment);
+                        transaction.addToBackStack(null);  // Tuỳ chọn: Thêm vào ngăn xếp để theo dõi lịch sử điều hướng fragment
+                        transaction.commit();
+                    }
+                }
+            });
 
-                // Put the data into the Intent
-                intent.putExtra("MaOderoder", maOder);
-                intent.putExtra("MaBnoder", maBn);
-                intent.putExtra("TongTienoder", tongTien);
+            Button btnSua = convertView.findViewById(R.id.btnSuaoder);
+            btnSua.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String maOder = String.valueOf(thongtinoder.getMaOder());
+                    String maBn = thongtinoder.getMaBn();
+                    String tongTien = String.valueOf(thongtinoder.getTongTien());
 
-                // Start the new activity
-                context.startActivity(intent);
-                SharedPreferences sharedPreferences = context.getSharedPreferences("menu1", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
-                editor.apply();
-            }
-        });
+                    Intent intent = new Intent(context, SuaOder.class);
+                    intent.putExtra("MaOderoder", maOder);
+                    intent.putExtra("MaBnoder", maBn);
+                    intent.putExtra("TongTienoder", tongTien);
 
+                    context.startActivity(intent);
 
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("menu1", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Maoder", maOder);
+                    editor.apply();
+                }
+            });
+        }
 
         return convertView;
     }
-
-
 }

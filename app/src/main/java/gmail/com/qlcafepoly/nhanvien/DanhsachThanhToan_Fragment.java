@@ -1,7 +1,5 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import androidx.fragment.app.Fragment;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -12,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,13 +28,13 @@ import java.util.List;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.model.Menu;
 
-public class DanhsachFragment extends Fragment {
+public class DanhsachThanhToan_Fragment extends Fragment {
     private List<Menu> menuList1 = new ArrayList<>();
     private MenuDUDUDU menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
 
-    private String urllink = "http://192.168.1.26:8080/duantotnghiep/thongtintk.php";
+    private String urllink = "http://192.168.1.16:8080/duantotnghiep/thongtintk.php";
 
     private ProgressDialog pd;
 

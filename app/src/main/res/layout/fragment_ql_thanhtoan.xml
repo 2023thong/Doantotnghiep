@@ -9,11 +9,7 @@
     tools:context=".nhanvien.QLthanhtoan_Fragment">
 
 
-
-
-
     <LinearLayout
-        android:id="@+id/searchv"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:orientation="horizontal"
@@ -30,7 +26,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="620dp"
-        android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,17 +34,18 @@
         tools:ignore="MissingConstraints">
 
         <fragment
-            android:id="@+id/frag1"
-            android:name="gmail.com.qlcafepoly.nhanvien.NenFragment"
+            android:id="@+id/frag3"
+            android:name="gmail.com.qlcafepoly.nhanvien.Pay_UnpaidFragment"
             android:layout_width="match_parent"
             android:layout_height="74dp"
+            android:layout_marginTop="10dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="216dp"
             tools:layout_editor_absoluteY="176dp" />
 
         <fragment
-            android:id="@+id/frag2"
-            android:name="gmail.com.qlcafepoly.nhanvien.DanhsachFragment"
+            android:id="@+id/frag4"
+            android:name="gmail.com.qlcafepoly.nhanvien.UnpaidFragment"
             android:layout_width="match_parent"
             android:layout_height="547dp"
             android:layout_gravity="center"
@@ -57,18 +53,7 @@
 
 
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/quatable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/white"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:foreground="@drawable/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,8 +36,8 @@ public class Menu_payFragment extends Fragment {
     private ImageView imageView;
     private ListView lvListOder;
 
-    private String base_url = "http://192.168.1.26:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.26:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://192.168.1.16:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://192.168.1.16:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
 
 
 
@@ -70,24 +70,6 @@ public class Menu_payFragment extends Fragment {
         pd.setCancelable(false);
 
         new MyAsyncTask().execute(urllink);
-
-        tvdathanhtoan = view.findViewById(R.id.tvdathanhtoan);
-        tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PayFragment.class);
-                startActivity(intent);
-            }
-        });
-
-        tvchuathanhtoan = view.findViewById(R.id.tvchuathanhtoan);
-        tvchuathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UnpaidFragment.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 
