@@ -27,6 +27,9 @@
             android:name=".nhanvien.TableActivity"
             android:exported="false" />
         <activity
+            android:name=".admin.XemQLHD"
+            android:exported="false" />
+        <activity
             android:name=".nhanvien.SuccuesfullyActivity"
             android:exported="false" />
 

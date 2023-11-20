@@ -2,8 +2,6 @@ package gmail.com.qlcafepoly.admin;
 
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,52 +24,61 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import gmail.com.qlcafepoly.Database.Constants;
-import gmail.com.qlcafepoly.Database.RequestInterface;
-import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.nhanvien.Menu1;
 import gmail.com.qlcafepoly.nhanvien.Menu_pay;
 import gmail.com.qlcafepoly.nhanvien.Pay;
-import gmail.com.qlcafepoly.nhanvien.Pay1;
-import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
+import gmail.com.qlcafepoly.nhanvien.PayDU;
 import gmail.com.qlcafepoly.nhanvien.Unpaid;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QuanLyHoaDon extends AppCompatActivity {
-    private List<Thongtinoder> listPay = new ArrayList<>();
-    private QLHD1 qlhd1;
-    private ImageView imageView;
-    private TextView tvTongBill;
+public class XemQLHD extends AppCompatActivity {
+    private List<Menu1> listPay = new ArrayList<>();
+    private PayDU payDU;
+    private TextView tvTong;
+    private ImageView imageView,imgchitiethoadon;
     private ListView lvQLHD;
-    private String urllink = BASE_URL +"duantotnghiep/oder.php";
+    private String base_url = BASE_URL + "duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
+    private int MaOder = -1; // Mặc định không có mã Oder
 
     @SuppressLint("MissingInflatedId")
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quan_ly_hoa_don);
+        setContentView(R.layout.list_hoa_don);
+
+        // Lấy tham số maOder từ Intent nếu tồn tại
+        MaOder = getIntent().getIntExtra("MaOder", -1);
+
+        // Cập nhật URL nếu có mã Oder
+        if (MaOder != -1) {
+            urllink = base_url + "?MaOder=" + MaOder;
+        }
+
+
         imageView = findViewById(R.id.img_Douong);
-        tvTongBill = findViewById(R.id.tvTongBill);
-        lvQLHD = findViewById(R.id.lvQLHD);
-        qlhd1 = new QLHD1(QuanLyHoaDon.this, listPay);
-        lvQLHD.setAdapter(qlhd1);
+        lvQLHD = findViewById(R.id.lvListHoaDon);
+        tvTong = findViewById(R.id.tvTong);
+        imgchitiethoadon = findViewById(R.id.imgchitiethoadon);
+        imgchitiethoadon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        payDU = new PayDU(XemQLHD.this, listPay);
+        lvQLHD.setAdapter(payDU);
 
-
-        pd = new ProgressDialog(QuanLyHoaDon.this);
+        pd = new ProgressDialog(XemQLHD.this); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
-        new QuanLyHoaDon.MyAsyncTask().execute(urllink);
+        new XemQLHD.MyAsyncTask().execute(urllink);
     }
+
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -82,7 +90,6 @@ public class QuanLyHoaDon extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-
             try {
                 String strJson = readJsonOnline(strings[0]);
                 Log.d("//====", strJson);
@@ -90,34 +97,27 @@ public class QuanLyHoaDon extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
-                    JSONArray jsonArrayPay = jsonObject.getJSONArray("oder");
+                    JSONArray jsonArrayPay = jsonObject.getJSONArray("chitietoder");
                     Log.d("//=====size=====", jsonArrayPay.length() + "");
+
                     for (int i = 0; i < jsonArrayPay.length(); i++) {
                         JSONObject PayObject = jsonArrayPay.getJSONObject(i);
+
+                        Log.d("TenDu", PayObject.getString("TenDu"));
+                        Log.d("Giatien", PayObject.getString("Giatien"));
+                        Log.d("Soluong", PayObject.getString("Soluong"));
                         Log.d("MaOder", PayObject.getString("MaOder"));
-                        Log.d("MaBn", PayObject.getString("MaBn"));
-                        Log.d("TongTien", PayObject.getString("TongTien"));
-                        String MaOder = PayObject.getString("MaOder");
-                        String MaBn = PayObject.getString("MaBn");
 
-                        int TrangThai = PayObject.getInt("TrangThai");
-                        String Tongtien = PayObject.getString("TongTien");
-                        String traTien = PayObject.getString("TrangThai");
+                        String TenDu = PayObject.getString("TenDu");
+                        String Giatien = PayObject.getString("Giatien");
+                        String Soluong = PayObject.getString("Soluong");
 
-                        // Áp dụng định dạng giá tiền
-                        DecimalFormat decimalFormat = new DecimalFormat("#,##0.###");
-                        String formattedTongtien = decimalFormat.format(Double.parseDouble(Tongtien));
+                        Menu1 menu1 = new Menu1();
+                        menu1.setTenDu(TenDu);
+                        menu1.setGiatien(Integer.parseInt(Giatien));
+                        menu1.setSoluong(Integer.parseInt(Soluong));
 
-                        Thongtinoder thongtinoder = new Thongtinoder();
-
-
-                        thongtinoder.setMaOder(Integer.parseInt(MaOder));
-                        thongtinoder.setMaBn(new String(MaBn));
-                        thongtinoder.setTrangThai(TrangThai);
-                        thongtinoder.setTongTien(Integer.parseInt(Tongtien));
-                        thongtinoder.setFormattedTongtien(formattedTongtien);
-                        thongtinoder.setTratien(Integer.parseInt(traTien));
-                        listPay.add(thongtinoder);
+                        listPay.add(menu1);
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -136,7 +136,7 @@ public class QuanLyHoaDon extends AppCompatActivity {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            qlhd1.notifyDataSetChanged();
+            payDU.notifyDataSetChanged();
         }
 
         public String readJsonOnline(String linkUrl) {
@@ -156,19 +156,19 @@ public class QuanLyHoaDon extends AppCompatActivity {
                 return stringBuilder.toString();
             } catch (Exception ex) {
                 Log.d("Error: ", ex.toString());
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (bufferedReader != null) {
+                        bufferedReader.close();
+                    }
+                } catch (Exception e) {
+                    Log.d("Error: ", e.toString());
+                }
             }
             return null;
         }
-
-    }
-
-    public void btnxemdanhsachban(int MaOder) {
-        // Tạo một Intent và truyền tham số maOder
-        Intent intent = new Intent(getApplicationContext(), XemQLHD.class);
-        intent.putExtra("MaOder", MaOder);
-        startActivity(intent);
-    }
-    public void backHoaDon (View view){
-        finish();
     }
 }
