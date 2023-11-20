@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Thongtinoder implements Serializable {
     private int MaOder;
     private String MaBn;
-    private String formattedTongtien; // Thêm thuộc tính mới
+    private String formattedTongtien;
     int tratien;
     private int TrangThai;
 
@@ -25,6 +25,8 @@ public class Thongtinoder implements Serializable {
         TongTien = tongTien;
     }
 // Getter và setter cho Trangthai
+
+
 
 
     public void setTratien(int tratien) {

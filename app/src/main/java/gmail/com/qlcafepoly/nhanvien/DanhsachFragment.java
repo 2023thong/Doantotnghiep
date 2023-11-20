@@ -34,7 +34,13 @@ public class DanhsachFragment extends Fragment {
     private MenuDU menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
+
     private String urllink = "http://192.168.1.143:8080/duantotnghiep/thongtintk.php";
+
+
+
+
+
 
     private ProgressDialog pd;
 
@@ -86,7 +92,11 @@ public class DanhsachFragment extends Fragment {
 
 
 //                        String MaMn = menuObject.getString("MaMn");
+
                         String TenDu = menuObject.getString("TenDu");
+
+                        String TenLh = menuObject.getString("TenDu");
+
                         String Giatien = menuObject.getString("Giatien");
 
 
@@ -136,7 +146,6 @@ public class DanhsachFragment extends Fragment {
             }
             return null;
         }
-    }
+    }}
 
 
-}

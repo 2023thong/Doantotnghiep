@@ -16,6 +16,7 @@ public class Unpaid1 extends BaseAdapter {
     private List<Thongtinoder> ttoder;
     private LayoutInflater inflater;
     private Context context;
+    private PayDU payDuAdapter;
 
     public Unpaid1(Context context, List<Thongtinoder> ttoder) {
         this.ttoder = ttoder;
@@ -55,7 +56,10 @@ public class Unpaid1 extends BaseAdapter {
 
 
         int trangThai = thongtinoder.getTrangThai();
+
         if (trangThai == 0) {
+
+        if (trangThai == 2) {
 
 
             // Gán giá trị cho các TextView
@@ -63,26 +67,6 @@ public class Unpaid1 extends BaseAdapter {
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
         }
-//        if (trangThai == 1){
-//
-//            maOder.setText(String.valueOf(thongtinoder.getMaOder()));
-//            maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-//            tongTien.setText(String.valueOf(thongtinoder.getTongtien()));
-//
-//        }
-
-
-
-
-
-//        int trangThai = thongtinoder.getTrangthai();
-//        if (trangThai == 0) {
-//            convertView.setVisibility(View.VISIBLE);
-//        }
-
-
-
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +89,33 @@ public class Unpaid1 extends BaseAdapter {
 
             }
         });
+        Button btnSua = convertView.findViewById(R.id.btnSuaoder);
+        // Assuming you have a Button or another View with click listener
+        btnSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Extract the data you want to send
+                String maOder = String.valueOf(thongtinoder.getMaOder());
+                String maBn = thongtinoder.getMaBn();
+                String tongTien = String.valueOf(thongtinoder.getTongTien());
+
+                // Create an Intent
+                Intent intent = new Intent(context, SuaOder.class);
+
+                // Put the data into the Intent
+                intent.putExtra("MaOderoder", maOder);
+                intent.putExtra("MaBnoder", maBn);
+                intent.putExtra("TongTienoder", tongTien);
+
+                // Start the new activity
+                context.startActivity(intent);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("menu1", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
+                editor.apply();
+            }
+        });
+
 
 
         return convertView;

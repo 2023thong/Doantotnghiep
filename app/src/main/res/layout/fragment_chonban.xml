@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="#F3F3F3"
-    tools:context=".ChonbanFragment">
+    tools:context=".nhanvien.ChonbanFragment">
 
 
 
@@ -23,20 +23,45 @@
         android:orientation="horizontal" >
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edTimk"
-        android:layout_width="390dp"
-        android:layout_height="52dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/ttk"
-        android:drawableRight="@android:drawable/ic_search_category_default"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+    <LinearLayout
+        android:id="@+id/searchv"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="Autofill,LabelFor,TextFields" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/botimkiem"
+            android:ems="10"
+            android:hint="Nhập thông tin"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/timkiem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,UseAppTint" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -64,12 +89,13 @@
             android:name="gmail.com.qlcafepoly.nhanvien.DanhsachFragment"
             android:layout_width="match_parent"
             android:layout_height="547dp"
+            android:layout_gravity="center"
             tools:ignore="MissingConstraints" />
 
 
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/quamenu"
+        android:id="@+id/quatable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

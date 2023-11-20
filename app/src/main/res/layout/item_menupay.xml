@@ -22,10 +22,9 @@
                 android:id="@+id/img_Douong"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/ic_tranhietdoi"
-                android:scaleType="centerCrop"
                 android:layout_alignParentStart="true"
-                android:layout_centerVertical="true" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_tranhietdoi" />
 
             <!-- Layout chứa thông tin sản phẩm -->
             <RelativeLayout

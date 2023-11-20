@@ -9,18 +9,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="#ED8361">
 
         <ImageView
             android:id="@+id/back1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/thoat"
+            android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints,UseAppTint" />
 
         <TextView
             android:id="@+id/textView17"
@@ -28,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:text="Thông Tin Tài Khoản"
-            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,64 +46,53 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@drawable/bothongtintk"
-        android:padding="5dp"
+        android:background="@drawable/bocanhan"
+        android:padding="10dp"
         tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/tvTennv"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="Mã nhân viên:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+            app:layout_constraintTop_toBottomOf="@+id/btnthem" />
 
         <TextView
             android:id="@+id/tvManv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Tên nhân viên:"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvManv1" />
-
-        <TextView
-            android:id="@+id/tvTennv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="Số điện thoại:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTennv" />
+            app:layout_constraintTop_toBottomOf="@+id/tvManv1" />
 
         <TextView
             android:id="@+id/tvSDt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -115,11 +107,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSDt" />
 
         <TextView
-            android:id="@+id/tvDiachi"
+            android:id="@+id/diachi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -131,28 +123,53 @@
             android:text="Chức vụ:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiachi" />
+            app:layout_constraintTop_toBottomOf="@+id/diachi" />
 
         <TextView
             android:id="@+id/tvPhanquyen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="20sp"
+            android:textColor="#E80B0B"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/themanh"
-            android:tint="#F44336"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UseAppTint" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgAnhdd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+
+                android:src="@drawable/themanh"
+                tools:ignore="UseAppTint" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/btnthem"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FA6D41"
+            android:text="Lưu"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

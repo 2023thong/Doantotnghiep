@@ -74,36 +74,36 @@
 
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_menubr"
-            android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Coffee Folly:"
-                android:gravity="center"
-                android:textSize="30dp"
-                android:textStyle="bold"
-            tools:ignore="HardcodedText,InvalidId" />
-            <View
-                android:layout_width="180dp"
-                android:background="#CA191717"
-                android:layout_gravity="center"
-                android:layout_height="1.5dp"/>
-            <ListView
-                android:id="@+id/lv_listpay"
-                android:layout_width="match_parent"
-                android:layout_height="514dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="MissingConstraints"/>
+                android:background="@drawable/ic_menubr"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Coffee Folly:"
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,InvalidId" />
+                <View
+                    android:layout_width="180dp"
+                    android:background="#CA191717"
+                    android:layout_gravity="center"
+                    android:layout_height="1.5dp"/>
+                <ListView
+                    android:id="@+id/lv_listpay"
+                    android:layout_width="match_parent"
+                    android:layout_height="514dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="MissingConstraints"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </FrameLayout>

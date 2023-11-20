@@ -22,7 +22,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/ic_backgroundpay"
+                android:background="@drawable/ic_background_pay"
                 android:padding="30dp"
                 tools:ignore="ContentDescription,MissingConstraints" />
 
