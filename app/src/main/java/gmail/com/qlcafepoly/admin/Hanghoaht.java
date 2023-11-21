@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -71,9 +72,15 @@ public class Hanghoaht extends BaseAdapter {
 
 
         tvMahh.setText(user1.getMaHH());
-        tvMancc.setText(user1.getMaNcc());
+        tvMancc.setText(user1.getSoluong());
         tvTenhh.setText(user1.getTenHh());
         tvGiatien.setText(user1.getGiaSp());
+
+        SharedPreferences sharedPreferences = convertView.getContext().getSharedPreferences("sl", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("TenDu", user1.getTenHh());
+        editor.putString("Soluong", user1.getSoluong());
+        editor.apply();
 
 
         PopupMenu popupMenu = new PopupMenu(context.getApplicationContext(), imgXoa);
@@ -183,4 +190,6 @@ public class Hanghoaht extends BaseAdapter {
 
         return convertView;
     }
+
+
 }

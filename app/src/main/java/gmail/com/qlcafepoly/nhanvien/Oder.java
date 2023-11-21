@@ -9,6 +9,15 @@ public class Oder {
     private String Soluong;
     private String Giatien;
     private String MaOder;
+    private String Ngay;
+
+    public String getNgay() {
+        return Ngay;
+    }
+
+    public void setNgay(String ngay) {
+        Ngay = ngay;
+    }
 
     public Oder() {
     }

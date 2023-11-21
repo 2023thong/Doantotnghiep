@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -95,7 +97,8 @@ public class Thonhtintaikhoan extends AppCompatActivity {
 
 
         // Gửi tên tài khoản lên máy chủ để lấy hình ảnh
-        String imageUrl = "http://192.168.1.100:8080/duantotnghiep/layhinhanh.php?MaNv=" +Manv;
+
+        String imageUrl = BASE_URL + "duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         ImageRequest imageRequest = new ImageRequest(
                 imageUrl,
@@ -162,7 +165,8 @@ public class Thonhtintaikhoan extends AppCompatActivity {
                     byte[] bytes = byteArrayOutputStream.toByteArray();
                     final String base64img = Base64.encodeToString(bytes, Base64.DEFAULT);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    String url ="http://192.168.1.100:8080/duantotnghiep/database.php";
+
+                    String url =BASE_URL +"duantotnghiep/database.php";
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                             new Response.Listener<String>() {

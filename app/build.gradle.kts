@@ -1,4 +1,4 @@
-plugins {
+ plugins {
     id("com.android.application")
 }
 
@@ -32,6 +32,7 @@ dependencies {
 
     implementation("com.android.volley:volley:1.2.1")
 
+    //noinspection GradleCompatible,GradleCompatible
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -45,6 +46,8 @@ dependencies {
 
     implementation ("me.relex:circleindicator:2.1.6")
     implementation ("com.squareup.picasso:picasso:2.71828")
+
+
 
 
 

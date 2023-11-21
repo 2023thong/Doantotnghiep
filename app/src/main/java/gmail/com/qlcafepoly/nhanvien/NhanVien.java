@@ -36,7 +36,7 @@ public class NhanVien extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NhanVien.
+     * @return A new instance of fragment NhanVienFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static NhanVien newInstance(String param1, String param2) {
@@ -61,6 +61,6 @@ public class NhanVien extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nhan_vien, container, false);
+        return inflater.inflate(R.layout.fragment_nhan_vien2, container, false);
     }
 }

@@ -1,6 +1,9 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -54,13 +57,10 @@ public class TableActivity extends AppCompatActivity {
     FloatingActionButton themban;
     ImageView backban;
     private ListView lsban;
-
-    private String urllink = "http://192.168.1.16:8080/duantotnghiep/thongtinban.php";
-
-
+    private String urllink = BASE_URL +"duantotnghiep/thongtinban.php";
     private ProgressDialog pd;
     private Spinner spnTrangthai;
-
+    private AppCompatButton btnThem, btnHuy;
     private EditText edtMaban, edtTenBan ;
 
 
@@ -207,7 +207,10 @@ public class TableActivity extends AppCompatActivity {
         edtTenBan = dialogView.findViewById(R.id.edtTenban);
         edtMaban = dialogView.findViewById(R.id.edtMaban);
         spnTrangthai = dialogView.findViewById(R.id.spnTrangthai);
+        btnThem = dialogView.findViewById(R.id.btn_them);
+        btnHuy = dialogView.findViewById(R.id.btn_huy);
 
+        final AlertDialog alertDialog = dialogBuilder.create();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -217,14 +220,14 @@ public class TableActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnTrangthai.setAdapter(adapter);
 
-        dialogBuilder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Handle the data entered by the user and add it to the server
+        btnThem.setOnClickListener(new View.OnClickListener() { // Gán lại nút thêm ở layout
+            @Override
+            public void onClick(View view) {
                 String TenBan = edtTenBan.getText().toString();
                 String MaBn = edtMaban.getText().toString();
                 String Trangthai = getTrangThaiValue(spnTrangthai.getSelectedItemPosition());
-                dialog.dismiss();
 
+                alertDialog.dismiss();
 
                 registerBan(MaBn, TenBan, Trangthai);
 
@@ -232,21 +235,26 @@ public class TableActivity extends AppCompatActivity {
                 edtTenBan.setText("");
                 spnTrangthai.setSelection(0);
 
-
-
                 updateData();
             }
         });
 
-        dialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+        btnHuy.setOnClickListener(new View.OnClickListener() { // Gán lại nút hủy ở layout
+            @Override
+            public void onClick(View view) {
+                // Handle cancel button click
+                alertDialog.dismiss();
             }
         });
-
-        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+            }
+        });
         alertDialog.show();
     }
-    private String getTrangThaiValue(int selectedItemPosition) {
+
+        private String getTrangThaiValue(int selectedItemPosition) {
         if (selectedItemPosition == 0) {
             return "1"; // Map 'trống' to '1'
         } else {
@@ -255,7 +263,7 @@ public class TableActivity extends AppCompatActivity {
     }
     public void registerBan(String MaBn , String TenBan, String Trangthai ) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);

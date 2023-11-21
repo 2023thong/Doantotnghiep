@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,14 +35,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,12 +68,9 @@ public class OderDu extends AppCompatActivity {
 
     private int totalAmount = 0;
 
-
-
-
     private Menu selectedMenu;
 
-    private String urllink = "http://192.168.1.110:8080/duantotnghiep/get_all_menu.php";
+    private String urllink =  BASE_URL +"duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -84,6 +87,15 @@ public class OderDu extends AppCompatActivity {
         lshienthimenu = findViewById(R.id.lshienmn);
         adepteroder = new OderHienthi(OderDu.this, odermenu);
         lshienthimenu.setAdapter(adepteroder);
+
+        String currentDate = getCurrentDate();
+
+
+        TextView ngayht  = findViewById(R.id.ngay);
+        ngayht.setText(currentDate);
+
+
+
 
         lshienthioder = findViewById(R.id.lshienoder);
 
@@ -117,7 +129,6 @@ public class OderDu extends AppCompatActivity {
                     selectedMenus.add(selectedMenu);
                     updateListViewAbove(selectedMenu);
 
-
                 }
             }
         });
@@ -131,33 +142,41 @@ public class OderDu extends AppCompatActivity {
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
 
-                        String mabn = Mabn.getText().toString();
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
-                        String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
+                    String mabn = Mabn.getText().toString();
 
-                        TextView textView = findViewById(R.id.tvMaoder);
-                        textView.setText(maOder);
-                        String maoderd = textView.getText().toString();
+                    SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
+                    String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
 
-                        for (Menu selectedMenu : selectedMenus) {
-                            String tendu = selectedMenu.getTenLh();
-                            String sl = String.valueOf(selectedMenu.getSoluong());
-                            String gia = String.valueOf(selectedMenu.getGiatien());
+                    TextView textView = findViewById(R.id.tvMaoder);
+                    textView.setText(maOder);
+                    String maoderd = textView.getText().toString();
 
-                            ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
-                        }
 
-                        // Move the removal of "Maoder" outside the loop
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.remove("Maoder");
-                        editor.apply();
+                    String tendu;
+                    String sl;
+                    for (Menu selectedMenu : selectedMenus) {
+                        tendu = selectedMenu.getTenDu();
+                        sl = String.valueOf(selectedMenu.getSoluong());
+                        String gia = String.valueOf(selectedMenu.getGiatien());
+                        ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
+                    }
+
+
+
+
+                    // Move the removal of "Maoder" outside the loop
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("Maoder");
+                    editor.apply();
+
 
 
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
 
@@ -171,6 +190,8 @@ public class OderDu extends AppCompatActivity {
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
                     if (!isSaved[0]) {
+                        String ngayoder = currentDate;
+                        Log.d("ngay", ngayoder);
                         String mabn = Mabn.getText().toString();
                         String tongtien = Tongtien.getText().toString();
                         String trangthai = check();
@@ -186,9 +207,11 @@ public class OderDu extends AppCompatActivity {
 
                         String menu = Mamn.getText().toString();
 
-                        ThemOder(mabn, tongtien, menu, trangthai);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
 
-
+                        ThemOder(mabn, tongtien, menu, trangthai, formattedDate);
+                         Trangthaibn(mabn, trangthai);
 
                         isSaved[0] = true;
                     } else {
@@ -237,7 +260,7 @@ public class OderDu extends AppCompatActivity {
 
                         Menu menu = new Menu();
                         menu.setMaMn(MaMn);
-                        menu.setTenLh(TenDu);
+                        menu.setTenDu(TenDu);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         odermenu.add(menu);
                     }
@@ -273,6 +296,12 @@ public class OderDu extends AppCompatActivity {
             return null;
         }
     }
+    private String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy  HH:mm", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+
+    }
 
     private class CustomAdapter extends ArrayAdapter<Menu> {
         public CustomAdapter(Context context, List<Menu> menuList) {
@@ -287,6 +316,8 @@ public class OderDu extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.itemoder, parent, false);
             }
 
+            TextView mamn = convertView.findViewById(R.id.tvMaMn1);
+
             TextView customTextView = convertView.findViewById(R.id.tvTenoder1);
             TextView customTextView1 = convertView.findViewById(R.id.tvGiaDuOder1);
             ImageView imageXoa = convertView.findViewById(R.id.imgXoa1);
@@ -300,10 +331,14 @@ public class OderDu extends AppCompatActivity {
 
 
 //            mamn.setText(menu.getMaMn());
-//            customTextView.setText(menu.getTenLh());
-//            customTextView1.setText(String.valueOf(menu.getGiatien()));
-//
+            customTextView.setText(menu.getTenDu());
 //            sl.setText(String.valueOf(menu.getSoluong()));
+
+            sl.setText(String.valueOf(menu.getSoluong()));
+            customTextView1.setText(String.valueOf(menu.getGiatien()));
+
+
+            sl.setText(String.valueOf(menu.getSoluong()));
 
             if (menu == selectedMenu) {
                 sl.setText(String.valueOf(soluongDefault));
@@ -442,17 +477,20 @@ public class OderDu extends AppCompatActivity {
         totalAmountTextView.setText(String.valueOf(totalAmount));
     }
 
-    public void ThemOder(String MaBn, String TongTien, String MaMn, String TrangThai) {
+    public void ThemOder(String MaBn, String TongTien, String MaMn, String TrangThai, String Ngay) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
         Oder oder1 = new Oder();
         oder1.setMaBn(MaBn);
         oder1.setTongTien(TongTien);
         oder1.setMaMn(MaMn);
         oder1.setTrangThai(TrangThai);
+        oder1.setNgay(Ngay);
+
         Gson gson = new Gson();
         String jsonData = gson.toJson(oder1);
         Log.d("JSON oder", jsonData);
@@ -460,6 +498,7 @@ public class OderDu extends AppCompatActivity {
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.THEMODER);
         serverRequest.setOder1(oder1);
+
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
         responseCall.enqueue(new Callback<ServerResponse>() {
@@ -469,11 +508,12 @@ public class OderDu extends AppCompatActivity {
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     String maOder = response1.getMaOder();
+
+                    // Lưu maOder vào SharedPreferences (nếu cần)
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
-                    editor.apply();  // or editor.commit() to save the data
-
+                    editor.putString("Maoder", maOder);
+                    editor.apply();
 
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -486,10 +526,11 @@ public class OderDu extends AppCompatActivity {
             }
         });
     }
+
     public void ThemOderchitiet(String MaOder,String TenDu, String Soluong,String Giatien, String MaBn) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -534,6 +575,52 @@ public class OderDu extends AppCompatActivity {
 
         });
     }
+    public void Trangthaibn(String MaBn, String Trangthai) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Ban ban = new Ban();
+        ban.setMaBn(MaBn);
+
+
+        ban.setTrangthai(Trangthai);
+
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUABAN);
+        serverRequest.setBan(ban);
+
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(OderDu.this, UnpaidFragment.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+
+        });
+    }
+    public void SoluongKho(){
+
+    }
+
 
 
 

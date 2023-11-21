@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,24 +25,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
 public class Menu_payFragment extends Fragment {
     private List<Menu1> listPay = new ArrayList<>();
     private PayDU payDU;
-    private TextView tvdathanhtoan;
-    private TextView tvchuathanhtoan;
+
     private ImageView imageView;
     private ListView lvListOder;
-
-    private String base_url = "http://192.168.1.16:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.16:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
-
-
-
+    private String base_url = "http://172.16.55.122:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://172.16.55.122:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 

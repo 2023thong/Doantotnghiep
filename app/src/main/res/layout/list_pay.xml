@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
     android:gravity="center_vertical"
-    android:padding="10dp"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_gravity="center"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="106dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/background_click"
-        tools:ignore="MissingConstraints,UselessLeaf"
-        >
+
+        android:background="@drawable/bocanhan"
+        tools:ignore="MissingConstraints,UselessLeaf">
 
         <LinearLayout
             android:id="@+id/llMsBn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/tvMSBan1"
                 android:layout_width="wrap_content"
@@ -49,9 +49,9 @@
         <Button
             android:id="@+id/btnxemdanhsachban"
             android:layout_width="70dp"
-            android:onClick="btnxemdanhsachban"
             android:layout_height="40dp"
             android:backgroundTint="#FFC107"
+            android:onClick="btnxemdanhsachban"
             android:text="xem"
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,8 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/llMsBn"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/llMsBn">
+
             <TextView
                 android:id="@+id/tvSoBan1"
                 android:layout_width="wrap_content"
@@ -79,11 +79,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llMsBn"
                 tools:ignore="HardcodedText" />
+
             <TextView
-                android:layout_marginLeft="10dp"
                 android:id="@+id/tvMaOder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
 
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -100,27 +101,28 @@
             app:layout_constraintTop_toBottomOf="@+id/llMaOder"
 
             >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng tiền:"
                 android:layout_marginLeft="10dp"
-                tools:ignore="HardcodedText"
-                />
+                android:text="Tổng tiền:"
+                tools:ignore="HardcodedText" />
+
             <TextView
                 android:id="@+id/tvTongtien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="16dp"
-                />
+                android:textSize="16dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:fontFamily="sans-serif-light"
                 android:text="đ"
-                android:layout_marginLeft="4dp"
-                android:textSize="16dp"/>
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -128,40 +130,39 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/llTongtien"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.538"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llTongtien">
+
             <TextView
                 android:id="@+id/tvTrangthai"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
-                android:textColor="#FE0000"
                 android:gravity="center"
+                android:textColor="#FE0000"
 
-                android:textStyle="italic"
                 android:textSize="20dp"
+                android:textStyle="italic"
                 tools:ignore="HardcodedText,SpUsage"
                 tools:layout_editor_absoluteX="72dp"
                 tools:layout_editor_absoluteY="112dp" />
+
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:src="@drawable/ic_tick"
                 android:textSize="12dp"
                 tools:ignore="HardcodedText,SpUsage"
                 tools:layout_editor_absoluteX="72dp"
-                tools:layout_editor_absoluteY="112dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_tick"
-                />
+                tools:layout_editor_absoluteY="112dp" />
 
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </LinearLayout>

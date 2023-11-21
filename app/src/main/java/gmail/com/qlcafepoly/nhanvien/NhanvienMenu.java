@@ -18,7 +18,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import gmail.com.qlcafepoly.R;
 
-
 public class NhanvienMenu extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -44,7 +43,8 @@ public class NhanvienMenu extends AppCompatActivity {
                 }
 
                 if (item.getItemId()==R.id.nv){
-//                    replaceFragment(new Unpaid());
+                    replaceFragment(new NhanVienFragment());
+
 
                 }
                 return true;

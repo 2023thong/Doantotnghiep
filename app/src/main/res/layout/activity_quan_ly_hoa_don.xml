@@ -8,13 +8,13 @@
     tools:context=".admin.QuanLyHoaDon">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="#ED8361">
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/back"
+            android:src="@drawable/ic_back"
             android:layout_margin="15dp"
             android:onClick="backHoaDon"/>
 
@@ -24,8 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Quản lý hóa đơn"
-            android:textSize="35sp"
-            android:textStyle="bold|italic" />
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            android:layout_marginStart="50dp"/>
 
     </LinearLayout>
     <LinearLayout
@@ -46,6 +47,7 @@
             android:textSize="23sp"
             android:layout_marginStart="50dp"/>
         <TextView
+            android:id="@+id/tvTongBill"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="0"
@@ -55,6 +57,7 @@
     </LinearLayout>
 
     <ListView
+        android:id="@+id/lvQLHD"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

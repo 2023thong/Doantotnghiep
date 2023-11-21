@@ -35,19 +35,17 @@ public class MenuDUDUDU extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView == null){
-            convertView = inflater1.inflate(R.layout.item_menupay, parent, false);
+            convertView = inflater1.inflate(R.layout.activity_item_menu, parent, false);
         }
         Menu menu = menu1.get(position);
 
-        TextView tvTenDu = convertView.findViewById(R.id.tv_DoUong);
-        TextView tvGiatien = convertView.findViewById(R.id.tvMoney);
-        TextView tvSoluong = convertView.findViewById(R.id.tv_Soluong);
+        TextView tvTenDu = convertView.findViewById(R.id.txtTenLh);
+        TextView tvGiatien = convertView.findViewById(R.id.txtGia1);
+
 
 
         tvTenDu.setText(menu.getTenLh());
         tvGiatien.setText(String.valueOf(menu.getGiatien()));
-
-        tvSoluong.setText(String.valueOf(menu.getSoluong()));
         return convertView;
     }
 }
