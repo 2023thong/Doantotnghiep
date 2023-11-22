@@ -50,7 +50,7 @@ public class QuanLyHoaDon extends AppCompatActivity {
     private ImageView imageView;
     private TextView tvTongBill;
     private ListView lvQLHD;
-    private String urllink = "http://172.16.55.122:8080/duantotnghiep/oder.php";
+    private String urllink = "http://192.168.1.94:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
 
     @SuppressLint("MissingInflatedId")

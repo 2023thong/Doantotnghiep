@@ -38,14 +38,14 @@
             android:name="gmail.com.qlcafepoly.nhanvien.Pay_UnpaidFragment"
             android:layout_width="match_parent"
             android:layout_height="74dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="216dp"
             tools:layout_editor_absoluteY="176dp" />
 
         <fragment
             android:id="@+id/frag4"
-            android:name="gmail.com.qlcafepoly.nhanvien.UnpaidFragment"
+            android:name="gmail.com.qlcafepoly.nhanvien.PayFragment"
             android:layout_width="match_parent"
             android:layout_height="547dp"
             android:layout_gravity="center"

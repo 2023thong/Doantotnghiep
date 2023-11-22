@@ -4,7 +4,6 @@ import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,8 +38,8 @@ public class Menu_payFragment extends Fragment {
 
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://172.16.55.122:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://172.16.55.122:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://192.168.1.94:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://192.168.1.94:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 
@@ -51,14 +50,6 @@ public class Menu_payFragment extends Fragment {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.activity_menu_pay, container, false);
 
-        // Lấy tham số maOder từ Intent nếu tồn tại
-        if (getArguments() != null) {
-            MaOder = getArguments().getInt("MaOder", -1);
-        }
-        // Cập nhật URL nếu có mã Oder
-        if (MaOder != -1) {
-            urllink = base_url + "?MaOder=" + MaOder;
-        }
 
         imageView = view.findViewById(R.id.img_Douong);
         lvListOder = view.findViewById(R.id.lv_listoder);
@@ -68,6 +59,17 @@ public class Menu_payFragment extends Fragment {
         pd = new ProgressDialog(getActivity()); // Khởi tạo ProgressDialog ở đây
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
+
+        // Lấy tham số maOder từ Intent nếu tồn tại
+        if (getArguments() != null) {
+            MaOder = getArguments().getInt("MaOder", -1);
+        }
+        // Cập nhật URL nếu có mã Oder
+        if (MaOder != -1) {
+            urllink = base_url + "?MaOder=" + MaOder;
+        }
+
+
 
         new MyAsyncTask().execute(urllink);
         return view;

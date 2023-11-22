@@ -50,7 +50,7 @@ public class UnpaidFragment extends Fragment {
     private ImageView imageView;
     private ListView lv_unpaid;
 
-    private String urllink = "http://172.16.55.122:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = "http://192.168.1.94:8080/duantotnghiep/trangthaithanhtoan.php";
 
 
 
@@ -68,7 +68,7 @@ public class UnpaidFragment extends Fragment {
         imageView = view.findViewById(R.id.img_Douong);
         lv_unpaid = view.findViewById(R.id.lv_unpaid);
 
-        unpaid1 = new Unpaid1(getActivity(), listUnpaid);
+        unpaid1 = new Unpaid1(view.getContext(), listUnpaid);
         lv_unpaid.setAdapter(unpaid1);
         pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
@@ -178,51 +178,8 @@ public class UnpaidFragment extends Fragment {
         }
     }
 
-    public void btnxemdanhsachban(int MaOder) {
-        // Tạo một Intent và truyền tham số maOder
-        Intent intent = new Intent(getActivity(), Menu_payFragment.class);
-        intent.putExtra("MaOder", MaOder);
-        startActivity(intent);
-    }
-    public void Dangnhap(final String MaOder , String Matkhau) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        Thongtinoder user = new Thongtinoder();
-        user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangThai(Integer.parseInt(Matkhau));
-
-        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.THANHTOAN);
-        serverRequest.setThongtinoder(user);
-        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
 
-        responseCall.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
-
-                    Toast.makeText(getActivity(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                }
-                else{
-                    Toast.makeText(getActivity(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed"+ t.getMessage());
-
-            }
-        });
-
-    }
 
 
 }

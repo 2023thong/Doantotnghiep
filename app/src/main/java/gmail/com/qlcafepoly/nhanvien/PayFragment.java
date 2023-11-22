@@ -54,31 +54,37 @@ public class PayFragment extends Fragment {
     private ImageView imageView;
     private Button btnxemdanhsachban;
     private ListView lv_listpay;
-    private String urllink = "http://172.16.55.122:8080/duantotnghiep/oder.php";
+    private String urllink = "http://192.168.1.94:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
 
 
     @SuppressLint("MissingInflatedId")
 
-    public View onCreate(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.activity_pay, container, false);
         imageView = view.findViewById(R.id.img_Douong);
-        lv_listpay = view.findViewById(R.id.lv_listoder);
+        lv_listpay = view.findViewById(R.id.lv_listpay);
         btnxemdanhsachban = view.findViewById(R.id.btnxemdanhsachban);
 
         pay1 = new Pay1(getActivity(), listPay);
         lv_listpay.setAdapter(pay1);
-
-
         pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
-        new PayFragment.MyAsyncTask().execute(urllink);
+        new MyAsyncTask().execute(urllink);
 
         return view;
     }
+
+//    public void btnxemdanhsachban(int MaOder) {
+//        // Tạo một Intent và truyền tham số maOder
+//        Intent intent = new Intent(getActivity(), Menu_payFragment.class);
+//        intent.putExtra("MaOder", MaOder);
+//        startActivity(intent);
+//    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -177,48 +183,48 @@ public class PayFragment extends Fragment {
 //        startActivity(intent);
 //    }
 
-    private Context getApplicationContext() {
-        return null;
-    }
+//    private Context getApplicationContext() {
+//        return null;
+//    }
 
-    public void Dangnhap(final String MaOder , String Matkhau) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        Thongtinoder user = new Thongtinoder();
-        user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangThai(Integer.parseInt(Matkhau));
-
-        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.THANHTOAN);
-        serverRequest.setThongtinoder(user);
-        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
-
-
-        responseCall.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
-
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed"+ t.getMessage());
-
-            }
-        });
-    }
+//    public void Dangnhap(final String MaOder , String Matkhau) {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+//        Thongtinoder user = new Thongtinoder();
+//        user.setMaOder(Integer.parseInt(MaOder));
+//        user.setTrangThai(Integer.parseInt(Matkhau));
+//
+//        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+//        serverRequest.setOperation(Constants.THANHTOAN);
+//        serverRequest.setThongtinoder(user);
+//        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+//
+//
+//        responseCall.enqueue(new Callback<ServerResponse>() {
+//            @Override
+//            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+//                ServerResponse response1 = response.body();
+//                if (response1.getResult().equals(Constants.SUCCESS)){
+//
+//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//
+//                }
+//                else{
+//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServerResponse> call, Throwable t) {
+//                Log.d(Constants.TAG, "Failed"+ t.getMessage());
+//
+//            }
+//        });
+//    }
 
 
 }

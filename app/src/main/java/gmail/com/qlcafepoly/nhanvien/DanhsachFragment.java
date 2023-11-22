@@ -1,8 +1,5 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
@@ -33,10 +30,10 @@ import gmail.com.qlcafepoly.model.Menu;
 
 public class DanhsachFragment extends Fragment {
     private List<Menu> menuList1 = new ArrayList<>();
-    private MenuDUDUDU menudu;
+    private MenuDu menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://172.16.55.122:8080/duantotnghiep/thongtintk.php";
+    private String urllink = "http://192.168.1.94:8080/duantotnghiep/thongtintk.php";
 
 
     private ProgressDialog pd;
@@ -49,7 +46,7 @@ public class DanhsachFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_danhsach_fragment, container, false);
 //        imageView = view.findViewById(R.id.imgnuoc);
         lsMenuSql = view.findViewById(R.id.lsmenudu);
-        menudu = new MenuDUDUDU(getActivity(), menuList1);
+        menudu = new MenuDu(getActivity(), menuList1);
         lsMenuSql.setAdapter(menudu);
 
         pd = new ProgressDialog(getActivity()); // Khởi tạo ProgressDialog ở đây

@@ -1,6 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,21 +28,23 @@ public class Pay_UnpaidFragment extends Fragment {
         manager.beginTransaction().replace(R.id.frag4,unpaidFragment).commit();
         // Không cần khởi tạo Pay_UnpaidFragment ở đây
 
-        bt_chuathanhtoan.setOnClickListener(new View.OnClickListener() {
+        bt_thanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PayFragment payFragment = new PayFragment();
                 manager.beginTransaction().replace(R.id.frag4, payFragment).commit();
+
 //                UnpaidFragment unpaidFragment = new UnpaidFragment();
 //                manager.beginTransaction().replace(R.id.frag4, unpaidFragment).commit();
             }
         });
-        bt_thanhtoan.setOnClickListener(new View.OnClickListener() {
+        bt_chuathanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UnpaidFragment unpaidFragment = new UnpaidFragment();
+                manager.beginTransaction().replace(R.id.frag4, unpaidFragment).commit();
 //                PayFragment payFragment = new PayFragment();
 //                manager.beginTransaction().replace(R.id.frag4, payFragment).commit();
-                Toast.makeText(getActivity(), "thu", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

@@ -32,8 +32,16 @@
             <ListView
                 android:id="@+id/lv_unpaid"
                 android:layout_width="match_parent"
-                android:layout_height="457dp"
-                android:layout_marginTop="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+
+                android:layout_marginBottom="65dp"
+                android:background="#00111111"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="MissingConstraints"
 
                 />
             </LinearLayout>

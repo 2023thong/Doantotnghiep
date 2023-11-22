@@ -4,74 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_menupay"
     tools:context=".nhanvien.Menu_payFragment">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        <FrameLayout
-            android:id="@+id/frameLayoutcht"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/ic_background_pay"
-                android:padding="30dp"
-                tools:ignore="ContentDescription,MissingConstraints" />
-
-
 
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_menubr"
                 android:orientation="vertical"
-
-
                 tools:ignore="MissingConstraints">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+
 
                     <TextView
-                        android:id="@+id/tvMabn"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="18dp"
                         android:text="Menu:"
                         android:gravity="center"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        tools:ignore="InvalidId" />
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
                     <View
                         android:layout_width="60dp"
                         android:background="#CA191717"
                         android:layout_gravity="center"
                         android:layout_height="1dp"/>
 
-                </LinearLayout>
+
 
 
                 <ListView
                     android:id="@+id/lv_listoder"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
 
                     android:layout_marginBottom="65dp"
                     android:background="#00111111"
@@ -82,8 +52,6 @@
 
             </LinearLayout>
 
-        </FrameLayout>
 
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
