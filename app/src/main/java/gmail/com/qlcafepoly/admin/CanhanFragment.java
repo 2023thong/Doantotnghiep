@@ -138,7 +138,7 @@ public class CanhanFragment extends Fragment {
         PopupMenu popupMenu = new PopupMenu(getContext(), view1);
         popupMenu.getMenuInflater().inflate(R.menu.menucanhan, popupMenu.getMenu());
 
-        // Xử lý sự kiện khi một mục trong PopupMenu được chọn
+
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @SuppressLint("NonConstantResourceId")
             @Override

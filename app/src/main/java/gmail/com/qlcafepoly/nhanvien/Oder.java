@@ -11,6 +11,11 @@ public class Oder {
     private String MaOder;
     private String Ngay;
 
+    public Oder(String tenDu, String soluong) {
+        TenDu = tenDu;
+        Soluong = soluong;
+    }
+
     public String getNgay() {
         return Ngay;
     }

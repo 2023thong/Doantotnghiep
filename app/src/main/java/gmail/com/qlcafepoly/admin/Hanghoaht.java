@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
@@ -76,17 +78,20 @@ public class Hanghoaht extends BaseAdapter {
         tvTenhh.setText(user1.getTenHh());
         tvGiatien.setText(user1.getGiaSp());
 
-        SharedPreferences sharedPreferences = convertView.getContext().getSharedPreferences("sl", Context.MODE_PRIVATE);
+
+        SharedPreferences sharedPreferences = convertView.getContext().getSharedPreferences("oder0", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("TenDu", user1.getTenHh());
-        editor.putString("Soluong", user1.getSoluong());
+        editor.putString("SoLuong", user1.getSoluong());
         editor.apply();
+
+
 
 
         PopupMenu popupMenu = new PopupMenu(context.getApplicationContext(), imgXoa);
         popupMenu.getMenuInflater().inflate(R.menu.menuchitiet, popupMenu.getMenu());
 
-        // Xử lý sự kiện khi một mục trong PopupMenu được chọn
+
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
@@ -112,8 +117,6 @@ public class Hanghoaht extends BaseAdapter {
                                 }
                             })
                             .show();
-
-
 
                 }
                 if(item.getItemId() == R.id.sua){

@@ -12,6 +12,9 @@ public class Constants {
 
     public static final String HANGHOA = "thongtinvn";
     public static final String THANHTOAN = "thanhtoan";
+    public static final String THEMHOADON = "hoadon1";
+    public static final String THEMHOADONCHITIET = "hoadonchitiet";
+
 
     public static final String  NHANVIEN = "themnhanvien";
     public static final String  SUANHANVIEN = "suanhanvien1";

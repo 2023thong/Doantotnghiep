@@ -608,9 +608,9 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(OderDu.this, Unpaid.class);
-//                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Sửa thành công oder", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Unpaid.class);
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
