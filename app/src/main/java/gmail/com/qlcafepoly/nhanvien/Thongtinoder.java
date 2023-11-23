@@ -8,6 +8,15 @@ public class Thongtinoder implements Serializable {
     private String formattedTongtien;
     int tratien;
     private int TrangThai;
+    private String Ngay;
+
+    public String getNgay() {
+        return Ngay;
+    }
+
+    public void setNgay(String ngay) {
+        Ngay = ngay;
+    }
 
     public int getTrangThai() {
         return TrangThai;

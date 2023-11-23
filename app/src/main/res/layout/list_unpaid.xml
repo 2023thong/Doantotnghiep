@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="190dp"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
@@ -103,12 +103,12 @@
             android:id="@+id/llTongtien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:padding="1dp"
             app:layout_constraintStart_toStartOf="@+id/llMaOder"
-            app:layout_constraintTop_toBottomOf="@+id/llMaOder"
 
-            >
+            app:layout_constraintTop_toBottomOf="@+id/llMaOder">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,9 +157,8 @@
             android:id="@+id/btnThanhToan"
             android:layout_width="150dp"
             android:layout_height="35dp"
-            android:layout_marginStart="111dp"
-            android:layout_marginEnd="111dp"
 
+            android:layout_marginBottom="30dp"
             android:backgroundTint="#4DE36E"
             android:gravity="center"
             android:text="Thanh toán"
@@ -169,6 +168,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llTongtien"
             tools:ignore="HardcodedText,SpUsage" />
+
+        <Button
+            android:id="@+id/btnZalopay"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:backgroundTint="#0099FF"
+            android:text="Thanh toán bằng ZaloPay"
+            app:layout_constraintEnd_toEndOf="@+id/btnThanhToan"
+            app:layout_constraintStart_toStartOf="@+id/btnThanhToan"
+            app:layout_constraintTop_toBottomOf="@+id/btnThanhToan" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

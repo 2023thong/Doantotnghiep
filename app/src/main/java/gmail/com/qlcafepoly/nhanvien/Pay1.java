@@ -48,6 +48,7 @@ public class Pay1 extends BaseAdapter {
         TextView maBn = convertView.findViewById(R.id.tvbantrong);
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         TextView tongTien = convertView.findViewById(R.id.tvTongtien);
+        TextView ngay = convertView.findViewById(R.id.tvNgay);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,16 +62,13 @@ public class Pay1 extends BaseAdapter {
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
+            ngay.setText(thongtinoder.getNgay());
+
         } else {
             // Nếu trạng thái không phải 1, ẩn convertView
             convertView.setVisibility(View.GONE);
         }
 
-
-//        maOder.setText(String.valueOf(thongtinoder.getMaOder()));
-//        maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-//        tongTien.setText(String.valueOf(thongtinoder.getTongtien()));
-        // ... (các phần khác không thay đổi)
 
         return convertView;
     }

@@ -26,6 +26,8 @@ import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.AdminKho;
+import gmail.com.qlcafepoly.admin.Hanghoaht;
+import gmail.com.qlcafepoly.admin.Suathongtinhh;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.dangnhap.Danhnhap;
 import retrofit2.Call;
@@ -45,7 +47,6 @@ public class Unpaid1 extends BaseAdapter {
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
-
     @Override
     public int getCount() {
         return ttoder.size();
@@ -57,7 +58,7 @@ public class Unpaid1 extends BaseAdapter {
     }
 
     @Override
-    public long getItemId                (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
@@ -75,6 +76,7 @@ public class Unpaid1 extends BaseAdapter {
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         Button btnThanhToan = convertView.findViewById(R.id.btnThanhToan);
         TextView ngay = convertView.findViewById(R.id.date);
+        Button zalopay = convertView.findViewById(R.id.btnZalopay);
         String currentDate = getCurrentDate();
 
         ngay.setText(currentDate);
@@ -102,7 +104,6 @@ public class Unpaid1 extends BaseAdapter {
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xử lý khi nhấn vào btnThanhToan
 
                 if(context instanceof Unpaid){
                     ((Unpaid) context).Dangnhap(String.valueOf(thongtinoder.getMaOder()), "1");
@@ -112,8 +113,6 @@ public class Unpaid1 extends BaseAdapter {
                     ((Unpaid) context).Suatrangthaiban((thongtinoder.getMaBn()), "1");
 
                 }
-
-
 
             }
         });
@@ -143,8 +142,16 @@ public class Unpaid1 extends BaseAdapter {
                 editor.apply();
             }
         });
+        zalopay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(context, PaymentActivity.class);
+//                intent.putExtra("Tongtien",String.valueOf(thongtinoder.getTongTien()));
+//                intent.putExtra("Maoder",String.valueOf(thongtinoder.getMaOder()));
+//                context.startActivity(intent);
 
-
+            }
+        });
 
 
         return convertView;
