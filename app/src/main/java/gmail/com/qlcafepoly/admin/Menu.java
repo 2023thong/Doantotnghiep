@@ -24,7 +24,6 @@ public class Menu {
         TenDu = tenDu;
         Giatien = giatien;
         MaOder = maOder;
-
         this.soluong = soluong;
         this.Giatientd = giatien * soluong;
     }
@@ -60,9 +59,7 @@ public class Menu {
     }
     public void setSoluong(int soluong) {
         this.soluong = soluong;
-
     }
-
     public int getGiatientd() {
         return Giatientd;
     }
@@ -72,7 +69,4 @@ public class Menu {
     public int calculateTotalPrice() {
         return Giatien * soluong;
     }
-
-
-
 }

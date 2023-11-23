@@ -2,25 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-
         android:icon="@drawable/logo"
-
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-
+            android:name=".admin.QuanLyDoanhThu"
+            android:exported="false" />
+        <activity
             android:name=".dangnhap.DoiMatKhauNv"
             android:exported="false" />
         <activity
@@ -32,8 +30,6 @@
         <activity
             android:name=".nhanvien.SuccuesfullyActivity"
             android:exported="false" />
-
-
         <activity
             android:name=".admin.ItemThongTinNV"
             android:exported="false" />
@@ -122,13 +118,12 @@
         <activity
             android:name=".admin.KhoFragment"
             android:exported="false" />
-
         <activity
             android:name=".nhanvien.Menu_pay"
             android:exported="false" />
-            <activity
-                android:name=".nhanvien.SuaOder"
-                android:exported="false" />
+        <activity
+            android:name=".nhanvien.SuaOder"
+            android:exported="false" />
         <activity
             android:name=".nhanvien.ListUnpaid"
             android:exported="false" />
@@ -139,8 +134,6 @@
             android:name=".nhanvien.NhanvienMenu"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
-
-
         <activity
             android:name=".dangnhap.Danhnhap"
             android:exported="true">

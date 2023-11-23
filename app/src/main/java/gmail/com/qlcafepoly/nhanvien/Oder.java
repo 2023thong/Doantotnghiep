@@ -11,6 +11,21 @@ public class Oder {
     private String MaOder;
     private String Ngay;
 
+    public Oder(String maBn, String tongTien, String maMn, String trangThai, String tenDu, String soluong, String giatien, String maOder, String ngay) {
+        MaBn = maBn;
+        TongTien = tongTien;
+        MaMn = maMn;
+        TrangThai = trangThai;
+        TenDu = tenDu;
+        Soluong = soluong;
+        Giatien = giatien;
+        MaOder = maOder;
+        Ngay = ngay;
+    }
+    public String sumTongtien() {
+        return TongTien;
+    }
+
     public String getNgay() {
         return Ngay;
     }

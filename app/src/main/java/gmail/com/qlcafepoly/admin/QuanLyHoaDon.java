@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.nhanvien.Menu_pay;
+import gmail.com.qlcafepoly.nhanvien.Oder;
+import gmail.com.qlcafepoly.nhanvien.OderDu;
 import gmail.com.qlcafepoly.nhanvien.Pay;
 import gmail.com.qlcafepoly.nhanvien.Pay1;
 import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
@@ -46,9 +49,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuanLyHoaDon extends AppCompatActivity {
     private List<Thongtinoder> listPay = new ArrayList<>();
+    private List<Oder> odermenu2 = new ArrayList<>();
     private QLHD1 qlhd1;
     private ImageView imageView;
-    private TextView tvTongBill;
+    private TextView tvTongTien,tvTongBill;
     private ListView lvQLHD;
     private String urllink = BASE_URL +"duantotnghiep/oder.php";
     private ProgressDialog pd;
@@ -60,16 +64,16 @@ public class QuanLyHoaDon extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_ly_hoa_don);
         imageView = findViewById(R.id.img_Douong);
-        tvTongBill = findViewById(R.id.tvTongBill);
         lvQLHD = findViewById(R.id.lvQLHD);
+        tvTongTien = findViewById(R.id.tvTongtien);
+        tvTongBill = findViewById(R.id.tvTongBill);
         qlhd1 = new QLHD1(QuanLyHoaDon.this, listPay);
         lvQLHD.setAdapter(qlhd1);
-
-
         pd = new ProgressDialog(QuanLyHoaDon.this);
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
         new QuanLyHoaDon.MyAsyncTask().execute(urllink);
+        updateTotalAmount();
     }
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -97,9 +101,9 @@ public class QuanLyHoaDon extends AppCompatActivity {
                         Log.d("MaOder", PayObject.getString("MaOder"));
                         Log.d("MaBn", PayObject.getString("MaBn"));
                         Log.d("TongTien", PayObject.getString("TongTien"));
+
                         String MaOder = PayObject.getString("MaOder");
                         String MaBn = PayObject.getString("MaBn");
-
                         int TrangThai = PayObject.getInt("TrangThai");
                         String Tongtien = PayObject.getString("TongTien");
                         String traTien = PayObject.getString("TrangThai");
@@ -137,6 +141,8 @@ public class QuanLyHoaDon extends AppCompatActivity {
                 pd.dismiss();
             }
             qlhd1.notifyDataSetChanged();
+            updateTotalAmount();
+            TotalAmount();
         }
 
         public String readJsonOnline(String linkUrl) {
@@ -161,12 +167,59 @@ public class QuanLyHoaDon extends AppCompatActivity {
         }
 
     }
+    private void updateTotalAmount() {
+        int totalAmount = 0;
+
+        for (Thongtinoder thongtinoder : listPay) {
+            totalAmount += thongtinoder.getTongTien();
+        }
+
+        TextView totalAmountTextView = findViewById(R.id.tvTongTien);
+        totalAmountTextView.setText(String.valueOf(totalAmount) + " VND");
+    }
 
     public void btnxemdanhsachban(int MaOder) {
         // Tạo một Intent và truyền tham số maOder
         Intent intent = new Intent(getApplicationContext(), XemQLHD.class);
         intent.putExtra("MaOder", MaOder);
+        intent.putExtra("TotalAmount", getTotalAmount());
         startActivity(intent);
+    }
+    private void TotalAmount() {
+        int totalAmount = 0;
+        int totalMaOder = 0;
+        int totalPaidBills = 0;
+
+        for (Thongtinoder thongtinoder : listPay) {
+            if (thongtinoder.getTrangThai() == 1) { // Check if the bill is paid
+                totalAmount += thongtinoder.getTongTien();
+                totalPaidBills++;
+            }
+        }
+        for (Thongtinoder thongtinoder : listPay) {
+            totalAmount += thongtinoder.getTongTien();
+            totalMaOder++;
+        }
+
+        GlobalData.totalAmount = totalAmount;
+
+        TextView totalAmountTextView = findViewById(R.id.tvTongTien);
+        totalAmountTextView.setText(String.valueOf(totalAmount) + " vnd");
+        TextView totalPaidBillsTextView = findViewById(R.id.tvTongBill);
+        totalPaidBillsTextView.setText(String.valueOf(totalPaidBills));
+
+        TextView totalMaOderTextView = findViewById(R.id.tvTongBill);
+        totalMaOderTextView.setText(String.valueOf("Số bill: "+ totalMaOder));
+    }
+    private int getTotalAmount() {
+        int totalAmount = 0;
+
+
+        for (Thongtinoder thongtinoder : listPay) {
+            totalAmount += thongtinoder.getTongTien();
+        }
+
+        return totalAmount;
     }
     public void backHoaDon (View view){
         finish();

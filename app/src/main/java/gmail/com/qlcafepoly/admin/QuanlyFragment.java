@@ -13,7 +13,7 @@ import android.widget.TextView;
 import gmail.com.qlcafepoly.R;
 
 public class QuanlyFragment extends Fragment {
-    TextView tvQLNV,tvQLHD, tvDSDU;
+    TextView tvQLNV,tvQLHD, tvDSDU,tvQLDT;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -50,6 +50,7 @@ public class QuanlyFragment extends Fragment {
         tvQLNV = view.findViewById(R.id.tvQLNV);
         tvQLHD = view.findViewById(R.id.tvQLHD);
         tvDSDU = view.findViewById(R.id.tvDSDoUong);
+        tvQLDT = view.findViewById(R.id.tvQLDT);
         tvQLNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +69,13 @@ public class QuanlyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DanhSachDoUong.class);
+                startActivity(intent);
+            }
+        });
+        tvQLDT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), QuanLyDoanhThu.class);
                 startActivity(intent);
             }
         });

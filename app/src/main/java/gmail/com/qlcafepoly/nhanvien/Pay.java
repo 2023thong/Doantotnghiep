@@ -79,6 +79,8 @@ public class Pay extends AppCompatActivity {
         });
 
     }
+
+
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {

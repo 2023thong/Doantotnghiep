@@ -50,6 +50,7 @@ public class XemQLHD extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_hoa_don);
+        tvTong = findViewById(R.id.tvTong);
 
         // Lấy tham số maOder từ Intent nếu tồn tại
         MaOder = getIntent().getIntExtra("MaOder", -1);
@@ -80,6 +81,7 @@ public class XemQLHD extends AppCompatActivity {
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
+        private int totalAmount = 0;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -118,6 +120,7 @@ public class XemQLHD extends AppCompatActivity {
                         menu1.setSoluong(Integer.parseInt(Soluong));
 
                         listPay.add(menu1);
+                        totalAmount += Integer.parseInt(Giatien)* Integer.parseInt(Soluong);
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -130,12 +133,14 @@ public class XemQLHD extends AppCompatActivity {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (pd.isShowing()) {
                 pd.dismiss();
             }
+            tvTong.setText(totalAmount + " VND");
             payDU.notifyDataSetChanged();
         }
 
