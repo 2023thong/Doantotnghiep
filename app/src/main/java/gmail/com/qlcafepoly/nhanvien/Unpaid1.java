@@ -97,12 +97,22 @@ public class Unpaid1 extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
-                //                    ((UnpaidFragment)).btnxemdanhsachban(maOder);
+                Menu_payFragment menuPayFragment = new Menu_payFragment();
+                Bundle args = new Bundle();
+                args.putString("MaOder", String.valueOf(thongtinoder.getMaOder()));
+                menuPayFragment.setArguments(args);
 
-                    button(String.valueOf(thongtinoder.getMaOder()));
+                // Get the AppCompatActivity
+                AppCompatActivity activity = (AppCompatActivity) context;
+
+                // Replace the fragment using FragmentTransaction
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_unpaid, menuPayFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
+
 
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,29 +201,22 @@ public class Unpaid1 extends BaseAdapter {
         });
 
     }
-    private  void button(String MaOder) {
-        Menu_payFragment menuPayFragment = new Menu_payFragment();
-        Bundle args = new Bundle();
-        args.putString("MaOder", MaOder);
-        menuPayFragment.setArguments(args);
+//    private void button(String MaOder) {
+//        Menu_payFragment menuPayFragment = new Menu_payFragment();
+//        Bundle args = new Bundle();
+//        args.putString("MaOder", MaOder);
+//        menuPayFragment.setArguments(args);
+//
+//        // Get the AppCompatActivity
+//        AppCompatActivity activity = (AppCompatActivity) context;
+//
+//        // Replace the fragment using FragmentTransaction
+//        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_unpaid, menuPayFragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 
-        // Lấy FragmentManager và bắt đầu một giao dịch
-        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        // Thay thế fragment hiện tại bằng fragment mới
-        transaction.replace(R.id.fragment_unpaid, menuPayFragment);
-
-        // Thêm giao dịch vào ngăn xếp trở lại (nếu bạn muốn có thể quay lại fragment cũ)
-        transaction.addToBackStack(null);
-
-        // Xác nhận giao dịch
-        transaction.commit();
-        // Tạo một Intent và truyền tham số maOder
-//        Intent intent = new Intent(context, Menu_payFragment.class);
-//        intent.putExtra("MaOder", MaOder);
-//        context.startActivity(intent);
-    }
 
 
 

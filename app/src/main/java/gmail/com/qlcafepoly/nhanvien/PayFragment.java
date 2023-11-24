@@ -54,7 +54,7 @@ public class PayFragment extends Fragment {
     private ImageView imageView;
     private Button btnxemdanhsachban;
     private ListView lv_listpay;
-    private String urllink = "http://192.168.1.12:8080/duantotnghiep/oder.php";
+    private String urllink = "http://192.168.1.3:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
 
 

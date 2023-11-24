@@ -38,10 +38,10 @@ public class Menu_payFragment extends Fragment {
 
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://192.168.1.12:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.12:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://192.168.1.3:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://192.168.1.3:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
-    private int MaOder = 520; // Mặc định không có mã Oder
+    private int MaOder = -1; // Mặc định không có mã Oder
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,28 +50,23 @@ public class Menu_payFragment extends Fragment {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.activity_menu_pay, container, false);
 
-
         imageView = view.findViewById(R.id.img_Douong);
         lvListOder = view.findViewById(R.id.lv_listoder);
         payDU = new PayDU(getActivity(), listPay);
         lvListOder.setAdapter(payDU);
 
-        pd = new ProgressDialog(getActivity()); // Khởi tạo ProgressDialog ở đây
+        pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
-        // Lấy tham số maOder từ Intent nếu tồn tại
+        // Retrieve the "MaOder" value from arguments
         if (getArguments() != null) {
-            MaOder = getArguments().getInt("MaOder", -1);
+            String maOder = getArguments().getString("MaOder", String.valueOf(-1));
+            if (MaOder != -1) {
+                urllink = base_url + "?MaOder=" + maOder;
+            }
         }
-        // Cập nhật URL nếu có mã Oder
-        if (MaOder != -1) {
-            urllink = base_url + "?MaOder=" + 520;
-        }
 
-
-
-        new MyAsyncTask().execute(urllink);
         return view;
     }
 
