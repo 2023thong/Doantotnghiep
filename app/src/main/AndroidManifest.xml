@@ -2,27 +2,136 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.QlCafePoly"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
-            android:name=".Unpaid"
+            android:name=".nhanvien.TableActivity"
+
             android:exported="false" />
         <activity
-            android:name=".AdminKho"
+            android:name=".admin.XemQLHD"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.ItemThongTinNV"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".admin.ItemThongTinDU"
             android:exported="false" />
         <activity
-            android:name=".Pay"
+            android:name=".admin.DanhSachDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.SuaNcc"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemNhaCungCap"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Suathongtinhh"
+            android:exported="false" />
+
+        <service
+            android:name=".admin.CapNhatDuLieu"
+            android:exported="false" />
+
+        <activity
+            android:name=".nhanvien.PayFragment"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.UnpaidFragment"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Quanlynv"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.ListHoaDon"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemHoaDon"
+            android:exported="false" />
+        <activity
+            android:name=".admin.QuanLyHoaDon"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".dangnhap.DoiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminKho"
+            android:exported="false" />
+
+        <service
+            android:name=".admin.CapNhatDuLieu"
+            android:exported="false" />
+
+        <activity
+            android:name=".nhanvien.NhanvienMenu"
+            android:exported="false" />
+        <activity
+            android:name=".dangnhap.Dangnhapnhanvien"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ThongTinHangNhap"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Thonhtintaikhoan"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemDoUong"
+            android:exported="false" />
+        <activity
+            android:name=".admin.ItemNhanVien"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.DanhsachFragment"
+            android:exported="false" />
+        <activity
+            android:name=".admin.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".admin.XoaKho"
+            android:exported="false" />
+        <activity
+            android:name=".admin.KhoFragment"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.Menu_payFragment"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.SuaOder"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.ListUnpaid"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.OderDu"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.NhanvienMenu"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".dangnhap.Danhnhap"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

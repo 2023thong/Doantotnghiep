@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin.Quanlynv">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ED8361">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back"
+            android:layout_margin="15dp"
+            android:onClick="backNhanVien"/>
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Quản lý nhân viên"
+            android:layout_marginStart="50dp"
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
+        <ImageView
+            android:id="@+id/icLoadNhanVien"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/loadtab" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/boca"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/btnFindNV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:text="Tìm"
+                    android:textColor="#171313"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+            <EditText
+                android:id="@+id/edFindNV"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:background="@drawable/boedit"/>
+        </LinearLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/findMaNV"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="130dp"-->
+<!--            android:background="@drawable/khungtimkiem"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:hint="Nhập mã"-->
+<!--            android:gravity="center"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/icFindMaNV"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:src="@drawable/ictimkiem"-->
+<!--            android:layout_margin="10dp"/>-->
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/boca">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:onClick="themnhanvien"
+                    android:text="Thêm nhân viên"
+                    android:textColor="#0B0808"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lsHienThiNhanVien"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"/>
+
+</LinearLayout>

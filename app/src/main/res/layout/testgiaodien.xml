@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Food Delivery"
+        app:titleTextColor="@android:color/white" />
+
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search for food..."
+        android:padding="16dp"
+        android:background="@android:color/white"
+        android:drawableStart="@android:drawable/ic_search_category_default"
+        android:drawablePadding="8dp"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"/>
+
+    <!-- Category Tabs (You can use TabLayout) -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"/>
+
+    <!-- ViewPager for Categories -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerCategories"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Item List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItems"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"/>
+
+</LinearLayout>
