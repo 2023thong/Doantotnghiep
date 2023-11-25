@@ -38,8 +38,8 @@ public class Menu_payFragment extends Fragment {
 
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://172.16.51.140:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://172.16.51.140:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://192.168.1.173:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1;
 
@@ -59,10 +59,21 @@ public class Menu_payFragment extends Fragment {
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
-        String maOder = String.valueOf(getArguments().getString("MaOder", ""));
-        if (MaOder != -1) {
-            urllink = base_url + "?MaOder=" + maOder;
+        String maOder = getArguments().getString("MaOder", "");
+        Log.d("thu", maOder);
+
+        try {
+            int MaOderInt = Integer.parseInt(maOder);
+
+            if (MaOderInt != -1) {
+                urllink = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php?MaOder=" + MaOderInt;
+            } else {
+                Log.e("thu", "Invalid MaOder value: -1");
+            }
+        } catch (NumberFormatException e) {
+            Log.e("thu", "Invalid MaOder format");
         }
+
 
 
         new MyAsyncTask().execute(urllink);

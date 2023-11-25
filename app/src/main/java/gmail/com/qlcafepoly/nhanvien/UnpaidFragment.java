@@ -50,7 +50,7 @@ public class UnpaidFragment extends Fragment {
     private ImageView imageView;
     private ListView lv_unpaid;
 
-    private String urllink = "http://172.16.51.140:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = "http://192.168.1.173:8080/duantotnghiep/trangthaithanhtoan.php";
 
 
 
