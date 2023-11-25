@@ -19,7 +19,7 @@ public class ListUnpaid extends AppCompatActivity {
         btnXemdanhsachban.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListUnpaid.this, Menu_payFragment.class);
+                Intent intent = new Intent(ListUnpaid.this, Menu_pay.class);
                 startActivity(intent);
             }
         });

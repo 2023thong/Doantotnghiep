@@ -54,7 +54,9 @@ public class PayFragment extends Fragment {
     private ImageView imageView;
     private Button btnxemdanhsachban;
     private ListView lv_listpay;
+
     private String urllink = "http://192.168.1.173:8080/duantotnghiep/oder.php";
+
     private ProgressDialog pd;
 
 
@@ -78,12 +80,7 @@ public class PayFragment extends Fragment {
         return view;
     }
 
-//    public void btnxemdanhsachban(int MaOder) {
-//        // Tạo một Intent và truyền tham số maOder
-//        Intent intent = new Intent(getActivity(), Menu_payFragment.class);
-//        intent.putExtra("MaOder", MaOder);
-//        startActivity(intent);
-//    }
+
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -143,6 +140,13 @@ public class PayFragment extends Fragment {
             }
             return null;
         }
+        public void btnxemdanhsachban(int MaOder) {
+            // Tạo một Intent và truyền tham số maOder
+            Intent intent = new Intent(getActivity(), Menu_pay.class);
+            intent.putExtra("MaOder", MaOder);
+            startActivity(intent);
+        }
+
 
         @Override
         protected void onPostExecute(String s) {
@@ -150,8 +154,21 @@ public class PayFragment extends Fragment {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            pay1.notifyDataSetChanged();
+
+            ((AppCompatActivity) getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    pay1.notifyDataSetChanged();
+                }
+            });
         }
+
+
+
+//        public void btnxemdanhsachban() {
+//            Intent intent = new Intent(getActivity(), Menu_pay.class);
+//            startActivity(intent);
+//        }
 
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;

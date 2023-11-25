@@ -114,7 +114,7 @@
             android:name=".admin.KhoFragment"
             android:exported="false" />
         <activity
-            android:name=".nhanvien.Menu_payFragment"
+            android:name=".nhanvien.Menu_pay"
             android:exported="false" />
         <activity
             android:name=".nhanvien.SuaOder"

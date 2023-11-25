@@ -1,6 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,12 +58,12 @@ public class Pay1 extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
-                //                    ((UnpaidFragment)).btnxemdanhsachban(maOder);
-
-                button(String.valueOf(thongtinoder.getMaOder()));
+                Intent intent = new Intent(context, Menu_pay.class);
+                intent.putExtra("MaOder",String.valueOf(thongtinoder.getMaOder()));
+                context.startActivity(intent);
             }
         });
+
         int trangThai = thongtinoder.getTrangThai();
         if (trangThai == 1) {
             tvTrangThai.setText("Đã thanh toán");
@@ -81,29 +82,6 @@ public class Pay1 extends BaseAdapter {
         // ... (các phần khác không thay đổi)
 
         return convertView;
-    }
-    private  void button(String MaOder) {
-        Menu_payFragment menuPayFragment = new Menu_payFragment();
-        Bundle args = new Bundle();
-        args.putString("MaOder", MaOder);
-        menuPayFragment.setArguments(args);
-
-        // Lấy FragmentManager và bắt đầu một giao dịch
-        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        // Thay thế fragment hiện tại bằng fragment mới
-        transaction.replace(R.id.fragment_pay, menuPayFragment);
-
-        // Thêm giao dịch vào ngăn xếp trở lại (nếu bạn muốn có thể quay lại fragment cũ)
-        transaction.addToBackStack(null);
-
-        // Xác nhận giao dịch
-        transaction.commit();
-        // Tạo một Intent và truyền tham số maOder
-//        Intent intent = new Intent(context, Menu_payFragment.class);
-//        intent.putExtra("MaOder", MaOder);
-//        context.startActivity(intent);
     }
 
 

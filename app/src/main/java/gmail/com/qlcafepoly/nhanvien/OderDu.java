@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.gson.Gson;
 
@@ -559,9 +561,26 @@ public class OderDu extends AppCompatActivity {
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(OderDu.this, UnpaidFragment.class);
-                    startActivity(intent);
+//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(OderDu.this, UnpaidFragment.class);
+//                    startActivity(intent);
+
+
+                    // Tạo một instance của fragment bạn muốn chuyển đến
+                    UnpaidFragment unpaidFragment = new UnpaidFragment();
+
+// Lấy FragmentManager và bắt đầu một giao dịch
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+// Thay thế fragment hiện tại bằng fragment mới
+                    transaction.replace(R.id.fragment_oderDu, unpaidFragment);
+
+// Thêm giao dịch vào ngăn xếp trở lại (nếu bạn muốn có thể quay lại fragment cũ)
+                    transaction.addToBackStack(null);
+
+// Xác nhận giao dịch
+                    transaction.commit();
 
                 } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();

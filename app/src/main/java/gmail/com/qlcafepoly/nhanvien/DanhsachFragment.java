@@ -33,6 +33,7 @@ public class DanhsachFragment extends Fragment {
     private MenuDu menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
+
     private String urllink = "http://192.168.1.173:8080/duantotnghiep/thongtintk.php";
 
 
