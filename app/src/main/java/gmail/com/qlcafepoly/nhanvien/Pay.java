@@ -107,12 +107,15 @@ public class Pay extends AppCompatActivity {
                         Log.d("MaOder", PayObject.getString("MaOder"));
                         Log.d("MaBn", PayObject.getString("MaBn"));
                         Log.d("TongTien", PayObject.getString("TongTien"));
+                        Log.d("Ngay", PayObject.getString("Ngay"));
                         String MaOder = PayObject.getString("MaOder");
                         String MaBn = PayObject.getString("MaBn");
 
                         int TrangThai = PayObject.getInt("TrangThai");
                         String Tongtien = PayObject.getString("TongTien");
                         String traTien = PayObject.getString("TrangThai");
+                        String ngay = PayObject.getString("Ngay");
+
 
                         // Áp dụng định dạng giá tiền
                         DecimalFormat decimalFormat = new DecimalFormat("#,##0.###");
@@ -127,6 +130,7 @@ public class Pay extends AppCompatActivity {
                         thongtinoder.setTongTien(Integer.parseInt(Tongtien));
                         thongtinoder.setFormattedTongtien(formattedTongtien);
                         thongtinoder.setTratien(Integer.parseInt(traTien));
+                        thongtinoder.setNgay(ngay);
                         listPay.add(thongtinoder);
                     }
                 } else {

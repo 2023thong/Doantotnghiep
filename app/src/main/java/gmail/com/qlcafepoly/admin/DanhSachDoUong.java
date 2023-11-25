@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,16 +34,13 @@ import java.util.List;
 import gmail.com.qlcafepoly.R;
 
 public class DanhSachDoUong extends AppCompatActivity {
+    private List<Menu> originalList = new ArrayList<>();
     private List<Menu> lsuListMenu = new ArrayList<>();
     private Menuht adepter;
     private ListView lshienthimenu;
-
-
-
     private String urllink = BASE_URL +"duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
-    private TextView btnFindDU;
     private EditText edFindDU;
     private Button btnThemDU;
     private View btnBackDU;
@@ -57,8 +56,23 @@ public class DanhSachDoUong extends AppCompatActivity {
         lshienthimenu.setAdapter(adepter);
         btnThemDU = findViewById(R.id.btnThemDU);
         btnBackDU = findViewById(R.id.backDSDU);
-        btnFindDU = findViewById(R.id.btnFindDU);
         edFindDU = findViewById(R.id.edFindDU);
+        edFindDU.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         icLoadMenu = findViewById(R.id.icLoadMenu);
         icLoadMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +134,8 @@ public class DanhSachDoUong extends AppCompatActivity {
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
                 }
+                originalList.clear();
+                originalList.addAll(lsuListMenu);
             } catch (JSONException e) {
                 Log.d("Error: ", e.toString());
             } catch (Exception e) {
@@ -147,6 +163,29 @@ public class DanhSachDoUong extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private void filter(String text) {
+        lsuListMenu.clear();
+        if (text.isEmpty()) {
+            // If the search query is empty, show the original list
+            lsuListMenu.addAll(originalList);
+        } else {
+            // Otherwise, filter the list based on MaNv
+            String normalizedText = normalizeText(text);
+            for (Menu menu : originalList) {
+                String normalizedMenuTenDu = normalizeText(menu.getTenDu());
+                if (normalizedMenuTenDu.contains(normalizedText)) {
+                    lsuListMenu.add(menu);
+                }
+            }
+        }
+        adepter.notifyDataSetChanged();
+    }
+    private String normalizeText(String text) {
+        // Use Normalizer to remove diacritics
+        String normalizedText = java.text.Normalizer.normalize(text, java.text.Normalizer.Form.NFD);
+        // Remove non-alphanumeric characters and convert to lowercase
+        return normalizedText.replaceAll("[^\\p{ASCII}a-zA-Z0-9]", "").toLowerCase();
     }
 }
 

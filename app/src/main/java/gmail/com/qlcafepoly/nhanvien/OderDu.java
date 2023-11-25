@@ -1,10 +1,9 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static java.security.AccessController.getContext;
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -28,7 +26,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +47,8 @@ import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
+import gmail.com.qlcafepoly.admin.ThongTinHangNhap;
+import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,14 +62,18 @@ public class OderDu extends AppCompatActivity {
     private List<Oder> oder2 = new ArrayList<>();
     private ListView lshienthimenu;
     private ListView lshienthioder;
+    private User1 user1;
     private OderHienthi adepteroder;
     private int soluongDefault = 1;
 
     private int totalAmount = 0;
 
+    private List<User1> lsuList = new ArrayList<>();
+
     private Menu selectedMenu;
 
     private String urllink =  BASE_URL +"duantotnghiep/get_all_menu.php";
+    private String urllink1 = BASE_URL +"duantotnghiep/get_all_product.php";
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -90,12 +93,8 @@ public class OderDu extends AppCompatActivity {
 
         String currentDate = getCurrentDate();
 
-
         TextView ngayht  = findViewById(R.id.ngay);
         ngayht.setText(currentDate);
-
-
-
 
         lshienthioder = findViewById(R.id.lshienoder);
 
@@ -103,20 +102,16 @@ public class OderDu extends AppCompatActivity {
 
         TextView Tongtien = findViewById(R.id.TvTongtien);
 
-
         Intent intent = getIntent();
         String maHH = intent.getStringExtra("MAODER");
         Mabn.setText(maHH);
 
 
-
-        
         pd = new ProgressDialog(OderDu.this);
         pd.setMessage("Đang tải dữ liệu menu...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
-//        new MyAsyncTask1().execute(urllink1);
-
+        new MyAsyncTask2().execute(urllink1);
 
         lshienthimenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,16 +128,14 @@ public class OderDu extends AppCompatActivity {
             }
         });
 
-
-
         TextView oder = findViewById(R.id.tvOder);
 
         oder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
-
-
+                    String trangthai = check();
+                    String tongtien = Tongtien.getText().toString();
                     String mabn = Mabn.getText().toString();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
@@ -151,28 +144,29 @@ public class OderDu extends AppCompatActivity {
                     TextView textView = findViewById(R.id.tvMaoder);
                     textView.setText(maOder);
                     String maoderd = textView.getText().toString();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
 
-
-                    String tendu;
-                    String sl;
                     for (Menu selectedMenu : selectedMenus) {
-                        tendu = selectedMenu.getTenDu();
-                        sl = String.valueOf(selectedMenu.getSoluong());
+                        String tendu = selectedMenu.getTenDu();
+                        String sl = String.valueOf(selectedMenu.getSoluong());
                         String gia = String.valueOf(selectedMenu.getGiatien());
+
                         ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
                     // Move the removal of "Maoder" outside the loop
+                    Hoadon1(mabn, maoderd, trangthai, formattedDate, tongtien);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove("Maoder");
                     editor.apply();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu trước khi Oder", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu và trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
-
             }
-    });
+
+        });
         TextView btnLuu = findViewById(R.id.btnLuu);
-        final boolean[] isSaved = {false}; // Biến cờ để kiểm tra trạng thái đã lưu
+        final boolean[] isSaved = {false};
 
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,8 +193,11 @@ public class OderDu extends AppCompatActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
                         ThemOder(mabn, tongtien, menu, trangthai, formattedDate);
-                         Trangthaibn(mabn, trangthai);
+                        Trangthaibn(mabn, trangthai);
                         isSaved[0] = true;
+
+
+
                     } else {
                         // Thông báo nếu đã lưu 1 lần
                         Toast.makeText(getApplicationContext(), "Bạn đã lưu rồi. Bạn vui lòng oder", Toast.LENGTH_SHORT).show();
@@ -212,6 +209,8 @@ public class OderDu extends AppCompatActivity {
         });
 
     }
+
+
 
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -289,6 +288,7 @@ public class OderDu extends AppCompatActivity {
         return dateFormat.format(date);
 
     }
+
 
     private class CustomAdapter extends ArrayAdapter<Menu> {
         public CustomAdapter(Context context, List<Menu> menuList) {
@@ -495,7 +495,7 @@ public class OderDu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     String maOder = response1.getMaOder();
 
-                    // Lưu maOder vào SharedPreferences (nếu cần)
+
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("Maoder", maOder);
@@ -603,9 +603,190 @@ public class OderDu extends AppCompatActivity {
 
         });
     }
-    public void SoluongKho(){
+    public void Hoadon1(String MaBn, String MaOder, String Trangthai,  String Thoigian, String TongTien) {
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Hoadon hoadon = new Hoadon();
+        hoadon.setMaBn(MaBn);
+        hoadon.setMaOder(MaOder);
+        hoadon.setTrangthai(Integer.parseInt(Trangthai));
+        hoadon.setThoigian(Thoigian);
+        hoadon.setTongTien(Integer.parseInt(TongTien));
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.THEMHOADON);
+        serverRequest.setHoadon(hoadon);
+
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+
+                    String Mahd = response1.getMaHd();
+
+                    SharedPreferences sharedPreferences0 = getSharedPreferences("hoadon", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences0.edit();
+                    editor.putString("MaHd", Mahd);
+                    editor.apply();
+
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+
+        });
     }
+    public void Themhoadonchitiet(String MaHd,String TenLh, String SoLuong,String GiaTien) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Chitiethoadon chitiethoadon = new Chitiethoadon();
+        chitiethoadon.setMaHd(MaHd);
+        chitiethoadon.setTenLh(TenLh);
+        chitiethoadon.setSoLuong(Integer.parseInt(SoLuong));
+        chitiethoadon.setGiaTien(Integer.parseInt(GiaTien));
+        Gson gson1 = new Gson();
+        String jsonData1 = gson1.toJson(chitiethoadon);
+        Log.d("JSON hoadon", jsonData1);
+
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.THEMHOADONCHITIET);
+        serverRequest.setChitiethoadon(chitiethoadon);
+
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+
+        });
+    }
+    private class MyAsyncTask2 extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd.setMessage("Đang tải dữ liệu...");
+            pd.setCancelable(false);
+            pd.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String strJson = readJsonOnline(strings[0]);
+                Log.d("//====", strJson);
+
+                JSONObject jsonObject = new JSONObject(strJson);
+                int success = jsonObject.getInt("success");
+                if (success == 1) {
+                    JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("hanghoa");
+                    Log.d("//=====size===", jsonArrayhanghoa.length() + "");
+
+                    for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
+                        JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
+                        Log.d("MaHH", nhanvienObject.getString("MaHH"));
+                        Log.d("MaNcc", nhanvienObject.getString("MaNcc"));
+                        Log.d("TenHh", nhanvienObject.getString("TenHh"));
+                        Log.d("GiaSp", nhanvienObject.getString("GiaSp"));
+                        Log.d("Ghichu", nhanvienObject.getString("Ghichu"));
+                        Log.d("TenLh", nhanvienObject.getString("TenLh"));
+                        Log.d("Soluong", nhanvienObject.getString("Soluong"));
+
+                        String MaHH = nhanvienObject.getString("MaHH");
+                        String MaNcc = nhanvienObject.getString("MaNcc");
+                        String TenHh = nhanvienObject.getString("TenHh");
+                        String GiaSp = nhanvienObject.getString("GiaSp");
+                        String MaLh = nhanvienObject.getString("TenLh");
+                        String Ghichu = nhanvienObject.getString("Ghichu");
+                        String Soluong = nhanvienObject.getString("Soluong");
+
+
+                        User1 user1 = new User1();
+                        user1.setMaHH(MaHH);
+                        user1.setMaNcc(MaNcc);
+                        user1.setTenHh(TenHh);
+                        user1.setGiaSp(GiaSp);
+                        user1.setGhichu(Ghichu);
+                        user1.setTenLh(MaLh);
+                        user1.setSoluong(Soluong);
+                        lsuList.add(user1);
+                    }
+                } else {
+                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
+                }
+            } catch (JSONException e) {
+                Log.d("Error: ", e.toString());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (pd.isShowing()) {
+                pd.dismiss();
+            }
+
+        }
+
+        public String readJsonOnline(String linkUrl) {
+            HttpURLConnection connection = null;
+            BufferedReader bufferedReader = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                URL url = new URL(linkUrl);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                InputStream inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line + "\n");
+                }
+                return stringBuilder.toString();
+            } catch (Exception ex) {
+                Log.d("Error: ", ex.toString());
+            }
+            return null;
+        }
+    }
+
+
+
 
 
 

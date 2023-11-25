@@ -11,12 +11,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.nhanvien.Pay;
 import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class QLHD1 extends BaseAdapter {
     private List<Thongtinoder> ttoder;
-    private List<Pay> listPay;
+    private List<Thongtinoder> listPay;
 
 
     private LayoutInflater inflater;
@@ -57,6 +56,7 @@ public class QLHD1 extends BaseAdapter {
         TextView maBn = convertView.findViewById(R.id.tvbantrong);
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         TextView tongTien = convertView.findViewById(R.id.tvTongtien);
+        TextView ngay = convertView.findViewById(R.id.tvNgay);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +70,7 @@ public class QLHD1 extends BaseAdapter {
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
+            ngay.setText(String.valueOf(thongtinoder.getNgay()));
         } else {
             // Nếu trạng thái không phải 1, ẩn convertView
             convertView.setVisibility(View.GONE);
@@ -80,6 +81,10 @@ public class QLHD1 extends BaseAdapter {
         // ... (các phần khác không thay đổi)
 
         return convertView;
+    }
+    public void setListPay(List<Thongtinoder> listPay) {
+        this.listPay = listPay;
+        notifyDataSetChanged();
     }
 
 }

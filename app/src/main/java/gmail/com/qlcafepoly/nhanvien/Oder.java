@@ -10,7 +10,6 @@ public class Oder {
     private String Giatien;
     private String MaOder;
     private String Ngay;
-
     public Oder(String maBn, String tongTien, String maMn, String trangThai, String tenDu, String soluong, String giatien, String maOder, String ngay) {
         MaBn = maBn;
         TongTien = tongTien;
@@ -24,6 +23,10 @@ public class Oder {
     }
     public String sumTongtien() {
         return TongTien;
+    }
+    public Oder(String tenDu, String soluong) {
+        TenDu = tenDu;
+        Soluong = soluong;
     }
 
     public String getNgay() {

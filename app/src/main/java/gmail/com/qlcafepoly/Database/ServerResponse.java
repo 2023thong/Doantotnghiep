@@ -6,6 +6,8 @@ import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 
 import gmail.com.qlcafepoly.admin.User2;
+import gmail.com.qlcafepoly.nhanvien.Chitiethoadon;
+import gmail.com.qlcafepoly.nhanvien.Hoadon;
 import gmail.com.qlcafepoly.nhanvien.Oder;
 
 import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
@@ -16,6 +18,7 @@ public class ServerResponse {
     private String message;
     private String phanquyen;
     private String MaOder;
+    private String MaHd;
 
     private String MaNv;
 
@@ -28,6 +31,22 @@ public class ServerResponse {
 
     private LoaiHang loaihang;
     private Oder oder1;
+    private Hoadon hoadon;
+
+    public Chitiethoadon getChitiethoadon() {
+        return chitiethoadon;
+    }
+
+    private Chitiethoadon chitiethoadon;
+
+    public String getMaHd() {
+        return MaHd;
+    }
+
+    public Hoadon getHoadon() {
+        return hoadon;
+    }
+
     private String MaCl;
 
     public String getMaCl() {

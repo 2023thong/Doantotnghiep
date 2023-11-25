@@ -80,11 +80,6 @@
         <activity
             android:name=".admin.AdminKho"
             android:exported="false" />
-
-        <service
-            android:name=".admin.CapNhatDuLieu"
-            android:exported="false" />
-
         <activity
             android:name=".nhanvien.NhanvienMenu"
             android:exported="false" />
@@ -136,6 +131,9 @@
             tools:ignore="DuplicateActivity" />
         <activity
             android:name=".dangnhap.Danhnhap"
+            android:exported="false" />
+        <activity
+            android:name=".admin.Manhinhcho"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,6 +7,8 @@ import gmail.com.qlcafepoly.admin.User1;
 
 import gmail.com.qlcafepoly.admin.User2;
 import gmail.com.qlcafepoly.model.Ban;
+import gmail.com.qlcafepoly.nhanvien.Chitiethoadon;
+import gmail.com.qlcafepoly.nhanvien.Hoadon;
 import gmail.com.qlcafepoly.nhanvien.Oder;
 
 import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
@@ -25,7 +27,16 @@ public class ServerRequest {
     private Oder oder1;
 
     private Thongtinoder thongtinoder;
+    private Hoadon hoadon;
+    private Chitiethoadon chitiethoadon;
 
+    public void setChitiethoadon(Chitiethoadon chitiethoadon) {
+        this.chitiethoadon = chitiethoadon;
+    }
+
+    public void setHoadon(Hoadon hoadon) {
+        this.hoadon = hoadon;
+    }
 
     public void setOder1(Oder oder1) {
         this.oder1 = oder1;

@@ -110,11 +110,13 @@ Button btnBack,btnSuaDU,btnXoaDU;
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
+                if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(ItemThongTinDU.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-                else{
+                    Intent intent = new Intent(ItemThongTinDU.this, DanhSachDoUong.class);
+                    // Use FLAG_ACTIVITY_CLEAR_TOP to clear the activity stack
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
                     Toast.makeText(ItemThongTinDU.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
