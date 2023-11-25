@@ -38,10 +38,10 @@ public class Menu_payFragment extends Fragment {
 
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://192.168.1.3:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.3:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://172.16.51.140:8080/duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = "http://172.16.51.140:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
-    private int MaOder = -1; // Mặc định không có mã Oder
+    private int MaOder = -1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -59,17 +59,16 @@ public class Menu_payFragment extends Fragment {
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
-        // Retrieve the "MaOder" value from arguments
-        if (getArguments() != null) {
-            String maOder = getArguments().getString("MaOder", String.valueOf(-1));
-            if (MaOder != -1) {
-                urllink = base_url + "?MaOder=" + maOder;
-            }
+        String maOder = String.valueOf(getArguments().getString("MaOder", ""));
+        if (MaOder != -1) {
+            urllink = base_url + "?MaOder=" + maOder;
         }
+
+
+        new MyAsyncTask().execute(urllink);
 
         return view;
     }
-
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {

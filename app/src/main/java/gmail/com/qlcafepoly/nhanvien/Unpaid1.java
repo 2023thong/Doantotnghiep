@@ -97,19 +97,7 @@ public class Unpaid1 extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Menu_payFragment menuPayFragment = new Menu_payFragment();
-                Bundle args = new Bundle();
-                args.putString("MaOder", String.valueOf(thongtinoder.getMaOder()));
-                menuPayFragment.setArguments(args);
-
-                // Get the AppCompatActivity
-                AppCompatActivity activity = (AppCompatActivity) context;
-
-                // Replace the fragment using FragmentTransaction
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_unpaid, menuPayFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                button(String.valueOf(thongtinoder.getMaOder()));
             }
         });
 
@@ -201,21 +189,21 @@ public class Unpaid1 extends BaseAdapter {
         });
 
     }
-//    private void button(String MaOder) {
-//        Menu_payFragment menuPayFragment = new Menu_payFragment();
-//        Bundle args = new Bundle();
-//        args.putString("MaOder", MaOder);
-//        menuPayFragment.setArguments(args);
-//
-//        // Get the AppCompatActivity
-//        AppCompatActivity activity = (AppCompatActivity) context;
-//
-//        // Replace the fragment using FragmentTransaction
-//        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_unpaid, menuPayFragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
+    private void button(String MaOder) {
+        Menu_payFragment menuPayFragment = new Menu_payFragment();
+        Bundle args = new Bundle();
+        args.putString("MaOder", MaOder);
+        menuPayFragment.setArguments(args);
+
+        // Get the AppCompatActivity
+        AppCompatActivity activity = (AppCompatActivity) context;
+
+        // Replace the fragment using FragmentTransaction
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_unpaid, menuPayFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
 
 
