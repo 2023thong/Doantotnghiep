@@ -1,7 +1,5 @@
 package gmail.com.qlcafepoly.admin;
 
-import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,20 +26,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import gmail.com.qlcafepoly.Database.Constants;
-import gmail.com.qlcafepoly.Database.RequestInterface;
-import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.nhanvien.Menu_payFragment;
-import gmail.com.qlcafepoly.nhanvien.PayFragment;
-import gmail.com.qlcafepoly.nhanvien.Pay1;
 import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
-import gmail.com.qlcafepoly.nhanvien.UnpaidFragment;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuanLyHoaDon extends AppCompatActivity {
     private List<Thongtinoder> listPay = new ArrayList<>();
@@ -50,7 +35,7 @@ public class QuanLyHoaDon extends AppCompatActivity {
     private ImageView imageView;
     private TextView tvTongBill;
     private ListView lvQLHD;
-    private String urllink = "http://192.168.1.94:8080/duantotnghiep/oder.php";
+    private String urllink = "http://192.168.1.53:8080/duantotnghiep/oder.php";
     private ProgressDialog pd;
 
     @SuppressLint("MissingInflatedId")

@@ -50,7 +50,7 @@ public class UnpaidFragment extends Fragment {
     private ImageView imageView;
     private ListView lv_unpaid;
 
-    private String urllink = "http://192.168.1.94:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = "http://192.168.1.53:8080/duantotnghiep/trangthaithanhtoan.php";
 
 
 
@@ -155,6 +155,7 @@ public class UnpaidFragment extends Fragment {
 
             unpaid1.notifyDataSetChanged();
         }
+
 
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;

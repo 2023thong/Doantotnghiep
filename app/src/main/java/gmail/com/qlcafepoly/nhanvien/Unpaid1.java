@@ -1,13 +1,11 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import static android.app.PendingIntent.getActivity;
 
-import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.annotation.NonNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,12 +33,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Unpaid1 extends BaseAdapter {
-    private  Button button;
-    private List<Thongtinoder> ttoder;
-    private LayoutInflater inflater;
-    private Context context;
 
-    private PayDU payDuAdapter;
+    private final List<Thongtinoder> ttoder;
+    private final LayoutInflater inflater;
+    private final Context context;
+
+
 
     public Unpaid1 (Context unpaidFragment, List<Thongtinoder> ttoder) {
         this.ttoder = ttoder;
@@ -94,21 +90,20 @@ public class Unpaid1 extends BaseAdapter {
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //
-                //                    ((UnpaidFragment)).btnxemdanhsachban(maOder);
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(context, Menu_pay.class);
+            intent.putExtra("MaOder",String.valueOf(thongtinoder.getMaOder()));
+            context.startActivity(intent);
 
-                    button(String.valueOf(thongtinoder.getMaOder()));
-            }
+
+
         });
 
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Xử lý khi nhấn vào btnThanhToan
-                Dangnhap(String.valueOf(thongtinoder.getMaOder()), String.valueOf(1) );
+                Thanhtoan(String.valueOf(thongtinoder.getMaOder()), String.valueOf(1) );
 
             }
         });
@@ -152,7 +147,9 @@ public class Unpaid1 extends BaseAdapter {
         return dateFormat.format(date);
 
     }
-    public void Dangnhap(String MaOder , String Matkhau) {
+
+
+    public void Thanhtoan(String MaOder , String Trangthai) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -160,7 +157,7 @@ public class Unpaid1 extends BaseAdapter {
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Thongtinoder user = new Thongtinoder();
         user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangThai(Integer.parseInt(Matkhau));
+        user.setTrangThai(Integer.parseInt(Trangthai));
 
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.THANHTOAN);
@@ -170,8 +167,9 @@ public class Unpaid1 extends BaseAdapter {
 
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+            public void onResponse(@NonNull Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
+                assert response1 != null;
                 if (response1.getResult().equals(Constants.SUCCESS)){
 
                     Toast.makeText(context, response1.getMessage(), Toast.LENGTH_SHORT).show();
@@ -190,29 +188,6 @@ public class Unpaid1 extends BaseAdapter {
             }
         });
 
-    }
-    private  void button(String MaOder) {
-        Menu_payFragment menuPayFragment = new Menu_payFragment();
-        Bundle args = new Bundle();
-        args.putString("MaOder", MaOder);
-        menuPayFragment.setArguments(args);
-
-        // Lấy FragmentManager và bắt đầu một giao dịch
-        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        // Thay thế fragment hiện tại bằng fragment mới
-        transaction.replace(R.id.fragment_unpaid, menuPayFragment);
-
-        // Thêm giao dịch vào ngăn xếp trở lại (nếu bạn muốn có thể quay lại fragment cũ)
-        transaction.addToBackStack(null);
-
-        // Xác nhận giao dịch
-        transaction.commit();
-        // Tạo một Intent và truyền tham số maOder
-//        Intent intent = new Intent(context, Menu_payFragment.class);
-//        intent.putExtra("MaOder", MaOder);
-//        context.startActivity(intent);
     }
 
 

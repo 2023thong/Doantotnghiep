@@ -1,21 +1,16 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,55 +19,48 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
-public class Menu_payFragment extends Fragment {
+public class Menu_pay extends AppCompatActivity {
     private List<Menu1> listPay = new ArrayList<>();
     private PayDU payDU;
 
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = "http://192.168.1.94:8080/:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.94:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = "http://192.168.1.53:8080/duantotnghiep/thongtinctoder.php";
+    private String urllink = "http://192.168.1.53:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 
     @SuppressLint("MissingInflatedId")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.activity_menu_pay, container, false);
-
-
-        imageView = view.findViewById(R.id.img_Douong);
-        lvListOder = view.findViewById(R.id.lv_listoder);
-        payDU = new PayDU(getActivity(), listPay);
-        lvListOder.setAdapter(payDU);
-
-        pd = new ProgressDialog(getActivity()); // Khởi tạo ProgressDialog ở đây
-        pd.setMessage("Đang tải dữ liệu...");
-        pd.setCancelable(false);
+        setContentView(R.layout.activity_menu_pay);
 
         // Lấy tham số maOder từ Intent nếu tồn tại
-        if (getArguments() != null) {
-            MaOder = getArguments().getInt("MaOder", -1);
-        }
+        MaOder = getIntent().getIntExtra("MaOder", -1);
+
         // Cập nhật URL nếu có mã Oder
         if (MaOder != -1) {
             urllink = base_url + "?MaOder=" + MaOder;
         }
 
+        imageView = findViewById(R.id.img_Douong);
+        lvListOder = findViewById(R.id.lv_listoder);
+        payDU = new PayDU(Menu_pay.this, listPay);
+        lvListOder.setAdapter(payDU);
 
+        pd = new ProgressDialog(Menu_pay.this); // Khởi tạo ProgressDialog ở đây
+        pd.setMessage("Đang tải dữ liệu...");
+        pd.setCancelable(false);
 
         new MyAsyncTask().execute(urllink);
-        return view;
+
+
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
