@@ -76,7 +76,6 @@ public class Unpaid1 extends BaseAdapter {
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         Button btnThanhToan = convertView.findViewById(R.id.btnThanhToan);
         TextView ngay = convertView.findViewById(R.id.date);
-        Button zalopay = convertView.findViewById(R.id.btnZalopay);
         String currentDate = getCurrentDate();
 
         ngay.setText(currentDate);
@@ -140,16 +139,6 @@ public class Unpaid1 extends BaseAdapter {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Maoder", maOder);  // Replace "TenDn" with your key and TenDn with the value you want to store
                 editor.apply();
-            }
-        });
-        zalopay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(context, PaymentActivity.class);
-//                intent.putExtra("Tongtien",String.valueOf(thongtinoder.getTongTien()));
-//                intent.putExtra("Maoder",String.valueOf(thongtinoder.getMaOder()));
-//                context.startActivity(intent);
-
             }
         });
 
