@@ -58,7 +58,6 @@ public class Thongtinoder implements Serializable {
     }
 
 
-
     private int TongTien;
 
     public int getTratien() {

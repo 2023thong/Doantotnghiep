@@ -55,7 +55,6 @@ public class ThemNhanVien extends AppCompatActivity {
         btnThemNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
                 String manv = edMaNv.getText().toString();
                 String tennv = edTenNv.getText().toString();
                 String tendn = edTenDn.getText().toString();
@@ -63,13 +62,37 @@ public class ThemNhanVien extends AppCompatActivity {
                 String sdt = edSdt.getText().toString();
                 String diachi = edDiachi.getText().toString();
                 String chucvu = edChucvu.getText().toString();
-                
-                if (manv.isEmpty() || tennv.isEmpty() || tendn.isEmpty()|| matkhau.isEmpty()|| sdt.isEmpty()|| diachi.isEmpty()|| chucvu.isEmpty()){
-                    Toast.makeText(ThemNhanVien.this, "vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
-                }
-                else{
+
+                if (manv.isEmpty() || tennv.isEmpty() || tendn.isEmpty() || matkhau.isEmpty() || sdt.isEmpty() || diachi.isEmpty() || chucvu.isEmpty()) {
+                    Toast.makeText(ThemNhanVien.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Validate Chucvu
+                    int chucVuValue;
+                    try {
+                        chucVuValue = Integer.parseInt(chucvu);
+                        if (chucVuValue != 1 && chucVuValue != 2) {
+                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                            return; // Do not proceed with the registration if Chucvu is invalid.
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                        return; // Do not proceed with the registration if Chucvu is not a number.
+                    }
+
+                    // Validate and set input filters
+                    if (!isNameValid(tennv)) {
+                        Toast.makeText(ThemNhanVien.this, "Tên nhân viên chỉ được chứa kí tự chữ", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (!isPhoneNumberValid(sdt)) {
+                        Toast.makeText(ThemNhanVien.this, "Số điện thoại chỉ được chứa kí tự số", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     registerProcess2(manv, tennv, tendn, matkhau, sdt, diachi, chucvu);
 
+                    // Only clear fields if the validation and registration are successful
                     edMaNv.setText("");
                     edTenNv.setText("");
                     edTenDn.setText("");
@@ -78,7 +101,6 @@ public class ThemNhanVien extends AppCompatActivity {
                     edDiachi.setText("");
                     edChucvu.setText("");
                 }
-
             }
         });
         btnXemNV.setOnClickListener(new View.OnClickListener() {
@@ -88,12 +110,36 @@ public class ThemNhanVien extends AppCompatActivity {
             }
         });
     }
-    public void registerProcess2(String MaNv , String TenNv, String TenDn,String Matkhau,String Sdt,String Diachi, String Chucvu ) {
+    private boolean isNameValid(String name) {
+        return name.matches("^[\\p{L} .'-]+$");
+    }
+
+    // Function to check if the phone number contains only digits
+    private boolean isPhoneNumberValid(String phoneNumber) {
+        return phoneNumber.matches("\\d+");
+    }
+    public void registerProcess2(String MaNv, String TenNv, String TenDn, String Matkhau, String Sdt, String Diachi, String Chucvu) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        // Validate Chucvu
+        int chucVuValue;
+        try {
+            chucVuValue = Integer.parseInt(Chucvu);
+            if (chucVuValue != 1 && chucVuValue != 2) {
+                Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                edChucvu.setText("");  // Clear only Chucvu field
+                return; // Do not proceed with the registration if Chucvu is invalid.
+            }
+        } catch (NumberFormatException e) {
+            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+            edChucvu.setText("");  // Clear only Chucvu field
+            return; // Do not proceed with the registration if Chucvu is not a number.
+        }
+
         User user = new User();
         user.setMaNv(MaNv);
         user.setTenNv(TenNv);
@@ -101,24 +147,21 @@ public class ThemNhanVien extends AppCompatActivity {
         user.setMatkhau(Matkhau);
         user.setSdt(Sdt);
         user.setDiachi(Diachi);
-        user.setChucvu(Integer.parseInt(Chucvu));
+        user.setChucvu(chucVuValue);
+
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.NHANVIEN);
         serverRequest.setUser(user);
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
-
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
+                if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(ThemNhanVien.this, Quanlynv.class);
-//                    startActivity(intent);
                     finish();
-                }
-                else{
+                } else {
                     Toast.makeText(ThemNhanVien.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -126,13 +169,9 @@ public class ThemNhanVien extends AppCompatActivity {
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed");
-
             }
         });
     }
-
-
-
 
     public void backra(View view){
         finish();

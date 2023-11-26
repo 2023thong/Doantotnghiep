@@ -1,15 +1,21 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Oder {
     private String MaBn;
     private String TongTien;
     private String MaMn;
     private String TrangThai;
+    private boolean isPaid;
     private String TenDu;
     private String Soluong;
     private String Giatien;
     private String MaOder;
     private String Ngay;
+    private Date orderDate;
     public Oder(String maBn, String tongTien, String maMn, String trangThai, String tenDu, String soluong, String giatien, String maOder, String ngay) {
         MaBn = maBn;
         TongTien = tongTien;
@@ -21,12 +27,24 @@ public class Oder {
         MaOder = maOder;
         Ngay = ngay;
     }
+    public String getFormattedDate() {
+        if (orderDate == null) {
+            return ""; // Hoặc giá trị mặc định khác tùy thuộc vào yêu cầu của bạn
+        }
+
+        // Định dạng ngày theo "dd/MM/yyyy HH:mm:ss" (hoặc định dạng khác)
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        return sdf.format(orderDate);
+    }
     public String sumTongtien() {
         return TongTien;
     }
     public Oder(String tenDu, String soluong) {
         TenDu = tenDu;
         Soluong = soluong;
+    }
+    public boolean isPaid() {
+        return isPaid;
     }
 
     public String getNgay() {
@@ -103,4 +121,5 @@ public class Oder {
     public void setGiatien(String giatien) {
         Giatien = giatien;
     }
+
 }

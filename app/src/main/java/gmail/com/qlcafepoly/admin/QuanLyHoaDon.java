@@ -60,8 +60,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuanLyHoaDon extends AppCompatActivity {
+    public static List<Thongtinoder> listPay = new ArrayList<>();
     private List<Thongtinoder> filteredList = new ArrayList<>();
-    private List<Thongtinoder> listPay = new ArrayList<>();
+//    private List<Thongtinoder> listPay = new ArrayList<>();
     private List<Oder> odermenu = new ArrayList<>();
     private QLHD1 qlhd1;
     private ImageView imageView,imgLich;
@@ -149,18 +150,8 @@ public class QuanLyHoaDon extends AppCompatActivity {
         try {
             Date dateTime1 = sdf.parse(date1);
             Date dateTime2 = sdf.parse(date2);
-
-            // Extract year, month, and day from Date objects
-            int year1 = dateTime1.getYear() + 1900;
-            int month1 = dateTime1.getMonth() + 1; // months are 0-based
-            int day1 = dateTime1.getDate();
-
-            int year2 = dateTime2.getYear() + 1900;
-            int month2 = dateTime2.getMonth() + 1;
-            int day2 = dateTime2.getDate();
-
-            // Compare year, month, and day
-            return (day1 == day2) && (month1 == month2) && (year1 == year2);
+            // So sánh ngày, tháng, năm
+            return dateTime1.equals(dateTime2);
         } catch (ParseException e) {
             e.printStackTrace();
             return false;

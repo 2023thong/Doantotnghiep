@@ -41,6 +41,13 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 String mamn = edMaMN.getText().toString();
                 String tendu = edTenLH.getText().toString();
                 String giatien = edGiaTien.getText().toString();
+
+                // Validate Giatien
+                if (!isNumeric(giatien)) {
+                    Toast.makeText(ItemThongTinDU.this, "Giá tiền phải là số", Toast.LENGTH_SHORT).show();
+                    return; // Do not proceed if Giatien is not a number.
+                }
+
                 EditMenu(mamn, tendu, giatien);
             }
         });
@@ -68,6 +75,9 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 showDeleteConfirmationDialog();
             }
         });
+    }
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?"); // Allows integers and decimals
     }
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

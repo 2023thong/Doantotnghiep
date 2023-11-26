@@ -55,6 +55,31 @@ public class ItemThongTinNV extends AppCompatActivity {
                 String sdt = edSdt.getText().toString();
                 String diachi = edDiaChi.getText().toString();
                 String chucvu = edChucVu.getText().toString();
+
+                // Validate Chucvu
+                int chucVuValue;
+                try {
+                    chucVuValue = Integer.parseInt(chucvu);
+                    if (chucVuValue != 1 && chucVuValue != 2) {
+                        Toast.makeText(ItemThongTinNV.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                        return; // Do not proceed with the update if Chucvu is invalid.
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(ItemThongTinNV.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                    return; // Do not proceed with the update if Chucvu is not a number.
+                }
+
+                // Validate and set input filters
+                if (!isNameValid(tennv)) {
+                    Toast.makeText(ItemThongTinNV.this, "Tên nhân viên chỉ được chứa kí tự chữ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!isPhoneNumberValid(sdt)) {
+                    Toast.makeText(ItemThongTinNV.this, "Số điện thoại chỉ được chứa kí tự số", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 registerProcess2(manv, tennv, tendn, matkhau, sdt, diachi, chucvu);
             }
         });
@@ -94,6 +119,14 @@ public class ItemThongTinNV extends AppCompatActivity {
                 showDeleteConfirmationDialog();
             }
         });
+    }
+    private boolean isNameValid(String name) {
+        return name.matches("^[\\p{L} .'-]+$");
+    }
+
+    // Function to check if the phone number contains only digits
+    private boolean isPhoneNumberValid(String phoneNumber) {
+        return phoneNumber.matches("\\d+");
     }
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

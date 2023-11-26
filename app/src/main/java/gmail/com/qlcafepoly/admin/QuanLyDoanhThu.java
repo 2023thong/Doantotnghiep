@@ -1,121 +1,153 @@
 package gmail.com.qlcafepoly.admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.nhanvien.Oder;
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class QuanLyDoanhThu extends AppCompatActivity {
     private CalendarView calendarView;
-    private TextView tvTongDoanhThu;
+    private TextView tvTongDoanhThu, tvTongDoanhThuNgay;
+    private ListView lvTongDoanhThuNgay;
 
     private Map<String, List<Oder>> dailyOders = new HashMap<>();
     private Map<String, Integer> dailyTotalAmounts = new HashMap<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_ly_doanh_thu);
         tvTongDoanhThu = findViewById(R.id.tvTongDoanhThu);
+        tvTongDoanhThuNgay = findViewById(R.id.tvTongDoanhThuNgay);
         calendarView = findViewById(R.id.calendarView);
-        calculateDailyTotalAmounts();
         int totalAmount = GlobalData.totalAmount;
         // Find the TextView in your QuanLyDoanhThu layout
         // Set the totalAmount to the TextView
         tvTongDoanhThu.setText(String.valueOf(totalAmount) + " vnd");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String currentDate = dateFormat.format(new Date());
-        tvTongDoanhThu.setText(currentDate + ": " + totalAmount + " vnd");
-
-        // Set an OnDateChangeListener to handle date changes
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+                // Increment month by 1 to match human-readable month representation
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                showTotalAmountForSelectedDate(selectedDate);
+                Toast.makeText(QuanLyDoanhThu.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
+                calculateAndDisplayTotalForSelectedDate(selectedDate);
             }
         });
     }
-    private void calculateDailyTotalAmounts() {
-        // Fetch data from your source and populate dailyOders
-        // For example:
-        // Oder oder1 = new Oder("25/11/2023", "10000", "MaOder1", ...);
-        // Oder oder2 = new Oder("25/11/2023", "15000", "MaOder2", ...);
-        // Oder oder3 = new Oder("26/11/2023", "20000", "MaOder3", ...);
+    private void calculateAndDisplayTotalForSelectedDate(String selectedDate) {
+        int totalAmountForSelectedDate = 0;
 
-        // Assuming odersList is a list of Oder objects
-        // Replace this with the actual data fetching logic
-        List<Oder> odersList = fetchDataForDailyOders();
+        // Lấy danh sách đơn hàng cho ngày được chọn
+        List<Thongtinoder> ordersForSelectedDate = getOrdersForSelectedDate(selectedDate);
 
-        // Iterate through the list of oders and populate dailyOders map
-        for (Oder oder : odersList) {
-            String selectedDate = oder.getNgay();
+        if (ordersForSelectedDate != null) {
+            for (Thongtinoder order : ordersForSelectedDate) {
+                Log.d("Selected Date", selectedDate);
+                Log.d("Order Date", order.getNgay());
 
-            // Check if the date is already in the map
-            if (dailyOders.containsKey(selectedDate)) {
-                dailyOders.get(selectedDate).add(oder);
-            } else {
-                // If not, create a new list and add the Oder
-                List<Oder> newList = new ArrayList<>();
-                newList.add(oder);
-                dailyOders.put(selectedDate, newList);
+                if (order.getTrangThai() == 1) { // Đơn hàng đã thanh toán
+                    totalAmountForSelectedDate += order.getTongTien();
+                }
             }
         }
 
-        // Calculate total amounts for each MaOder
-        for (Map.Entry<String, List<Oder>> entry : dailyOders.entrySet()) {
-            String date = entry.getKey();
-            List<Oder> oders = entry.getValue();
+        // Hiển thị tổng tiền cho ngày được chọn
+        tvTongDoanhThuNgay.setText(String.valueOf(totalAmountForSelectedDate) + " VND");
+    }
+    private List<Thongtinoder> getOrdersForSelectedDate(String selectedDate) {
+        List<Thongtinoder> ordersForSelectedDate = new ArrayList<>();
 
-            int totalAmount = 0;
-
-            for (Oder oder : oders) {
-                totalAmount += Integer.parseInt(oder.getTongTien());
+        for (Thongtinoder order : QuanLyHoaDon.listPay) {
+            if (isSameDate(order.getNgay(), selectedDate)) {
+                ordersForSelectedDate.add(order);
             }
+        }
 
-            dailyTotalAmounts.put(date, totalAmount);
+        return ordersForSelectedDate;
+    }
+    private boolean isSameDate(String date1, String date2) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dateTime1 = sdf.parse(date1);
+            Date dateTime2 = sdf.parse(date2);
+
+            // Truncate time component
+            dateTime1 = truncateTime(dateTime1);
+            dateTime2 = truncateTime(dateTime2);
+
+            return dateTime1.equals(dateTime2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
+    private Date truncateTime(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+    public String getFormattedDate(Date date) {
+        Date orderDate = new Date();  // Hoặc là ngày cụ thể khác
+        String formattedDate = getFormattedDate(orderDate);
+        return formattedDate;
+    }
+
+    // Phương thức tính tổng tiền cho một MaOder trong ngày cụ thể
+    private String calculateTotalAmountForMaOderOnDate(int maOder, String selectedDate) {
+        String totalAmountForMaOder = String.valueOf(0);
+
+        // Lấy danh sách đơn hàng từ ListView lvQLHD
+        List<Oder> ordersFromListView = getOrdersFromListView();
+
+        if (ordersFromListView != null) {
+            for (Oder order : ordersFromListView) {
+                if (order.isPaid()) {
+                    int currentMaOder = Integer.parseInt(order.getMaOder());
+                    if (currentMaOder == maOder) {
+                        // Tính tổng tiền cho đơn hàng cụ thể
+                        totalAmountForMaOder += order.getTongTien(); // (hoặc là phương thức khác bạn đã định nghĩa)
+                    }
+                }
+            }
+        }
+
+        return totalAmountForMaOder;
+    }
+
+    private List<Oder> getOrdersFromListView() {
+        // TODO: Lấy danh sách đơn hàng từ ListView lvQLHD
+        // Bạn cần thay thế dòng sau đây bằng cách lấy dữ liệu từ lvQLHD của QuanLyHoaDon
+        // List<Oder> orders = ???
+        // return orders;
+        return null;
+    }
     // Replace this method with your actual data fetching logic
-    private List<Oder> fetchDataForDailyOders() {
-        // Fetch data from your source and return a list of Oder objects
-        List<Oder> odersList = new ArrayList<>();
-
-        // Assuming Ngay is a String representing datetime
-        // Assuming you want to convert Ngay to dd/MM/yyyy format
-        odersList = OderUtils.convertNgayFormat(odersList);
-
-        Log.d("Debug", "Fetched data: " + odersList.size() + " records");
-
-        return odersList;
-    }
-
-    private void showTotalAmountForSelectedDate(String selectedDate) {
-        int totalAmount = dailyTotalAmounts.containsKey(selectedDate) ? dailyTotalAmounts.get(selectedDate) : 0;
-        Log.d("Debug", "Selected Date: " + selectedDate + ", Total Amount: " + totalAmount);
-
-        String displayText = String.format("%s: %d VND", selectedDate, totalAmount);
-        tvTongDoanhThu.setText(displayText);
-    }
-
     public void backdoanhthu (View view){
         finish();
     }

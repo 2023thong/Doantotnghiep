@@ -40,23 +40,25 @@ public class ThemDoUong extends AppCompatActivity {
         btnThemmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String mamn = edMaMn.getText().toString();
                 String tendu = edTenLh.getText().toString();
                 String giatien = edGiatien.getText().toString();
 
-                if (mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty()){
-                    Toast.makeText(ThemDoUong.this, "vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty()) {
+                    Toast.makeText(ThemDoUong.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Validate Giatien
+                    if (!isNumeric(giatien)) {
+                        Toast.makeText(ThemDoUong.this, "Giá tiền phải là số", Toast.LENGTH_SHORT).show();
+                        return; // Do not proceed if Giatien is not a number.
+                    }
+
                     registerMenu(mamn, tendu, giatien);
 
                     edMaMn.setText("");
                     edTenLh.setText("");
                     edGiatien.setText("");
                 }
-
-
             }
         });
         btnxemmenu.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +73,9 @@ public class ThemDoUong extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?"); // Allows integers and decimals
     }
     public void registerMenu(String MaMn , String TenDu, String Giatien ) {
         Retrofit retrofit = new Retrofit.Builder()

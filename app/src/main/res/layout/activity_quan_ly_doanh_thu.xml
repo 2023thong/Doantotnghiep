@@ -31,12 +31,12 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="50dp"
-            android:text="Tổng doanh thu hiện tại"
+            android:text="Tổng doanh thu hiện tại: "
             android:textSize="20dp"
             android:padding="5dp"/>
         <TextView
@@ -47,6 +47,27 @@
             android:textSize="20dp"
             android:padding="5dp"
             android:textColor="#DF1818"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTongDoanhThuNgay"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:text="0"
+            android:textColor="#0CA3B6"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
