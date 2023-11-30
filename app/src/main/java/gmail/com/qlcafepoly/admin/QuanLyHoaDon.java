@@ -81,13 +81,6 @@ public class QuanLyHoaDon extends AppCompatActivity {
         lvQLHD = findViewById(R.id.lvQLHD);
         tvTongTien = findViewById(R.id.tvTongtien);
         tvTongBill = findViewById(R.id.tvTongBill);
-        imgLich = findViewById(R.id.imgLich);
-        imgLich.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCalendarDialog();
-            }
-        });
         qlhd1 = new QLHD1(QuanLyHoaDon.this, listPay);
         lvQLHD.setAdapter(qlhd1);
         pd = new ProgressDialog(QuanLyHoaDon.this);
@@ -95,41 +88,6 @@ public class QuanLyHoaDon extends AppCompatActivity {
         pd.setCancelable(false);
         new QuanLyHoaDon.MyAsyncTask().execute(urllink);
         updateTotalAmount();
-        showCalendarDialog();
-    }
-    private void showCalendarDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_calendar, null);
-        builder.setView(dialogView);
-
-        CalendarView calendarViewDialog = dialogView.findViewById(R.id.calendarViewDialog);
-        calendarViewDialog.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                // Handle the selected date change
-                String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                Toast.makeText(QuanLyHoaDon.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
-                filterBillsByDate(selectedDate);
-            }
-        });
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // Handle OK button click if needed
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // Handle Cancel button click if needed
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
     private void filterBillsByDate(String selectedDate) {
         filteredList.clear(); // Clear previous filtered data

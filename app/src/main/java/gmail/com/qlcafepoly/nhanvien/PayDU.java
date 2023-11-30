@@ -58,9 +58,6 @@ public class PayDU extends BaseAdapter {
         tv_Soluong.setText(String.valueOf(menu1.getSoluong()));
 
 
-
-
-
         return convertView;
     }
 

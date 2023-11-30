@@ -108,9 +108,10 @@ public class Pay extends AppCompatActivity {
                         Log.d("MaBn", PayObject.getString("MaBn"));
                         Log.d("TongTien", PayObject.getString("TongTien"));
                         Log.d("Ngay", PayObject.getString("Ngay"));
+
+
                         String MaOder = PayObject.getString("MaOder");
                         String MaBn = PayObject.getString("MaBn");
-
                         int TrangThai = PayObject.getInt("TrangThai");
                         String Tongtien = PayObject.getString("TongTien");
                         String traTien = PayObject.getString("TrangThai");

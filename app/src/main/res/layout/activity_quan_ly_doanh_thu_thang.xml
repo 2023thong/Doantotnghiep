@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".admin.QuanLyDoanhThu">
+    tools:context=".admin.QuanLyDoanhThuThang">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -16,7 +16,7 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_back"
             android:layout_margin="15dp"
-            android:onClick="backdoanhthu"/>
+            android:onClick="backdoanhthu1"/>
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
@@ -65,20 +65,20 @@
         android:padding="10dp">
 
         <Button
-            android:id="@+id/btnDTNgay"
+            android:id="@+id/btnDTNgay1"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="Ngày"
             android:backgroundTint="#5A4D4D"/>
         <Button
-            android:id="@+id/btnDTThang"
+            android:id="@+id/btnDTThang1"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="tháng"
             android:layout_marginStart="50dp"
             android:backgroundTint="#5A4D4D"/>
         <Button
-            android:id="@+id/btnDTNam"
+            android:id="@+id/btnDTNam1"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="Năm"
@@ -91,7 +91,7 @@
         android:layout_height="match_parent">
 
         <ListView
-            android:id="@+id/lsdoanhthu"
+            android:id="@+id/lsdoanhthuthang"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

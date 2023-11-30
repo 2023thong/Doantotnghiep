@@ -6,11 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,68 +30,56 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.nhanvien.Hoadon;
-import gmail.com.qlcafepoly.nhanvien.Oder;
-import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
-public class QuanLyDoanhThu extends AppCompatActivity {
-
-
-    private List<Hoadon> lsuList = new ArrayList<>();
-    private DoanhThu doanhThu;
+public class QuanLyDoanhThuNam extends AppCompatActivity {
+    private List<Hoadon> lsuList= new ArrayList<>();
+    private DoanhThuNam doanhThuNam;
     private TextView tvTongDoanhThu;
     private ImageView icLich;
 
 
-    private String urllink = BASE_URL +"duantotnghiep/doanhthutheongay.php";
+    private String urllink = BASE_URL +"duantotnghiep/doanhthutheonam.php";
     private ProgressDialog pd;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quan_ly_doanh_thu);
+        setContentView(R.layout.activity_quan_ly_doanh_thu_nam);
+        ListView doanhthunam = findViewById(R.id.lsdoanhthunam);
         tvTongDoanhThu = findViewById(R.id.tvTongDoanhThu);
-        Button btnDTNgay = findViewById(R.id.btnDTNgay);
+        int totalAmount = GlobalData.totalAmount;
+        doanhThuNam = new DoanhThuNam(QuanLyDoanhThuNam.this, lsuList);
+        doanhthunam.setAdapter(doanhThuNam);
+        tvTongDoanhThu.setText(String.valueOf(totalAmount) + " vnd");
+        Button btnDTNgay = findViewById(R.id.btnDTNgay2);
         btnDTNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuanLyDoanhThu.this, QuanLyDoanhThu.class);
+                Intent intent = new Intent(QuanLyDoanhThuNam.this, QuanLyDoanhThu.class);
                 startActivity(intent);
             }
         });
-        Button btnDTThang = findViewById(R.id.btnDTThang);
+        Button btnDTThang = findViewById(R.id.btnDTThang2);
         btnDTThang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuanLyDoanhThu.this, QuanLyDoanhThuThang.class);
+                Intent intent = new Intent(QuanLyDoanhThuNam.this, QuanLyDoanhThuThang.class);
                 startActivity(intent);
             }
         });
-        Button btnDTNam = findViewById(R.id.btnDTNam);
+        Button btnDTNam = findViewById(R.id.btnDTNam2);
         btnDTNam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuanLyDoanhThu.this, QuanLyDoanhThuNam.class);
+                Intent intent = new Intent(QuanLyDoanhThuNam.this, QuanLyDoanhThuNam.class);
                 startActivity(intent);
             }
         });
-        int totalAmount = GlobalData.totalAmount;
-        ListView doanhthu = findViewById(R.id.lsdoanhthu);
-        doanhThu = new DoanhThu(QuanLyDoanhThu.this, lsuList);
-        doanhthu.setAdapter(doanhThu);
-
-        tvTongDoanhThu.setText(String.valueOf(totalAmount) + " vnd");
         icLich = findViewById(R.id.icLich);
         icLich.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +87,7 @@ public class QuanLyDoanhThu extends AppCompatActivity {
                 showCalendarDialog();
             }
         });
-        new MyAsyncTask().execute(urllink);
+        new QuanLyDoanhThuNam.MyAsyncTask().execute(urllink);
 
     }
     private void showCalendarDialog() {
@@ -116,7 +102,7 @@ public class QuanLyDoanhThu extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 // Handle the selected date change
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                Toast.makeText(QuanLyDoanhThu.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuanLyDoanhThuNam.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -137,13 +123,6 @@ public class QuanLyDoanhThu extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
-    public void backdoanhthu (View view){
-        finish();
-    }
-
-
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -155,7 +134,6 @@ public class QuanLyDoanhThu extends AppCompatActivity {
             }
 
         }
-
         @Override
         protected String doInBackground(String... strings) {
             try {
@@ -165,18 +143,18 @@ public class QuanLyDoanhThu extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
-                    JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("doanhthu");
+                    JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("doanhthunam");
                     Log.d("//=====size===", jsonArrayhanghoa.length() + "");
 
                     for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
                         JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
-                        Log.d("Ngay", nhanvienObject.getString("Ngay"));
-                        Log.d("DoanhThuNgay", nhanvienObject.getString("DoanhThuNgay"));
-                        String Ngay = nhanvienObject.getString("Ngay");
-                        String DTNgay = nhanvienObject.getString("DoanhThuNgay");
+                        Log.d("Nam", nhanvienObject.getString("Nam"));
+                        Log.d("DoanhThuNam", nhanvienObject.getString("DoanhThuNam"));
+                        String Nam = nhanvienObject.getString("Nam");
+                        String DTNam = nhanvienObject.getString("DoanhThuNam");
                         Hoadon hoadon = new Hoadon();
-                        hoadon.setThoigian(Ngay);
-                        hoadon.setTongTien(Integer.parseInt(DTNgay));
+                        hoadon.setThoigian(Nam);
+                        hoadon.setTongTien(Integer.parseInt(DTNam));
                         lsuList.add(hoadon);
                     }
                 } else {
@@ -193,8 +171,8 @@ public class QuanLyDoanhThu extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if (doanhThu != null) {
-                doanhThu.notifyDataSetChanged();
+            if (doanhThuNam != null) {
+                doanhThuNam.notifyDataSetChanged();
             }
 
         }
@@ -219,5 +197,8 @@ public class QuanLyDoanhThu extends AppCompatActivity {
             }
             return null;
         }
+    }
+    public void backdoanhthu2(View view){
+        finish();
     }
 }

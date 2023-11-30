@@ -59,8 +59,6 @@ public class XemQLHD extends AppCompatActivity {
         if (MaOder != -1) {
             urllink = base_url + "?MaOder=" + MaOder;
         }
-
-
         imageView = findViewById(R.id.img_Douong);
         lvQLHD = findViewById(R.id.lvListHoaDon);
         tvTong = findViewById(R.id.tvTong);
