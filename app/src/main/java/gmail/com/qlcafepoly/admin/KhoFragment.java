@@ -79,12 +79,8 @@ public class KhoFragment extends Fragment {
     private Spinner spinnerMaNcc, spinner;
     private ProgressDialog pd;
 
-
-
     private String urllink = BASE_URL +"duantotnghiep/thu.php";
     private String urllink1 =BASE_URL + "duantotnghiep/loaihang.php";
-
-
 
 
 

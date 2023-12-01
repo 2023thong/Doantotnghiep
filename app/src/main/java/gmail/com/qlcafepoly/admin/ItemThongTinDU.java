@@ -99,10 +99,8 @@ Button btnBack,btnSuaDU,btnXoaDU;
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
         Menu menu = new Menu();
         menu.setMaMn(MaMn);
-
         menu.setTenDu(TenDu);
         menu.setGiatien(Integer.parseInt(String.valueOf(Giatien)));
-
         menu.setGiatien(Integer.parseInt(Giatien));
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.SUAMENU);

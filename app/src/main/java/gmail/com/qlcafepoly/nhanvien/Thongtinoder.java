@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Thongtinoder implements Serializable {
     private int MaOder;
     private String MaBn;
+
     private String formattedTongtien;
     int tratien;
     private int TrangThai;
@@ -33,6 +34,8 @@ public class Thongtinoder implements Serializable {
     public void setTongTien(int tongTien) {
         TongTien = tongTien;
     }
+// Getter và setter cho Trangthai
+
 
 
 
@@ -71,4 +74,7 @@ public class Thongtinoder implements Serializable {
     public void setFormattedTongtien(String formattedTongtien) {
         this.formattedTongtien = formattedTongtien;
     }
+     // assuming quantity is an attribute in Thongtinoder
+
+    // ... other methods and constructors
 }

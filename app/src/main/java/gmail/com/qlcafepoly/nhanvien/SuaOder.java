@@ -3,6 +3,9 @@ package gmail.com.qlcafepoly.nhanvien;
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -59,11 +62,8 @@ public class SuaOder extends AppCompatActivity {
     private List<Menu> odermenu1 = new ArrayList<>();
     private ListView lshienthimenu;
     private List<Menu> odermenu = new ArrayList<>();
-
     private String urllink = BASE_URL +"duantotnghiep/get_all_menu.php";
     private String urllink1 = BASE_URL +"duantotnghiep/laydulieuchitietoder.php";
-
-
     private List<Menu> selectedMenus = new ArrayList<>();
     private ListView lshienthioder;
     private List<Menu> menuList = new ArrayList<>();
@@ -609,10 +609,9 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(),"Sửa thành công oder", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), Unpaid.class);
-                    startActivity(intent);
+                    finish();
 
-                } else {
+            } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -624,6 +623,8 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
 
         });
     }
+
+
 
 
 

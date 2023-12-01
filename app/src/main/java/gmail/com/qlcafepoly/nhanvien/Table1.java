@@ -17,6 +17,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
@@ -68,15 +70,12 @@ public class Table1 extends BaseAdapter {
         txtTenbn.setText(ban.getTenBan());
         txtMabn.setText(ban.getMaBn());
 
-
         if (ban.getTrangthai().equals("1")) {
             txtTthai.setText("Bàn đang trống");
-
-            txtTthai.setTextColor(convertView.getContext().getColor(android.R.color.holo_orange_light));
+            txtTthai.setTextColor(ContextCompat.getColor(convertView.getContext(),android.R.color.holo_orange_light));
         } else if (ban.getTrangthai().equals("2")) {
             txtTthai.setText("Bàn đã oder");
-
-            txtTthai.setTextColor(convertView.getContext().getColor(android.R.color.holo_red_light));
+            txtTthai.setTextColor(ContextCompat.getColor(convertView.getContext(),android.R.color.holo_red_light));
         }
 
 

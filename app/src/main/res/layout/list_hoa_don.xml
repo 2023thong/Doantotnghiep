@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".admin.QuanLyHoaDon">
+    tools:context=".admin.XemQLHD">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ED8361">
         <ImageView
+            android:id="@+id/imgchitiethoadon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_back"
-            android:layout_margin="15dp"
-            android:onClick="backHoaDon"/>
+            android:layout_margin="15dp"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -33,33 +32,34 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Danh sách"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="10dp"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Lịch sử thanh toán:"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Tổng tiền: "
             android:textStyle="bold"
-            android:textSize="23sp"/>
+            android:textSize="20dp"
+            android:padding="10dp"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Tổng bill:"
-            android:textColor="#D30B4F"
-            android:textSize="23sp"
-            android:layout_marginStart="50dp"/>
-        <TextView
-            android:id="@+id/tvTongBill"
+            android:id="@+id/tvTong"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:text="0"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:textStyle="italic"
+            android:textSize="20dp"
+            android:padding="10dp"/>
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lvQLHD"
+        android:id="@+id/lvListHoaDon"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
+        android:layout_height="729dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
 </LinearLayout>

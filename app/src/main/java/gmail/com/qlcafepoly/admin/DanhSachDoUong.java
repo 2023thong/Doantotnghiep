@@ -37,9 +37,7 @@ public class DanhSachDoUong extends AppCompatActivity {
     private ListView lshienthimenu;
 
 
-
-    private String urllink = BASE_URL +"duantotnghiep/get_all_menu.php";
-
+    private String urllink = "http://192.168.1.53:8080/duantotnghiep/get_all_menu.php";
 
     private ProgressDialog pd;
     private TextView btnFindDU;
@@ -114,9 +112,7 @@ public class DanhSachDoUong extends AppCompatActivity {
 
                         Menu menu = new Menu();
                         menu.setMaMn(MaNn);
-
                         menu.setTenDu(TenDu);
-
                         menu.setGiatien(Integer.parseInt(Giatien));
                         lsuListMenu.add(menu);
                     }

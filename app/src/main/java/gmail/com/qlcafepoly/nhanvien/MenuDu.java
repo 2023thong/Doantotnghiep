@@ -1,7 +1,6 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,11 @@ import java.util.List;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.model.Menu;
 
-public class MenuDU extends BaseAdapter {
+public class MenuDu extends BaseAdapter {
     private List<Menu> menu1;
     private LayoutInflater inflater1;
 
-    public MenuDU(Context context, List<Menu> menu1){
+    public MenuDu(Context context, List<Menu> menu1){
         this.menu1 = menu1;
         inflater1 = LayoutInflater.from(context);
     }
@@ -47,8 +46,6 @@ public class MenuDU extends BaseAdapter {
 
         tvTenDu.setText(menu.getTenLh());
         tvGiatien.setText(String.valueOf(menu.getGiatien()));
-
-
         return convertView;
     }
 }

@@ -1,8 +1,6 @@
-package gmail.com.qlcafepoly.nhanvien;
+package gmail.com.qlcafepoly.admin;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +8,18 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import java.util.List;
-import gmail.com.qlcafepoly.R;
 
-public class Pay1 extends BaseAdapter {
+import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.nhanvien.PayFragment;
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
+
+public class QLHD1 extends BaseAdapter {
     private List<Thongtinoder> ttoder;
     private LayoutInflater inflater;
     private Context context;
 
-    public Pay1(Context context, List<Thongtinoder> ttoder) {
+    public QLHD1(Context context, List<Thongtinoder> ttoder) {
         this.ttoder = ttoder;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -55,16 +52,11 @@ public class Pay1 extends BaseAdapter {
         TextView maBn = convertView.findViewById(R.id.tvbantrong);
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         TextView tongTien = convertView.findViewById(R.id.tvTongtien);
-        TextView ngay = convertView.findViewById(R.id.tvNgay);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, Menu_pay.class);
-                intent.putExtra("Maoder1",String.valueOf(thongtinoder.getMaOder()));
-                intent.putExtra("Tongtien",String.valueOf(thongtinoder.getTongTien()));
-                intent.putExtra("Mabn",String.valueOf(thongtinoder.getMaBn()));
-                intent.putExtra("Ngay", String.valueOf(thongtinoder.getNgay()));
-                context.startActivity(intent);
+            public void onClick(View v) {
+                int maOder = thongtinoder.getMaOder();
+                ((QuanLyHoaDon) context).btnxemdanhsachban(maOder);
             }
         });
         int trangThai = thongtinoder.getTrangThai();
@@ -73,16 +65,17 @@ public class Pay1 extends BaseAdapter {
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
-            ngay.setText(thongtinoder.getNgay());
-
         } else {
             // Nếu trạng thái không phải 1, ẩn convertView
             convertView.setVisibility(View.GONE);
         }
 
 
+//        maOder.setText(String.valueOf(thongtinoder.getMaOder()));
+//        maBn.setText(String.valueOf(thongtinoder.getMaBn()));
+//        tongTien.setText(String.valueOf(thongtinoder.getTongtien()));
+        // ... (các phần khác không thay đổi)
+
         return convertView;
     }
-
-
 }

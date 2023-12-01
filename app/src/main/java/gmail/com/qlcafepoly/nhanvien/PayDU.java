@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
@@ -63,5 +65,24 @@ public class PayDU extends BaseAdapter {
 
         return convertView;
     }
+    public void sortListByMaOderAndTenDu() {
+        Collections.sort(menu2, new Comparator<Menu1>() {
+            @Override
+            public int compare(Menu1 menu1, Menu1 menu2) {
+                // So sánh theo MaOder
+                int compareMaOder = Integer.compare(menu1.getMaOder(), menu2.getMaOder());
+
+                // Nếu MaOder khác nhau, trả về kết quả so sánh MaOder
+                if (compareMaOder != 0) {
+                    return compareMaOder;
+                }
+
+                // Nếu MaOder giống nhau, so sánh theo TenDu
+                return menu1.getTenDu().compareTo(menu2.getTenDu());
+            }
+        });
+        notifyDataSetChanged();
+    }
+
 
 }

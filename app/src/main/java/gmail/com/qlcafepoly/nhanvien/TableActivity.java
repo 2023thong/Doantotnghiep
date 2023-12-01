@@ -57,12 +57,7 @@ public class TableActivity extends AppCompatActivity {
     FloatingActionButton themban;
     ImageView backban;
     private ListView lsban;
-
-
     private String urllink = BASE_URL +"duantotnghiep/thongtinban.php";
-
-
-
     private ProgressDialog pd;
     private Spinner spnTrangthai;
     private AppCompatButton btnThem, btnHuy;

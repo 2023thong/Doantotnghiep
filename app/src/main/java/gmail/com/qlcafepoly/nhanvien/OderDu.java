@@ -1,6 +1,6 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import static java.security.AccessController.getContext;
+
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import android.app.ProgressDialog;
@@ -47,7 +47,6 @@ import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
-import gmail.com.qlcafepoly.admin.ThongTinHangNhap;
 import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
@@ -68,14 +67,14 @@ public class OderDu extends AppCompatActivity {
     private int soluongDefault = 1;
 
     private int totalAmount = 0;
+
     private List<User1> lsuList = new ArrayList<>();
+
 
     private Menu selectedMenu;
 
-
     private String urllink =  BASE_URL +"duantotnghiep/get_all_menu.php";
     private String urllink1 = BASE_URL +"duantotnghiep/get_all_product.php";
-
 
     private ProgressDialog pd;
     private List<Menu> selectedMenus = new ArrayList<>();
@@ -325,11 +324,13 @@ public class OderDu extends AppCompatActivity {
 
 //            mamn.setText(menu.getMaMn());
             customTextView.setText(menu.getTenDu());
+//            sl.setText(String.valueOf(menu.getSoluong()));
+
+            sl.setText(String.valueOf(menu.getSoluong()));
             customTextView1.setText(String.valueOf(menu.getGiatien()));
 
 
             sl.setText(String.valueOf(menu.getSoluong()));
-
 
             if (menu == selectedMenu) {
                 sl.setText(String.valueOf(soluongDefault));
@@ -549,9 +550,12 @@ public class OderDu extends AppCompatActivity {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
+
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(OderDu.this, Unpaid.class);
+                    String chuyen1 = "1";
+                    Intent intent = new Intent(OderDu.this, NhanvienMenu.class);
+                    intent.putExtra("chuyen", chuyen1);
                     startActivity(intent);
 
                 } else {
@@ -593,7 +597,7 @@ public class OderDu extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(OderDu.this, Unpaid.class);
+                    Intent intent = new Intent(OderDu.this, UnpaidFragment.class);
                     startActivity(intent);
 
                 } else {
