@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -50,20 +52,8 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
     private ListView lshienthi;
 
-
-
-
-    private String urllink = "http://172.16.55.231:8080/duantotnghiep/get_all_product.php";
-
-
-
-
-
+    private String urllink = BASE_URL+ "duantotnghiep/get_all_product.php";
     private ProgressDialog pd;
-
-
-
-
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,7 +189,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
     public void deleteItem(final String MaHH) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);

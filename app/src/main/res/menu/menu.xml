@@ -5,7 +5,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ql"
-        android:icon="@drawable/apps"
+        android:icon="@drawable/appsql"
         android:title="Quản Lý" />
     <item
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
     <item
         android:layout_width="wrap_content"
         android:id="@+id/canhan"
-        android:icon="@drawable/canhan"
+        android:icon="@drawable/canhan1"
         android:layout_height="wrap_content"
         android:title="Cá Nhân" />
 </menu>

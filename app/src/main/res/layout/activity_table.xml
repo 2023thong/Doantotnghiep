@@ -13,15 +13,29 @@
         app:srcCompat="@drawable/backgroud"
         tools:ignore="MissingConstraints" />
 
+    <ImageView
+        android:id="@+id/backban"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="backthemban"
+        android:src="@drawable/thoat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,UseAppTint" />
+
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="131dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="33dp"
+        android:layout_width="150dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="33dp"
         android:layout_marginBottom="103dp"
         android:text="Menu Bàn"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
@@ -46,16 +60,18 @@
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/themban"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/white"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:foreground="@drawable/add"
+        android:backgroundTint="#D8D7D7"
+        android:foreground="@drawable/them2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
+        app:maxImageSize="24dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

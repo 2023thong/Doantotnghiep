@@ -113,6 +113,7 @@ public class DoiMatKhau extends AppCompatActivity {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();

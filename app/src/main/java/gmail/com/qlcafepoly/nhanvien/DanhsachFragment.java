@@ -1,6 +1,5 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
@@ -31,10 +30,12 @@ import gmail.com.qlcafepoly.model.Menu;
 
 public class DanhsachFragment extends Fragment {
     private List<Menu> menuList1 = new ArrayList<>();
-    private MenuDU menudu;
+    private MenuDu menudu;
     private ImageView imageView;
     private ListView lsMenuSql;
-    private String urllink = "http://172.16.55.231:8080/duantotnghiep/thongtintk.php";
+
+    private String urllink = "http://192.168.1.173:8080/duantotnghiep/thongtintk.php";
+
 
     private ProgressDialog pd;
 
@@ -44,9 +45,9 @@ public class DanhsachFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_danhsach_fragment, container, false);
-        imageView = view.findViewById(R.id.imgnuoc);
+//        imageView = view.findViewById(R.id.imgnuoc);
         lsMenuSql = view.findViewById(R.id.lsmenudu);
-        menudu = new MenuDU(getActivity(), menuList1);
+        menudu = new MenuDu(getActivity(), menuList1);
         lsMenuSql.setAdapter(menudu);
 
         pd = new ProgressDialog(getActivity()); // Khởi tạo ProgressDialog ở đây
@@ -81,17 +82,21 @@ public class DanhsachFragment extends Fragment {
                     for (int i = 0; i < jsonArraymenu.length(); i++) {
                         JSONObject menuObject = jsonArraymenu.getJSONObject(i);
 //                        Log.d("MaMn", menuObject.getString("MaMn"));
-                        Log.d("TenLh", menuObject.getString("TenLh"));
+                        Log.d("TenDu", menuObject.getString("TenDu"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
 
 
 //                        String MaMn = menuObject.getString("MaMn");
-                        String TenLh = menuObject.getString("TenLh");
+
+                        String TenDu = menuObject.getString("TenDu");
+
+                        String TenLh = menuObject.getString("TenDu");
+
                         String Giatien = menuObject.getString("Giatien");
 
 
                         Menu menu = new Menu();
-                        menu.setTenLh(TenLh);
+                        menu.setTenLh(TenDu);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         menuList1.add(menu);
 
@@ -136,7 +141,6 @@ public class DanhsachFragment extends Fragment {
             }
             return null;
         }
-    }
+    }}
 
 
-}

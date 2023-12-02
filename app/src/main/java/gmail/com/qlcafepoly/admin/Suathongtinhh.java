@@ -78,13 +78,13 @@ public class Suathongtinhh extends AppCompatActivity {
                 String soluong = textViewsoluong.getText().toString();
 
                 Suahanghoa(mahh, mancc, malh, tehh, giatien, ghichu, soluong);
-                textViewMaHH.setText("");
-                textViewMaNcc.setText("");
-                textViewMlh.setText("");
-                textViewTehh.setText("");
-                textViewgia.setText("");
-                textViewGhichu.setText("");
-                textViewsoluong.setText("");
+//                textViewMaHH.setText("");
+//                textViewMaNcc.setText("");
+//                textViewMlh.setText("");
+//                textViewTehh.setText("");
+//                textViewgia.setText("");
+//                textViewGhichu.setText("");
+//                textViewsoluong.setText("");
 
 
 
@@ -135,7 +135,9 @@ public class Suathongtinhh extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
+
             }
+
 
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {

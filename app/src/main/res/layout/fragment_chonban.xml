@@ -94,18 +94,21 @@
 
 
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/quatable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/white"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:foreground="@drawable/add"
+        android:backgroundTint="#D8D7D7"
+        android:foreground="@drawable/them2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
+        app:maxImageSize="24dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

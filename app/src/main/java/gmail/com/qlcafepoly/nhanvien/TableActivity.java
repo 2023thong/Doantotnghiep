@@ -1,20 +1,25 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,7 +35,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import gmail.com.qlcafepoly.Database.Constants;
@@ -51,14 +55,16 @@ public class TableActivity extends AppCompatActivity {
     private Table1 adapter;
 
     FloatingActionButton themban;
+    ImageView backban;
     private ListView lsban;
-    private String urllink = "http://172.16.55.231:8080/duantotnghiep/thongtinban.php";
-
+    private String urllink = BASE_URL +"duantotnghiep/thongtinban.php";
     private ProgressDialog pd;
+    private Spinner spnTrangthai;
+    private AppCompatButton btnThem, btnHuy;
+    private EditText edtMaban, edtTenBan ;
 
-    private EditText edtMaban, edtTenBan, spnTrangthai;
 
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,15 @@ public class TableActivity extends AppCompatActivity {
                 showAddBanDialog();
             }
         });
+        backban = findViewById(R.id.backban);
+        backban.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+
 
 
         lsban = findViewById(R.id.lvtable);
@@ -85,6 +100,7 @@ public class TableActivity extends AppCompatActivity {
 
         new MyAsyncTask().execute(urllink);
     }
+
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -120,11 +136,14 @@ public class TableActivity extends AppCompatActivity {
                         String TenBan = banObject.getString("TenBan");
                         String Trangthai = banObject.getString("Trangthai");
 
+
+
                         Ban ban = new Ban();
                         ban.setMaBn(MaBn);
                         ban.setTenBan(TenBan);
                         ban.setTrangthai(Trangthai);
                         banList.add(ban);
+
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -134,16 +153,22 @@ public class TableActivity extends AppCompatActivity {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
             return null;
         }
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            adapter.notifyDataSetChanged();
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
         }
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
@@ -182,44 +207,63 @@ public class TableActivity extends AppCompatActivity {
         edtTenBan = dialogView.findViewById(R.id.edtTenban);
         edtMaban = dialogView.findViewById(R.id.edtMaban);
         spnTrangthai = dialogView.findViewById(R.id.spnTrangthai);
+        btnThem = dialogView.findViewById(R.id.btn_them);
+        btnHuy = dialogView.findViewById(R.id.btn_huy);
 
+        final AlertDialog alertDialog = dialogBuilder.create();
 
-        dialogBuilder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Handle the data entered by the user and add it to the server
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.trangthai_array,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnTrangthai.setAdapter(adapter);
+
+        btnThem.setOnClickListener(new View.OnClickListener() { // Gán lại nút thêm ở layout
+            @Override
+            public void onClick(View view) {
                 String TenBan = edtTenBan.getText().toString();
                 String MaBn = edtMaban.getText().toString();
-                String Trangthai = spnTrangthai.getText().toString();
-                dialog.dismiss();
+                String Trangthai = getTrangThaiValue(spnTrangthai.getSelectedItemPosition());
 
-//                if (MaBn.isEmpty() || TenBan.isEmpty() || Trangthai.isEmpty()){
-//                    Toast.makeText(TableActivity.this, "vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-                    registerBan(MaBn, TenBan, Trangthai);
+                alertDialog.dismiss();
 
-                    edtMaban.setText("");
-                    edtTenBan.setText("");
-                    spnTrangthai.setText("");
+                registerBan(MaBn, TenBan, Trangthai);
 
-
+                edtMaban.setText("");
+                edtTenBan.setText("");
+                spnTrangthai.setSelection(0);
 
                 updateData();
             }
         });
 
-        dialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // User clicked cancel, do nothing
+        btnHuy.setOnClickListener(new View.OnClickListener() { // Gán lại nút hủy ở layout
+            @Override
+            public void onClick(View view) {
+                // Handle cancel button click
+                alertDialog.dismiss();
             }
         });
-
-        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+            }
+        });
         alertDialog.show();
+    }
+
+        private String getTrangThaiValue(int selectedItemPosition) {
+        if (selectedItemPosition == 0) {
+            return "1"; // Map 'trống' to '1'
+        } else {
+            return "2"; // Map 'đầy' to '2'
+        }
     }
     public void registerBan(String MaBn , String TenBan, String Trangthai ) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -250,5 +294,8 @@ public class TableActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 }

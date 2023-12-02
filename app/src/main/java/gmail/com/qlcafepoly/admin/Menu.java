@@ -2,17 +2,38 @@ package gmail.com.qlcafepoly.admin;
 
 public class Menu {
     private String MaMn;
-    private String TenLh;
+    private String TenDu;
     private int Giatien;
+
+    private int soluong;
+    private int Giatientd;
+    private int MaOder;
+
+    public int getMaOder() {
+        return MaOder;
+    }
+
+    public void setMaOder(int maOder) {
+        MaOder = maOder;
+    }
 
     public Menu() {
     }
-
-    public Menu(String maMn, String tenLh, int giatien) {
+    public Menu(String maMn, String tenDu, int giatien , int soluong, int maOder) {
         MaMn = maMn;
-        TenLh = tenLh;
+        TenDu = tenDu;
         Giatien = giatien;
+        MaOder = maOder;
+
+        this.soluong = soluong;
+        this.Giatientd = giatien * soluong;
     }
+
+    public int getSoluong() {
+        return soluong;
+    }
+
+
 
     public String getMaMn() {
         return MaMn;
@@ -22,12 +43,12 @@ public class Menu {
         MaMn = maMn;
     }
 
-    public String getTenLh() {
-        return TenLh;
+    public String getTenDu() {
+        return TenDu;
     }
 
-    public void setTenLh(String tenLh) {
-        TenLh = tenLh;
+    public void setTenDu(String tenDu) {
+        TenDu = tenDu;
     }
 
     public int getGiatien() {
@@ -37,4 +58,21 @@ public class Menu {
     public void setGiatien(int giatien) {
         Giatien = giatien;
     }
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+
+    }
+
+    public int getGiatientd() {
+        return Giatientd;
+    }
+    public void setGiatientd(int soluong) {
+        this.Giatientd = this.Giatien * soluong;
+    }
+    public int calculateTotalPrice() {
+        return Giatien * soluong;
+    }
+
+
+
 }

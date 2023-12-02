@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -35,11 +37,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
@@ -82,9 +79,8 @@ public class KhoFragment extends Fragment {
     private Spinner spinnerMaNcc, spinner;
     private ProgressDialog pd;
 
-
-    private String urllink = "http://172.16.55.231:8080/duantotnghiep/thu.php";
-    private String urllink1 = "http://172.16.55.231:8080/duantotnghiep/loaihang.php";
+    private String urllink = BASE_URL +"duantotnghiep/thu.php";
+    private String urllink1 =BASE_URL + "duantotnghiep/loaihang.php";
 
 
 
@@ -104,7 +100,7 @@ public class KhoFragment extends Fragment {
 
         edMahh = view.findViewById(R.id.tvMahh1);
 
-//        edMalh = view.findViewById(R.id.Malh);
+
         edTenhh = view.findViewById(R.id.edTenhh);
         edGiatien = view.findViewById(R.id.edGiatien);
         edGhichu = view.findViewById(R.id.edGhichu);
@@ -150,6 +146,7 @@ public class KhoFragment extends Fragment {
                                 String inputLoaihang = loaihang.getText().toString();
                                 String inputGhichu = ghichu.getText().toString();
                                 ThemLoaiHang(inputLoaihang, inputGhichu);
+
                                 dialogInterface.dismiss();
 
                             }
@@ -222,7 +219,7 @@ public class KhoFragment extends Fragment {
 
     public void registerProcess1(String MaHH, String MaNcc, String TenLh, String TenHh, String GiaSp, String Ghichu, String Soluong) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
@@ -306,8 +303,6 @@ public class KhoFragment extends Fragment {
             }
             return null;
         }
-
-
 
         @Override
         protected void onPostExecute(String s) {
@@ -450,7 +445,7 @@ public class KhoFragment extends Fragment {
     @SuppressLint("NotConstructor")
     public void ThemLoaiHang(String TenLh, String Ghichu) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);

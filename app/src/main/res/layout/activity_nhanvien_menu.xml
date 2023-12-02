@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.NhanvienMenu">
+    tools:context=".nhanvien.NhanvienMenu">
 
     <FrameLayout
         android:id="@+id/framg1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bonava1"
         android:layout_width="match_parent"
