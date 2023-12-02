@@ -50,6 +50,7 @@ import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User1;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -163,6 +164,7 @@ public class SuaOder extends AppCompatActivity {
 
                 if (!selectedMenus.isEmpty()) {
                     SuaOder1(mao, tongtien, trangthai);
+                    Trangthaibn(mabn, String.valueOf(1));
 
                     for (Menu selectedMenu : selectedMenus) {
                         String tendu = selectedMenu.getTenDu();
@@ -170,16 +172,11 @@ public class SuaOder extends AppCompatActivity {
                         String gia = String.valueOf(selectedMenu.getGiatien());
                         ThemOderchitiet1(mao, tendu, sl, gia, mabn);
                     }
-
                 } else {
                     Toast.makeText(SuaOder.this, "Vui lòng chọn đồ uống trước khi sửa.", Toast.LENGTH_SHORT).show();
 
-
-
-
                 }
             }
-
 
         });
 
@@ -613,6 +610,45 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
 
             } else {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+
+        });
+    }
+    public void Trangthaibn(String MaBn, String Trangthai) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Ban ban = new Ban();
+        ban.setMaBn(MaBn);
+
+
+        ban.setTrangthai(Trangthai);
+
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUABAN);
+        serverRequest.setBan(ban);
+
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+//                    Toast.makeText(context, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SuaOder.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

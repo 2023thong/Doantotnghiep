@@ -22,10 +22,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:onClick="backthemban"
-        android:src="@drawable/back"
+        android:src="@drawable/thoat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,UseAppTint" />
 
     <TextView
         android:id="@+id/textView6"

@@ -2,6 +2,8 @@ package gmail.com.qlcafepoly.nhanvien;
 
 
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +30,7 @@ import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Hanghoaht;
 import gmail.com.qlcafepoly.admin.Suathongtinhh;
+import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -113,6 +116,9 @@ public class Unpaid1 extends BaseAdapter {
             public void onClick(View view) {
                 // Xử lý khi nhấn vào btnThanhToan
                 Thanhtoan(String.valueOf(thongtinoder.getMaOder()), String.valueOf(1) );
+                Trangthaibn(thongtinoder.getMaBn(), String.valueOf(1));
+
+
 
             }
         });
@@ -203,6 +209,46 @@ public class Unpaid1 extends BaseAdapter {
         Intent intent = new Intent(context, Menu_pay.class);
         intent.putExtra("Maoder1", MaOder);
         context.startActivity(intent);
+    }
+
+    public void Trangthaibn(String MaBn, String Trangthai) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        Ban ban = new Ban();
+        ban.setMaBn(MaBn);
+
+
+        ban.setTrangthai(Trangthai);
+
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUABAN);
+        serverRequest.setBan(ban);
+
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+//                    Toast.makeText(context, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+
+        });
     }
 
 
