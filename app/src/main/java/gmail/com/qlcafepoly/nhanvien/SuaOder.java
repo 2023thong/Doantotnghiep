@@ -180,7 +180,6 @@ public class SuaOder extends AppCompatActivity {
 
         });
 
-
     }
     private List<Menu> filterMenuByMaoder(List<Menu> menuList, String selectedMaoder) {
         List<Menu> filteredList = new ArrayList<>();
