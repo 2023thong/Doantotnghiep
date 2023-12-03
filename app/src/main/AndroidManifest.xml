@@ -22,16 +22,7 @@
             android:name=".admin.QuanLyDoanhThuNam"
             android:exported="false" />
         <activity
-            android:name=".QuanLyDoanhThuNam"
-            android:exported="false" />
-        <activity
             android:name=".admin.QuanLyDoanhThuThang"
-            android:exported="false" />
-        <activity
-            android:name=".admin.XemHoaDonNgay"
-            android:exported="false" />
-        <activity
-            android:name=".admin.Chitietdoanhthungay"
             android:exported="false" />
         <activity
             android:name=".admin.QuanLyDoanhThu"

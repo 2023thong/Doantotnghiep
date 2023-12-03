@@ -69,6 +69,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="Tên loại hàng: "
+            android:gravity="center"
+            android:textSize="25dp"/>
+        <Spinner
+            android:id="@+id/SpTenLh"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:textSize="25dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp">
         <Button
             android:id="@+id/btnSuaDU"

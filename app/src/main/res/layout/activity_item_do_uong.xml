@@ -65,6 +65,11 @@
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:gravity="right">
+                <TextView
+                    android:id="@+id/tvLh"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    />
                 <ImageView
                     android:id="@+id/icEdit"
                     android:layout_width="30dp"

@@ -4,6 +4,19 @@ public class Menu {
     private String MaMn;
     private String TenDu;
     private int Giatien;
+    private String TenLh;
+
+    public Menu(String tenLh) {
+        TenLh = tenLh;
+    }
+
+    public String getTenLh() {
+        return TenLh;
+    }
+
+    public void setTenLh(String tenLh) {
+        TenLh = tenLh;
+    }
 
     private int soluong;
     private int Giatientd;
@@ -19,10 +32,11 @@ public class Menu {
 
     public Menu() {
     }
-    public Menu(String maMn, String tenDu, int giatien , int soluong, int maOder) {
+    public Menu(String maMn, String tenDu, int giatien ,String tenlh, int soluong, int maOder) {
         MaMn = maMn;
         TenDu = tenDu;
         Giatien = giatien;
+        TenLh = tenlh;
         MaOder = maOder;
         this.soluong = soluong;
         this.Giatientd = giatien * soluong;

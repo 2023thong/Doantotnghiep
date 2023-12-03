@@ -5,6 +5,7 @@ import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -199,6 +200,15 @@ public class QuanLyDoanhThuNam extends AppCompatActivity {
         }
     }
     public void backdoanhthu2(View view){
-        finish();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        // Kiểm tra xem có fragment trong Stack không
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            // Nếu có, quay lại fragment trước đó
+            fragmentManager.popBackStack();
+        } else {
+            // Nếu không, kết thúc activity hoặc thực hiện hành động khác tùy thuộc vào yêu cầu của bạn
+            finish();
+        }
     }
 }

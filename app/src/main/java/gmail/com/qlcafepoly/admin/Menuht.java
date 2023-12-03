@@ -54,9 +54,11 @@ public class Menuht extends BaseAdapter {
         TextView tvMaMn = convertView.findViewById(R.id.tvMaMn);
         TextView tvTenLh = convertView.findViewById(R.id.tvTenLh);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiatien);
+//        TextView tvLh = convertView.findViewById(R.id.tvLh);
         tvMaMn.setText("Mã: "+menu.getMaMn());
         tvTenLh.setText(menu.getTenDu());
-        tvGiatien.setText("Giá tiền: "+String.valueOf(menu.getGiatien())+" vnđ");
+        tvGiatien.setText(String.valueOf(menu.getGiatien())+" vnđ");
+//        tvLh.setText("Loại: "+menu.getTenLh());
 
 
         view1 = convertView.findViewById(R.id.icEdit);
@@ -65,6 +67,7 @@ public class Menuht extends BaseAdapter {
             intent.putExtra("DULIEUDU", menu.getMaMn());
             intent.putExtra("DULIEUDU_TenDu", menu.getTenDu());
             intent.putExtra("DULIEUDU_Giatien", String.valueOf(menu.getGiatien()));
+            intent.putExtra("DULIEUDU_TenLh", menu.getTenLh());
            view.getContext().startActivity(intent);
        });
 

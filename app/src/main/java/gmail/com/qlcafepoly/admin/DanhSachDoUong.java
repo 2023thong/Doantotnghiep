@@ -120,15 +120,18 @@ public class DanhSachDoUong extends AppCompatActivity {
                         Log.d("MaMn", menuObject.getString("MaMn"));
                         Log.d("TenDu", menuObject.getString("TenDu"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
+                        Log.d("TenLh", menuObject.getString("TenLh"));
 
                         String MaNn = menuObject.getString("MaMn");
                         String TenDu = menuObject.getString("TenDu");
                         String Giatien = menuObject.getString("Giatien");
+                        String TenLh = menuObject.getString("TenLh");
 
                         Menu menu = new Menu();
                         menu.setMaMn(MaNn);
                         menu.setTenDu(TenDu);
                         menu.setGiatien(Integer.parseInt(Giatien));
+                        menu.setTenLh(TenLh);
                         lsuListMenu.add(menu);
                     }
                 } else {

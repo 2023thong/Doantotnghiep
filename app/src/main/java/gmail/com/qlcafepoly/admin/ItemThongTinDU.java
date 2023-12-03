@@ -1,16 +1,35 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -23,8 +42,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemThongTinDU extends AppCompatActivity {
+    private String TenLhFromIntent;
 Button btnBack,btnSuaDU,btnXoaDU;
     EditText edMaMN,edTenLH,edGiaTien;
+    private Spinner SpTenLh;
+    private List<User1> lsuList = new ArrayList<User1>();
+    private String urllink1 =BASE_URL + "duantotnghiep/loaihang.php";
+    private ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +56,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         edMaMN = findViewById(R.id.edMaDU);
         edTenLH =findViewById(R.id.edTenDU);
         edGiaTien =findViewById(R.id.edGiaDU);
+        SpTenLh = findViewById(R.id.SpTenLh);
         btnSuaDU = findViewById(R.id.btnSuaDU);
         btnBack = findViewById(R.id.btnBack);
         btnXoaDU = findViewById(R.id.btnXoaDU);
@@ -41,6 +66,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 String mamn = edMaMN.getText().toString();
                 String tendu = edTenLH.getText().toString();
                 String giatien = edGiaTien.getText().toString();
+                String tenlh = SpTenLh.getSelectedItem().toString();
 
                 // Validate Giatien
                 if (!isNumeric(giatien)) {
@@ -48,24 +74,30 @@ Button btnBack,btnSuaDU,btnXoaDU;
                     return; // Do not proceed if Giatien is not a number.
                 }
 
-                EditMenu(mamn, tendu, giatien);
+                EditMenu(mamn, tendu, giatien, tenlh);
             }
         });
+        pd = new ProgressDialog(ItemThongTinDU.this);
+        pd.setMessage("Đang tải dữ liệu...");
+        pd.setCancelable(false);
+        new ItemThongTinDU.MyAsyncTask().execute(urllink1);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
         Intent intent = getIntent();
         String MaMn = intent.getStringExtra("DULIEUDU");
         String TenDu = intent.getStringExtra("DULIEUDU_TenDu");
         String Giatien = intent.getStringExtra("DULIEUDU_Giatien");
+        TenLhFromIntent = intent.getStringExtra("DULIEUDU_TenLh");
 
         EditText edMaMn = findViewById(R.id.edMaDU);
         EditText edTenLh = findViewById(R.id.edTenDU);
         EditText edGiatien = findViewById(R.id.edGiaDU);
-
+        Spinner SpTenLh = findViewById(R.id.SpTenLh);
         edMaMn.setText(MaMn);
         edTenLh.setText(TenDu);
         edGiatien.setText(Giatien);
@@ -75,6 +107,103 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 showDeleteConfirmationDialog();
             }
         });
+    }
+    private class MyAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd.setCancelable(false);
+            pd.show();
+        }
+
+        @Override
+
+        protected String doInBackground(String... strings) {
+            try {
+                String strJson = readJsonOnline(strings[0]);
+                Log.d("//====", strJson);
+
+                JSONObject jsonObject = new JSONObject(strJson);
+                int success = jsonObject.getInt("success");
+                if (success == 1) {
+                    if (jsonObject.has("loaihang")) {
+                        JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("loaihang");
+                        Log.d("//=====size===", jsonArrayhanghoa.length() + "");
+
+                        for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
+                            JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
+                            Log.d("TenLh", nhanvienObject.getString("TenLh"));
+
+                            String tenLh = nhanvienObject.getString("TenLh");
+                            User1 user1 = new User1();
+                            user1.setTenLh(tenLh);
+                            lsuList.add(user1);
+                        }
+                    } else {
+                        Log.d("Error: ", "No value for nhacungcap");
+                    }
+                } else {
+                    Log.d("Error: ", "Failed to fetch data. Success is not 1.");
+                }
+            } catch (JSONException e) {
+                Log.d("Error: ", e.toString());
+            } catch (Exception e) {
+                Log.d("loi: ", e.getMessage());
+
+                e.getStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (pd.isShowing()) {
+                pd.dismiss();
+            }
+
+            populateSpinnerWithMaLh();
+
+        }
+
+        public String readJsonOnline(String linkUrl) {
+            HttpURLConnection connection = null;
+            BufferedReader bufferedReader = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                URL url = new URL(linkUrl);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                InputStream inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line + "\n");
+                }
+                return stringBuilder.toString();
+            } catch (Exception ex) {
+                Log.d("Error: ", ex.toString());
+            }
+            return null;
+        }
+    }
+    private void populateSpinnerWithMaLh() {
+        List<String> maLhValues = new ArrayList<>();
+        for (User1 user : lsuList) {
+            String maLh = user.getTenLh();
+            maLhValues.add(maLh);
+        }
+
+        ArrayAdapter<String> spinnerMaLhAdapter = new ArrayAdapter<>(ItemThongTinDU.this, android.R.layout.simple_spinner_item, maLhValues);
+        spinnerMaLhAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpTenLh.setAdapter(spinnerMaLhAdapter);
+
+        // Xét điều kiện và chọn mục tương ứng trong Spinner
+        if (!maLhValues.isEmpty()) {
+            int position = maLhValues.indexOf(TenLhFromIntent);
+            if (position != -1) {
+                SpTenLh.setSelection(position);
+            }
+        }
     }
     private boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?"); // Allows integers and decimals
@@ -101,7 +230,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-    public void EditMenu(String MaMn , String TenDu, String Giatien) {
+    public void EditMenu(String MaMn , String TenDu, String Giatien,String TenLh) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -112,6 +241,7 @@ Button btnBack,btnSuaDU,btnXoaDU;
         menu.setTenDu(TenDu);
         menu.setGiatien(Integer.parseInt(String.valueOf(Giatien)));
         menu.setGiatien(Integer.parseInt(Giatien));
+        menu.setTenLh(TenLh);
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.SUAMENU);
         serverRequest.setMenu(menu);

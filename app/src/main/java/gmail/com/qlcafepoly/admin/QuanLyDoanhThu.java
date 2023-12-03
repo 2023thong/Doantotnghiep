@@ -5,6 +5,7 @@ import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -140,7 +141,16 @@ public class QuanLyDoanhThu extends AppCompatActivity {
 
 
     public void backdoanhthu (View view){
-        finish();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        // Kiểm tra xem có fragment trong Stack không
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            // Nếu có, quay lại fragment trước đó
+            fragmentManager.popBackStack();
+        } else {
+            // Nếu không, kết thúc activity hoặc thực hiện hành động khác tùy thuộc vào yêu cầu của bạn
+            finish();
+        }
     }
 
 
@@ -196,7 +206,6 @@ public class QuanLyDoanhThu extends AppCompatActivity {
             if (doanhThu != null) {
                 doanhThu.notifyDataSetChanged();
             }
-
         }
 
         public String readJsonOnline(String linkUrl) {
