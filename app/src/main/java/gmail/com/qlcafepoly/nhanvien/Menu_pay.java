@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -31,7 +33,7 @@ public class Menu_pay extends AppCompatActivity {
     private ImageView imageView;
     private ListView lvListOder;
     private String base_url = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php";
-    private String urllink = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1;
 
@@ -59,7 +61,7 @@ public class Menu_pay extends AppCompatActivity {
             try {
                 int maOderInt = Integer.parseInt(maOderValue);
                 if (maOderInt != -1) {
-                    urllink = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php?MaOder=" + maOderValue;
+                    urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=" + maOderValue;
                 }
                 else {
                     Log.e("thu", "Invalid MaOder value: -1");
