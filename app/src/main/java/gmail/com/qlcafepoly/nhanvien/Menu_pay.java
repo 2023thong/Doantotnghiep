@@ -32,8 +32,10 @@ public class Menu_pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = BASE_URL + "duantotnghiep/thongtinctoder.php";
-    private String urllink = BASE_URL+ "duantotnghiep/thongtinctoder.php?MaOder=-1";
+
+    private String base_url = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php";
+    private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
+
     private ProgressDialog pd;
     private int MaOder = -1;
 
