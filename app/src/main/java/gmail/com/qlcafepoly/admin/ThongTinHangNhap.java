@@ -52,7 +52,7 @@ public class ThongTinHangNhap extends AppCompatActivity {
 
     private ListView lshienthi;
 
-    private String urllink = BASE_URL +"duantotnghiep/get_all_product.php";
+    private String urllink = BASE_URL+ "duantotnghiep/get_all_product.php";
     private ProgressDialog pd;
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override

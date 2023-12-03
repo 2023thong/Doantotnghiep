@@ -31,14 +31,10 @@
             android:name=".dangnhap.DoiMatKhauNv"
             android:exported="false" />
         <activity
-            android:name=".nhanvien.TableActivity"
-            android:exported="false" />
-        <activity
+
             android:name=".admin.XemQLHD"
             android:exported="false" />
-        <activity
-            android:name=".nhanvien.SuccuesfullyActivity"
-            android:exported="false" />
+
         <activity
             android:name=".admin.ItemThongTinNV"
             android:exported="false" />
@@ -63,7 +59,10 @@
             android:exported="false" />
 
         <activity
-            android:name=".nhanvien.Unpaid"
+            android:name=".nhanvien.PayFragment"
+            android:exported="false" />
+        <activity
+            android:name=".nhanvien.UnpaidFragment"
             android:exported="false" />
         <activity
             android:name=".admin.Quanlynv"
@@ -113,9 +112,7 @@
         <activity
             android:name=".admin.MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".nhanvien.Pay"
-            android:exported="false" />
+
         <activity
             android:name=".admin.XoaKho"
             android:exported="false" />
@@ -141,6 +138,11 @@
         <activity
             android:name=".dangnhap.Danhnhap"
             android:exported="false" />
+        <activity
+            android:name=".nhanvien.TableActivity"
+            android:exported="false" />
+
+
         <activity
             android:name=".admin.Manhinhcho"
             android:exported="true">

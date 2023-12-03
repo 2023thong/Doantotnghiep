@@ -1,21 +1,16 @@
 package gmail.com.qlcafepoly.admin;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Collections;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.nhanvien.Hoadon;
-import gmail.com.qlcafepoly.nhanvien.Pay;
 
 public class DoanhThu extends BaseAdapter {
     private final Context context;

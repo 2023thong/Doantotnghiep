@@ -7,18 +7,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,73 +27,67 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Unpaid extends AppCompatActivity {
+public class UnpaidFragment extends Fragment {
 
 
     private List<Thongtinoder> listUnpaid = new ArrayList<>();
     private Button btnThanhToan;
-    private TextView tvTrangthai, tvTime, tvDate;
+    private Button btnxemdanhsachban;
+    private TextView tvTrangthai;
     private TextView textViewMarquee;
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
 
+
     private String urllink = BASE_URL + "duantotnghiep/trangthaithanhtoan.php";
+
+
+
+
     private ProgressDialog pd;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                            Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unpaid);
-        btnThanhToan = findViewById(R.id.btnThanhToan);
-        tvTrangthai = findViewById(R.id.tvTrangthai);
-        imageView = findViewById(R.id.img_Douong);
-        lv_unpaid = findViewById(R.id.lv_unpaid);
+        View view = inflater.inflate(R.layout.activity_unpaid, container, false);
+        btnThanhToan = view.findViewById(R.id.btnThanhToan);
+        tvTrangthai = view.findViewById(R.id.tvTrangthai);
+        imageView = view.findViewById(R.id.img_Douong);
+        lv_unpaid = view.findViewById(R.id.lv_unpaid);
 
-
-        unpaid1 = new Unpaid1(Unpaid.this, listUnpaid);
+        unpaid1 = new Unpaid1(view.getContext(), listUnpaid);
         lv_unpaid.setAdapter(unpaid1);
-        pd = new ProgressDialog(Unpaid.this);
 
+
+        pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
 
+
         new MyAsyncTask().execute(urllink);
 
-        TextView tvdathanhtoan = findViewById(R.id.tvdathanhtoan);
-        tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Pay.class);
-                startActivity(intent);
-            }
-        });
 
+
+        return view;
     }
-
-
-
-
 
 
     class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -148,7 +141,6 @@ public class Unpaid extends AppCompatActivity {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-
             return null;
         }
 
@@ -159,8 +151,15 @@ public class Unpaid extends AppCompatActivity {
                 pd.dismiss();
             }
 
-            unpaid1.notifyDataSetChanged();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    unpaid1.notifyDataSetChanged();
+                }
+            });
         }
+
+
 
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
@@ -184,90 +183,8 @@ public class Unpaid extends AppCompatActivity {
         }
     }
 
-    public void btnxemdanhsachban(int MaOder) {
-        // Tạo một Intent và truyền tham số maOder
-        Intent intent = new Intent(getApplicationContext(), Menu_pay.class);
-        intent.putExtra("MaOder", MaOder);
-        startActivity(intent);
-    }
-    public void Dangnhap(final String MaOder , String Matkhau) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        Thongtinoder user = new Thongtinoder();
-        user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangThai(Integer.parseInt(Matkhau));
-
-        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.THANHTOAN);
-        serverRequest.setThongtinoder(user);
-        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
 
-        responseCall.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
-
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed"+ t.getMessage());
-
-            }
-        });
-
-    }
-    public void Suatrangthaiban(final String MaBn , String Trangthai) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        Ban ban = new Ban();
-        ban.setMaBn(MaBn);
-        ban.setTrangthai(Trangthai);
-
-        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.SUABAN);
-        serverRequest.setBan(ban);
-        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
-
-
-        responseCall.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
-
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed"+ t.getMessage());
-
-            }
-        });
-
-    }
 
 
 }

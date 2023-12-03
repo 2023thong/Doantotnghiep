@@ -12,13 +12,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONArray;
@@ -43,41 +47,37 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Pay extends AppCompatActivity {
+public class PayFragment extends Fragment {
     private List<Thongtinoder> listPay = new ArrayList<>();
     private Pay1 pay1;
 
     private ImageView imageView;
+    private Button btnxemdanhsachban;
     private ListView lv_listpay;
-    private String urllink = BASE_URL +"duantotnghiep/oder.php";
+
+    private String urllink = BASE_URL+ "duantotnghiep/oder.php";
+
     private ProgressDialog pd;
-    TextView tvchuathanhtoan;
+
 
     @SuppressLint("MissingInflatedId")
-    @Override
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                         Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_pay);
-        imageView = findViewById(R.id.img_Douong);
-        lv_listpay = findViewById(R.id.lv_listoder);
-        pay1 = new Pay1(Pay.this, listPay);
+        View view = inflater.inflate(R.layout.activity_pay, container, false);
+        imageView = view.findViewById(R.id.img_Douong);
+        lv_listpay = view.findViewById(R.id.lv_listpay);
+        btnxemdanhsachban = view.findViewById(R.id.btnxemdanhsachban);
+
+        pay1 = new Pay1(getActivity(), listPay);
         lv_listpay.setAdapter(pay1);
-
-
-        pd = new ProgressDialog(Pay.this);
+        pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
-        new Pay.MyAsyncTask().execute(urllink);
-        tvchuathanhtoan = findViewById(R.id.tvchuathanhtoan);
-        tvchuathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Unpaid.class);
-                startActivity(intent);
-            }
-        });
+        new MyAsyncTask().execute(urllink);
 
+        return view;
     }
 
 
@@ -144,6 +144,13 @@ public class Pay extends AppCompatActivity {
             }
             return null;
         }
+        public void btnxemdanhsachban(int MaOder) {
+            // Tạo một Intent và truyền tham số maOder
+            Intent intent = new Intent(getActivity(), Menu_pay.class);
+            intent.putExtra("MaOder", MaOder);
+            startActivity(intent);
+        }
+
 
         @Override
         protected void onPostExecute(String s) {
@@ -151,8 +158,21 @@ public class Pay extends AppCompatActivity {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            pay1.notifyDataSetChanged();
+
+            ((AppCompatActivity) getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    pay1.notifyDataSetChanged();
+                }
+            });
         }
+
+
+
+//        public void btnxemdanhsachban() {
+//            Intent intent = new Intent(getActivity(), Menu_pay.class);
+//            startActivity(intent);
+//        }
 
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
@@ -177,50 +197,55 @@ public class Pay extends AppCompatActivity {
 
     }
 
-    public void btnxemdanhsachban(int MaOder) {
-        // Tạo một Intent và truyền tham số maOder
-        Intent intent = new Intent(getApplicationContext(), Menu_pay.class);
-        intent.putExtra("MaOder", MaOder);
-        startActivity(intent);
-    }
-    public void Dangnhap(final String MaOder , String Matkhau) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-        Thongtinoder user = new Thongtinoder();
-        user.setMaOder(Integer.parseInt(MaOder));
-        user.setTrangThai(Integer.parseInt(Matkhau));
+//    public void btnxemdanhsachban(int MaOder) {
+//        // Tạo một Intent và truyền tham số maOder
+//        Intent intent = new Intent(getApplicationContext(), Menu_payFragment.class);
+//        intent.putExtra("MaOder", MaOder);
+//        startActivity(intent);
+//    }
 
-        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.THANHTOAN);
-        serverRequest.setThongtinoder(user);
-        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+//    private Context getApplicationContext() {
+//        return null;
+//    }
 
-
-        responseCall.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)){
-
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed"+ t.getMessage());
-
-            }
-        });
-    }
+//    public void Dangnhap(final String MaOder , String Matkhau) {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+//        Thongtinoder user = new Thongtinoder();
+//        user.setMaOder(Integer.parseInt(MaOder));
+//        user.setTrangThai(Integer.parseInt(Matkhau));
+//
+//        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+//        serverRequest.setOperation(Constants.THANHTOAN);
+//        serverRequest.setThongtinoder(user);
+//        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+//
+//
+//        responseCall.enqueue(new Callback<ServerResponse>() {
+//            @Override
+//            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+//                ServerResponse response1 = response.body();
+//                if (response1.getResult().equals(Constants.SUCCESS)){
+//
+//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//
+//                }
+//                else{
+//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ServerResponse> call, Throwable t) {
+//                Log.d(Constants.TAG, "Failed"+ t.getMessage());
+//
+//            }
+//        });
+//    }
 
 
 }

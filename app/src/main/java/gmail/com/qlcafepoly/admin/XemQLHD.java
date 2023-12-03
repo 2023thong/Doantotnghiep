@@ -4,7 +4,6 @@ import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,10 +28,7 @@ import java.util.List;
 
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.nhanvien.Menu1;
-import gmail.com.qlcafepoly.nhanvien.Menu_pay;
-import gmail.com.qlcafepoly.nhanvien.Pay;
 import gmail.com.qlcafepoly.nhanvien.PayDU;
-import gmail.com.qlcafepoly.nhanvien.Unpaid;
 
 public class XemQLHD extends AppCompatActivity {
     private List<Menu1> listPay = new ArrayList<>();
@@ -40,8 +36,8 @@ public class XemQLHD extends AppCompatActivity {
     private TextView tvTong;
     private ImageView imageView,imgchitiethoadon;
     private ListView lvQLHD;
-    private String base_url = BASE_URL + "duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = BASE_URL+"duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = BASE_URL+"duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 

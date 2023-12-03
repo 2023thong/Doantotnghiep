@@ -34,6 +34,8 @@ public class Thongtinoder implements Serializable {
     public void setTongTien(int tongTien) {
         TongTien = tongTien;
     }
+// Getter và setter cho Trangthai
+
 
 
 

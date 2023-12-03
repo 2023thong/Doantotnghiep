@@ -56,7 +56,6 @@ import gmail.com.qlcafepoly.dangnhap.DoiMatKhauNv;
 
 public class NhanVienFragment extends Fragment {
     Bitmap bitmap;
-
     ImageView imgchon;
     Button button;
 

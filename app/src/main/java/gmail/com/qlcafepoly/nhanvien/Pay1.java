@@ -1,12 +1,19 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import java.util.List;
 import gmail.com.qlcafepoly.R;
 
@@ -51,9 +58,13 @@ public class Pay1 extends BaseAdapter {
         TextView ngay = convertView.findViewById(R.id.tvNgay);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                int maOder = thongtinoder.getMaOder();
-                ((Pay) context).btnxemdanhsachban(maOder);
+            public void onClick(View view) {
+                Intent intent = new Intent(context, Menu_pay.class);
+                intent.putExtra("Maoder1",String.valueOf(thongtinoder.getMaOder()));
+                intent.putExtra("Tongtien",String.valueOf(thongtinoder.getTongTien()));
+                intent.putExtra("Mabn",String.valueOf(thongtinoder.getMaBn()));
+                intent.putExtra("Ngay", String.valueOf(thongtinoder.getNgay()));
+                context.startActivity(intent);
             }
         });
         int trangThai = thongtinoder.getTrangThai();
@@ -72,5 +83,6 @@ public class Pay1 extends BaseAdapter {
 
         return convertView;
     }
+
 
 }

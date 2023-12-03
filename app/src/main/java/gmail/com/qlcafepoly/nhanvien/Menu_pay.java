@@ -21,39 +21,60 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
 public class Menu_pay extends AppCompatActivity {
     private List<Menu1> listPay = new ArrayList<>();
     private PayDU payDU;
-    private TextView tvdathanhtoan,tvDate1;
-    private TextView tvchuathanhtoan;
+
     private ImageView imageView;
     private ListView lvListOder;
-    private String base_url = BASE_URL + "duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = BASE_URL + "duantotnghiep/thongtinctoder.php";
+    private String urllink = BASE_URL+ "duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
-    private int MaOder = -1; // Mặc định không có mã Oder
+    private int MaOder = -1;
 
     @SuppressLint("MissingInflatedId")
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pay);
 
-        // Lấy tham số maOder từ Intent nếu tồn tại
-        MaOder = getIntent().getIntExtra("MaOder", -1);
+        Intent intent = getIntent();
+        String maOderValue = intent.getStringExtra("Maoder1" );
+        String tien1 = intent.getStringExtra("Tongtien");
+        String bn = intent.getStringExtra("Mabn");
+        String ngay = intent.getStringExtra("Ngay");
+        TextView tongtien = findViewById(R.id.tvTongtien0);
+        TextView tongtien1 = findViewById(R.id.tongtien2);
+        TextView ngay1 = findViewById(R.id.tvNgay);
+        TextView tenban = findViewById(R.id.tvMabn0);
+        TextView quaylai = findViewById(R.id.btnQuaylaij);
 
-        // Cập nhật URL nếu có mã Oder
-        if (MaOder != -1) {
-            urllink = base_url + "?MaOder=" + MaOder;
+        tongtien.setText(tien1);
+        tongtien1.setText(tien1);
+        tenban.setText(bn);
+        ngay1.setText(ngay);
+
+            try {
+                int maOderInt = Integer.parseInt(maOderValue);
+                if (maOderInt != -1) {
+                    urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=" + maOderValue;
+                }
+                else {
+                    Log.e("thu", "Invalid MaOder value: -1");
+                }
+            } catch (NumberFormatException e) {
+                Log.e("thu", "Invalid MaOder format");
         }
+            quaylai.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
 
         imageView = findViewById(R.id.img_Douong);
         lvListOder = findViewById(R.id.lv_listoder);
@@ -66,23 +87,7 @@ public class Menu_pay extends AppCompatActivity {
 
         new MyAsyncTask().execute(urllink);
 
-        tvdathanhtoan = findViewById(R.id.tvdathanhtoan);
-        tvdathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Menu_pay.this, Pay.class);
-                startActivity(intent);
-            }
-        });
 
-        tvchuathanhtoan = findViewById(R.id.tvchuathanhtoan);
-        tvchuathanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Menu_pay.this, Unpaid.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {

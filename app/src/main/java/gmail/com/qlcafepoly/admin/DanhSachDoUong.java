@@ -40,6 +40,8 @@ public class DanhSachDoUong extends AppCompatActivity {
     private ListView lshienthimenu;
     private String urllink = BASE_URL +"duantotnghiep/get_all_menu.php";
 
+
+
     private ProgressDialog pd;
     private EditText edFindDU;
     private Button btnThemDU;
