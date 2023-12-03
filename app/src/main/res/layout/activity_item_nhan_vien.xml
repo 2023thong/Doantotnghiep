@@ -102,13 +102,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/edit" />
-
-                <ImageView
-                    android:id="@+id/icDeleteNV"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/delete" />
             </LinearLayout>
 
         </LinearLayout>

@@ -62,14 +62,12 @@ public class OderDu extends AppCompatActivity {
     private ListView lshienthimenu;
     private ListView lshienthioder;
     private User1 user1;
-
     private OderHienthi adepteroder;
     private int soluongDefault = 1;
 
     private int totalAmount = 0;
 
     private List<User1> lsuList = new ArrayList<>();
-
 
     private Menu selectedMenu;
 
@@ -155,9 +153,8 @@ public class OderDu extends AppCompatActivity {
 
                         ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
-
+                    // Move the removal of "Maoder" outside the loop
                     Hoadon1(mabn, maoderd, trangthai, formattedDate, tongtien);
-
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove("Maoder");
                     editor.apply();
@@ -165,8 +162,8 @@ public class OderDu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu và trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
 
+        });
         TextView btnLuu = findViewById(R.id.btnLuu);
         final boolean[] isSaved = {false};
 
@@ -194,11 +191,8 @@ public class OderDu extends AppCompatActivity {
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
-
                         ThemOder(mabn, tongtien, menu, trangthai, formattedDate);
                         Trangthaibn(mabn, trangthai);
-
-
                         isSaved[0] = true;
 
 
@@ -464,7 +458,6 @@ public class OderDu extends AppCompatActivity {
         for (Menu menu : odermenu1) {
             totalAmount += menu.calculateTotalPrice();
         }
-
         TextView totalAmountTextView = findViewById(R.id.TvTongtien);
         totalAmountTextView.setText(String.valueOf(totalAmount));
     }

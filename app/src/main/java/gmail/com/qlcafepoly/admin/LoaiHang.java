@@ -22,4 +22,9 @@ public class LoaiHang {
     public void setGhichu(String ghichu) {
         Ghichu = ghichu;
     }
+
+    public LoaiHang(String tenLh, String ghichu) {
+        TenLh = tenLh;
+        Ghichu = ghichu;
+    }
 }

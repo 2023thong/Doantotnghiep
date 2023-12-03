@@ -9,14 +9,14 @@ public class Thongtinoder implements Serializable {
     private String formattedTongtien;
     int tratien;
     private int TrangThai;
-    private String Ngay;
+    private String ngay;
 
     public String getNgay() {
-        return Ngay;
+        return ngay;
     }
 
     public void setNgay(String ngay) {
-        Ngay = ngay;
+        this.ngay = ngay;
     }
 
     public int getTrangThai() {
@@ -60,7 +60,6 @@ public class Thongtinoder implements Serializable {
     }
 
 
-
     private int TongTien;
 
     public int getTratien() {
@@ -74,6 +73,7 @@ public class Thongtinoder implements Serializable {
     public void setFormattedTongtien(String formattedTongtien) {
         this.formattedTongtien = formattedTongtien;
     }
+
      // assuming quantity is an attribute in Thongtinoder
 
     // ... other methods and constructors

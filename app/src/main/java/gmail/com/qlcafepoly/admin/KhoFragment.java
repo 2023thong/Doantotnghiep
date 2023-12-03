@@ -38,6 +38,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,9 +96,6 @@ public class KhoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kho, container, false);
-
-
-
         edMahh = view.findViewById(R.id.tvMahh1);
 
 
@@ -146,7 +144,6 @@ public class KhoFragment extends Fragment {
                                 String inputLoaihang = loaihang.getText().toString();
                                 String inputGhichu = ghichu.getText().toString();
                                 ThemLoaiHang(inputLoaihang, inputGhichu);
-
                                 dialogInterface.dismiss();
 
                             }
@@ -174,7 +171,7 @@ public class KhoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                
+
                     String mahh = edMahh.getText().toString();
                     String mancc = spinnerMaNcc.getSelectedItem().toString();
                     String malh = spinner.getSelectedItem().toString();
@@ -185,35 +182,21 @@ public class KhoFragment extends Fragment {
 
                     registerProcess1(mahh, mancc, malh, tehh, giatien, ghichu, soluong);
 
-
                 edMahh.setText("");
                 edTenhh.setText("");
-                
                 edGiatien.setText("");
                 edGhichu.setText("");
                 edSoluong.setText("");
-
             }
         });
-
-
-
         spinnerMaNcc = view.findViewById(R.id.spinnerMaNcc);
         spinner = view.findViewById(R.id.spinner);
 
         pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
-
-
-
-
-
         new KhoFragment.MyAsyncTask().execute(urllink);
         new KhoFragment.MyAsyncTask1().execute(urllink1);
-
-
-
         return view;
     }
 
@@ -342,13 +325,13 @@ public class KhoFragment extends Fragment {
         for (User1 user : lsuList) {
             String maNcc = user.getMaNcc();
             maNccValues.add(maNcc);
+
         }
 
         ArrayAdapter<String> spinnerMaNccAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, maNccValues);
         spinnerMaNccAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMaNcc.setAdapter(spinnerMaNccAdapter);
     }
-
 
     private class MyAsyncTask1 extends AsyncTask<String, Void, String> {
         @Override
@@ -436,6 +419,7 @@ public class KhoFragment extends Fragment {
         for (User1 user : maLhList) {
             String maLh = user.getTenLh();
             maLhValues.add(maLh);
+            Log.d("DEBUG01", "tenLhValues: " + maLhList.toString());
         }
 
         ArrayAdapter<String> spinnerMaLhAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, maLhValues);
@@ -464,9 +448,6 @@ public class KhoFragment extends Fragment {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getActivity(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-
                 } else {
                     Toast.makeText(getActivity(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
