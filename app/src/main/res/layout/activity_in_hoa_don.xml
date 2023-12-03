@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HÓA ĐƠN CÀ PHÊ"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="#ffee58"
+        android:textColor="#ffffff"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Thông tin hóa đơn -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin hóa đơn"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <!-- Danh sách sản phẩm -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sản phẩm:"
+                android:textStyle="bold"
+                android:paddingTop="8dp"/>
+            <ListView
+                android:id="@+id/listViewProducts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!-- ListView hoặc RecyclerView để hiển thị danh sách sản phẩm -->
+
+            <!-- Tổng cộng -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tổng cộng: $100"
+                android:textStyle="bold"
+                android:paddingTop="8dp"/>
+
+            <!-- Phương thức thanh toán -->
+            <Spinner
+                android:id="@+id/spinnerPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:background="#f0f0f0"/>
+
+            <!-- Nút thanh toán -->
+            <Button
+                android:id="@+id/btnPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán"
+                android:layout_marginTop="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

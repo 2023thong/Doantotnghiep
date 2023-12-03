@@ -94,9 +94,7 @@ public class Unpaid1 extends BaseAdapter {
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
         }
 
-
-
-        button.setOnClickListener(view -> {
+            button.setOnClickListener(view -> {
             Intent intent = new Intent(context, Menu_pay.class);
             intent.putExtra("Maoder1",String.valueOf(thongtinoder.getMaOder()));
             intent.putExtra("Tongtien",String.valueOf(thongtinoder.getTongTien()));

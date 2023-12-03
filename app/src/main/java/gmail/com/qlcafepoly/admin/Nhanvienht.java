@@ -86,7 +86,6 @@ public class Nhanvienht extends BaseAdapter {
                     intent2.putExtra("DULIEUNV_Chucvu", String.valueOf(user.getChucvu()));
                     view.getContext().startActivity(intent2);
                 });
-        deleteNV = convertView.findViewById(R.id.icDeleteNV);
 
         return convertView;
     }
