@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -51,7 +53,7 @@ public class UnpaidFragment extends Fragment {
     private ListView lv_unpaid;
 
 
-    private String urllink = "http://192.168.1.173:8080/duantotnghiep/trangthaithanhtoan.php";
+    private String urllink = BASE_URL + "duantotnghiep/trangthaithanhtoan.php";
 
 
 
