@@ -84,7 +84,6 @@ public class CanhanFragment extends Fragment {
         String Manv = sharedPreferences.getString("Manv", "");
 
         textView.setText(Tennv);
-
         String imageUrl = BASE_URL +"duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         ImageRequest imageRequest = new ImageRequest(

@@ -18,8 +18,11 @@
         app:cardElevation="15dp">
 
         <ImageView
+            android:id="@+id/imganhnhanvien"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:layout_gravity="center_vertical"
             android:src="@drawable/user2" />
 

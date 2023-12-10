@@ -5,6 +5,15 @@ public class Menu {
     private String TenDu;
     private int Giatien;
     private String TenLh;
+    private String Hinhanh;
+
+    public String getHinhanh() {
+        return Hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        Hinhanh = hinhanh;
+    }
 
     public Menu(String tenLh) {
         TenLh = tenLh;
