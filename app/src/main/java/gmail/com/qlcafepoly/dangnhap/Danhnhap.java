@@ -113,7 +113,6 @@ public class Danhnhap extends AppCompatActivity {
                         editor.putString("Sdt", Sdt);
                         editor.putString("Diachi", Diachi);
                         editor.putString("phanquyen", role);
-//                        editor.apply();
                         editor.commit();
                     } else if ("2".equals(role)) {
                         Toast.makeText(Danhnhap.this, "Đăng nhập không thành công.\n" +

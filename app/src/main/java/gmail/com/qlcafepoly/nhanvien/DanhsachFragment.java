@@ -94,13 +94,14 @@ public class DanhsachFragment extends Fragment {
 
                         String TenDu = menuObject.getString("TenDu");
 
-                        String TenLh = menuObject.getString("TenDu");
+                        String mamn = menuObject.getString("MaMn");
 
                         String Giatien = menuObject.getString("Giatien");
 
 
                         Menu menu = new Menu();
                         menu.setTenLh(TenDu);
+                        menu.setMaMn(mamn);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         menuList1.add(menu);
 

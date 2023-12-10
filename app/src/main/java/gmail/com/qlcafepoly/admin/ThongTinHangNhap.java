@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -109,7 +115,6 @@ public class ThongTinHangNhap extends AppCompatActivity {
             try {
                 String strJson = readJsonOnline(strings[0]);
                 Log.d("//====", strJson);
-
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
@@ -134,7 +139,6 @@ public class ThongTinHangNhap extends AppCompatActivity {
                         String Ghichu = nhanvienObject.getString("Ghichu");
                         String Soluong = nhanvienObject.getString("Soluong");
 
-
                         User1 user1 = new User1();
                         user1.setMaHH(MaHH);
                         user1.setMaNcc(MaNcc);
@@ -155,7 +159,6 @@ public class ThongTinHangNhap extends AppCompatActivity {
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -164,7 +167,6 @@ public class ThongTinHangNhap extends AppCompatActivity {
             }
             adepter.notifyDataSetChanged();
         }
-
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
@@ -224,9 +226,8 @@ public class ThongTinHangNhap extends AppCompatActivity {
         lsuList.clear(); // Xóa danh sách hiện tại
         new MyAsyncTask().execute(urllink); // Tải danh sách mới
     }
-    public void thongtin(){
 
-    }
+
 
 
 
