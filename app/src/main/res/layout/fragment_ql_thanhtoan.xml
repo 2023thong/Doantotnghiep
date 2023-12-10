@@ -47,7 +47,7 @@
             android:id="@+id/frag4"
             android:name="gmail.com.qlcafepoly.nhanvien.PayFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="547dp"
             android:layout_gravity="center"
             tools:ignore="MissingConstraints" />
 

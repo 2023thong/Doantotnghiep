@@ -4,8 +4,12 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import static java.security.AccessController.getContext;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.List;
 
@@ -54,7 +64,7 @@ public class Menuht extends BaseAdapter {
         TextView tvMaMn = convertView.findViewById(R.id.tvMaMn);
         TextView tvTenLh = convertView.findViewById(R.id.tvTenLh);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiatien);
-//        TextView tvLh = convertView.findViewById(R.id.tvLh);
+//      TextView tvLh = convertView.findViewById(R.id.tvLh);
         tvMaMn.setText("Mã: "+menu.getMaMn());
         tvTenLh.setText(menu.getTenDu());
         tvGiatien.setText(String.valueOf(menu.getGiatien())+" vnđ");
@@ -70,6 +80,32 @@ public class Menuht extends BaseAdapter {
             intent.putExtra("DULIEUDU_TenLh", menu.getTenLh());
            view.getContext().startActivity(intent);
        });
+
+        String imageUrl = BASE_URL +"duantotnghiep/layhinhanhmenu.php?MaMn=" + menu.getMaMn();
+        RequestQueue requestQueue = Volley.newRequestQueue(convertView.getContext());
+        View finalConvertView = convertView;
+        ImageRequest imageRequest = new ImageRequest(
+                imageUrl,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        ImageView imageView = finalConvertView.findViewById(R.id.imganhmenu);
+
+                        imageView.setImageBitmap(response);
+                    }
+                },
+                0, 0,
+                null,
+                Bitmap.Config.ARGB_8888,
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(finalConvertView.getContext(), "Thêm Avatar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(imageRequest);
 
         return convertView;
     }

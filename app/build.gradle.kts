@@ -13,8 +13,10 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -27,6 +29,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
 dependencies {
 
     implementation("com.android.volley:volley:1.2.1")
@@ -55,12 +58,9 @@ dependencies {
     implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
 
 
+
     implementation ("com.journeyapps:zxing-android-embedded:3.6.0")
     implementation ("com.google.zxing:core:3.4.0")
-
-
-
-
 }
 
 

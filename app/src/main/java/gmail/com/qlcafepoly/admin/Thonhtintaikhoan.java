@@ -59,7 +59,6 @@ public class Thonhtintaikhoan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thonhtintaikhoan);
-
         TextView tvManv = findViewById(R.id.tvManv1);
         TextView tvTennv = findViewById(R.id.tvTennv);
         TextView tvSdt = findViewById(R.id.tvSDt);
@@ -88,16 +87,8 @@ public class Thonhtintaikhoan extends AppCompatActivity {
 
         imgchon = findViewById(R.id.imgAnhdd);
         button = findViewById(R.id.btnthem);
-
-
-
-
         //hienanh
-
-
-
         // Gửi tên tài khoản lên máy chủ để lấy hình ảnh
-
         String imageUrl = BASE_URL + "duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         ImageRequest imageRequest = new ImageRequest(

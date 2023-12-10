@@ -7,7 +7,6 @@ public class Hanghoa {
     private String TenHh;
     private int GiaSp;
     private String Ghichu;
-    private String imagePath;
 
     public Hanghoa(String maHH, String maNcc, String tenLh, String tenHh, int giaSp, String ghichu) {
         MaHH = maHH;
@@ -16,19 +15,6 @@ public class Hanghoa {
         TenHh = tenHh;
         GiaSp = giaSp;
         Ghichu = ghichu;
-    }
-
-    public Hanghoa(String maHH, String imagePath) {
-        MaHH = maHH;
-        this.imagePath = imagePath;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public Hanghoa() {

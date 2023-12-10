@@ -1,25 +1,16 @@
 package gmail.com.qlcafepoly.nhanvien;
 
-import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
-
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
-import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
@@ -63,27 +54,10 @@ public class PayDU extends BaseAdapter {
         TextView tv_DoUong = convertView.findViewById(R.id.tv_DoUong);
         TextView tvMoney = convertView.findViewById(R.id.tvMoney);
         TextView tv_Soluong = convertView.findViewById(R.id.tv_Soluong);
-        ImageView view = convertView.findViewById(R.id.img_Douong1);
 
         tv_DoUong.setText(menu1.getTenDu());
-        tvMoney.setText(formatCurrency(Double.parseDouble(String.valueOf(menu1.getGiatien()))));
+        tvMoney.setText(String.valueOf(menu1.getGiatien()));
         tv_Soluong.setText(String.valueOf(menu1.getSoluong()));
-
-        String imageUrl = BASE_URL + "duantotnghiep/layanhthongtintt.php?TenDu=" + menu1.getTenDu();
-        view.setTag(imageUrl);
-        Picasso.get().invalidate(imageUrl);
-        Picasso.get()
-                .load(imageUrl)
-                .into(view, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        Log.d("Picasso", "Image loaded successfully");
-                    }
-                    @Override
-                    public void onError(Exception e) {
-                        Log.e("Picasso", "Error loading image: " + e.getMessage());
-                    }
-                });
 
 
         return convertView;
@@ -105,10 +79,6 @@ public class PayDU extends BaseAdapter {
             }
         });
         notifyDataSetChanged();
-    }
-    private String formatCurrency(double value) {
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-        return formatter.format(value);
     }
 
 

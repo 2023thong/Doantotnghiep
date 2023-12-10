@@ -27,7 +27,6 @@ public class Hoadon {
         MaHd = maHd;
     }
 
-
     public int getTongTien() {
         return TongTien;
     }

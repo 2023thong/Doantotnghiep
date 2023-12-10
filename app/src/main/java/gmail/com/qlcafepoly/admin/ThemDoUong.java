@@ -2,30 +2,52 @@ package gmail.com.qlcafepoly.admin;
 
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -38,10 +60,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThemDoUong extends AppCompatActivity{
+    Bitmap bitmap;
+    private String hinhanh;
     private List<String> tenLhValues = new ArrayList<>();
     private ArrayAdapter<String> spinnerTenLhAdapter;
     private List<User1> lsuList = new ArrayList<User1>();
     private EditText edMaMn, edTenLh, edGiatien;
+    private ImageView icthemanhmenu1;
     private Button btnThemmenu, btnxemmenu;
     private View backThemDU;
     private User1 loaiHang;
@@ -57,6 +82,7 @@ public class ThemDoUong extends AppCompatActivity{
         edTenLh =findViewById(R.id.edtTenLh);
         edGiatien =findViewById(R.id.edtGiaTien);
         SpnTenLh = findViewById(R.id.SpnTenLh);
+
         btnThemmenu =findViewById(R.id.btnThemmenu);
         btnxemmenu = findViewById(R.id.btnxemmenu);
         backThemDU = findViewById(R.id.backThemDU);
@@ -66,16 +92,58 @@ public class ThemDoUong extends AppCompatActivity{
                 String mamn = edMaMn.getText().toString();
                 String tendu = edTenLh.getText().toString();
                 String giatien = edGiatien.getText().toString();
-                String tenlh = SpnTenLh.getSelectedItem().toString(); // Lấy giá trị được chọn từ Spinner
-
+                String tenlh = SpnTenLh.getSelectedItem().toString();
+                if (icthemanhmenu1 != null && icthemanhmenu1.getTransitionName() != null) {
+                hinhanh = icthemanhmenu1.getTransitionName().toString();
+                } else {
+                    // Handle the case where icthemanhmenu1 or its transitionName is null
+                    // For example, show a toast message or set a default value for hinhanh
+                    Toast.makeText(ThemDoUong.this, "Hình ảnh không khả dụng", Toast.LENGTH_SHORT).show();
+                    // Or set a default value for hinhanh
+                    hinhanh = "default_value"; // Change "default_value" to an appropriate default
+                    // Continue with the rest of your code using hinhanh
+                }
+                ByteArrayOutputStream byteArrayOutputStream;
+                byteArrayOutputStream = new ByteArrayOutputStream();
                 if (mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty()) {
                     Toast.makeText(ThemDoUong.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    final String base64img = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+                    String url =BASE_URL +"duantotnghiep/databasemenu.php";
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                            new com.android.volley.Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if (response.equals("success")) {
+                                        Toast.makeText(ThemDoUong.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ThemDoUong.this, "Tải ảnh thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }, new com.android.volley.Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                        protected Map<String, String> getParams() {
+                            Map<String, String> paramV = new HashMap<>();
+                            paramV.put("image", base64img);
+                            paramV.put("MaMn", edMaMn.getFontFeatureSettings()); // Bổ sung thông tin tên khách hàng
+                            return paramV;
+                        }
+                    };
+                    queue.add(stringRequest);
                 } else {
+                    Toast.makeText(ThemDoUong.this, "Chọn ảnh thay đổi", Toast.LENGTH_SHORT).show();
                     if (!isNumeric(giatien)) {
                         Toast.makeText(ThemDoUong.this, "Giá tiền phải là số", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    registerMenu(mamn, tendu, giatien, tenlh);
+                    registerMenu(mamn, tendu, giatien, tenlh,hinhanh);
                     edMaMn.setText("");
                     edTenLh.setText("");
                     edGiatien.setText("");
@@ -97,6 +165,55 @@ public class ThemDoUong extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        icthemanhmenu1 = findViewById(R.id.icthemanhmenu1);
+        String imageUrl = BASE_URL + "duantotnghiep/layhinhanhmenu.php?MaMn=" + edMaMn;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        ImageRequest imageRequest = new ImageRequest(
+                imageUrl,
+                new com.android.volley.Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        icthemanhmenu1.setImageBitmap(response);
+                    }
+                },
+                0, 0,
+                null,
+                Bitmap.Config.ARGB_8888,
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(ThemDoUong.this, "Thêm Avatar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(imageRequest);
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode() == Activity.RESULT_OK){
+                    Intent data = result.getData();
+                    Uri uri = data.getData();
+
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        icthemanhmenu1.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        e.getStackTrace();
+                    }
+
+                }
+            }
+        });
+        icthemanhmenu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher.launch(intent);
+
             }
         });
 
@@ -194,7 +311,7 @@ public class ThemDoUong extends AppCompatActivity{
     private boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?"); // Allows integers and decimals
     }
-    public void registerMenu(String MaMn , String TenDu, String Giatien, String TenLh) {
+    public void registerMenu(String MaMn , String TenDu, String Giatien, String TenLh, String Hinhanh) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -205,6 +322,7 @@ public class ThemDoUong extends AppCompatActivity{
         menu.setTenDu(TenDu);
         menu.setGiatien(Integer.parseInt(String.valueOf(Giatien)));
         menu.setTenLh(TenLh);
+        menu.setHinhanh(Hinhanh);
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.MENU);
         serverRequest.setMenu(menu);

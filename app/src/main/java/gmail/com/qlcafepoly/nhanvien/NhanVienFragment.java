@@ -116,7 +116,7 @@ public class NhanVienFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(requireContext(), "Thêm Avatar", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

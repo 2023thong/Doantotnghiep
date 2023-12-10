@@ -71,11 +71,11 @@ public class ThemNhanVien extends AppCompatActivity {
                     try {
                         chucVuValue = Integer.parseInt(chucvu);
                         if (chucVuValue != 1 && chucVuValue != 2) {
-                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số '1' hoặc '2'", Toast.LENGTH_SHORT).show();
                             return; // Do not proceed with the registration if Chucvu is invalid.
                         }
                     } catch (NumberFormatException e) {
-                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số '1' hoặc '2'", Toast.LENGTH_SHORT).show();
                         return; // Do not proceed with the registration if Chucvu is not a number.
                     }
 

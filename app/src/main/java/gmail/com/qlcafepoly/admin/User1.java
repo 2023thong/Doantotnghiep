@@ -9,15 +9,6 @@ public class User1 {
     private String GiaSp;
     private String Ghichu;
     private String Soluong;
-    private String imageBase64;
-
-    public String getImageBase64() {
-        return imageBase64;
-    }
-
-    public void setImageBase64(String imageBase64) {
-        this.imageBase64 = imageBase64;
-    }
 
     public String getSoluong() {
         return Soluong;
