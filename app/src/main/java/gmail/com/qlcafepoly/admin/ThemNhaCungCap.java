@@ -270,14 +270,14 @@ public class ThemNhaCungCap extends AppCompatActivity {
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     updateProductList();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Lỗi" + response1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d("Tag", "" + response1.getMessage());
+                } else if(response1.getResult().equals(Constants.LOI)) {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d( "///thong" , response1.getMessage());
                 }
             }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
+
                 t.printStackTrace();
             }
         });

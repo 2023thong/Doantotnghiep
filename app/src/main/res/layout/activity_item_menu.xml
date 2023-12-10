@@ -16,12 +16,24 @@
         android:background="@drawable/bocanhan"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imgnuoc"
-            android:layout_width="wrap_content"
-            android:layout_height="116dp"
-            android:layout_weight="3"
-            app:srcCompat="@drawable/nuoc1" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+               android:id="@+id/anh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/nuoc1"
+                tools:ignore="ContentDescription" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="196dp"

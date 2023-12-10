@@ -134,6 +134,7 @@ public class PayFragment extends Fragment {
                         thongtinoder.setFormattedTongtien(formattedTongtien);
                         thongtinoder.setTratien(Integer.parseInt(traTien));
                         thongtinoder.setNgay(ngay);
+
                         listPay.add(thongtinoder);
                     }
                 } else {

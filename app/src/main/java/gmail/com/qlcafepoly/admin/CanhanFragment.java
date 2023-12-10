@@ -40,10 +40,6 @@ public class CanhanFragment extends Fragment {
     TextView textView;
     ImageView view1;
 
-
-
-
-
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,9 +47,7 @@ public class CanhanFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_canhan, container, false);
         view1 = view.findViewById(R.id.imageView21);
-
         chitiet();
-
         tvttcn = view.findViewById(R.id.tvTtcn);
         layout = view.findViewById(R.id.dangxuat);
         tvttcn.setOnClickListener(new View.OnClickListener() {
@@ -77,14 +71,11 @@ public class CanhanFragment extends Fragment {
             }
         });
         textView = view.findViewById(R.id.tvTen);
-
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("thong", Context.MODE_PRIVATE);
-
         String Tennv = sharedPreferences.getString("TenNv", "");
         String Manv = sharedPreferences.getString("Manv", "");
 
         textView.setText(Tennv);
-
         String imageUrl = BASE_URL +"duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         ImageRequest imageRequest = new ImageRequest(
@@ -93,7 +84,6 @@ public class CanhanFragment extends Fragment {
                     @Override
                     public void onResponse(Bitmap response) {
                         ImageView imageView = view.findViewById(R.id.imageView20);
-
                         imageView.setImageBitmap(response);
                     }
                 },

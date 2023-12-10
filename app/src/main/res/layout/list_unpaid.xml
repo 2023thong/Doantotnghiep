@@ -131,14 +131,6 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="9dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="vnd"
-                    android:textSize="16dp" />
             </LinearLayout>
 
             <Button

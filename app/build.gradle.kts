@@ -55,9 +55,12 @@ dependencies {
     implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
 
 
-
     implementation ("com.journeyapps:zxing-android-embedded:3.6.0")
     implementation ("com.google.zxing:core:3.4.0")
+
+
+
+
 }
 
 
