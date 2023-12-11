@@ -1,13 +1,12 @@
 package gmail.com.qlcafepoly.admin;
 
-import static java.security.AccessController.getContext;
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,12 +16,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.squareup.picasso.Picasso;
+
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+
+import com.squareup.picasso.Callback;
 
 import gmail.com.qlcafepoly.R;
 
@@ -34,6 +37,7 @@ public class Hanghoaht extends BaseAdapter {
     private Context context;
 
     AlertDialog.Builder builder;
+    ImageView imgkho;
 
     public Hanghoaht(Context context, List<User1> users) {
         this.context = context;
@@ -56,13 +60,11 @@ public class Hanghoaht extends BaseAdapter {
         return position;
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.hienthikhohang, parent, false);
         }
-
         User1 user1 = users.get(position);
 
         TextView tvMahh = convertView.findViewById(R.id.tvMahh1);
@@ -70,15 +72,29 @@ public class Hanghoaht extends BaseAdapter {
         TextView tvTenhh = convertView.findViewById(R.id.tvTensp);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiatien);
         ImageView imgXoa = convertView.findViewById(R.id.btnXoahanghoa);
-
+        imgkho = convertView.findViewById(R.id.imganhkho1);
 
 
         tvMahh.setText(user1.getMaHH());
         tvMancc.setText(user1.getSoluong());
         tvTenhh.setText(user1.getTenHh());
-        tvGiatien.setText(user1.getGiaSp());
+        tvGiatien.setText(formatCurrency(Double.parseDouble(user1.getGiaSp())));
 
-
+        String imageUrl = BASE_URL + "duantotnghiep/layanhkho.php?MaHH=" + user1.getMaHH();
+        imgkho.setTag(imageUrl);
+        Picasso.get().invalidate(imageUrl);
+        Picasso.get()
+                .load(imageUrl)
+                .into(imgkho, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("Picasso", "Image loaded successfully");
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("Picasso", "Error loading image: " + e.getMessage());
+                    }
+                });
         SharedPreferences sharedPreferences = convertView.getContext().getSharedPreferences("oder0", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("TenDu", user1.getTenHh());
@@ -86,11 +102,8 @@ public class Hanghoaht extends BaseAdapter {
         editor.apply();
 
 
-
-
         PopupMenu popupMenu = new PopupMenu(context.getApplicationContext(), imgXoa);
         popupMenu.getMenuInflater().inflate(R.menu.menuchitiet, popupMenu.getMenu());
-
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @SuppressLint("NonConstantResourceId")
@@ -175,10 +188,8 @@ public class Hanghoaht extends BaseAdapter {
                             })
                             .show();
 
-            }
+                }
                 return true;
-
-
 
             }
         });
@@ -192,6 +203,10 @@ public class Hanghoaht extends BaseAdapter {
 
 
         return convertView;
+    }
+    private String formatCurrency(double value) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(value);
     }
 
 
