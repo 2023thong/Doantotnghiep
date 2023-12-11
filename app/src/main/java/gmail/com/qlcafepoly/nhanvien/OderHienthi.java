@@ -28,10 +28,6 @@ public class OderHienthi extends BaseAdapter {
         this.odermenu = menuoder;
         inflater = LayoutInflater.from(context);
     }
-
-
-
-
     @Override
     public int getCount() {
         return odermenu.size();
