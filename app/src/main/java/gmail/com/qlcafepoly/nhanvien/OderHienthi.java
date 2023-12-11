@@ -59,10 +59,6 @@ public class OderHienthi extends BaseAdapter {
         tvTenLh.setText(menu.getTenDu());
         tvGiatien.setText(String.valueOf(menu.getGiatien()));
 
-
-
-
-
         return convertView;
     }
 
