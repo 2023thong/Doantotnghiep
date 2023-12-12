@@ -26,11 +26,10 @@
 
             <ImageView
                 android:id="@+id/imganhkho1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="59dp"
+                android:layout_height="65dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sanpham"
-                tools:ignore="ContentDescription" />
+                android:src="@drawable/sanpham" />
 
         </androidx.cardview.widget.CardView>
 

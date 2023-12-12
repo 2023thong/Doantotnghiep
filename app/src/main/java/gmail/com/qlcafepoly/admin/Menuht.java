@@ -24,6 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
@@ -67,7 +69,8 @@ public class Menuht extends BaseAdapter {
 //      TextView tvLh = convertView.findViewById(R.id.tvLh);
         tvMaMn.setText("Mã: "+menu.getMaMn());
         tvTenLh.setText(menu.getTenDu());
-        tvGiatien.setText(String.valueOf(menu.getGiatien())+" vnđ");
+        String formattedPrice = formatPrice(menu.getGiatien());
+        tvGiatien.setText(formattedPrice);
 //        tvLh.setText("Loại: "+menu.getTenLh());
 
 
@@ -100,7 +103,7 @@ public class Menuht extends BaseAdapter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(finalConvertView.getContext(), "Thêm Avatar", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(finalConvertView.getContext(), "Thêm Avatar", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -108,5 +111,14 @@ public class Menuht extends BaseAdapter {
         requestQueue.add(imageRequest);
 
         return convertView;
+    }
+    private String formatPrice(double price) {
+        // Use NumberFormat to format the price with separated thousands
+        NumberFormat numberFormat = new DecimalFormat("#,###");
+
+        // Format the price as a string
+        String formattedPrice = numberFormat.format(price) + " vnđ";
+
+        return formattedPrice;
     }
     }

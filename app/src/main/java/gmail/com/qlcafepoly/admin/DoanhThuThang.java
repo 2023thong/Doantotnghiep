@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
@@ -44,8 +45,10 @@ public class DoanhThuThang extends BaseAdapter {
         Hoadon hoadon = users.get(position);
         TextView thu1 = convertView.findViewById(R.id.thang);
         TextView thu2 = convertView.findViewById(R.id.dtthang);
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        String formattedTongTien = numberFormat.format(hoadon.getTongTien());
         thu1.setText(hoadon.getThoigian());
-        thu2.setText("Thu: "+String.valueOf(hoadon.getTongTien()) +" VND");
+        thu2.setText("Thu: "+formattedTongTien +" VND");
         return convertView;
     }
 }

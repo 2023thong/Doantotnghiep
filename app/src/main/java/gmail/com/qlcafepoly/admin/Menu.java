@@ -5,14 +5,15 @@ public class Menu {
     private String TenDu;
     private int Giatien;
     private String TenLh;
-    private String Hinhanh;
+    private String Hinhanh1;
 
-    public String getHinhanh() {
-        return Hinhanh;
+
+    public String getHinhanh1() {
+        return Hinhanh1;
     }
 
-    public void setHinhanh(String hinhanh) {
-        Hinhanh = hinhanh;
+    public void setHinhanh1(String hinhanh1) {
+        Hinhanh1 = hinhanh1;
     }
 
     public Menu(String tenLh) {

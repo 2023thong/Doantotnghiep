@@ -10,6 +10,7 @@ public class User1 {
     private String Ghichu;
     private String Soluong;
     private String imageBase64;
+
     public String getImageBase64() {
         return imageBase64;
     }
