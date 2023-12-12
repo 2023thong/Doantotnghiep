@@ -73,6 +73,7 @@ public class ThemDoUong extends AppCompatActivity{
     private Spinner SpnTenLh;
     private String urllink1 =BASE_URL + "duantotnghiep/loaihang.php";
     private ProgressDialog pd;
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,63 +94,37 @@ public class ThemDoUong extends AppCompatActivity{
                 String tendu = edTenLh.getText().toString();
                 String giatien = edGiatien.getText().toString();
                 String tenlh = SpnTenLh.getSelectedItem().toString();
-                if (icthemanhmenu1 != null && icthemanhmenu1.getTransitionName() != null) {
-                hinhanh = icthemanhmenu1.getTransitionName().toString();
-                } else {
-                    // Handle the case where icthemanhmenu1 or its transitionName is null
-                    // For example, show a toast message or set a default value for hinhanh
-                    Toast.makeText(ThemDoUong.this, "Hình ảnh không khả dụng", Toast.LENGTH_SHORT).show();
-                    // Or set a default value for hinhanh
-                    hinhanh = "default_value"; // Change "default_value" to an appropriate default
-                    // Continue with the rest of your code using hinhanh
-                }
-                ByteArrayOutputStream byteArrayOutputStream;
-                byteArrayOutputStream = new ByteArrayOutputStream();
-                if (mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty()) {
-                    Toast.makeText(ThemDoUong.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-                    byte[] bytes = byteArrayOutputStream.toByteArray();
-                    final String base64img = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                String base64Image = encodeBitmapToBase64(bitmap);
 
-                    String url =BASE_URL +"duantotnghiep/databasemenu.php";
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                            new com.android.volley.Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    if (response.equals("success")) {
-                                        Toast.makeText(ThemDoUong.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(ThemDoUong.this, "Tải ảnh thất bại", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }, new com.android.volley.Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
-                        protected Map<String, String> getParams() {
-                            Map<String, String> paramV = new HashMap<>();
-                            paramV.put("image", base64img);
-                            paramV.put("MaMn", edMaMn.getFontFeatureSettings()); // Bổ sung thông tin tên khách hàng
-                            return paramV;
-                        }
-                    };
-                    queue.add(stringRequest);
+                boolean fieldsEmpty = mamn.isEmpty() || tendu.isEmpty() || giatien.isEmpty();
+
+                if (fieldsEmpty) {
+                    StringBuilder errorMessage = new StringBuilder("Vui lòng nhập đầy đủ thông tin:\n");
+
+                    if (mamn.isEmpty()) {
+                        errorMessage.append("- Mã món\n");
+                    }
+                    if (tendu.isEmpty()) {
+                        errorMessage.append("- Tên đồ uống\n");
+                    }
+                    if (giatien.isEmpty()) {
+                        errorMessage.append("- Giá tiền\n");
+                    }
+
+                    Toast.makeText(ThemDoUong.this, errorMessage.toString(), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(ThemDoUong.this, "Chọn ảnh thay đổi", Toast.LENGTH_SHORT).show();
                     if (!isNumeric(giatien)) {
                         Toast.makeText(ThemDoUong.this, "Giá tiền phải là số", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    registerMenu(mamn, tendu, giatien, tenlh,hinhanh);
+                    registerMenu(mamn, tendu, giatien, tenlh, base64Image);
+
+                    // Clear input fields after successful registration
                     edMaMn.setText("");
                     edTenLh.setText("");
                     edGiatien.setText("");
                 }
             }
-
         });
         pd = new ProgressDialog(ThemDoUong.this);
         pd.setMessage("Đang tải dữ liệu...");
@@ -217,6 +192,18 @@ public class ThemDoUong extends AppCompatActivity{
             }
         });
 
+    }
+    private String encodeBitmapToBase64(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        if (bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)) {
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        } else {
+            return null; // or throw an exception, depending on your requirements
+        }
     }
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -309,9 +296,9 @@ public class ThemDoUong extends AppCompatActivity{
         SpnTenLh.setAdapter(spinnerMaLhAdapter);
     }
     private boolean isNumeric(String str) {
-        return str.matches("-?\\d+(\\.\\d+)?"); // Allows integers and decimals
+        return str.matches("-?\\d+(\\.\\d+)?");
     }
-    public void registerMenu(String MaMn , String TenDu, String Giatien, String TenLh, String Hinhanh) {
+    public void registerMenu(String MaMn , String TenDu, String Giatien, String TenLh, String Hinhanh1) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -322,7 +309,7 @@ public class ThemDoUong extends AppCompatActivity{
         menu.setTenDu(TenDu);
         menu.setGiatien(Integer.parseInt(String.valueOf(Giatien)));
         menu.setTenLh(TenLh);
-        menu.setHinhanh(Hinhanh);
+        menu.setHinhanh1(Hinhanh1);
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.MENU);
         serverRequest.setMenu(menu);
@@ -332,7 +319,6 @@ public class ThemDoUong extends AppCompatActivity{
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 handleResponse(response.body());
             }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed" + t.getMessage());

@@ -24,12 +24,5 @@
         android:text="Doanh thu"
         android:textSize="20dp"
         android:padding="15dp"/>
-        <ImageView
-            android:id="@+id/icDoanhThuNgay"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/next" />
     </LinearLayout>
 </LinearLayout>

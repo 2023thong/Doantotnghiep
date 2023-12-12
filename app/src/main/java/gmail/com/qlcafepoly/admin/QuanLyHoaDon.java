@@ -33,6 +33,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,7 +83,6 @@ public class QuanLyHoaDon extends AppCompatActivity {
     }
     private void filterBillsByDate(String selectedDate) {
         filteredList.clear(); // Clear previous filtered data
-
         for (Thongtinoder thongtinoder : listPay) {
             // Ensure that both dates are in the same format for comparison
             String thongtinoderDate = thongtinoder.getNgay();
@@ -238,9 +238,8 @@ public class QuanLyHoaDon extends AppCompatActivity {
         for (Thongtinoder thongtinoder : listPay) {
             totalAmount += thongtinoder.getTongTien();
         }
-
         TextView totalAmountTextView = findViewById(R.id.tvTongTien);
-        totalAmountTextView.setText(String.valueOf(totalAmount) + " VND");
+        totalAmountTextView.setText(formatCurrency(totalAmount)+ " VND");
     }
 
     public void btnxemdanhsachban(int MaOder) {
@@ -266,12 +265,17 @@ public class QuanLyHoaDon extends AppCompatActivity {
         GlobalData.totalAmount = totalAmount;
 
         TextView totalAmountTextView = findViewById(R.id.tvTongTien);
-        totalAmountTextView.setText(String.valueOf(totalAmount) + " vnd");
+        totalAmountTextView.setText(formatCurrency(totalAmount) + " vnd");
+
         TextView totalPaidBillsTextView = findViewById(R.id.tvTongBill);
         totalPaidBillsTextView.setText(String.valueOf(totalPaidBills));
 
         TextView totalMaOderTextView = findViewById(R.id.tvTongBill);
         totalMaOderTextView.setText(String.valueOf("Số bill: " + totalMaOder));
+    }
+    private String formatCurrency(int amount) {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        return numberFormat.format(amount);
     }
     private int getTotalAmount() {
         int totalAmount = 0;

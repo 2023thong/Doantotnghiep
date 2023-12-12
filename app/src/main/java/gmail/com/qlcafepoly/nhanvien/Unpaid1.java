@@ -38,7 +38,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Unpaid1 extends BaseAdapter {
-
     private final List<Thongtinoder> ttoder;
     private final LayoutInflater inflater;
     private final Context context;

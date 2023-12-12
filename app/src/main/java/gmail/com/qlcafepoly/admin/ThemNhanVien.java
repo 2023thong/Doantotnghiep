@@ -64,7 +64,31 @@ public class ThemNhanVien extends AppCompatActivity {
                 String chucvu = edChucvu.getText().toString();
 
                 if (manv.isEmpty() || tennv.isEmpty() || tendn.isEmpty() || matkhau.isEmpty() || sdt.isEmpty() || diachi.isEmpty() || chucvu.isEmpty()) {
-                    Toast.makeText(ThemNhanVien.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    StringBuilder errorMessage = new StringBuilder("Vui lòng nhập đầy đủ thông tin:\n");
+
+                    if (manv.isEmpty()) {
+                        errorMessage.append("- Mã nhân viên\n");
+                    }
+                    if (tennv.isEmpty()) {
+                        errorMessage.append("- Tên nhân viên\n");
+                    }
+                    if (tendn.isEmpty()) {
+                        errorMessage.append("- Tên đăng nhập\n");
+                    }
+                    if (matkhau.isEmpty()) {
+                        errorMessage.append("- Mật khẩu\n");
+                    }
+                    if (sdt.isEmpty()) {
+                        errorMessage.append("- Số điện thoại\n");
+                    }
+                    if (diachi.isEmpty()) {
+                        errorMessage.append("- Địa chỉ\n");
+                    }
+                    if (chucvu.isEmpty()) {
+                        errorMessage.append("- Chức vụ\n");
+                    }
+
+                    Toast.makeText(ThemNhanVien.this, errorMessage.toString(), Toast.LENGTH_LONG).show();
                 } else {
                     // Validate Chucvu
                     int chucVuValue;

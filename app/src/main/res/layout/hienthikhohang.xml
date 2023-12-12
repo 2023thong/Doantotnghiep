@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/thu"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@drawable/bocanhan"
@@ -12,18 +13,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
 
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/sanpham"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/imganhkho1"
+                android:layout_width="59dp"
+                android:layout_height="65dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sanpham" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

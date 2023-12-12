@@ -6,7 +6,6 @@
 android {
     namespace = "gmail.com.qlcafepoly"
     compileSdk = 33
-
     defaultConfig {
         applicationId = "gmail.com.qlcafepoly"
         minSdk = 22
@@ -52,13 +51,8 @@ dependencies {
     implementation ("me.relex:circleindicator:2.1.6")
     implementation ("com.squareup.picasso:picasso:2.71828")
 
-
-
     implementation ("io.reactivex.rxjava2:rxjava:2.2.21")
     implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
-
-
-
     implementation ("com.journeyapps:zxing-android-embedded:3.6.0")
     implementation ("com.google.zxing:core:3.4.0")
 }

@@ -28,10 +28,6 @@ public class OderHienthi extends BaseAdapter {
         this.odermenu = menuoder;
         inflater = LayoutInflater.from(context);
     }
-
-
-
-
     @Override
     public int getCount() {
         return odermenu.size();
@@ -62,10 +58,6 @@ public class OderHienthi extends BaseAdapter {
 //        tvMenu.setText(menu.getMaMn());
         tvTenLh.setText(menu.getTenDu());
         tvGiatien.setText(String.valueOf(menu.getGiatien()));
-
-
-
-
 
         return convertView;
     }
