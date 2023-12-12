@@ -21,8 +21,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
 
@@ -32,8 +34,10 @@ public class Menu_pay extends AppCompatActivity {
 
     private ImageView imageView;
     private ListView lvListOder;
+
     private String base_url = "http://192.168.1.173:8080/duantotnghiep/thongtinctoder.php";
     private String urllink = BASE_URL +"duantotnghiep/thongtinctoder.php?MaOder=-1";
+
     private ProgressDialog pd;
     private int MaOder = -1;
 
@@ -53,8 +57,8 @@ public class Menu_pay extends AppCompatActivity {
         TextView tenban = findViewById(R.id.tvMabn0);
         TextView quaylai = findViewById(R.id.btnQuaylaij);
 
-        tongtien.setText(tien1);
-        tongtien1.setText(tien1);
+        tongtien.setText(formatCurrency(Double.parseDouble(tien1)));
+        tongtien1.setText(formatCurrency(Double.parseDouble(tien1)));
         tenban.setText(bn);
         ngay1.setText(ngay);
 
@@ -181,5 +185,9 @@ public class Menu_pay extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private String formatCurrency(double value) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(value);
     }
 }

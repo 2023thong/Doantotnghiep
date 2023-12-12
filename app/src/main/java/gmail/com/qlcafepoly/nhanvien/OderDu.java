@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,14 +63,12 @@ public class OderDu extends AppCompatActivity {
     private ListView lshienthimenu;
     private ListView lshienthioder;
     private User1 user1;
-
     private OderHienthi adepteroder;
     private int soluongDefault = 1;
 
     private int totalAmount = 0;
 
     private List<User1> lsuList = new ArrayList<>();
-
 
     private Menu selectedMenu;
 
@@ -131,12 +130,13 @@ public class OderDu extends AppCompatActivity {
 
         TextView oder = findViewById(R.id.tvOder);
 
+
         oder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!selectedMenus.isEmpty()) {
                     String trangthai = check();
-                    String tongtien = Tongtien.getText().toString();
+                    int tongtien = updateTotalAmount();
                     String mabn = Mabn.getText().toString();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
@@ -156,8 +156,9 @@ public class OderDu extends AppCompatActivity {
                         ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
 
-                    Hoadon1(mabn, maoderd, trangthai, formattedDate, tongtien);
 
+                    // Move the removal of "Maoder" outside the loop
+                    Hoadon1(mabn, maoderd, trangthai, formattedDate, String.valueOf(tongtien));
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove("Maoder");
                     editor.apply();
@@ -165,8 +166,8 @@ public class OderDu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu và trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
 
+        });
         TextView btnLuu = findViewById(R.id.btnLuu);
         final boolean[] isSaved = {false};
 
@@ -178,7 +179,7 @@ public class OderDu extends AppCompatActivity {
                         String ngayoder = currentDate;
                         Log.d("ngay", ngayoder);
                         String mabn = Mabn.getText().toString();
-                        String tongtien = Tongtien.getText().toString();
+//                        String tongtien = Tongtien.getText().toString();
                         String trangthai = check();
 
                         SharedPreferences sharedPreferences = getSharedPreferences("menu1", Context.MODE_PRIVATE);
@@ -192,13 +193,13 @@ public class OderDu extends AppCompatActivity {
 
                         String menu = Mamn.getText().toString();
 
+                        int tongtien = updateTotalAmount();
+
+
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
-
-                        ThemOder(mabn, tongtien, menu, trangthai, formattedDate);
+                        ThemOder(mabn, String.valueOf(tongtien),  menu, trangthai, formattedDate);
                         Trangthaibn(mabn, trangthai);
-
-
                         isSaved[0] = true;
 
 
@@ -327,7 +328,7 @@ public class OderDu extends AppCompatActivity {
 //            sl.setText(String.valueOf(menu.getSoluong()));
 
             sl.setText(String.valueOf(menu.getSoluong()));
-            customTextView1.setText(String.valueOf(menu.getGiatien()));
+            customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(menu.getGiatien()))));
 
 
             sl.setText(String.valueOf(menu.getSoluong()));
@@ -355,7 +356,7 @@ public class OderDu extends AppCompatActivity {
                     int giamoi = giabd * currentQuantity; // Tính giá tiền mới dựa trên số lượng mới
                     selectedMenu.setGiatientd(giamoi); // Cập nhật giá tiền dựa trên số lượng mới
                     sl.setText(String.valueOf(currentQuantity));
-                    customTextView1.setText(String.valueOf(giamoi));
+                    customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(giamoi))));
                     updateTotalAmount();
 
 
@@ -382,7 +383,7 @@ public class OderDu extends AppCompatActivity {
                     int giamoi = giabd * currentQuantity; // Tính giá tiền mới d
                     selectedMenu.setGiatientd(giamoi); // Cập nhật giá tiền dựa trên số lượng mới
                     sl.setText(String.valueOf(currentQuantity));
-                    customTextView1.setText(String.valueOf(giamoi));
+                    customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(giamoi))));
                     updateTotalAmount();
 
 
@@ -400,7 +401,6 @@ public class OderDu extends AppCompatActivity {
 
                     odermenu1.remove(position1);
                     selectedMenus.clear();
-
 
                     updateTotalAmount();
 
@@ -458,16 +458,18 @@ public class OderDu extends AppCompatActivity {
         updateTotalAmount();
     }
 
-    private void updateTotalAmount() {
+    private int updateTotalAmount() {
         int totalAmount = 0;
 
         for (Menu menu : odermenu1) {
             totalAmount += menu.calculateTotalPrice();
         }
-
         TextView totalAmountTextView = findViewById(R.id.TvTongtien);
-        totalAmountTextView.setText(String.valueOf(totalAmount));
+        totalAmountTextView.setText(formatCurrency(Double.parseDouble(String.valueOf(totalAmount))));
+
+        return totalAmount;
     }
+
 
     public void ThemOder(String MaBn, String TongTien, String MaMn, String TrangThai, String Ngay) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -659,49 +661,7 @@ public class OderDu extends AppCompatActivity {
 
         });
     }
-    public void Themhoadonchitiet(String MaHd,String TenLh, String SoLuong,String GiaTien) {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-
-        Chitiethoadon chitiethoadon = new Chitiethoadon();
-        chitiethoadon.setMaHd(MaHd);
-        chitiethoadon.setTenLh(TenLh);
-        chitiethoadon.setSoLuong(Integer.parseInt(SoLuong));
-        chitiethoadon.setGiaTien(Integer.parseInt(GiaTien));
-        Gson gson1 = new Gson();
-        String jsonData1 = gson1.toJson(chitiethoadon);
-        Log.d("JSON hoadon", jsonData1);
-
-
-        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-        serverRequest.setOperation(Constants.THEMHOADONCHITIET);
-        serverRequest.setChitiethoadon(chitiethoadon);
-
-
-        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
-        responseCall.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                ServerResponse response1 = response.body();
-                if (response1.getResult().equals(Constants.SUCCESS)) {
-//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Log.d(Constants.TAG, "Failed" + t.getMessage());
-            }
-
-        });
-    }
     private class MyAsyncTask2 extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -792,6 +752,10 @@ public class OderDu extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private String formatCurrency(double value) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(value);
     }
 
 

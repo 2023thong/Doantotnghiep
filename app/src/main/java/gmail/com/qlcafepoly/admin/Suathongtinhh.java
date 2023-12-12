@@ -1,10 +1,21 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +23,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -24,6 +47,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Suathongtinhh extends AppCompatActivity {
+    Bitmap bitmap;
     private EditText edMahh,  edTenhh, edGiatien, edGhichu, edSoluong;
     private TextView textView5 ,edMancc, edMalh;
     private Button buttonSave;
@@ -49,46 +73,86 @@ public class Suathongtinhh extends AppCompatActivity {
         String ghichu = intent.getStringExtra("DULIEU_Ghichu");
         String soluong = intent.getStringExtra("DULIEU_Soluong");
 
-        TextView textViewMaHH = findViewById(R.id.tvManccs1);
-        TextView textViewMaNcc = findViewById(R.id.edManccs);
-        TextView textViewMlh = findViewById(R.id.edMalhs);
+
         TextView textViewTehh = findViewById(R.id.edTenhhs);
         TextView textViewgia = findViewById(R.id.edTennccs);
         TextView textViewGhichu = findViewById(R.id.edDiachis);
         TextView textViewsoluong = findViewById(R.id.edSDts);
 
-        textViewMaHH.setText(maHH);
-        textViewMaNcc.setText(maNcc);
-        textViewMlh.setText(maLh);
+        ImageView view = findViewById(R.id.anhkho);
+
+        TextView capnhatanh = findViewById(R.id.textView19);
+        capnhatanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                suaanhkho();
+            }
+        });
+
+
         textViewTehh.setText(Tehh);
         textViewgia.setText(Gia);
         textViewGhichu.setText(ghichu);
         textViewsoluong.setText(soluong);
-        btnSua = findViewById(R.id.btnSuas);
 
+
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode() == Activity.RESULT_OK){
+                    Intent data = result.getData();
+                    Uri uri = data.getData();
+
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        view.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        e.getStackTrace();
+                    }
+
+                }
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher.launch(intent);
+
+            }
+        });
+
+        String imageUrl = BASE_URL + "duantotnghiep/layanhkho.php?MaHH=" + maHH;
+        view.setTag(imageUrl);
+        Picasso.get().invalidate(imageUrl);
+        Picasso.get()
+                .load(imageUrl)
+                .into(view, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("Picasso", "Image loaded successfully");
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("Picasso", "Error loading image: " + e.getMessage());
+                    }
+                });
+
+
+        btnSua = findViewById(R.id.btnSuas);
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mahh = textViewMaHH.getText().toString();
-                String mancc = textViewMaNcc.getText().toString();
-                String malh = textViewMlh.getText().toString();
+
                 String tehh = textViewTehh.getText().toString();
                 String giatien = textViewgia.getText().toString();
                 String ghichu = textViewGhichu.getText().toString();
                 String soluong = textViewsoluong.getText().toString();
 
-                Suahanghoa(mahh, mancc, malh, tehh, giatien, ghichu, soluong);
-//                textViewMaHH.setText("");
-//                textViewMaNcc.setText("");
-//                textViewMlh.setText("");
-//                textViewTehh.setText("");
-//                textViewgia.setText("");
-//                textViewGhichu.setText("");
-//                textViewsoluong.setText("");
-
-
-
-
+                Suahanghoa(maHH, maNcc, maLh, tehh, giatien, ghichu, soluong);
 
 
             }
@@ -146,6 +210,52 @@ public class Suathongtinhh extends AppCompatActivity {
             }
         });
     }
+    public void suaanhkho(){
+        ByteArrayOutputStream byteArrayOutputStream;
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        if (bitmap != null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] bytes = byteArrayOutputStream.toByteArray();
+            final String base64img = Base64.encodeToString(bytes, Base64.DEFAULT);
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+            String url = BASE_URL + "duantotnghiep/capnhatanhkho.php";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new com.android.volley.Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            if (response.equals("success")) {
+                                Toast.makeText(Suathongtinhh.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Suathongtinhh.this, "Tải ảnh thất bại", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                Intent intent = getIntent();
+                String maHH = intent.getStringExtra("DULIEU");
+                protected Map<String, String> getParams() {
+                    Map<String, String> paramV = new HashMap<>();
+                    paramV.put("image", base64img);
+                    paramV.put("MaHH", maHH); // Bổ sung thông tin tên khách hàng
+                    return paramV;
+                }
+            };
+            queue.add(stringRequest);
+
+
+        } else {
+            Toast.makeText(Suathongtinhh.this, "Chọn ảnh thay đổi", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 
 
 

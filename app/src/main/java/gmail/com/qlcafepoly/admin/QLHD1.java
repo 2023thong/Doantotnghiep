@@ -11,19 +11,26 @@ import android.widget.TextView;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
+
 import gmail.com.qlcafepoly.nhanvien.PayFragment;
 import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class QLHD1 extends BaseAdapter {
     private List<Thongtinoder> ttoder;
+    private List<Thongtinoder> listPay;
+
+
     private LayoutInflater inflater;
     private Context context;
+
 
     public QLHD1(Context context, List<Thongtinoder> ttoder) {
         this.ttoder = ttoder;
         this.context = context;
+        this.listPay = listPay;
         inflater = LayoutInflater.from(context);
     }
+
 
     @Override
     public int getCount() {
@@ -45,13 +52,13 @@ public class QLHD1 extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_pay, parent, false);
         }
-
         Thongtinoder thongtinoder = ttoder.get(position);
         TextView tvTrangThai = convertView.findViewById(R.id.tvTrangthai);
         TextView maOder = convertView.findViewById(R.id.tvMaOder);
         TextView maBn = convertView.findViewById(R.id.tvbantrong);
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         TextView tongTien = convertView.findViewById(R.id.tvTongtien);
+        TextView ngay = convertView.findViewById(R.id.tvNgay);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,12 +72,11 @@ public class QLHD1 extends BaseAdapter {
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
             tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
+            ngay.setText(String.valueOf(thongtinoder.getNgay()));
         } else {
             // Nếu trạng thái không phải 1, ẩn convertView
             convertView.setVisibility(View.GONE);
         }
-
-
 //        maOder.setText(String.valueOf(thongtinoder.getMaOder()));
 //        maBn.setText(String.valueOf(thongtinoder.getMaBn()));
 //        tongTien.setText(String.valueOf(thongtinoder.getTongtien()));
@@ -78,4 +84,9 @@ public class QLHD1 extends BaseAdapter {
 
         return convertView;
     }
+    public void setListPay(List<Thongtinoder> listPay) {
+        this.listPay = listPay;
+        notifyDataSetChanged();
+    }
+
 }

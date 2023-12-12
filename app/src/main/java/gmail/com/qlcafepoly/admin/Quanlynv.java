@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -33,9 +35,9 @@ import java.util.List;
 import gmail.com.qlcafepoly.R;
 
 public class Quanlynv extends AppCompatActivity {
+    private List<User> originalList = new ArrayList<>();
     private List<User> lsuListNhanvien = new ArrayList<>();
     private Nhanvienht adepter;
-    private TextView btnFindNV;
     private EditText edFindNV;
     private ListView lshienthinhanvien;
 
@@ -48,8 +50,23 @@ public class Quanlynv extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quanlynv);
         lshienthinhanvien = findViewById(R.id.lsHienThiNhanVien);
-        btnFindNV = findViewById(R.id.btnFindNV);
         edFindNV = findViewById(R.id.edFindNV);
+        edFindNV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         icLoadNhanVien = findViewById(R.id.icLoadNhanVien);
         icLoadNhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +139,8 @@ public class Quanlynv extends AppCompatActivity {
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
                 }
+                originalList.clear();
+                originalList.addAll(lsuListNhanvien);
             } catch (JSONException e) {
                 Log.d("Error: ", e.toString());
             } catch (Exception e) {
@@ -162,6 +181,29 @@ public class Quanlynv extends AppCompatActivity {
     public void reloadData() {
         // Thực hiện tải dữ liệu từ máy chủ và cập nhật danh sách người dùng
         // Sau đó, cập nhật giao diện hiển thị danh sách người dùng mới
+    }
+    private void filter(String text) {
+        lsuListNhanvien.clear();
+        if (text.isEmpty()) {
+            // If the search query is empty, show the original list
+            lsuListNhanvien.addAll(originalList);
+        } else {
+            // Otherwise, filter the list based on MaNv
+            String normalizedText = normalizeText(text);
+            for (User user : originalList) {
+                String normalizedUserTenNv = normalizeText(user.getTenNv());
+                if (normalizedUserTenNv.contains(normalizedText)) {
+                    lsuListNhanvien.add(user);
+                }
+            }
+        }
+        adepter.notifyDataSetChanged();
+    }
+    private String normalizeText(String text) {
+        // Use Normalizer to remove diacritics
+        String normalizedText = java.text.Normalizer.normalize(text, java.text.Normalizer.Form.NFD);
+        // Remove non-alphanumeric characters and convert to lowercase
+        return normalizedText.replaceAll("[^\\p{ASCII}a-zA-Z0-9]", "").toLowerCase();
     }
 
 

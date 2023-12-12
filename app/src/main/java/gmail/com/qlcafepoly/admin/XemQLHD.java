@@ -1,5 +1,7 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -34,8 +36,8 @@ public class XemQLHD extends AppCompatActivity {
     private TextView tvTong;
     private ImageView imageView,imgchitiethoadon;
     private ListView lvQLHD;
-    private String base_url = "http://192.168.1.53:8080/duantotnghiep/thongtinctoderchitiet.php";
-    private String urllink = "http://192.168.1.53:8080/duantotnghiep/thongtinctoder.php?MaOder=-1";
+    private String base_url = BASE_URL+"duantotnghiep/thongtinctoderchitiet.php";
+    private String urllink = BASE_URL+"duantotnghiep/thongtinctoder.php?MaOder=-1";
     private ProgressDialog pd;
     private int MaOder = -1; // Mặc định không có mã Oder
 
@@ -44,6 +46,7 @@ public class XemQLHD extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_hoa_don);
+        tvTong = findViewById(R.id.tvTong);
 
         // Lấy tham số maOder từ Intent nếu tồn tại
         MaOder = getIntent().getIntExtra("MaOder", -1);
@@ -52,8 +55,6 @@ public class XemQLHD extends AppCompatActivity {
         if (MaOder != -1) {
             urllink = base_url + "?MaOder=" + MaOder;
         }
-
-
         imageView = findViewById(R.id.img_Douong);
         lvQLHD = findViewById(R.id.lvListHoaDon);
         tvTong = findViewById(R.id.tvTong);
@@ -74,6 +75,7 @@ public class XemQLHD extends AppCompatActivity {
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
+        private int totalAmount = 0;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -112,6 +114,7 @@ public class XemQLHD extends AppCompatActivity {
                         menu1.setSoluong(Integer.parseInt(Soluong));
 
                         listPay.add(menu1);
+                        totalAmount += Integer.parseInt(Giatien)* Integer.parseInt(Soluong);
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -124,12 +127,14 @@ public class XemQLHD extends AppCompatActivity {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (pd.isShowing()) {
                 pd.dismiss();
             }
+            tvTong.setText(totalAmount + " VND");
             payDU.notifyDataSetChanged();
         }
 

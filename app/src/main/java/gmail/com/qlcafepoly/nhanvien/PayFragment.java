@@ -55,7 +55,9 @@ public class PayFragment extends Fragment {
     private Button btnxemdanhsachban;
     private ListView lv_listpay;
 
+
     private String urllink = BASE_URL + "duantotnghiep/oder.php";
+
 
     private ProgressDialog pd;
 
@@ -79,7 +81,6 @@ public class PayFragment extends Fragment {
 
         return view;
     }
-
 
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -109,9 +110,10 @@ public class PayFragment extends Fragment {
                         Log.d("MaBn", PayObject.getString("MaBn"));
                         Log.d("TongTien", PayObject.getString("TongTien"));
                         Log.d("Ngay", PayObject.getString("Ngay"));
+
+
                         String MaOder = PayObject.getString("MaOder");
                         String MaBn = PayObject.getString("MaBn");
-
                         int TrangThai = PayObject.getInt("TrangThai");
                         String Tongtien = PayObject.getString("TongTien");
                         String traTien = PayObject.getString("TrangThai");
@@ -132,6 +134,7 @@ public class PayFragment extends Fragment {
                         thongtinoder.setFormattedTongtien(formattedTongtien);
                         thongtinoder.setTratien(Integer.parseInt(traTien));
                         thongtinoder.setNgay(ngay);
+
                         listPay.add(thongtinoder);
                     }
                 } else {

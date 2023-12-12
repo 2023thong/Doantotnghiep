@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "gmail.com.qlcafepoly"
-        minSdk = 24
+        minSdk = 22
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -35,6 +35,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+//    implementation("com.google.android.gms:play-services-pay:16.4.0")
 
 
     testImplementation("junit:junit:4.13.2")
@@ -54,12 +55,8 @@ dependencies {
     implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
 
 
-
     implementation ("com.journeyapps:zxing-android-embedded:3.6.0")
     implementation ("com.google.zxing:core:3.4.0")
-
-
-
 
 
 

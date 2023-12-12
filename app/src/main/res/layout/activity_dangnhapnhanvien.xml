@@ -114,6 +114,7 @@
 
                     android:layout_height="50dp"
                     android:ems="10"
+                    android:text="ductu"
                     android:hint="User"
                     android:inputType="text" />
 
@@ -149,6 +150,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Password"
+                    android:text="123"
+                    android:maxLines="1"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 

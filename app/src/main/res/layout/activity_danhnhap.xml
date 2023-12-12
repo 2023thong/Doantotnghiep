@@ -111,7 +111,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
-
+                    android:text="tu123"
                     android:layout_height="50dp"
                     android:ems="10"
                     android:hint="Management login name"
@@ -149,6 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="Password"
+                    android:text="123"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
