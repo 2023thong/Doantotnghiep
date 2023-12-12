@@ -50,7 +50,13 @@ public class UnpaidFragment extends Fragment {
     private Unpaid1 unpaid1;
     private ImageView imageView;
     private ListView lv_unpaid;
+
+
     private String urllink = BASE_URL + "duantotnghiep/trangthaithanhtoan.php";
+
+
+
+
     private ProgressDialog pd;
 
     @SuppressLint("MissingInflatedId")

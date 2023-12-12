@@ -59,7 +59,6 @@ public class Thonhtintaikhoan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thonhtintaikhoan);
-
         TextView tvManv = findViewById(R.id.tvManv1);
         TextView tvTennv = findViewById(R.id.tvTennv);
         TextView tvSdt = findViewById(R.id.tvSDt);

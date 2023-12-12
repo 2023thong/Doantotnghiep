@@ -14,10 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
-
 import gmail.com.qlcafepoly.R;
 
 public class Pay1 extends BaseAdapter {
@@ -75,7 +72,7 @@ public class Pay1 extends BaseAdapter {
             tvTrangThai.setText("Đã thanh toán");
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-            tongTien.setText(formatCurrency(Double.parseDouble(String.valueOf(thongtinoder.getTongTien()))));
+            tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
             ngay.setText(thongtinoder.getNgay());
 
         } else {
@@ -85,10 +82,6 @@ public class Pay1 extends BaseAdapter {
 
 
         return convertView;
-    }
-    private String formatCurrency(double value) {
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-        return formatter.format(value);
     }
 
 

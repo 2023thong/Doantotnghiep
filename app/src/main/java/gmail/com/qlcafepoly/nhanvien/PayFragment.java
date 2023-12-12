@@ -55,9 +55,7 @@ public class PayFragment extends Fragment {
     private Button btnxemdanhsachban;
     private ListView lv_listpay;
 
-
-    private String urllink = BASE_URL + "duantotnghiep/oder.php";
-
+    private String urllink = BASE_URL+ "duantotnghiep/oder.php";
 
     private ProgressDialog pd;
 
@@ -134,7 +132,6 @@ public class PayFragment extends Fragment {
                         thongtinoder.setFormattedTongtien(formattedTongtien);
                         thongtinoder.setTratien(Integer.parseInt(traTien));
                         thongtinoder.setNgay(ngay);
-
                         listPay.add(thongtinoder);
                     }
                 } else {

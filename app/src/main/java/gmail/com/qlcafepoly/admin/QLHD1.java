@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
@@ -71,7 +72,8 @@ public class QLHD1 extends BaseAdapter {
             tvTrangThai.setText("Đã thanh toán");
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-            tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
+            String formattedTongTien = formatCurrency(thongtinoder.getTongTien());
+            tongTien.setText(formattedTongTien);
             ngay.setText(String.valueOf(thongtinoder.getNgay()));
         } else {
             // Nếu trạng thái không phải 1, ẩn convertView
@@ -83,6 +85,10 @@ public class QLHD1 extends BaseAdapter {
         // ... (các phần khác không thay đổi)
 
         return convertView;
+    }
+    private String formatCurrency(int amount) {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        return numberFormat.format(amount);
     }
     public void setListPay(List<Thongtinoder> listPay) {
         this.listPay = listPay;
