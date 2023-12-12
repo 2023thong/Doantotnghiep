@@ -168,7 +168,6 @@ public class KhoFragment extends Fragment {
             }
         });
 
-
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
@@ -198,7 +197,7 @@ public class KhoFragment extends Fragment {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    String mahh = edMahh.getText().toString();
+
                     String mancc = spinnerMaNcc.getSelectedItem().toString();
                     String malh = spinner.getSelectedItem().toString();
                     String tehh = edTenhh.getText().toString();
@@ -207,9 +206,9 @@ public class KhoFragment extends Fragment {
                     String soluong = edSoluong.getText().toString();
                     String base64Image = encodeBitmapToBase64(bitmap);
 
-                    registerProcess1(mahh, mancc, malh, tehh, giatien, ghichu, soluong, base64Image);
+                    registerProcess1( mancc, malh, tehh, giatien, ghichu, soluong, base64Image);
 
-                edMahh.setText("");
+
                 edTenhh.setText("");
                 edGiatien.setText("");
                 edGhichu.setText("");
@@ -231,7 +230,7 @@ public class KhoFragment extends Fragment {
         return view;
     }
 
-    public void registerProcess1(String MaHH, String MaNcc, String TenLh, String TenHh, String GiaSp, String Ghichu, String Soluong, String imageBase64) {
+    public void registerProcess1( String MaNcc, String TenLh, String TenHh, String GiaSp, String Ghichu, String Soluong, String imageBase64) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -241,7 +240,6 @@ public class KhoFragment extends Fragment {
 
 
         User1 user1 = new User1();
-        user1.setMaHH(MaHH);
         user1.setMaNcc(MaNcc); // Use the selected MaNcc value
         user1.setTenLh(TenLh);
         user1.setTenHh(TenHh);
@@ -253,9 +251,7 @@ public class KhoFragment extends Fragment {
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.HANGHOA);
         serverRequest.setUser1(user1);
-
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
-
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -533,11 +529,6 @@ public class KhoFragment extends Fragment {
             return null; // or throw an exception, depending on your requirements
         }
     }
-
-
-
-
-
 
 
 

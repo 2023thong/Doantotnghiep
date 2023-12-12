@@ -5,8 +5,17 @@ public class User2 {
     private String TenNcc;
     private String Diachi;
     private String Sdt;
+    private String Hinhanh;
 
     public User2() {
+    }
+
+    public String getHinhanh() {
+        return Hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        Hinhanh = hinhanh;
     }
 
     public String getMaNcc() {

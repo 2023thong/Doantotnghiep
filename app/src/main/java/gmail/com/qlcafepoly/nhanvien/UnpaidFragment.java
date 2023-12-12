@@ -42,7 +42,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UnpaidFragment extends Fragment {
 
-
     private List<Thongtinoder> listUnpaid = new ArrayList<>();
     private Button btnThanhToan;
     private Button btnxemdanhsachban;
@@ -53,7 +52,6 @@ public class UnpaidFragment extends Fragment {
     private ListView lv_unpaid;
     private String urllink = BASE_URL + "duantotnghiep/trangthaithanhtoan.php";
     private ProgressDialog pd;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -74,11 +72,7 @@ public class UnpaidFragment extends Fragment {
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
 
-
-
         new MyAsyncTask().execute(urllink);
-
-
 
         return view;
     }

@@ -90,14 +90,6 @@ public class Thonhtintaikhoan extends AppCompatActivity {
         button = findViewById(R.id.btnthem);
 
 
-
-
-        //hienanh
-
-
-
-        // Gửi tên tài khoản lên máy chủ để lấy hình ảnh
-
         String imageUrl = BASE_URL + "duantotnghiep/layhinhanh.php?MaNv=" +Manv;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         ImageRequest imageRequest = new ImageRequest(
@@ -118,12 +110,7 @@ public class Thonhtintaikhoan extends AppCompatActivity {
                     }
                 }
         );
-
         requestQueue.add(imageRequest);
-
-
-
-
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -131,14 +118,12 @@ public class Thonhtintaikhoan extends AppCompatActivity {
                 if(result.getResultCode() == Activity.RESULT_OK){
                     Intent data = result.getData();
                     Uri uri = data.getData();
-
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                         imgchon.setImageBitmap(bitmap);
                     } catch (IOException e) {
                         e.getStackTrace();
                     }
-
                 }
             }
         });
