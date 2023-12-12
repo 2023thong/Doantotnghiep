@@ -1,13 +1,24 @@
 package gmail.com.qlcafepoly.nhanvien;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -56,11 +67,16 @@ public class PayDU extends BaseAdapter {
         TextView tv_Soluong = convertView.findViewById(R.id.tv_Soluong);
 
         tv_DoUong.setText(menu1.getTenDu());
-        tvMoney.setText(String.valueOf(menu1.getGiatien()));
+        String formattedMoney = formatCurrency(menu1.getGiatien());
+        tvMoney.setText(formattedMoney);
         tv_Soluong.setText(String.valueOf(menu1.getSoluong()));
 
 
         return convertView;
+    }
+    private String formatCurrency(int amount) {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        return numberFormat.format(amount);
     }
     public void sortListByMaOderAndTenDu() {
         Collections.sort(menu2, new Comparator<Menu1>() {

@@ -113,7 +113,6 @@ public class XemQLHD extends AppCompatActivity {
                         menu1.setTenDu(TenDu);
                         menu1.setGiatien(Integer.parseInt(Giatien));
                         menu1.setSoluong(Integer.parseInt(Soluong));
-
                         listPay.add(menu1);
                         totalAmount += Integer.parseInt(Giatien)* Integer.parseInt(Soluong);
                     }
