@@ -1,8 +1,11 @@
 package gmail.com.qlcafepoly.admin;
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -62,6 +68,7 @@ public class Themncc extends BaseAdapter {
         TextView tvSDt = convertView.findViewById(R.id.tvSdtht);
         ImageView view1 = convertView.findViewById(R.id.imgSuancc);
         ImageView xoa = convertView.findViewById(R.id.imgXoancc);
+        ImageView anhncca = convertView.findViewById(R.id.anhncc);
 
 
 
@@ -71,6 +78,22 @@ public class Themncc extends BaseAdapter {
         tvTencc.setText(user1.getTenNcc());
         tvDiachi.setText(user1.getDiachi());
         tvSDt.setText((user1.getSdt()));
+
+        String imageUrl = BASE_URL + "duantotnghiep/layanhncc.php?MaNcc=" + user1.getMaNcc();
+        anhncca.setTag(imageUrl);
+        Picasso.get().invalidate(imageUrl);
+        Picasso.get()
+                .load(imageUrl)
+                .into(anhncca, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("Picasso", "Image loaded successfully");
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("Picasso", "Error loading image: " + e.getMessage());
+                    }
+                });
 
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
