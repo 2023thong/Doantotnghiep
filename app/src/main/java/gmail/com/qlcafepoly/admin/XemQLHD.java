@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,6 +112,7 @@ public class XemQLHD extends AppCompatActivity {
                         menu1.setTenDu(TenDu);
                         menu1.setGiatien(Integer.parseInt(Giatien));
                         menu1.setSoluong(Integer.parseInt(Soluong));
+
                         listPay.add(menu1);
                         totalAmount += Integer.parseInt(Giatien)* Integer.parseInt(Soluong);
                     }
@@ -134,13 +134,8 @@ public class XemQLHD extends AppCompatActivity {
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-            String formattedTotalAmount = formatCurrency(totalAmount);
-            tvTong.setText(formattedTotalAmount  + " VND");
+            tvTong.setText(totalAmount + " VND");
             payDU.notifyDataSetChanged();
-        }
-        private String formatCurrency(int amount) {
-            NumberFormat numberFormat = NumberFormat.getNumberInstance();
-            return numberFormat.format(amount);
         }
 
         public String readJsonOnline(String linkUrl) {

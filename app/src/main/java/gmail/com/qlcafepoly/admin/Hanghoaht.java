@@ -188,7 +188,7 @@ public class Hanghoaht extends BaseAdapter {
                             })
                             .show();
 
-                }
+            }
                 return true;
 
             }

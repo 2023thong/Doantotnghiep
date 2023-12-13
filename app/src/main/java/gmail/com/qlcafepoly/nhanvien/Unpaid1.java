@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +39,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Unpaid1 extends BaseAdapter {
+
     private final List<Thongtinoder> ttoder;
     private final LayoutInflater inflater;
     private final Context context;
@@ -90,7 +92,11 @@ public class Unpaid1 extends BaseAdapter {
             // Gán giá trị cho các TextView
             maOder.setText(String.valueOf(thongtinoder.getMaOder()));
             maBn.setText(String.valueOf(thongtinoder.getMaBn()));
-            tongTien.setText(String.valueOf(thongtinoder.getTongTien()));
+
+
+            String tien = formatCurrency(thongtinoder.getTongTien());
+            tongTien.setText(tien);
+
         }
 
             button.setOnClickListener(view -> {
@@ -246,6 +252,10 @@ public class Unpaid1 extends BaseAdapter {
             }
 
         });
+    }
+    private String formatCurrency(double value) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(value);
     }
 
 

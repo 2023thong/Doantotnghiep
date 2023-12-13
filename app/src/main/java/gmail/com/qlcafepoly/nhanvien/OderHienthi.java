@@ -1,22 +1,26 @@
 package gmail.com.qlcafepoly.nhanvien;
 
 
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.R;
-import gmail.com.qlcafepoly.admin.Hanghoaht;
 import gmail.com.qlcafepoly.admin.Menu;
-import gmail.com.qlcafepoly.admin.Suathongtinhh;
 
 public class OderHienthi extends BaseAdapter {
     private List<gmail.com.qlcafepoly.admin.Menu> odermenu;
@@ -28,6 +32,10 @@ public class OderHienthi extends BaseAdapter {
         this.odermenu = menuoder;
         inflater = LayoutInflater.from(context);
     }
+
+
+
+
     @Override
     public int getCount() {
         return odermenu.size();
@@ -54,12 +62,33 @@ public class OderHienthi extends BaseAdapter {
 
         TextView tvTenLh = convertView.findViewById(R.id.tvTenDuoder);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiaDuOder);
+        ImageView anh = convertView.findViewById(R.id.imganhkho1);
 
-//        tvMenu.setText(menu.getMaMn());
+
         tvTenLh.setText(menu.getTenDu());
-        tvGiatien.setText(String.valueOf(menu.getGiatien()));
+        tvGiatien.setText(formatCurrency(Double.parseDouble(String.valueOf(menu.getGiatien()))));
+
+        String imageUrl = BASE_URL + "duantotnghiep/layhinhanhmenu.php?MaMn=" + menu.getMaMn();
+        anh.setTag(imageUrl);
+        Picasso.get().invalidate(imageUrl);
+        Picasso.get()
+                .load(imageUrl)
+                .into(anh, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("Picasso", "Image loaded successfully");
+                    }
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("Picasso", "Error loading image: " + e.getMessage());
+                    }
+                });
 
         return convertView;
+    }
+    private String formatCurrency(double value) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(value);
     }
 
 }

@@ -3,9 +3,6 @@ package gmail.com.qlcafepoly.nhanvien;
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -22,10 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,15 +36,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import gmail.com.qlcafepoly.admin.Menu;
-import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.model.Ban;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -123,7 +119,7 @@ public class SuaOder extends AppCompatActivity {
 
         tvmaoder.setText(Maoder1);
         tvmabn.setText(Mabn);
-        tvtongtien.setText(Tongtien1);
+        tvtongtien.setText(formatCurrency(Double.parseDouble(Tongtien1)));
 
 
 
@@ -158,12 +154,13 @@ public class SuaOder extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String mao = tvmaoder.getText().toString();
-                String tongtien = tvtongtien.getText().toString();
+                String tongtien = String.valueOf(updateTotalAmount());
                 String trangthai = check();
                 String mabn = tvmabn.getText().toString();
 
                 if (!selectedMenus.isEmpty()) {
                     SuaOder1(mao, tongtien, trangthai);
+                    Suahoadon(mao, tongtien);
                     Trangthaibn(mabn, String.valueOf(1));
 
                     for (Menu selectedMenu : selectedMenus) {
@@ -179,7 +176,6 @@ public class SuaOder extends AppCompatActivity {
             }
 
         });
-
 
     }
     private List<Menu> filterMenuByMaoder(List<Menu> menuList, String selectedMaoder) {
@@ -379,7 +375,7 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
 
 
             customTextView.setText(menu.getTenDu());
-            customTextView1.setText(String.valueOf(menu.getGiatien()));
+            customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(menu.getGiatien()))));
 
             sl.setText(String.valueOf(menu.getSoluong()));
 
@@ -408,7 +404,7 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
                     int giamoi = giabd * currentQuantity; // Tính giá tiền mới dựa trên số lượng mới
                     selectedMenu.setGiatientd(giamoi); // Cập nhật giá tiền dựa trên số lượng mới
                     sl.setText(String.valueOf(currentQuantity));
-                    customTextView1.setText(String.valueOf(giamoi));
+                    customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(giamoi))));
                     updateTotalAmount();
 
 
@@ -435,7 +431,7 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
                     int giamoi = giabd * currentQuantity; // Tính giá tiền mới d
                     selectedMenu.setGiatientd(giamoi); // Cập nhật giá tiền dựa trên số lượng mới
                     sl.setText(String.valueOf(currentQuantity));
-                    customTextView1.setText(String.valueOf(giamoi));
+                    customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(giamoi))));
                     updateTotalAmount();
 
 
@@ -511,7 +507,7 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
         updateTotalAmount();
     }
 
-    private void updateTotalAmount() {
+    private int updateTotalAmount() {
         // Tổng tiền từ intent
         Intent intent = getIntent();
         String Tongtien1 = intent.getStringExtra("TongTienoder");
@@ -535,7 +531,8 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
 
         // Hiển thị tổng tiền cuối cùng trong TextView
         TextView totalAmountTextView = findViewById(R.id.TvTongtiensua);
-        totalAmountTextView.setText(String.valueOf(tong));
+        totalAmountTextView.setText(formatCurrency(Double.parseDouble(String.valueOf(tong))));
+        return tong;
     }
     public void SuaOder1(String MaOder, String TongTien,String TrangThai) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -555,6 +552,38 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.SUAODER);
         serverRequest.setOder1(oder1);
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+
+                } else {
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+        });
+    }
+    public void Suahoadon(String MaOder, String TongTien) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+        Hoadon hoadon = new Hoadon();
+        hoadon.setMaOder(MaOder);
+
+        hoadon.setTongTien(Integer.parseInt(TongTien));
+
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUAHOADON);
+        serverRequest.setHoadon(hoadon);
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
         responseCall.enqueue(new Callback<ServerResponse>() {
@@ -612,12 +641,10 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed" + t.getMessage());
             }
-
         });
     }
     public void Trangthaibn(String MaBn, String Trangthai) {
@@ -631,9 +658,7 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
         Ban ban = new Ban();
         ban.setMaBn(MaBn);
 
-
         ban.setTrangthai(Trangthai);
-
 
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.SUABAN);
@@ -659,10 +684,9 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
 
         });
     }
-
-
-
-
-
-
+    private String formatCurrency(double value) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(value);
+    }
+    
 }

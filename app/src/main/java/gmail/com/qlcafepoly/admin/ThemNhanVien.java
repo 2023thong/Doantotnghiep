@@ -64,42 +64,18 @@ public class ThemNhanVien extends AppCompatActivity {
                 String chucvu = edChucvu.getText().toString();
 
                 if (manv.isEmpty() || tennv.isEmpty() || tendn.isEmpty() || matkhau.isEmpty() || sdt.isEmpty() || diachi.isEmpty() || chucvu.isEmpty()) {
-                    StringBuilder errorMessage = new StringBuilder("Vui lòng nhập đầy đủ thông tin:\n");
-
-                    if (manv.isEmpty()) {
-                        errorMessage.append("- Mã nhân viên\n");
-                    }
-                    if (tennv.isEmpty()) {
-                        errorMessage.append("- Tên nhân viên\n");
-                    }
-                    if (tendn.isEmpty()) {
-                        errorMessage.append("- Tên đăng nhập\n");
-                    }
-                    if (matkhau.isEmpty()) {
-                        errorMessage.append("- Mật khẩu\n");
-                    }
-                    if (sdt.isEmpty()) {
-                        errorMessage.append("- Số điện thoại\n");
-                    }
-                    if (diachi.isEmpty()) {
-                        errorMessage.append("- Địa chỉ\n");
-                    }
-                    if (chucvu.isEmpty()) {
-                        errorMessage.append("- Chức vụ\n");
-                    }
-
-                    Toast.makeText(ThemNhanVien.this, errorMessage.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ThemNhanVien.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
                     // Validate Chucvu
                     int chucVuValue;
                     try {
                         chucVuValue = Integer.parseInt(chucvu);
                         if (chucVuValue != 1 && chucVuValue != 2) {
-                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số '1' hoặc '2'", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
                             return; // Do not proceed with the registration if Chucvu is invalid.
                         }
                     } catch (NumberFormatException e) {
-                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số '1' hoặc '2'", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
                         return; // Do not proceed with the registration if Chucvu is not a number.
                     }
 
