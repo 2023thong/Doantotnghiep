@@ -692,10 +692,5 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
         NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         return formatter.format(value);
     }
-
-
-
-
-
-
+    
 }
