@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm Bàn"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/edtTenban"
+        android:layout_width="match_parent"
+        android:paddingStart="10dp"
+        android:background="@drawable/bg_bton"
+        android:layout_marginTop="20dp"
+        android:layout_height="48dp"
+        android:hint="Nhập tên bàn"/>
+
+    <EditText
+        android:id="@+id/edtMaban"
+        android:layout_width="match_parent"
+        android:paddingStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_bton"
+        android:hint="Nhập mã bàn"/>
+
+    <Spinner
+        android:id="@+id/spnTrangthai"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_bton"
+        android:inputType="none"
+        android:focusable="false"
+        android:clickable="false"
+        android:hint="Trạng thái" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_huy"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/vongtron"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="Hủy"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_them"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/vongtron"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="Thêm"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin.QuanLyDoanhThu">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ED8361">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back"
+            android:layout_margin="15dp"
+            android:onClick="backdoanhthu"/>
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Quản lý Doanh thu"
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            android:layout_marginStart="50dp"/>
+
+        <ImageView
+            android:id="@+id/icLich"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="55dp"
+            android:src="@drawable/iclich" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:text="Tổng doanh thu hiện tại: "
+            android:textSize="20dp"
+            android:padding="5dp"/>
+        <TextView
+            android:id="@+id/tvTongDoanhThu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="0"
+            android:textSize="20dp"
+            android:padding="5dp"
+            android:textColor="#DF1818"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btnDTNgay"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Ngày"
+            android:backgroundTint="#5A4D4D"/>
+        <Button
+            android:id="@+id/btnDTThang"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="tháng"
+            android:layout_marginStart="50dp"
+            android:backgroundTint="#5A4D4D"/>
+        <Button
+            android:id="@+id/btnDTNam"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Năm"
+            android:layout_marginStart="50dp"
+            android:backgroundTint="#5A4D4D"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lsdoanhthu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</LinearLayout>

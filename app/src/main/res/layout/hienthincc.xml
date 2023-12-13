@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_margin="10dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/bocanhan">
+
+    <ImageView
+        android:id="@+id/anhncc"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/daidien"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseAppTint" />
+
+    <TextView
+        android:id="@+id/ma"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Mã nhà cung cấp:"
+
+        app:layout_constraintStart_toEndOf="@+id/anhncc"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvManccht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0FCEE6"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ma"
+        app:layout_constraintStart_toEndOf="@+id/ma"
+        app:layout_constraintTop_toTopOf="@+id/ma" />
+
+    <TextView
+        android:id="@+id/ten"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Tên nhà cung cấp:"
+        app:layout_constraintStart_toEndOf="@+id/anhncc"
+        app:layout_constraintTop_toBottomOf="@+id/ma" />
+
+    <TextView
+        android:id="@+id/tvTennccht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0FCEE6"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ten"
+        app:layout_constraintStart_toEndOf="@+id/ten"
+        app:layout_constraintTop_toTopOf="@+id/ten" />
+
+    <TextView
+        android:id="@+id/diachi"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Địa chỉ:"
+        app:layout_constraintStart_toEndOf="@+id/anhncc"
+        app:layout_constraintTop_toBottomOf="@+id/ten" />
+
+    <TextView
+        android:id="@+id/tvDiachiht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0FCEE6"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/diachi"
+        app:layout_constraintStart_toEndOf="@+id/diachi"
+        app:layout_constraintTop_toTopOf="@+id/diachi" />
+
+    <TextView
+        android:id="@+id/sdt"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Số điện thoại"
+        app:layout_constraintStart_toEndOf="@+id/anhncc"
+        app:layout_constraintTop_toBottomOf="@+id/diachi" />
+
+    <TextView
+        android:id="@+id/tvSdtht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0FCEE6"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sdt"
+        app:layout_constraintStart_toEndOf="@+id/sdt"
+        app:layout_constraintTop_toTopOf="@+id/sdt" />
+
+    <ImageView
+        android:id="@+id/imgSuancc"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/sua"
+        android:tint="#03A9F4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseAppTint" />
+
+    <ImageView
+        android:id="@+id/imgXoancc"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/xoa"
+        android:tint="#F44336"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSuancc"
+        tools:ignore="UseAppTint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin.XemQLHD">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ED8361">
+        <ImageView
+            android:id="@+id/imgchitiethoadon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Quản lý hóa đơn"
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            android:layout_marginStart="50dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Danh sách"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="10dp"/>
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:text="Tổng thanh toán: "
+            android:textSize="15dp"
+            android:padding="10dp"/>
+        <TextView
+            android:id="@+id/tvTong"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="0"
+            android:textStyle="italic"
+            android:textSize="15dp"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvListHoaDon"
+        android:layout_width="match_parent"
+        android:layout_height="729dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
+</LinearLayout>

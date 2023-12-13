@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/black" /> <!-- Màu nền là trắng -->
+            <corners android:radius="8dp" /> <!-- Độ cong góc của hình chữ nhật -->
+        </shape>
+    </item>
+    <item android:right="2dp" android:left="2dp" android:top="2dp" android:bottom="2dp">
+        <shape>
+            <solid android:color="@android:color/black" /> <!-- Màu nền là đen (kẻ viền) -->
+            <corners android:radius="8dp" /> <!-- Độ cong góc của hình chữ nhật -->
+        </shape>
+    </item>
+</layer-list>
