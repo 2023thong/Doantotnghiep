@@ -77,7 +77,7 @@ public class Hanghoaht extends BaseAdapter {
 
         tvMahh.setText(user1.getMaHH());
         tvMancc.setText(user1.getSoluong());
-        tvTenhh.setText(user1.getTenHh());
+        tvTenhh.setText(user1.getTenLh());
         tvGiatien.setText(formatCurrency(Double.parseDouble(user1.getGiaSp())));
 
         String imageUrl = BASE_URL + "duantotnghiep/layanhkho.php?MaHH=" + user1.getMaHH();

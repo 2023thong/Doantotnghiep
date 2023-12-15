@@ -641,12 +641,10 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed" + t.getMessage());
             }
-
         });
     }
     public void Trangthaibn(String MaBn, String Trangthai) {
@@ -660,9 +658,7 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
         Ban ban = new Ban();
         ban.setMaBn(MaBn);
 
-
         ban.setTrangthai(Trangthai);
-
 
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.SUABAN);
@@ -692,10 +688,5 @@ private class MyAsyncTask extends AsyncTask<String, Void, String> {
         NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         return formatter.format(value);
     }
-
-
-
-
-
-
+    
 }

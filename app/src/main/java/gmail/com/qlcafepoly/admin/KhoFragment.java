@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -108,6 +110,23 @@ public class KhoFragment extends Fragment {
         edGhichu = view.findViewById(R.id.edGhichu);
         edSoluong = view.findViewById(R.id.edSoluong);
         imgchon = view.findViewById(R.id.chon);
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isLetterOrDigit(character) && !Character.isSpaceChar(character)) {
+                        Toast.makeText(getContext(), "Không được kí tự đặc biệt", Toast.LENGTH_SHORT).show();
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        edTenhh.setFilters(new InputFilter[]{filter});
+
 
         textView5 = view.findViewById(R.id.imgkho);
         ImageView imageView1 = view.findViewById(R.id.imageView2);
@@ -432,7 +451,6 @@ public class KhoFragment extends Fragment {
                 pd.dismiss();
             }
             if (getActivity() != null) {
-
                 populateSpinnerWithMaLh();
             }
         }

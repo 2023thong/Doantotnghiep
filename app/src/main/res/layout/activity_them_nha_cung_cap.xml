@@ -145,8 +145,11 @@
                     android:layout_weight="1"
                     android:background="@drawable/bosua"
                     android:ems="10"
-                    android:inputType="text"
-                    android:padding="7dp" />
+                    android:padding="7dp"
+                    android:maxLength="10"
+                    android:inputType="number"
+                />
+
             </LinearLayout>
 
             <LinearLayout

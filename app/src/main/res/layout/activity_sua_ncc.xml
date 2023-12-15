@@ -107,13 +107,14 @@
             android:id="@+id/edSDts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
             android:layout_marginTop="2dp"
+            android:layout_weight="1"
             android:background="@drawable/bosua"
-            android:padding="8dp"
+            android:ems="10"
+            android:inputType="number"
 
-            android:inputType="number" />
+            android:maxLength="10"
+            android:padding="8dp" />
 
     </LinearLayout>
 

@@ -18,10 +18,12 @@
             android:layout_height="80dp"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/imgnuoc"
+                android:id="@+id/imganhmenu"
                 android:layout_width="70dp"
                 android:layout_height="65dp"
                 android:src="@drawable/nuoc1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:layout_marginStart="20dp"/>
             <TextView
                 android:id="@+id/tvMaMn"
@@ -84,3 +86,4 @@
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+

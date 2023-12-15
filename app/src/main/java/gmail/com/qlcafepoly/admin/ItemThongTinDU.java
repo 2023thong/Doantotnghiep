@@ -2,34 +2,56 @@ package gmail.com.qlcafepoly.admin;
 
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
@@ -42,13 +64,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemThongTinDU extends AppCompatActivity {
+    Bitmap bitmap;
     private String TenLhFromIntent;
-Button btnBack,btnSuaDU,btnXoaDU;
+    private ImageView icanhmenu;
+    Button btnBack,btnSuaDU,btnXoaDU;
+    private TextView btnanhmenu;
     EditText edMaMN,edTenLH,edGiaTien;
     private Spinner SpTenLh;
     private List<User1> lsuList = new ArrayList<User1>();
     private String urllink1 =BASE_URL + "duantotnghiep/loaihang.php";
     private ProgressDialog pd;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +113,6 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 finish();
             }
         });
-
         Intent intent = getIntent();
         String MaMn = intent.getStringExtra("DULIEUDU");
         String TenDu = intent.getStringExtra("DULIEUDU_TenDu");
@@ -107,6 +132,101 @@ Button btnBack,btnSuaDU,btnXoaDU;
                 showDeleteConfirmationDialog();
             }
         });
+        icanhmenu = findViewById(R.id.icmanhmenu);
+        btnanhmenu = findViewById(R.id.btnanhmenu);
+        //hienanh
+        // Gửi tên tài khoản lên máy chủ để lấy hình ảnh
+        String imageUrl = BASE_URL + "duantotnghiep/layhinhanhmenu.php?MaMn=" +MaMn;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        ImageRequest imageRequest = new ImageRequest(
+                imageUrl,
+                new com.android.volley.Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        icanhmenu.setImageBitmap(response);
+                    }
+                },
+                0, 0,
+                null,
+                Bitmap.Config.ARGB_8888,
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ItemThongTinDU.this, "Thêm Avatar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(imageRequest);
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode() == Activity.RESULT_OK){
+                    Intent data = result.getData();
+                    Uri uri = data.getData();
+
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        icanhmenu.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        e.getStackTrace();
+                    }
+
+                }
+            }
+        });
+        icanhmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher.launch(intent);
+
+            }
+        });
+        btnanhmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String MaMn = edMaMn.getText().toString();
+                Log.d("/tendu" , MaMn);
+                ByteArrayOutputStream byteArrayOutputStream;
+                byteArrayOutputStream = new ByteArrayOutputStream();
+                if (bitmap != null){
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    final String base64img = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    String url =BASE_URL +"duantotnghiep/databasemenu.php";
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                            new com.android.volley.Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if (response.equals("success")) {
+                                        Toast.makeText(ItemThongTinDU.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ItemThongTinDU.this, "Tải ảnh thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }, new com.android.volley.Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                        protected Map<String, String> getParams() {
+                            Map<String, String> paramV = new HashMap<>();
+                            paramV.put("image", base64img);
+                            paramV.put("MaMn", MaMn); // Bổ sung thông tin tên khách hàng
+                            return paramV;
+                        }
+                    };
+                    queue.add(stringRequest);
+                }
+                else{
+                    Toast.makeText(ItemThongTinDU.this, "Chọn ảnh thay đổi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -115,7 +235,6 @@ Button btnBack,btnSuaDU,btnXoaDU;
             pd.setCancelable(false);
             pd.show();
         }
-
         @Override
 
         protected String doInBackground(String... strings) {

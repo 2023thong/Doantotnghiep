@@ -18,6 +18,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -95,6 +97,26 @@ public class ThemNhaCungCap extends AppCompatActivity {
         edTenncc = findViewById(R.id.edTencct);
         edDiachi = findViewById(R.id.edDiachit);
         edsdt = findViewById(R.id.edSdtt);
+
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isLetterOrDigit(character) && !Character.isSpaceChar(character) && character != ',') {
+                        Toast.makeText(getApplicationContext(), "Không được kí tự đặc biệt", Toast.LENGTH_SHORT).show();
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        edTenncc.setFilters(new InputFilter[]{filter});
+        edDiachi.setFilters(new InputFilter[]{filter});
+
+
 
         lshienthi = findViewById(R.id.lvhiethincc);
         adepter = new Themncc(ThemNhaCungCap.this, lsuList1);
