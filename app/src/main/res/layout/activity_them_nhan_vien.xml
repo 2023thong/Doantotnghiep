@@ -43,7 +43,7 @@
             app:cardUseCompatPadding="true"
             android:layout_gravity="center">
         <ImageView
-            android:id="@+id/imganhnhanvien"
+            android:id="@+id/imgthemanhnhanvien1"
             android:src="@drawable/themhinhanh"
             android:layout_width="150dp"
             android:layout_height="150dp"

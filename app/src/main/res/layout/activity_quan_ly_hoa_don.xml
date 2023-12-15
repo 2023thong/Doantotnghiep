@@ -61,7 +61,17 @@
     <ListView
         android:id="@+id/lvQLHD"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00111111"
+        android:divider="@color/white"
+        android:dividerHeight="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:ignore="MissingConstraints"/>
 
 
 </LinearLayout>

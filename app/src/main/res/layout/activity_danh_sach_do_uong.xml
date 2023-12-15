@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ED8361">
+        android:background="#4C4746">
         <ImageView
             android:id="@+id/backDSDU"
             android:layout_width="30dp"
@@ -17,23 +17,12 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_back"
             android:layout_margin="15dp"/>
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Drink coffee poly =))"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
-
         <ImageView
             android:id="@+id/icLoadMenu"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="300dp"
             android:src="@drawable/loadtab" />
     </LinearLayout>
     <LinearLayout
@@ -83,7 +72,15 @@
         android:id="@+id/lvDSDU"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00111111"
+        android:divider="@color/white"
+        android:dividerHeight="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:ignore="MissingConstraints"/>
 
 </LinearLayout>
