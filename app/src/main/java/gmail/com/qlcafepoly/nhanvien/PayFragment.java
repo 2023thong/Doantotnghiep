@@ -3,27 +3,24 @@ package gmail.com.qlcafepoly.nhanvien;
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import java.text.DecimalFormat;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,18 +31,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-import gmail.com.qlcafepoly.Database.Constants;
-import gmail.com.qlcafepoly.Database.RequestInterface;
-import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import gmail.com.qlcafepoly.nhanvien.Pay1;
+import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 
 public class PayFragment extends Fragment {
     private List<Thongtinoder> listPay = new ArrayList<>();
@@ -55,34 +52,39 @@ public class PayFragment extends Fragment {
     private Button btnxemdanhsachban;
     private ListView lv_listpay;
 
-
+    private TextView ngay, loc;
     private String urllink = BASE_URL + "duantotnghiep/oder.php";
-
 
     private ProgressDialog pd;
 
+    private Calendar calendar;
 
     @SuppressLint("MissingInflatedId")
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                         Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_pay, container, false);
         imageView = view.findViewById(R.id.img_Douong);
         lv_listpay = view.findViewById(R.id.lv_listpay);
         btnxemdanhsachban = view.findViewById(R.id.btnxemdanhsachban);
+        ngay = view.findViewById(R.id.ngaychọn);
 
-        pay1 = new Pay1(getActivity(), listPay);
-        lv_listpay.setAdapter(pay1);
+
+        calendar = Calendar.getInstance();
+        updateEditText();
+        filterListByDate();
+
         pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
-
+        ngay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(view);
+            }
+        });
         return view;
     }
-
-
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -91,10 +93,8 @@ public class PayFragment extends Fragment {
             pd.setCancelable(false);
             pd.show();
         }
-
         @Override
         protected String doInBackground(String... strings) {
-
             try {
                 String strJson = readJsonOnline(strings[0]);
                 Log.d("//====", strJson);
@@ -105,37 +105,8 @@ public class PayFragment extends Fragment {
                     JSONArray jsonArrayPay = jsonObject.getJSONArray("oder");
                     Log.d("//=====size=====", jsonArrayPay.length() + "");
                     for (int i = 0; i < jsonArrayPay.length(); i++) {
-                        JSONObject PayObject = jsonArrayPay.getJSONObject(i);
-                        Log.d("MaOder", PayObject.getString("MaOder"));
-                        Log.d("MaBn", PayObject.getString("MaBn"));
-                        Log.d("TongTien", PayObject.getString("TongTien"));
-                        Log.d("Ngay", PayObject.getString("Ngay"));
-
-
-                        String MaOder = PayObject.getString("MaOder");
-                        String MaBn = PayObject.getString("MaBn");
-                        int TrangThai = PayObject.getInt("TrangThai");
-                        String Tongtien = PayObject.getString("TongTien");
-                        String traTien = PayObject.getString("TrangThai");
-                        String ngay = PayObject.getString("Ngay");
-
-
-                        // Áp dụng định dạng giá tiền
-                        DecimalFormat decimalFormat = new DecimalFormat("#,##0.###");
-                        String formattedTongtien = decimalFormat.format(Double.parseDouble(Tongtien));
-
-                        Thongtinoder thongtinoder = new Thongtinoder();
-
-
-                        thongtinoder.setMaOder(Integer.parseInt(MaOder));
-                        thongtinoder.setMaBn(new String(MaBn));
-                        thongtinoder.setTrangThai(TrangThai);
-                        thongtinoder.setTongTien(Integer.parseInt(Tongtien));
-                        thongtinoder.setFormattedTongtien(formattedTongtien);
-                        thongtinoder.setTratien(Integer.parseInt(traTien));
-                        thongtinoder.setNgay(ngay);
-
-                        listPay.add(thongtinoder);
+                        JSONObject payObject = jsonArrayPay.getJSONObject(i);
+                        parseAndAddToList(payObject);
                     }
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
@@ -147,36 +118,22 @@ public class PayFragment extends Fragment {
             }
             return null;
         }
-        public void btnxemdanhsachban(int MaOder) {
-            // Tạo một Intent và truyền tham số maOder
-            Intent intent = new Intent(getActivity(), Menu_pay.class);
-            intent.putExtra("MaOder", MaOder);
-            startActivity(intent);
-        }
-
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (pd.isShowing()) {
                 pd.dismiss();
             }
-
-            ((AppCompatActivity) getActivity()).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    pay1.notifyDataSetChanged();
+            try {
+                if (getActivity() != null) {
+                    filterListByDate();
                 }
-            });
+
+            }catch (Exception e){
+                e.getStackTrace();
+            }
+
         }
-
-
-
-//        public void btnxemdanhsachban() {
-//            Intent intent = new Intent(getActivity(), Menu_pay.class);
-//            startActivity(intent);
-//        }
-
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
@@ -187,9 +144,9 @@ public class PayFragment extends Fragment {
                 connection.connect();
                 InputStream inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = "";
+                String line;
                 while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line + "\n");
+                    stringBuilder.append(line).append("\n");
                 }
                 return stringBuilder.toString();
             } catch (Exception ex) {
@@ -198,57 +155,110 @@ public class PayFragment extends Fragment {
             return null;
         }
 
+        private void parseAndAddToList(JSONObject payObject) throws JSONException {
+            Log.d("MaOder", payObject.getString("MaOder"));
+            Log.d("MaBn", payObject.getString("MaBn"));
+            Log.d("TongTien", payObject.getString("TongTien"));
+            Log.d("Ngay", payObject.getString("Ngay"));
+
+            String maOder = payObject.getString("MaOder");
+            String maBn = payObject.getString("MaBn");
+            int trangThai = payObject.getInt("TrangThai");
+            String tongTien = payObject.getString("TongTien");
+            String traTien = payObject.getString("TrangThai");
+            String ngay = payObject.getString("Ngay");
+
+            DecimalFormat decimalFormat = new DecimalFormat("#,##0.###");
+            String formattedTongTien = decimalFormat.format(Double.parseDouble(tongTien));
+
+            Thongtinoder thongtinoder = new Thongtinoder();
+            thongtinoder.setMaOder(Integer.parseInt(maOder));
+            thongtinoder.setMaBn(new String(maBn));
+            thongtinoder.setTrangThai(trangThai);
+            thongtinoder.setTongTien(Integer.parseInt(tongTien));
+            thongtinoder.setFormattedTongtien(formattedTongTien);
+            thongtinoder.setTratien(Integer.parseInt(traTien));
+            thongtinoder.setNgay(formatDate(ngay));
+
+            listPay.add(thongtinoder);
+        }
     }
 
-//    public void btnxemdanhsachban(int MaOder) {
-//        // Tạo một Intent và truyền tham số maOder
-//        Intent intent = new Intent(getApplicationContext(), Menu_payFragment.class);
-//        intent.putExtra("MaOder", MaOder);
-//        startActivity(intent);
-//    }
+    public void showDatePickerDialog(View view) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-//    private Context getApplicationContext() {
-//        return null;
-//    }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                view.getContext(),
+                (DatePicker view1, int year1, int month1, int dayOfMonth) -> {
+                    calendar.set(Calendar.YEAR, year1);
+                    calendar.set(Calendar.MONTH, month1);
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-//    public void Dangnhap(final String MaOder , String Matkhau) {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-//        Thongtinoder user = new Thongtinoder();
-//        user.setMaOder(Integer.parseInt(MaOder));
-//        user.setTrangThai(Integer.parseInt(Matkhau));
-//
-//        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
-//        serverRequest.setOperation(Constants.THANHTOAN);
-//        serverRequest.setThongtinoder(user);
-//        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
-//
-//
-//        responseCall.enqueue(new Callback<ServerResponse>() {
-//            @Override
-//            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-//                ServerResponse response1 = response.body();
-//                if (response1.getResult().equals(Constants.SUCCESS)){
-//
-//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//
-//                }
-//                else{
-//                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ServerResponse> call, Throwable t) {
-//                Log.d(Constants.TAG, "Failed"+ t.getMessage());
-//
-//            }
-//        });
-//    }
+                    updateEditText();
+                    Loc();
+                    filterListByDate();
+                },
+                year, month, day);
 
+        datePickerDialog.show();
+    }
 
+    private void updateEditText() {
+        String myFormat = "yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        ngay.setText(sdf.format(calendar.getTime()));
+    }
+
+    private void filterListByDate() {
+        String selectedDate = ngay.getText().toString();
+
+        List<Thongtinoder> filteredList = new ArrayList<>();
+        for (Thongtinoder thongtinoder : listPay) {
+            if (thongtinoder.getTrangThai() == 1 && thongtinoder.getNgay().equals(selectedDate)) {
+                filteredList.add(thongtinoder);
+            }
+        }
+        pay1 = new Pay1(getActivity(), filteredList);
+        lv_listpay.setAdapter(pay1);
+        try {
+
+            String myFormat = "yyyy/MM/dd";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            Date date = sdf.parse(selectedDate);
+            String formattedDate = sdf.format(date);
+            ngay.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public void Loc() {
+        String myFormat = "yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("loc", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Ngay", sdf.format(calendar.getTime()));
+        editor.apply();
+        Log.d("testthong", sdf.format(calendar.getTime()));
+    }
+
+    private String formatDate(String date) {
+        if (date == null) {
+            return ""; // Or handle the null case based on your requirements
+        }
+
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+            Date parsedDate = inputFormat.parse(date);
+
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+
+            return outputFormat.format(parsedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date; // Return the original date if an exception occurs
+    }
 }

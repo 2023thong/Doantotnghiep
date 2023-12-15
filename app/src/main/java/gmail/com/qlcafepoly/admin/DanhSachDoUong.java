@@ -193,6 +193,3 @@ public class DanhSachDoUong extends AppCompatActivity {
         return normalizedText.replaceAll("[^\\p{ASCII}a-zA-Z0-9]", "").toLowerCase();
     }
 }
-
-
-

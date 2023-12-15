@@ -85,7 +85,7 @@ public class Quanlynv extends AppCompatActivity {
         pd.setMessage("Đang tải dữ liệu nhân viên...");
         pd.setCancelable(false);
         new MyAsyncTask().execute(urllink);
-}
+    }
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override

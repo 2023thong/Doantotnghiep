@@ -30,7 +30,30 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/imgthemanhnhanvien1"
+                android:src="@drawable/themhinhanh"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                tools:ignore="UseAppTint" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -52,180 +75,180 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtMaNv"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Mã nhân viên"
-                android:paddingStart="20dp" />
+                <EditText
+                    android:id="@+id/edtMaNv"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Mã nhân viên"
+                    android:paddingStart="20dp" />
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Tên NV:"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtTenNv"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Tên nhân viên"
-                android:paddingStart="20dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Tên ĐN:"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtTenDnnv"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Tên Đăng nhập"
-                android:paddingStart="20dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Pass:"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtMatkhau"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Mật khẩu"
-                android:paddingStart="20dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Phone:"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtSdt"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Số điện thoại"
-                android:paddingStart="20dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Adress:"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtDiachi"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Địa chỉ"
-                android:paddingStart="20dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Chức vụ:"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/edtChucvu"
-                android:layout_margin="5dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/khungedt"
-                android:layout_height="50dp"
-                android:hint="Chức vụ"
-                android:paddingStart="20dp" />
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tên NV:"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/edtTenNv"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Tên nhân viên"
+                    android:paddingStart="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tên ĐN:"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/edtTenDnnv"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Tên Đăng nhập"
+                    android:paddingStart="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Pass:"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/edtMatkhau"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Mật khẩu"
+                    android:paddingStart="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Phone:"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/edtSdt"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Số điện thoại"
+                    android:paddingStart="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Adress:"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/edtDiachi"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Địa chỉ"
+                    android:paddingStart="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Chức vụ:"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/edtChucvu"
+                    android:layout_margin="5dp"
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/khungedt"
+                    android:layout_height="50dp"
+                    android:hint="Chức vụ"
+                    android:paddingStart="20dp" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
-            <Button
-                android:id="@+id/btnThemNV"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:text="Thêm"
-                android:backgroundTint="#3E3434"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
-            <Button
-                android:id="@+id/btnXemNV"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:text="Danh sách"
-                android:backgroundTint="#292D2E"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnThemNV"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:text="Thêm"
+                    android:backgroundTint="#3E3434"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/btnXemNV"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:text="Danh sách"
+                    android:backgroundTint="#292D2E"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

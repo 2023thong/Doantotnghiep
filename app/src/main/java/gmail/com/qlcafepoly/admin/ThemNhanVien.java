@@ -1,24 +1,36 @@
 package gmail.com.qlcafepoly.admin;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import gmail.com.qlcafepoly.Database.Constants;
@@ -32,12 +44,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThemNhanVien extends AppCompatActivity {
+    Bitmap bitmap;
+    private ImageView icthemanhnhanvien1;
     private EditText edMaNv, edTenNv, edTenDn, edMatkhau, edSdt, edDiachi ,edChucvu;
     private Button btnThemNV, btnXemNV;
     private ArrayList<User> nhanVienList = new ArrayList<>();
     private ArrayAdapter customAdapter;
 
-    @SuppressLint("WrongViewCast")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,20 +76,45 @@ public class ThemNhanVien extends AppCompatActivity {
                 String sdt = edSdt.getText().toString();
                 String diachi = edDiachi.getText().toString();
                 String chucvu = edChucvu.getText().toString();
+                String base64Image = encodeBitmapToBase64(bitmap);
 
                 if (manv.isEmpty() || tennv.isEmpty() || tendn.isEmpty() || matkhau.isEmpty() || sdt.isEmpty() || diachi.isEmpty() || chucvu.isEmpty()) {
-                    Toast.makeText(ThemNhanVien.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    StringBuilder errorMessage = new StringBuilder("Vui lòng nhập đầy đủ thông tin:\n");
+
+                    if (manv.isEmpty()) {
+                        errorMessage.append("- Mã nhân viên\n");
+                    }
+                    if (tennv.isEmpty()) {
+                        errorMessage.append("- Tên nhân viên\n");
+                    }
+                    if (tendn.isEmpty()) {
+                        errorMessage.append("- Tên đăng nhập\n");
+                    }
+                    if (matkhau.isEmpty()) {
+                        errorMessage.append("- Mật khẩu\n");
+                    }
+                    if (sdt.isEmpty()) {
+                        errorMessage.append("- Số điện thoại\n");
+                    }
+                    if (diachi.isEmpty()) {
+                        errorMessage.append("- Địa chỉ\n");
+                    }
+                    if (chucvu.isEmpty()) {
+                        errorMessage.append("- Chức vụ\n");
+                    }
+
+                    Toast.makeText(ThemNhanVien.this, errorMessage.toString(), Toast.LENGTH_LONG).show();
                 } else {
                     // Validate Chucvu
                     int chucVuValue;
                     try {
                         chucVuValue = Integer.parseInt(chucvu);
                         if (chucVuValue != 1 && chucVuValue != 2) {
-                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số '1' hoặc '2'", Toast.LENGTH_SHORT).show();
                             return; // Do not proceed with the registration if Chucvu is invalid.
                         }
                     } catch (NumberFormatException e) {
-                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số 1 hoặc 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ThemNhanVien.this, "Chức vụ phải là số '1' hoặc '2'", Toast.LENGTH_SHORT).show();
                         return; // Do not proceed with the registration if Chucvu is not a number.
                     }
 
@@ -90,7 +129,7 @@ public class ThemNhanVien extends AppCompatActivity {
                         return;
                     }
 
-                    registerProcess2(manv, tennv, tendn, matkhau, sdt, diachi, chucvu);
+                    registerProcess2(manv, tennv, tendn, matkhau, sdt, diachi, chucvu, base64Image);
 
                     // Only clear fields if the validation and registration are successful
                     edMaNv.setText("");
@@ -109,6 +148,66 @@ public class ThemNhanVien extends AppCompatActivity {
                 finish();
             }
         });
+        icthemanhnhanvien1 = findViewById(R.id.imgthemanhnhanvien1);
+        String imageUrl = BASE_URL + "duantotnghiep/layhinhanh.php?MaNv=" + edMaNv;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        ImageRequest imageRequest = new ImageRequest(
+                imageUrl,
+                new com.android.volley.Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        icthemanhnhanvien1.setImageBitmap(response);
+                    }
+                },
+                0, 0,
+                null,
+                Bitmap.Config.ARGB_8888,
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(ThemDoUong.this, "Thêm Avatar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(imageRequest);
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode() == Activity.RESULT_OK){
+                    Intent data = result.getData();
+                    Uri uri = data.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        icthemanhnhanvien1.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        e.getStackTrace();
+                    }
+
+                }
+            }
+        });
+        icthemanhnhanvien1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher.launch(intent);
+            }
+        });
+
+    }
+    private String encodeBitmapToBase64(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        if (bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)) {
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        } else {
+            return null; // or throw an exception, depending on your requirements
+        }
     }
     private boolean isNameValid(String name) {
         return name.matches("^[\\p{L} .'-]+$");
@@ -118,13 +217,12 @@ public class ThemNhanVien extends AppCompatActivity {
     private boolean isPhoneNumberValid(String phoneNumber) {
         return phoneNumber.matches("\\d+");
     }
-    public void registerProcess2(String MaNv, String TenNv, String TenDn, String Matkhau, String Sdt, String Diachi, String Chucvu) {
+    public void registerProcess2(String MaNv, String TenNv, String TenDn, String Matkhau, String Sdt, String Diachi, String Chucvu,  String Hinhanh1) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-
         // Validate Chucvu
         int chucVuValue;
         try {
@@ -148,7 +246,7 @@ public class ThemNhanVien extends AppCompatActivity {
         user.setSdt(Sdt);
         user.setDiachi(Diachi);
         user.setChucvu(chucVuValue);
-
+        user.setHinhanh1(Hinhanh1);
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.NHANVIEN);
         serverRequest.setUser(user);
@@ -183,4 +281,3 @@ public class ThemNhanVien extends AppCompatActivity {
 
     }
 }
-

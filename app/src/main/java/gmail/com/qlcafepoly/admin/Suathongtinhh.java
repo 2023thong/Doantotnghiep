@@ -1,5 +1,6 @@
 package gmail.com.qlcafepoly.admin;
 
+import static java.security.AccessController.getContext;
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import androidx.activity.result.ActivityResult;
@@ -15,6 +16,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -78,6 +81,23 @@ public class Suathongtinhh extends AppCompatActivity {
         TextView textViewgia = findViewById(R.id.edTennccs);
         TextView textViewGhichu = findViewById(R.id.edDiachis);
         TextView textViewsoluong = findViewById(R.id.edSDts);
+
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isLetterOrDigit(character) && !Character.isSpaceChar(character) && character != ',') {
+                        Toast.makeText(getApplicationContext(), "Không được kí tự đặc biệt", Toast.LENGTH_SHORT).show();
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        textViewTehh.setFilters(new InputFilter[]{filter});
 
         ImageView view = findViewById(R.id.anhkho);
 

@@ -16,6 +16,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -69,6 +71,24 @@ public class SuaNcc extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView Tencc = findViewById(R.id.edTennccs);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView Diachi = findViewById(R.id.edDiachis);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView SDT = findViewById(R.id.edSDts);
+
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isLetterOrDigit(character) && !Character.isSpaceChar(character) && character != ',') {
+                        Toast.makeText(getApplicationContext(), "Không được kí tự đặc biệt", Toast.LENGTH_SHORT).show();
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        Tencc.setFilters(new InputFilter[]{filter});
+        Diachi.setFilters(new InputFilter[]{filter});
 
 
         Tencc.setText(tenncc);

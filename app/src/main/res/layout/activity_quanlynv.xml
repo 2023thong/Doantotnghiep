@@ -69,47 +69,55 @@
                 android:background="@drawable/boedit"/>
         </LinearLayout>
 
-<!--        <EditText-->
-<!--            android:id="@+id/findMaNV"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:layout_width="130dp"-->
-<!--            android:background="@drawable/khungtimkiem"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:hint="Nhập mã"-->
-<!--            android:gravity="center"/>-->
-<!--        <ImageView-->
-<!--            android:id="@+id/icFindMaNV"-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:src="@drawable/ictimkiem"-->
-<!--            android:layout_margin="10dp"/>-->
+        <!--        <EditText-->
+        <!--            android:id="@+id/findMaNV"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:layout_width="130dp"-->
+        <!--            android:background="@drawable/khungtimkiem"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:hint="Nhập mã"-->
+        <!--            android:gravity="center"/>-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/icFindMaNV"-->
+        <!--            android:layout_width="50dp"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:src="@drawable/ictimkiem"-->
+        <!--            android:layout_margin="10dp"/>-->
 
-            <LinearLayout
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:background="@drawable/boca">
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/boca">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:onClick="themnhanvien"
-                    android:text="Thêm nhân viên"
-                    android:textColor="#0B0808"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:onClick="themnhanvien"
+                android:text="Thêm nhân viên"
+                android:textColor="#0B0808"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lsHienThiNhanVien"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00111111"
+        android:divider="@color/white"
+        android:dividerHeight="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:ignore="MissingConstraints"/>
 
 </LinearLayout>
