@@ -159,6 +159,7 @@ public class KhoFragment extends Fragment {
                         .show();
             }
         });
+
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,7 +198,6 @@ public class KhoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                     String mancc = spinnerMaNcc.getSelectedItem().toString();
                     String malh = spinner.getSelectedItem().toString();
                     String tehh = edTenhh.getText().toString();
@@ -207,7 +207,6 @@ public class KhoFragment extends Fragment {
                     String base64Image = encodeBitmapToBase64(bitmap);
 
                     registerProcess1( mancc, malh, tehh, giatien, ghichu, soluong, base64Image);
-
 
 
                 edTenhh.setText("");
@@ -222,6 +221,7 @@ public class KhoFragment extends Fragment {
         });
         spinnerMaNcc = view.findViewById(R.id.spinnerMaNcc);
         spinner = view.findViewById(R.id.spinner);
+
         pd = new ProgressDialog(getActivity());
         pd.setMessage("Đang tải dữ liệu...");
         pd.setCancelable(false);
@@ -269,6 +269,21 @@ public class KhoFragment extends Fragment {
             }
         });
     }
+    private String encodeImageToBase64(String imagePath) {
+        // Read the image file and encode it to base64
+        try {
+            InputStream inputStream = new FileInputStream(imagePath);
+            byte[] buffer = new byte[inputStream.available()];
+            inputStream.read(buffer);
+            inputStream.close();
+            return Base64.encodeToString(buffer, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -277,20 +292,25 @@ public class KhoFragment extends Fragment {
             pd.setCancelable(false);
             pd.show();
         }
+
         @Override
+
         protected String doInBackground(String... strings) {
             try {
                 String strJson = readJsonOnline(strings[0]);
                 Log.d("//====", strJson);
+
                 JSONObject jsonObject = new JSONObject(strJson);
                 int success = jsonObject.getInt("success");
                 if (success == 1) {
                     if (jsonObject.has("nhacungcap")) {
                         JSONArray jsonArrayhanghoa = jsonObject.getJSONArray("nhacungcap");
                         Log.d("//=====size===", jsonArrayhanghoa.length() + "");
+
                         for (int i = 0; i < jsonArrayhanghoa.length(); i++) {
                             JSONObject nhanvienObject = jsonArrayhanghoa.getJSONObject(i);
                             Log.d("MaNcc", nhanvienObject.getString("MaNcc"));
+
                             String MaNcc = nhanvienObject.getString("MaNcc");
                             User1 user1 = new User1();
                             user1.setMaNcc(MaNcc);
@@ -299,6 +319,7 @@ public class KhoFragment extends Fragment {
                     } else {
                         Log.d("Error: ", "No value for nhacungcap");
                     }
+
                 } else {
                     Log.d("Error: ", "Failed to fetch data. Success is not 1.");
                 }
@@ -309,6 +330,7 @@ public class KhoFragment extends Fragment {
             }
             return null;
         }
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -320,6 +342,7 @@ public class KhoFragment extends Fragment {
                 populateSpinnerWithMaLh();
             }
         }
+
         public String readJsonOnline(String linkUrl) {
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
@@ -485,6 +508,7 @@ public class KhoFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         // Đóng kết nối đến CSDL khi Fragment bị hủy
+
     }
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -508,6 +532,4 @@ public class KhoFragment extends Fragment {
 
 
 
-
 }
-

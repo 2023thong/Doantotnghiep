@@ -1,10 +1,10 @@
 package gmail.com.qlcafepoly.admin;
 
-import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
-
 import android.content.Context;
 import android.content.Intent;
+
 import android.graphics.Bitmap;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
-
 import java.util.List;
 
 import gmail.com.qlcafepoly.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Nhanvienht extends BaseAdapter {
     private List<User> usernv;

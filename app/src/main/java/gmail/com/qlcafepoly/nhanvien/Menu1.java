@@ -2,6 +2,7 @@ package gmail.com.qlcafepoly.nhanvien;
 
 public class Menu1 {
     private int MaOder;
+    private String MaMn;
     private int Id;
     private String TenDu;
     private String MaBn;
@@ -10,6 +11,13 @@ public class Menu1 {
     public Menu1() {
     }
 
+    public String getMaMn() {
+        return MaMn;
+    }
+
+    public void setMaMn(String maMn) {
+        MaMn = maMn;
+    }
 
     public int getMaOder() {return MaOder;}
     public void setMaOder(int maOder) {MaOder = maOder;}

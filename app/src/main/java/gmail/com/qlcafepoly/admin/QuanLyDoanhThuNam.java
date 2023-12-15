@@ -31,7 +31,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,11 +54,9 @@ public class QuanLyDoanhThuNam extends AppCompatActivity {
         ListView doanhthunam = findViewById(R.id.lsdoanhthunam);
         tvTongDoanhThu = findViewById(R.id.tvTongDoanhThu);
         int totalAmount = GlobalData.totalAmount;
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
-        String formattedTotalAmount = numberFormat.format(totalAmount);
         doanhThuNam = new DoanhThuNam(QuanLyDoanhThuNam.this, lsuList);
         doanhthunam.setAdapter(doanhThuNam);
-        tvTongDoanhThu.setText(formattedTotalAmount + " vnd");
+        tvTongDoanhThu.setText(String.valueOf(totalAmount) + " vnd");
         Button btnDTNgay = findViewById(R.id.btnDTNgay2);
         btnDTNgay.setOnClickListener(new View.OnClickListener() {
             @Override

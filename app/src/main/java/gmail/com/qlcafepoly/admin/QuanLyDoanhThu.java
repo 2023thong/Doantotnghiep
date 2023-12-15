@@ -33,7 +33,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -91,13 +90,11 @@ public class QuanLyDoanhThu extends AppCompatActivity {
             }
         });
         int totalAmount = GlobalData.totalAmount;
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
-        String formattedTotalAmount = numberFormat.format(totalAmount);
         ListView doanhthu = findViewById(R.id.lsdoanhthu);
         doanhThu = new DoanhThu(QuanLyDoanhThu.this, lsuList);
         doanhthu.setAdapter(doanhThu);
 
-        tvTongDoanhThu.setText(formattedTotalAmount + " vnd");
+        tvTongDoanhThu.setText(String.valueOf(totalAmount) + " vnd");
         icLich = findViewById(R.id.icLich);
         icLich.setOnClickListener(new View.OnClickListener() {
             @Override

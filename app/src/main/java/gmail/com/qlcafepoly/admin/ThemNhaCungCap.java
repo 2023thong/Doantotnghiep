@@ -303,7 +303,6 @@ public class ThemNhaCungCap extends AppCompatActivity {
                 if (response1.getResult().equals(Constants.SUCCESS)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     updateProductList();
-
                 } else if (response1.getResult().equals(Constants.LOI)) {
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("///thong", response1.getMessage());
@@ -311,6 +310,7 @@ public class ThemNhaCungCap extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
+
                 t.printStackTrace();
             }
         });
