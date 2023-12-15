@@ -212,7 +212,13 @@ public class ThemDoUong extends AppCompatActivity{
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                handleResponse(response.body());
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    Toast.makeText(ThemDoUong.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(ThemDoUong.this, response1.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

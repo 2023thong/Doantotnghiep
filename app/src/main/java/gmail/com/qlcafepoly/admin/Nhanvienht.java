@@ -2,22 +2,19 @@ package gmail.com.qlcafepoly.admin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
+import android.graphics.Bitmap;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import gmail.com.qlcafepoly.Database.Constants;
-import gmail.com.qlcafepoly.Database.RequestInterface;
-import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,6 +83,30 @@ public class Nhanvienht extends BaseAdapter {
                     intent2.putExtra("DULIEUNV_Chucvu", String.valueOf(user.getChucvu()));
                     view.getContext().startActivity(intent2);
                 });
+        String imageUrl = BASE_URL +"duantotnghiep/layhinhanh.php?MaNv=" + user.getMaNv();
+        RequestQueue requestQueue = Volley.newRequestQueue(convertView.getContext());
+        View finalConvertView = convertView;
+        ImageRequest imageRequest = new ImageRequest(
+                imageUrl,
+                new com.android.volley.Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        ImageView imageView = finalConvertView.findViewById(R.id.imgthemanhnhanvien1);
+                        imageView.setImageBitmap(response);
+                    }
+                },
+                0, 0,
+                null,
+                Bitmap.Config.ARGB_8888,
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(finalConvertView.getContext(), "Thêm Avatar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(imageRequest);
 
         return convertView;
     }

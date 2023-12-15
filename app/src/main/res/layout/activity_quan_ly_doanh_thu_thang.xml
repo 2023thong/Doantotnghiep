@@ -42,9 +42,9 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="230dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
-            android:text="Tổng doanh thu hiện tại: "
+            android:text="Tổng doanh thu: "
             android:textSize="20dp"
             android:padding="5dp"/>
         <TextView

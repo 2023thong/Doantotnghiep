@@ -2,7 +2,8 @@ package gmail.com.qlcafepoly.Database;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.1.173:8080/";
+    public static final String BASE_URL = "http://192.168.1.42:8080/";
+
     public static final String HANGHOA = "thongtinvn";
     public static final String THANHTOAN = "thanhtoan";
     public static final String THEMHOADON = "hoadon1";
@@ -38,6 +39,7 @@ public class Constants {
 
 
     public static final String TAG = "LearnAPI";
+    public static final String LOI = "failure";
     public static final String DOIMATKHAUADMIN = "doimatkhau";
 
 }

@@ -112,7 +112,7 @@ public class Themncc extends BaseAdapter {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context); // Tạo đối tượng AlertDialog.Builder
 
-                builder.setTitle("Thông Báo Xóa Nhà Cung Câos")
+                builder.setTitle("Thông Báo Xóa Nhà Cung Cấp")
                         .setMessage("Bạn muốn xóa mã nhà cung cấp " + user1.getMaNcc() + " này !")
                         .setCancelable(true)
                         .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {

@@ -260,8 +260,6 @@ public class ThemNhaCungCap extends AppCompatActivity {
                 pd.dismiss();
             }
             adepter.notifyDataSetChanged();
-
-
         }
 
         public String readJsonOnline(String linkUrl) {
@@ -297,7 +295,6 @@ public class ThemNhaCungCap extends AppCompatActivity {
         RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
         serverRequest.setOperation(Constants.XOANHACUNGCAP);
         serverRequest.setUser2(user2);
-
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
@@ -311,7 +308,6 @@ public class ThemNhaCungCap extends AppCompatActivity {
                     Log.d("///thong", response1.getMessage());
                 }
             }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
 
