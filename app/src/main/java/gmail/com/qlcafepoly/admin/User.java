@@ -8,6 +8,7 @@ public class User {
     private String passwordcu;
     private String passwordmoi;
 
+
     private String MaNv;
     private String TenNv;
 
@@ -16,6 +17,8 @@ public class User {
 
     private int Chucvu;
     private String Hinhanh1;
+
+
 
     public String getHinhanh1() {
         return Hinhanh1;

@@ -5,6 +5,7 @@ package gmail.com.qlcafepoly.nhanvien;
 import static gmail.com.qlcafepoly.Database.Constants.BASE_URL;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
@@ -14,10 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
+import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -80,10 +86,50 @@ public class Unpaid1 extends BaseAdapter {
         Button button = convertView.findViewById(R.id.btnxemdanhsachban);
         Button btnThanhToan = convertView.findViewById(R.id.btnThanhToan);
         TextView ngay = convertView.findViewById(R.id.date);
+        Button qr = convertView.findViewById(R.id.buttonmaqr);
         String currentDate = getCurrentDate();
 
         ngay.setText(currentDate);
 
+        qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(qr.getContext());
+                View dialogView = inflater.inflate(R.layout.itemqr, null);
+
+                final ImageView ghichu = dialogView.findViewById(R.id.imgnhanqr);
+
+                String imageUrl = BASE_URL + "duantotnghiep/getanhqr.php?Id=" + 2;
+                ghichu.setTag(imageUrl);
+                Picasso.get().invalidate(imageUrl);
+                Picasso.get()
+                        .load(imageUrl)
+                        .into(ghichu, new com.squareup.picasso.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                Log.d("Picasso", "Image loaded successfully");
+                            }
+                            @Override
+                            public void onError(Exception e) {
+                                Log.e("Picasso", "Error loading image: " + e.getMessage());
+                            }
+                        });
+                builder.setView(dialogView);
+
+                builder.setTitle("Mã Qr")
+                        .setPositiveButton("Xong", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Thanhtoan(String.valueOf(thongtinoder.getMaOder()), String.valueOf(1) );
+                                Trangthaibn(thongtinoder.getMaBn(), String.valueOf(1));
+                                dialogInterface.dismiss();
+                            }
+                        })
+
+                        .show();
+
+            }
+        });
 
 
         int trangThai = thongtinoder.getTrangThai();
@@ -120,7 +166,6 @@ public class Unpaid1 extends BaseAdapter {
                 // Xử lý khi nhấn vào btnThanhToan
                 Thanhtoan(String.valueOf(thongtinoder.getMaOder()), String.valueOf(1) );
                 Trangthaibn(thongtinoder.getMaBn(), String.valueOf(1));
-
 
 
             }

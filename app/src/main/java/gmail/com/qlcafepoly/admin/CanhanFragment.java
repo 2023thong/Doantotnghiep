@@ -36,7 +36,7 @@ import gmail.com.qlcafepoly.dangnhap.DoiMatKhau;
 
 public class CanhanFragment extends Fragment {
     ConstraintLayout tvttcn;
-    ConstraintLayout layout, doimk;
+    ConstraintLayout layout, doimk , qr;
     TextView textView;
     ImageView view1;
 
@@ -50,6 +50,15 @@ public class CanhanFragment extends Fragment {
         chitiet();
         tvttcn = view.findViewById(R.id.tvTtcn);
         layout = view.findViewById(R.id.dangxuat);
+        qr = view.findViewById(R.id.tvQr);
+        qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MaQr.class);
+                startActivity(intent);
+            }
+        });
+
         tvttcn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

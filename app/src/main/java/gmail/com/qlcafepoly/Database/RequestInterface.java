@@ -3,6 +3,7 @@ package gmail.com.qlcafepoly.Database;
 
 import gmail.com.qlcafepoly.admin.LoaiHang;
 import gmail.com.qlcafepoly.admin.Menu;
+import gmail.com.qlcafepoly.admin.Qr;
 import gmail.com.qlcafepoly.admin.User;
 import gmail.com.qlcafepoly.admin.User1;
 
@@ -54,8 +55,11 @@ public interface RequestInterface {
 
 
         private LoaiHang loaihang;
+        private Qr qr;
 
-
+        public void setQr(Qr qr) {
+            this.qr = qr;
+        }
 
         public void setOder1(Oder oder1) {
             this.oder1 = oder1;
