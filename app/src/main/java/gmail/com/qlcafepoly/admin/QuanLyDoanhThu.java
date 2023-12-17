@@ -58,7 +58,6 @@ public class QuanLyDoanhThu extends AppCompatActivity {
 
     private String urllink = BASE_URL +"duantotnghiep/doanhthutheongay.php";
     private ProgressDialog pd;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +92,6 @@ public class QuanLyDoanhThu extends AppCompatActivity {
         ListView doanhthu = findViewById(R.id.lsdoanhthu);
         doanhThu = new DoanhThu(QuanLyDoanhThu.this, lsuList);
         doanhthu.setAdapter(doanhThu);
-
         tvTongDoanhThu.setText(String.valueOf(totalAmount) + " vnd");
         icLich = findViewById(R.id.icLich);
         icLich.setOnClickListener(new View.OnClickListener() {

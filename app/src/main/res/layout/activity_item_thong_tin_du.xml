@@ -13,7 +13,7 @@
         android:layout_margin="10dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="210dp"
             android:orientation="vertical">
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -45,26 +45,25 @@
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:layout_marginStart="160dp"
-                android:background="@drawable/bothemanh"
-                android:text="thêm ảnh"
+                android:layout_marginStart="155dp"
+                android:background="@drawable/boquanly"
+                android:text="Cập nhật"
                 android:textColor="@color/black" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Mã đồ uống: "
                 android:gravity="center"
-                android:textSize="25dp"/>
-            <EditText
+                android:textSize="15dp"/>
+            <TextView
                 android:id="@+id/edMaDU"
-                android:background="@drawable/boedit"
-                android:layout_width="240dp"
+                android:layout_width="280dp"
                 android:layout_height="40dp"
                 android:text="cf02"
                 android:textSize="25dp"
@@ -74,17 +73,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Tên đồ uống: "
                 android:gravity="center"
-                android:textSize="25dp"/>
+                android:textSize="15dp"/>
             <EditText
                 android:id="@+id/edTenDU"
-                android:background="@drawable/boedit"
-                android:layout_width="240dp"
+                android:background="@drawable/boquanly"
+                android:layout_width="280dp"
                 android:layout_height="40dp"
                 android:text="Bạc sỉu"
                 android:textSize="25dp"
@@ -94,17 +93,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Giá đồ uống: "
                 android:gravity="center"
-                android:textSize="25dp"/>
+                android:textSize="15dp"/>
             <EditText
                 android:id="@+id/edGiaDU"
-                android:background="@drawable/boedit"
-                android:layout_width="240dp"
+                android:background="@drawable/boquanly"
+                android:layout_width="280dp"
                 android:layout_height="40dp"
                 android:text="25000"
                 android:textSize="25dp"
@@ -114,16 +113,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
             <TextView
-                android:layout_width="160dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Tên loại hàng: "
                 android:gravity="center"
-                android:textSize="25dp"/>
+                android:textSize="15dp"/>
             <Spinner
                 android:id="@+id/SpTenLh"
-                android:layout_width="240dp"
+                android:layout_width="280dp"
                 android:layout_height="40dp"
                 android:textSize="25dp"/>
         </LinearLayout>

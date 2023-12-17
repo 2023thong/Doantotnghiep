@@ -44,7 +44,7 @@ public class DanhSachDoUong extends AppCompatActivity {
 
     private ProgressDialog pd;
     private EditText edFindDU;
-    private Button btnThemDU;
+    private ImageView btnThemDU;
     private View btnBackDU;
     private ImageView view1,icLoadMenu;
 

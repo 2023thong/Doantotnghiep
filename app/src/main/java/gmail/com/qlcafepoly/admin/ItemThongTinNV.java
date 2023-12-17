@@ -53,10 +53,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemThongTinNV extends AppCompatActivity {
     private ImageView icanhnhanvien;
-    private TextView btnanhnhanvien;
+    private TextView btnanhnhanvien,edMaNV;
     Bitmap bitmap;
     Button btnBackNV,btnSuaNV,btnXoaNV;
-    EditText edMaNV,edTenNV,edTenDN,edMatKhau,edSdt,edDiaChi,edChucVu;
+    EditText edTenNV,edTenDN,edMatKhau,edSdt,edDiaChi,edChucVu;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +126,7 @@ public class ItemThongTinNV extends AppCompatActivity {
         String Diachi = intent.getStringExtra("DULIEUNV_Diachi");
         String Chucvu = intent.getStringExtra("DULIEUNV_Chucvu");
 
-        EditText edMaNv = findViewById(R.id.edMaNV);
+        TextView edMaNv = findViewById(R.id.edMaNV);
         EditText edTenNv = findViewById(R.id.edTenNV);
         EditText edTenDn = findViewById(R.id.edTenDN);
         EditText edMatkhau = findViewById(R.id.edMatKhau);

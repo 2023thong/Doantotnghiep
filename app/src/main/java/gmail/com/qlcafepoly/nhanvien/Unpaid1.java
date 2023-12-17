@@ -159,7 +159,6 @@ public class Unpaid1 extends BaseAdapter {
 
         });
 
-
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -198,9 +197,6 @@ public class Unpaid1 extends BaseAdapter {
                 editor.apply();
             }
         });
-
-
-
 
         return convertView;
     }

@@ -5,20 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E8E7DE"
+    android:background="#FFFFFF"
     tools:context=".admin.ThemDoUong">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ED8361">
+        android:background="#FDFDFD">
         <ImageView
             android:id="@+id/backThemDU"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/baseline_keyboard_backspace_24"
             android:layout_margin="15dp"/>
-
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
@@ -40,48 +39,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:orientation="vertical">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
                     app:cardCornerRadius="50dp"
                     app:cardElevation="4dp"
-                    app:cardUseCompatPadding="true"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp">
+                    app:cardUseCompatPadding="true">
+
                     <ImageView
                         android:id="@+id/icthemanhmenu1"
-                        android:src="@drawable/cam"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
+                        android:layout_gravity="center"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:layout_gravity="center"/>
+                        android:src="@drawable/cam" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Mã DU:"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtMaMn"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Mã đồ uống"
                     android:paddingStart="20dp" />
@@ -89,22 +84,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tên DU:"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtTenLh"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Tên đồ uống"
                     android:paddingStart="20dp" />
@@ -112,22 +99,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Cost:"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtGiaTien"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Giá tiền"
                     android:paddingStart="20dp" />
@@ -139,12 +118,12 @@
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="Tên LH:"
+                    android:text="Loại hàng:"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
                 <Spinner
                     android:id="@+id/SpnTenLh"
                     android:layout_width="300dp"

@@ -47,6 +47,7 @@ import gmail.com.qlcafepoly.Database.Constants;
 import gmail.com.qlcafepoly.Database.RequestInterface;
 import gmail.com.qlcafepoly.Database.ServerResponse;
 import gmail.com.qlcafepoly.R;
+import gmail.com.qlcafepoly.admin.Hanghoa;
 import gmail.com.qlcafepoly.admin.Menu;
 import gmail.com.qlcafepoly.admin.User1;
 import gmail.com.qlcafepoly.model.Ban;
@@ -148,6 +149,8 @@ public class OderDu extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
 
+
+
                     for (Menu selectedMenu : selectedMenus) {
                         String tendu = selectedMenu.getTenDu();
                         String sl = String.valueOf(selectedMenu.getSoluong());
@@ -237,22 +240,23 @@ public class OderDu extends AppCompatActivity {
                         Log.d("MaMn", menuObject.getString("MaMn"));
                         Log.d("TenDu", menuObject.getString("TenDu"));
                         Log.d("Giatien", menuObject.getString("Giatien"));
+                        Log.d("TenLh", menuObject.getString("TenLh"));
 
 
                         String MaMn = menuObject.getString("MaMn");
                         String TenDu = menuObject.getString("TenDu");
                         String Giatien = menuObject.getString("Giatien");
+                        String tenlh = menuObject.getString("TenLh");
 
                         SharedPreferences sharedPreferences = getSharedPreferences("menu1", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("MaMn", MaMn);  // Replace "TenDn" with your key and TenDn with the value you want to store
                         editor.apply();
 
-
-
                         Menu menu = new Menu();
                         menu.setMaMn(MaMn);
                         menu.setTenDu(TenDu);
+                        menu.setTenLh(tenlh);
                         menu.setGiatien(Integer.parseInt(Giatien));
                         odermenu.add(menu);
                     }
@@ -348,13 +352,15 @@ public class OderDu extends AppCompatActivity {
                     int position = (int) v.getTag();
                     Menu selectedMenu = getItem(position);
 
+
+
                     int currentQuantity = selectedMenu.getSoluong();
                     currentQuantity++;
                     selectedMenu.setSoluong(currentQuantity);
 
-                    int giabd = selectedMenu.getGiatien(); // Lấy giá tiền ban đầu
-                    int giamoi = giabd * currentQuantity; // Tính giá tiền mới dựa trên số lượng mới
-                    selectedMenu.setGiatientd(giamoi); // Cập nhật giá tiền dựa trên số lượng mới
+                    int giabd = selectedMenu.getGiatien();
+                    int giamoi = giabd * currentQuantity;
+                    selectedMenu.setGiatientd(giamoi);
                     sl.setText(String.valueOf(currentQuantity));
                     customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(giamoi))));
                     updateTotalAmount();

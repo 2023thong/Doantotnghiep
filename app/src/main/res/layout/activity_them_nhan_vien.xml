@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F4F3E6"
+    android:background="#FDFDFD"
     tools:context=".admin.ThemNhanVien">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ED8361">
+        android:background="#FDFDFD">
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/baseline_keyboard_backspace_24"
             android:layout_margin="15dp"
             android:onClick="backra"/>
 
@@ -44,7 +44,7 @@
             android:layout_gravity="center">
             <ImageView
                 android:id="@+id/imgthemanhnhanvien1"
-                android:src="@drawable/themhinhanh"
+                android:src="@drawable/cam"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -65,22 +65,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Mã NV:"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtMaNv"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Mã nhân viên"
                     android:paddingStart="20dp" />
@@ -88,22 +80,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tên NV:"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtTenNv"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Tên nhân viên"
                     android:paddingStart="20dp" />
@@ -111,22 +95,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Tên ĐN:"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtTenDnnv"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Tên Đăng nhập"
                     android:paddingStart="20dp" />
@@ -134,22 +110,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Pass:"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtMatkhau"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Mật khẩu"
                     android:paddingStart="20dp" />
@@ -157,22 +125,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Phone:"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtSdt"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Số điện thoại"
                     android:paddingStart="20dp" />
@@ -180,22 +140,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Adress:"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtDiachi"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Địa chỉ"
                     android:paddingStart="20dp" />
@@ -203,22 +155,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Chức vụ:"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                android:orientation="horizontal"
+                android:gravity="center">
                 <EditText
                     android:id="@+id/edtChucvu"
                     android:layout_margin="5dp"
                     android:layout_width="300dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/khungedt"
+                    android:background="@drawable/boquanly"
                     android:layout_height="50dp"
                     android:hint="Chức vụ"
                     android:paddingStart="20dp" />
@@ -234,7 +178,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:text="Thêm"
-                    android:backgroundTint="#3E3434"
+                    android:backgroundTint="#322929"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:layout_gravity="center"/>

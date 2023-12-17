@@ -61,24 +61,15 @@ public class Nhanvienht extends BaseAdapter {
         }
         User user = usernv.get(position);
 
-        TextView tvManv = convertView.findViewById(R.id.tvMaNv);
         TextView tvTennv = convertView.findViewById(R.id.tvTenNv);
-        TextView tvTendn = convertView.findViewById(R.id.tvTenDn);
-        TextView tvMatkhau = convertView.findViewById(R.id.tvMatkhau);
         TextView tvSdt = convertView.findViewById(R.id.tvSdt);
         TextView tvDiachi = convertView.findViewById(R.id.tvDiaChi);
-        TextView tvChucvu = convertView.findViewById(R.id.tvChucvu);
 
-        tvManv.setText("Mã nhân viên: "+user.getMaNv());
-        tvTennv.setText("Tên Nhân viên: "+user.getTenNv());
-        tvTendn.setText("Tên đăng nhập: "+user.getTenDn());
-        tvMatkhau.setText("Mật khẩu: "+user.getMatkhau());
-        tvSdt.setText("Số điện thoại: "+String.valueOf(user.getSdt()));
+        tvTennv.setText("Tên : "+user.getTenNv());
+        tvSdt.setText("SDT: "+String.valueOf(user.getSdt()));
         tvDiachi.setText("Địa chỉ: "+user.getDiachi());
-        tvChucvu.setText("Chức vụ: "+String.valueOf(user.getChucvu()));
         editNV = convertView.findViewById(R.id.icEditNV);
         editNV.setOnClickListener(view -> {
-
             Intent intent2 = new Intent(view.getContext(),ItemThongTinNV.class);
             intent2.putExtra("DULIEUNV", user.getMaNv());
             intent2.putExtra("DULIEUNV_TenNv", user.getTenNv());

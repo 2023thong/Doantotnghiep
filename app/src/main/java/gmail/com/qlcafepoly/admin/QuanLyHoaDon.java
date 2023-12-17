@@ -53,7 +53,7 @@ import gmail.com.qlcafepoly.nhanvien.Thongtinoder;
 public class QuanLyHoaDon extends AppCompatActivity {
     public static List<Thongtinoder> listPay = new ArrayList<>();
     private List<Thongtinoder> filteredList = new ArrayList<>();
-//    private List<Thongtinoder> listPay = new ArrayList<>();
+    //    private List<Thongtinoder> listPay = new ArrayList<>();
     private List<Oder> odermenu = new ArrayList<>();
     private QLHD1 qlhd1;
     private ImageView imageView,imgLich;
@@ -238,7 +238,6 @@ public class QuanLyHoaDon extends AppCompatActivity {
         for (Thongtinoder thongtinoder : listPay) {
             totalAmount += thongtinoder.getTongTien();
         }
-
         TextView totalAmountTextView = findViewById(R.id.tvTongTien);
         totalAmountTextView.setText(String.valueOf(totalAmount) + " VND");
     }

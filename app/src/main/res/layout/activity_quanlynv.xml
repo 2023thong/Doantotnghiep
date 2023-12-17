@@ -9,12 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ED8361">
+        android:background="#FFFFFF">
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/thoat"
             android:layout_margin="15dp"
             android:onClick="backNhanVien"/>
 
@@ -25,16 +25,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Quản lý nhân viên"
+            android:fontFamily="sans-serif-condensed"
             android:layout_marginStart="50dp"
             android:textSize="25sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
         <ImageView
             android:id="@+id/icLoadNhanVien"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="60dp"
-            android:src="@drawable/loadtab" />
+            android:src="@drawable/reset" />
 
     </LinearLayout>
     <LinearLayout
@@ -42,69 +43,34 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="290dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:gravity="center">
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/boca"
-                android:gravity="center">
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/timkiem" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/timkiem" />
-
-            </LinearLayout>
             <EditText
                 android:id="@+id/edFindNV"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:padding="10dp"
-                android:hint="nhập tên nhân viên"
-                android:background="@drawable/boedit"/>
+                android:hint="Nhập tên nhân viên"
+                android:background="@drawable/boquanly"/>
         </LinearLayout>
-
-        <!--        <EditText-->
-        <!--            android:id="@+id/findMaNV"-->
-        <!--            android:layout_margin="10dp"-->
-        <!--            android:layout_width="130dp"-->
-        <!--            android:background="@drawable/khungtimkiem"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:hint="Nhập mã"-->
-        <!--            android:gravity="center"/>-->
-        <!--        <ImageView-->
-        <!--            android:id="@+id/icFindMaNV"-->
-        <!--            android:layout_width="50dp"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:layout_gravity="center_vertical"-->
-        <!--            android:src="@drawable/ictimkiem"-->
-        <!--            android:layout_margin="10dp"/>-->
-
-        <LinearLayout
-            android:layout_width="130dp"
+        <ImageView
+            android:onClick="themnhanvien"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:background="@drawable/boca">
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/adduser" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:onClick="themnhanvien"
-                android:text="Thêm nhân viên"
-                android:textColor="#0B0808"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </LinearLayout>
     </LinearLayout>
-
     <ListView
         android:id="@+id/lsHienThiNhanVien"
         android:layout_width="match_parent"
@@ -114,7 +80,6 @@
         android:layout_marginEnd="16dp"
         android:background="#00111111"
         android:divider="@color/white"
-        android:dividerHeight="8dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

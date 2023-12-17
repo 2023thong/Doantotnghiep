@@ -68,8 +68,8 @@ public class ItemThongTinDU extends AppCompatActivity {
     private String TenLhFromIntent;
     private ImageView icanhmenu;
     Button btnBack,btnSuaDU,btnXoaDU;
-    private TextView btnanhmenu;
-    EditText edMaMN,edTenLH,edGiaTien;
+    private TextView btnanhmenu,edMaMN;
+    EditText edTenLH,edGiaTien;
     private Spinner SpTenLh;
     private List<User1> lsuList = new ArrayList<User1>();
     private String urllink1 =BASE_URL + "duantotnghiep/loaihang.php";
@@ -119,7 +119,7 @@ public class ItemThongTinDU extends AppCompatActivity {
         String Giatien = intent.getStringExtra("DULIEUDU_Giatien");
         TenLhFromIntent = intent.getStringExtra("DULIEUDU_TenLh");
 
-        EditText edMaMn = findViewById(R.id.edMaDU);
+        TextView edMaMn = findViewById(R.id.edMaDU);
         EditText edTenLh = findViewById(R.id.edTenDU);
         EditText edGiatien = findViewById(R.id.edGiaDU);
         Spinner SpTenLh = findViewById(R.id.SpTenLh);

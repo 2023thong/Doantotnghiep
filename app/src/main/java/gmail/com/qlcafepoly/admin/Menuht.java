@@ -67,7 +67,7 @@ public class Menuht extends BaseAdapter {
         TextView tvTenLh = convertView.findViewById(R.id.tvTenLh);
         TextView tvGiatien = convertView.findViewById(R.id.tvGiatien);
 //      TextView tvLh = convertView.findViewById(R.id.tvLh);
-        tvMaMn.setText("Mã: "+menu.getMaMn());
+        tvMaMn.setText(menu.getMaMn());
         tvTenLh.setText(menu.getTenDu());
         String formattedPrice = formatPrice(menu.getGiatien());
         tvGiatien.setText(formattedPrice);
