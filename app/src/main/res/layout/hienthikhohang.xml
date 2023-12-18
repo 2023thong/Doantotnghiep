@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/thu"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/bocanhan"
     android:gravity="center"
     android:orientation="horizontal">
@@ -14,12 +14,11 @@
         android:layout_height="wrap_content">
 
 
-
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:cardCornerRadius="50dp"
             app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="50dp"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
             tools:ignore="MissingConstraints">
@@ -33,7 +32,6 @@
                 tools:ignore="ContentDescription" />
 
         </androidx.cardview.widget.CardView>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -133,6 +131,20 @@
             <!--                android:tint="#2196F3"-->
             <!--                tools:ignore="UseAppTint" />-->
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTrangthai5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:gravity="right"
+                android:text="Trạng thái" />
         </LinearLayout>
 
         <!--        <ImageView-->

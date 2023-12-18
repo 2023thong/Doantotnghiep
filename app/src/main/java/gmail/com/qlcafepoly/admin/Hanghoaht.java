@@ -18,6 +18,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import com.squareup.picasso.Picasso;
 
@@ -73,7 +74,19 @@ public class Hanghoaht extends BaseAdapter {
         TextView tvGiatien = convertView.findViewById(R.id.tvGiatien);
         ImageView imgXoa = convertView.findViewById(R.id.btnXoahanghoa);
         imgkho = convertView.findViewById(R.id.imganhkho1);
+        TextView trang = convertView.findViewById(R.id.tvTrangthai5);
 
+
+        if (user1.getSoluong().equals("5")) {
+            trang.setText("Gần hết hàng");
+            trang.setTextColor(ContextCompat.getColor(context, R.color.red)); // Change to your color resource
+        } else if (Integer.parseInt(user1.getSoluong()) < 5) {
+            trang.setText("Hết hàng");
+            trang.setTextColor(ContextCompat.getColor(context, R.color.gray)); // Change to your color resource
+        } else if (Integer.parseInt(user1.getSoluong()) > 5) {
+            trang.setText("Đủ hàng");
+            trang.setTextColor(ContextCompat.getColor(context, R.color.green)); // Change to your color resource
+        }
 
         tvMahh.setText(user1.getMaHH());
         tvMancc.setText(user1.getSoluong());

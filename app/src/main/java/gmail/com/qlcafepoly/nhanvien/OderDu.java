@@ -80,9 +80,6 @@ public class OderDu extends AppCompatActivity {
     private List<Menu> selectedMenus = new ArrayList<>();
     private Menu menu;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +138,7 @@ public class OderDu extends AppCompatActivity {
                     String mabn = Mabn.getText().toString();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("oder", Context.MODE_PRIVATE);
-                    String maOder = sharedPreferences.getString("Maoder", ""); // The second parameter is the default value if the key is not found
+                    String maOder = sharedPreferences.getString("Maoder", "");
 
                     TextView textView = findViewById(R.id.tvMaoder);
                     textView.setText(maOder);
@@ -149,19 +146,21 @@ public class OderDu extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String formattedDate = dateFormat.format(new Date()) + " " + currentDate.substring(currentDate.indexOf(" ") + 1);
 
-
-
                     for (Menu selectedMenu : selectedMenus) {
                         String tendu = selectedMenu.getTenDu();
                         String sl = String.valueOf(selectedMenu.getSoluong());
                         String gia = String.valueOf(selectedMenu.getGiatien());
 
+
+                        // Check and update the quantity in stock
+                        updateInventory(tendu, Integer.parseInt(sl));
+
                         ThemOderchitiet(maoderd, tendu, sl, gia, mabn);
                     }
 
-
-                    // Move the removal of "Maoder" outside the loop
                     Hoadon1(mabn, maoderd, trangthai, formattedDate, String.valueOf(tongtien));
+
+                    // Remove the stored Maoder
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove("Maoder");
                     editor.apply();
@@ -169,8 +168,8 @@ public class OderDu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Vui lòng bấm lưu và trước khi Oder", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
+
         TextView btnLuu = findViewById(R.id.btnLuu);
         final boolean[] isSaved = {false};
 
@@ -218,9 +217,6 @@ public class OderDu extends AppCompatActivity {
         });
 
     }
-
-
-
 
     private class MyAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -298,8 +294,6 @@ public class OderDu extends AppCompatActivity {
         return dateFormat.format(date);
 
     }
-
-
     private class CustomAdapter extends ArrayAdapter<Menu> {
         public CustomAdapter(Context context, List<Menu> menuList) {
             super(context, 0, menuList);
@@ -324,12 +318,7 @@ public class OderDu extends AppCompatActivity {
 
 
 
-
-
-
-//            mamn.setText(menu.getMaMn());
             customTextView.setText(menu.getTenDu());
-//            sl.setText(String.valueOf(menu.getSoluong()));
 
             sl.setText(String.valueOf(menu.getSoluong()));
             customTextView1.setText(formatCurrency(Double.parseDouble(String.valueOf(menu.getGiatien()))));
@@ -351,7 +340,6 @@ public class OderDu extends AppCompatActivity {
                 public void onClick(View v) {
                     int position = (int) v.getTag();
                     Menu selectedMenu = getItem(position);
-
 
 
                     int currentQuantity = selectedMenu.getSoluong();
@@ -416,9 +404,6 @@ public class OderDu extends AppCompatActivity {
                 }
             });
 
-
-
-
             sl.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -447,10 +432,10 @@ public class OderDu extends AppCompatActivity {
 
         if (box.isChecked()) {
             value = String.valueOf(1);
-            // Thực hiện các tác vụ khác dựa trên giá trị 1
+
         } else {
             value = String.valueOf(2);
-            // Thực hiện các tác vụ khác dựa trên giá trị 2
+
         }
 
         return value;
@@ -764,7 +749,63 @@ public class OderDu extends AppCompatActivity {
         return formatter.format(value);
     }
 
+    private void updateInventory(String TenHh, int Soluong) {
+        for (User1 inventoryItem : lsuList) {
+            if (inventoryItem.getTenHh().equals(TenHh)) {
+                int currentQuantity = Integer.parseInt(inventoryItem.getSoluong());
 
+                if (currentQuantity >= Soluong) {
+                    currentQuantity -= Soluong;
+                    inventoryItem.setSoluong(String.valueOf(currentQuantity));
+                    Log.d("duy", String.valueOf(currentQuantity));
+                    updateStockQuantityInBackend(TenHh, currentQuantity);
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "Không đủ số lượng trong kho cho sản phẩm " + TenHh, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
+    }
+    private void updateStockQuantityInBackend(String TenHh, int newQuantity) {
+        // Make a network call to update the stock quantity in the backend
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        User1 user1 = new User1();
+        user1.setTenHh(TenHh);
+        user1.setSoluong(String.valueOf(newQuantity));
+        RequestInterface.ServerRequest serverRequest = new RequestInterface.ServerRequest();
+        serverRequest.setOperation(Constants.SUAHANGHOA1);
+        serverRequest.setUser1(user1);
+
+        Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
+        responseCall.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                // Handle the response from the server, if needed
+                ServerResponse response1 = response.body();
+                if (response1.getResult().equals(Constants.SUCCESS)) {
+                    // Successfully updated inventory in the backend
+                    String Mahd = response1.getMaHd();
+                    SharedPreferences sharedPreferences0 = getSharedPreferences("hoadon", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences0.edit();
+                    editor.putString("MaHd", Mahd);
+                    editor.apply();
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Log.d(Constants.TAG, "Failed" + t.getMessage());
+            }
+        });
+    }
 
 
 

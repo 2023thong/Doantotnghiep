@@ -2,7 +2,7 @@ package gmail.com.qlcafepoly.Database;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://172.21.0.177:8080/";
+    public static final String BASE_URL = "http://172.16.30.189:8080/";
     public static final String HANGHOA = "thongtinvn";
     public static final String THANHTOAN = "thanhtoan";
     public static final String THEMHOADON = "hoadon1";
@@ -13,6 +13,10 @@ public class Constants {
     public static final String  TIMNHANVIEN = "timnhanvien";
     public static final String SUABAN = "suaban";
     public static final String SUAHANGHOA = "sua_hanghoa";
+
+    public static final String SUAHANGHOA1 = "sua_hanghoa1";
+
+
     public static final String SUAHOADON = "suahoadon";
     public static final String SUAODER = "suaoder";
     public static final String THEMODER = "oder";

@@ -73,13 +73,8 @@ public class DoiMatKhauNv extends AppCompatActivity {
                 }
 
 
-
-
-
             }
         });
-
-
 
     }
     public void Doimatkhau(String Tendn, String passwordcu, String passwordmoi ) {
@@ -101,21 +96,18 @@ public class DoiMatKhauNv extends AppCompatActivity {
         serverRequest.setUser(user1);
         Call<ServerResponse> responseCall = requestInterface.operation(serverRequest);
 
-
         responseCall.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 ServerResponse response1 = response.body();
                 if (response1.getResult().equals(Constants.SUCCESS)){
-                    Intent intent = new Intent(DoiMatKhauNv.this, gmail.com.qlcafepoly.nhanvien.SuccuesfullyActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
                 Log.d(Constants.TAG, "Failed");
@@ -123,9 +115,6 @@ public class DoiMatKhauNv extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     @Override
     public void onDestroy() {

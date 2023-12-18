@@ -21,19 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Sign In"
+        android:text="Đăng Nhập"
         android:textSize="39sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Login for management"
-        android:textColor="#ECBF3A"
-        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -111,11 +101,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edTendnnv"
                     android:layout_width="match_parent"
-                    android:text="tu123"
                     android:layout_height="50dp"
                     android:ems="10"
-                    android:hint="Management login name"
-                    android:inputType="text" />
+                    android:hint="Tên đăng nhập"
+                    android:inputType="text"
+                    android:text="tu123" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -148,9 +138,9 @@
                     android:id="@+id/edPass1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Password"
-                    android:text="123"
-                    android:inputType="textPassword" />
+                    android:hint="Mật khẩu"
+                    android:inputType="textPassword"
+                    android:text="123" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

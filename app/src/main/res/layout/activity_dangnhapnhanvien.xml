@@ -21,19 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Sign In"
+        android:text="Đăng Nhập"
         android:textSize="39sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Employee login"
-        android:textColor="#ECBF3A"
-        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -114,9 +104,9 @@
 
                     android:layout_height="50dp"
                     android:ems="10"
-                    android:text="ductu"
-                    android:hint="User"
-                    android:inputType="text" />
+                    android:hint="Tên đăng nhập"
+                    android:inputType="text"
+                    android:text="ductu" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -149,10 +139,10 @@
                     android:id="@+id/edPassnv"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Password"
-                    android:text="123"
+                    android:hint="Mật khẩu"
+                    android:inputType="textPassword"
                     android:maxLines="1"
-                    android:inputType="textPassword" />
+                    android:text="123" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
